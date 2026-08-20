@@ -8,9 +8,7 @@ public class ApplicationConfig : MonoBehaviour
     {
         Input.multiTouchEnabled = false;
 
-        RefreshRate refreshRate = Screen.currentResolution.refreshRateRatio;
-        float targetFrameRate = (float)refreshRate.numerator / refreshRate.denominator;
-        int frameRate = Mathf.RoundToInt(targetFrameRate);
+        int frameRate = Screen.currentResolution.refreshRate;
 
         // Fallback to 60 FPS if refresh rate is unexpected
         if (frameRate != 60 && frameRate != 90 && frameRate != 120)

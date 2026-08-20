@@ -1,0 +1,276 @@
+{
+    "BuildID": "426c753a-aa55-4080-bb87-4c24018c7a80",
+    "Command": "project:build",
+    "ProjectID": "0ba141233dac4ae439f0736e4efac688",
+    "ProjectStateHash": "8f9572bcdccd5764a43f27ba94491ecb50243ad4f2724d2ae1f24569b7785aeb",
+    "StageCompletedAt": 3,
+    "EarliestFatalError": 0,
+    "StartTime": 1787217453271,
+    "EndTime": 1787217496308,
+    "PlaygroundUserID": 17104,
+    "OperatingSystem": "win32",
+    "UnityPackageID": null,
+    "TargetPlatform": "develop",
+    "UnityVersion": "2022.3.62f2\r",
+    "LunaVersion": "7.2.0",
+    "LogCount": 11,
+    "Logs": [
+        {
+            "LogID": "1d4cad0a-7635-4afd-a7dd-e75f5545f628",
+            "Order": 5,
+            "Timestamp": 1787217496591,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3013",
+            "Description": "You are using an unsupported JSON feature: JsonUtility.",
+            "Details": [
+                "You are using an unsupported JSON feature: JsonUtility. Please use Newtonsoft.JSON instead. "
+            ],
+            "DescriptionValues": [
+                "JsonUtility"
+            ],
+            "DetailsValues": [
+                "JsonUtility"
+            ],
+            "LogCount": 1,
+            "LinePosition": 93,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Data Saving\\SaveSystem.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "3feb50ec-4e93-4d95-a5d3-4da85dafdc3d",
+            "Order": 5,
+            "Timestamp": 1787217496592,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3013",
+            "Description": "You are using an unsupported JSON feature: JsonUtility.",
+            "Details": [
+                "You are using an unsupported JSON feature: JsonUtility. Please use Newtonsoft.JSON instead. "
+            ],
+            "DescriptionValues": [
+                "JsonUtility"
+            ],
+            "DetailsValues": [
+                "JsonUtility"
+            ],
+            "LogCount": 1,
+            "LinePosition": 115,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Data Saving\\SaveSystem.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "18901153-cebd-4b43-a953-ba6c98c8bdfb",
+            "Order": 5,
+            "Timestamp": 1787217496592,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3013",
+            "Description": "You are using an unsupported JSON feature: JsonUtility.",
+            "Details": [
+                "You are using an unsupported JSON feature: JsonUtility. Please use Newtonsoft.JSON instead. "
+            ],
+            "DescriptionValues": [
+                "JsonUtility"
+            ],
+            "DetailsValues": [
+                "JsonUtility"
+            ],
+            "LogCount": 1,
+            "LinePosition": 193,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Data Saving\\SaveSystem.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "e0648e2b-5631-48f5-a53f-098b2c95c16e",
+            "Order": 5,
+            "Timestamp": 1787217497708,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: On",
+            "Details": [
+                "You are using a reserved keyword: On for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "On"
+            ],
+            "DetailsValues": [
+                "On"
+            ],
+            "LogCount": 1,
+            "LinePosition": 132,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Gameplay\\Levels\\Level3\\Lvl3_ShakeToMelt.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "87067928-674d-4af8-9a93-a53c5153c98f",
+            "Order": 5,
+            "Timestamp": 1787217497772,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: On",
+            "Details": [
+                "You are using a reserved keyword: On for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "On"
+            ],
+            "DetailsValues": [
+                "On"
+            ],
+            "LogCount": 1,
+            "LinePosition": 257,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Gameplay\\Levels\\Level3\\Lvl3_WaxMelt.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "dc9889d0-bdf3-4d33-af28-912fa4737926",
+            "Order": 5,
+            "Timestamp": 1787217498243,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3007",
+            "Description": "You are not using any custom events",
+            "Details": [
+                "You are not using any custom events. It is recommended to use custom events to have a better understanding of the playable."
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "7a85079e-c13f-4576-b63c-b3bb52fab5f0",
+            "Order": 5,
+            "Timestamp": 1787217498243,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3011",
+            "Description": "You are not using any LunaPlaygroundFields attributes.",
+            "Details": [
+                "You are not using any LunaPlaygroundFields attributes, it allows you to configure your playable to different concepts to find the best variation, which can drastically improve playable performance on all ad networks."
+            ],
+            "DescriptionValues": null,
+            "DetailsValues": null,
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "87761150-006d-465c-920a-250b477303a8",
+            "Order": 0,
+            "Timestamp": 1787217460219,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1014",
+            "Description": "We recommend running Runtime Analysis to find and remove all unused code",
+            "Details": [
+                "Navigate to the Runtime Analysis → Code tab to enable code stripping. Before uploading the playable, please make sure to have played all scenario’s of the playable in a development build to make Runtime Analysis work properly."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "32009f95-d985-47dc-a225-fb2d79dea263",
+            "Order": 1,
+            "Timestamp": 1787217460219,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1031",
+            "Description": "We recommend running Runtime Analysis to find and remove all unused shader variants",
+            "Details": [
+                "You have 13 shaders and 27 shader variants in your scene, this can be detrimental to the loading times and size of your playable.\n\nRuntime Analysis has only found 6 shader variants in use within your playable. Navigate to the Runtime Analysis > Shaders tab to enable shader stripping to help reduce the amount of shaders, and shader variants present in your playable"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "13",
+                "27",
+                "6"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "a1cae8cd-b526-48b9-a761-5c72b7fe1787",
+            "Order": 2,
+            "Timestamp": 1787217460219,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1016",
+            "Description": "Extensive usage of ParticleSystem Component",
+            "Details": [
+                "There is extensive usage of the ParticleSystem component.\nExcessive usage of any component can be detrimental to performance on lower and in some cases higher end devices, consider reducing the amount the component is used.\nRecommended count: 10, current count 13."
+            ],
+            "DescriptionValues": [
+                "ParticleSystem"
+            ],
+            "DetailsValues": [
+                "ParticleSystem",
+                "10",
+                "13"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "e89f9e3b-c434-4a66-b2c1-74722da1d270",
+            "Order": 3,
+            "Timestamp": 1787217460237,
+            "Stage": 1,
+            "ErrorType": 3,
+            "ErrorCode": "LP1002",
+            "Description": "Repeat wrap mode used on a texture with non power-of-two dimensions, this might not be rendered correctly.",
+            "Details": [
+                "Repeat wrap mode used on 'thread_s' texture at 'Assets/_Core/2D Data/Levels/Level 2/3. Cloth/thread_s.png' with non power-of-two dimensions, this might not be rendered correctly."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "thread_s",
+                "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/thread_s.png"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/thread_s.png",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        }
+    ]
+}
