@@ -1,0 +1,536 @@
+fileFormatVersion: 2
+guid: a2132f81346003b4083b0abb06fa6665
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StonePiece_01
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 298
+        width: 187
+        height: 221
+      alignment: 9
+      pivot: {x: 0.8235294, y: 1.8914027}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4f7b02074c09260800000000000000
+      internalID: 7102392598227580065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_02
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 534
+        width: 217
+        height: 187
+      alignment: 9
+      pivot: {x: 1.2580645, y: 2.5347593}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d0fc0206db454050800000000000000
+      internalID: 5784112678956757209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_03
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 0
+        width: 208
+        height: 250
+      alignment: 9
+      pivot: {x: 1.6826923, y: 1.364}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b043fbd7db625590800000000000000
+      internalID: -7686963039115722569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_04
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 298
+        width: 238
+        height: 234
+      alignment: 9
+      pivot: {x: 1.3907562, y: 1.0555556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d64abfd486b64910800000000000000
+      internalID: 1821343781123409619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_05
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 534
+        width: 156
+        height: 218
+      alignment: 9
+      pivot: {x: 2.102564, y: 0.17431192}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f235c0149568ecd0800000000000000
+      internalID: -2528659504157609229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_06
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 0
+        width: 127
+        height: 248
+      alignment: 9
+      pivot: {x: 2.8897638, y: 0.044354837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6005b44d6eccaac90800000000000000
+      internalID: -7157683365975732218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_07
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 534
+        width: 149
+        height: 189
+      alignment: 9
+      pivot: {x: 2.3020134, y: -1.1111112}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cfa6926bdf2ae990800000000000000
+      internalID: -7356014422057898043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_08
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 0
+        width: 180
+        height: 238
+      alignment: 9
+      pivot: {x: 1.3944445, y: -0.6554622}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc5e5ed455161c000800000000000000
+      internalID: 54431689512183245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_09
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 756
+        width: 251
+        height: 173
+      alignment: 9
+      pivot: {x: 0.8007968, y: -2.0231214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb0201544a7491fd0800000000000000
+      internalID: -2370784957974961988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_10
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 298
+        width: 216
+        height: 228
+      alignment: 9
+      pivot: {x: 0.17592593, y: -1.1885965}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 731730765c55520d0800000000000000
+      internalID: -3448255633357049545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_11
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 534
+        width: 140
+        height: 180
+      alignment: 9
+      pivot: {x: -0.8, y: -1.6888889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8383ce275a5164c0800000000000000
+      internalID: -4296053239041522804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_12
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 756
+        width: 145
+        height: 168
+      alignment: 9
+      pivot: {x: -1.1103449, y: -1.2023809}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a34335633ac646e0800000000000000
+      internalID: -1853571874526379100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_13
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 0
+        width: 211
+        height: 271
+      alignment: 9
+      pivot: {x: -0.6824645, y: -0.033210333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c34b8c1bfb3489730800000000000000
+      internalID: 4006026359146591292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 143
+        height: 296
+      alignment: 9
+      pivot: {x: -1.6223776, y: 0.7128378}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300bdd005142fe020800000000000000
+      internalID: 2373155201274982403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_15
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 298
+        width: 188
+        height: 230
+      alignment: 9
+      pivot: {x: -0.65957445, y: 1.1956521}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe978510307652790800000000000000
+      internalID: -7555519537239000593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_16
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 298
+        width: 136
+        height: 233
+      alignment: 9
+      pivot: {x: -1.492647, y: 1.8669528}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a84bf6db44df4560800000000000000
+      internalID: 7300286943185291430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 534
+        width: 202
+        height: 220
+      alignment: 9
+      pivot: {x: -0.103960395, y: 2.1318183}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93153410b54aec940800000000000000
+      internalID: 5318368920741302585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StonePiece_18
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 756
+        width: 267
+        height: 132
+      alignment: 9
+      pivot: {x: 0.2846442, y: 3.9015152}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7ff7e26943af150800000000000000
+      internalID: 5907091680879703990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      StonePiece_01: 7102392598227580065
+      StonePiece_02: 5784112678956757209
+      StonePiece_03: -7686963039115722569
+      StonePiece_04: 1821343781123409619
+      StonePiece_05: -2528659504157609229
+      StonePiece_06: -7157683365975732218
+      StonePiece_07: -7356014422057898043
+      StonePiece_08: 54431689512183245
+      StonePiece_09: -2370784957974961988
+      StonePiece_10: -3448255633357049545
+      StonePiece_11: -4296053239041522804
+      StonePiece_12: -1853571874526379100
+      StonePiece_13: 4006026359146591292
+      StonePiece_14: 2373155201274982403
+      StonePiece_15: -7555519537239000593
+      StonePiece_16: 7300286943185291430
+      StonePiece_17: 5318368920741302585
+      StonePiece_18: 5907091680879703990
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
