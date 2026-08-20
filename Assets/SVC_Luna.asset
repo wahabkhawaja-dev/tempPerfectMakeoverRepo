@@ -165,6 +165,53 @@ MonoBehaviour:
     keywords:
       "\L\u2025": []
   - shaderCompilerPlatform: 9
+    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - _SUNDISK_NONE
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - _SUNDISK_SIMPLE
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - _SUNDISK_HIGH_QUALITY
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - _SUNDISK_NONE
+      - _SUNDISK_SIMPLE
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025":
+      - _SUNDISK_HIGH_QUALITY
+      - _SUNDISK_SIMPLE
+  - shaderCompilerPlatform: 9
     shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
     passType: 0
     passId: 0
@@ -200,57 +247,10 @@ MonoBehaviour:
       "\L\u2025":
       - UNITY_UI_ALPHACLIP
       - UNITY_UI_CLIP_RECT
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - _SUNDISK_NONE
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - _SUNDISK_SIMPLE
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - _SUNDISK_HIGH_QUALITY
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - _SUNDISK_NONE
-      - _SUNDISK_SIMPLE
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025":
-      - _SUNDISK_HIGH_QUALITY
-      - _SUNDISK_SIMPLE
   _usedByLunaBuild: []
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 24
+  version: 221
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0
@@ -3730,12 +3730,5 @@ MonoBehaviour:
         "\L\u2025":
         - UNITY_UI_ALPHACLIP
         - UNITY_UI_CLIP_RECT
-  - ParsedSubShaders: []
-    Shader: {fileID: 10760, guid: 0000000000000000f000000000000000, type: 0}
-    ShaderPath: Resources/unity_builtin_extra
-    ShaderDefinedKeywords: []
-    fallbackShader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
-    CompilationErrors: []
-    Variants: []
   _modifiedShaders: []
-  invalidShaders: 0
+  invalidShaders: 1

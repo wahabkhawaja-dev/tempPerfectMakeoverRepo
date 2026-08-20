@@ -981,13 +981,313 @@ public static class PlayableLevelFactory
                     level.AllScratches = level.AllScratches.Where(s => s != null).ToArray();
             }
 
-            log.Add("Unused step objects deleted: " + removed + ", broken refs cleaned: " + broken);
+            int shrunk = ShrinkOversizedTextures(root, log);
+            log.Add("Unused step objects deleted: " + removed + ", broken refs cleaned: " + broken + ", sprites re-pointed to halved textures: " + shrunk);
             PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
         }
         finally
         {
             PrefabUtility.UnloadPrefabContents(root);
         }
+    }
+
+    const int TextureShrinkThreshold = 512;
+    static readonly Dictionary<string, string> HalvedTextureCache = new Dictionary<string, string>();
+    static readonly Dictionary<string, float> HalvedTextureShrinkFactor = new Dictionary<string, float>();
+
+    // Luna's own maxWidth/maxHeight texture rule does not actually resize source PNGs
+    // (verified: LunaTemp stage2 output keeps full source dimensions), so oversized
+    // backgrounds/props ship at full resolution regardless of that config. This makes a
+    // private, per-playable half-resolution copy of every sprite still in use above the
+    // threshold, repoints the renderer to it, and scales up the renderer's own GameObject
+    // to compensate (pixels-per-unit stays the same as the source, so the smaller texture
+    // would otherwise render visibly smaller — the transform is what restores the original
+    // on-screen size). Only LEAF renderers (no children) are touched at all: scaling a
+    // GameObject up cascades to every descendant, including unrelated children with their
+    // own correctly-sized sprites or purely positional/anchor meaning — verified this
+    // breaks a sibling icon nested under a compensated background. Anything with children
+    // is left at full texture resolution rather than risk corrupting nested content.
+    // Original source assets are never touched, so nothing else in the
+    // project (full game, other playables) is affected.
+    static int ShrinkOversizedTextures(GameObject root, List<string> log)
+    {
+        // Two passes on purpose. Sprite reassignment is independent of scale, so it can
+        // happen immediately, but scale compensation cannot: if a parent and a descendant
+        // both need compensating (e.g. both use the same shared texture), naively
+        // multiplying each one's own localScale compounds through the hierarchy — the
+        // descendant inherits the parent's already-doubled scale AND doubles again on top
+        // of it. So every touched transform's *original* lossy (world) scale is captured
+        // first, then scale is solved and applied ancestors-first: newLocal = desired
+        // lossy / parent's CURRENT lossy — which is already-corrected by the time a child
+        // is processed, so the child only ever adds whatever extra compensation it
+        // actually needs beyond what its parent already contributed.
+        var pending = new List<PendingScale>();
+
+        var srs = root.GetComponentsInChildren<SpriteRenderer>(true);
+        for (int i = 0; i < srs.Length; i++)
+        {
+            var sr = srs[i];
+            if (sr == null || sr.sprite == null)
+                continue;
+            // Scaling a GameObject up to compensate cascades to every descendant,
+            // including ones with their own unrelated (and correctly-sized) sprites or
+            // pure positional/anchor meaning — verified this breaks a sibling icon under
+            // a compensated background. Only leaf renderers are safe to touch.
+            if (sr.transform.childCount > 0)
+                continue;
+            string newPath = GetOrCreateHalvedSprite(sr.sprite, log);
+            if (string.IsNullOrEmpty(newPath))
+                continue;
+            var newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(newPath);
+            if (newSprite == null)
+                continue;
+
+            float factor;
+            if (HalvedTextureShrinkFactor.TryGetValue(newPath, out factor))
+                pending.Add(new PendingScale { T = sr.transform, Factor = factor, OriginalLossy = sr.transform.lossyScale });
+
+            sr.sprite = newSprite;
+        }
+
+        var masks = root.GetComponentsInChildren<SpriteMask>(true);
+        for (int i = 0; i < masks.Length; i++)
+        {
+            var mask = masks[i];
+            if (mask == null || mask.sprite == null)
+                continue;
+            if (mask.transform.childCount > 0)
+                continue;
+            string newPath = GetOrCreateHalvedSprite(mask.sprite, log);
+            if (string.IsNullOrEmpty(newPath))
+                continue;
+            var newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(newPath);
+            if (newSprite == null)
+                continue;
+
+            float factor;
+            if (HalvedTextureShrinkFactor.TryGetValue(newPath, out factor))
+                pending.Add(new PendingScale { T = mask.transform, Factor = factor, OriginalLossy = mask.transform.lossyScale });
+
+            mask.sprite = newSprite;
+        }
+
+        pending.Sort((a, b) => GetDepth(a.T).CompareTo(GetDepth(b.T)));
+
+        int changed = 0;
+        foreach (var p in pending)
+        {
+            ApplyCompensatingScale(p, log);
+            changed++;
+        }
+
+        return changed;
+    }
+
+    struct PendingScale
+    {
+        public Transform T;
+        public float Factor;
+        public Vector3 OriginalLossy;
+    }
+
+    static void ApplyCompensatingScale(PendingScale p, List<string> log)
+    {
+        Vector3 parentLossy = p.T.parent != null ? p.T.parent.lossyScale : Vector3.one;
+        if (Mathf.Approximately(parentLossy.x, 0f) || Mathf.Approximately(parentLossy.y, 0f))
+        {
+            log.Add("  - SKIPPED scaling '" + p.T.name + "' (parent lossy scale is zero on an axis)");
+            return;
+        }
+
+        // X/Y only — Z has nothing to do with a 2D sprite's on-screen footprint.
+        float desiredX = p.OriginalLossy.x * p.Factor;
+        float desiredY = p.OriginalLossy.y * p.Factor;
+        float newLocalX = desiredX / parentLossy.x;
+        float newLocalY = desiredY / parentLossy.y;
+
+        p.T.localScale = new Vector3(newLocalX, newLocalY, p.T.localScale.z);
+    }
+
+    static string GetOrCreateHalvedSprite(Sprite sprite, List<string> log)
+    {
+        var srcTex = sprite.texture;
+        if (srcTex == null)
+            return null;
+
+        // Use the SPRITE's own rect, not the texture's full dimensions — a texture can be
+        // a Multiple-mode sprite sheet where the sprite actually in use is just one small
+        // sub-rect of a much larger shared sheet (verified: happens in this project).
+        // Treating the whole sheet as "the sprite" would both mis-judge whether shrinking
+        // is even needed and corrupt the crop when it is.
+        int rectW = Mathf.RoundToInt(sprite.rect.width);
+        int rectH = Mathf.RoundToInt(sprite.rect.height);
+        if (rectW <= TextureShrinkThreshold && rectH <= TextureShrinkThreshold)
+            return null;
+
+        string srcPath = AssetDatabase.GetAssetPath(srcTex);
+        if (string.IsNullOrEmpty(srcPath))
+            return null;
+
+        // Keyed by sprite identity, not just the texture path — a sprite sheet can have
+        // several distinct sub-sprites in use, each needing its own cropped copy.
+        string cacheKey = srcPath + "::" + sprite.name;
+
+        string cached;
+        if (HalvedTextureCache.TryGetValue(cacheKey, out cached))
+            return cached;
+
+        string destPath = CreateHalvedTexture(srcPath, sprite, log);
+        HalvedTextureCache[cacheKey] = destPath; // cache null too, so we don't retry a failed asset every call
+        return destPath;
+    }
+
+    static string CreateHalvedTexture(string srcPath, Sprite sprite, List<string> log)
+    {
+        var importer = AssetImporter.GetAtPath(srcPath) as TextureImporter;
+        if (importer == null)
+            return null;
+
+        int cropX = Mathf.RoundToInt(sprite.rect.x);
+        int cropY = Mathf.RoundToInt(sprite.rect.y);
+        int origW = Mathf.RoundToInt(sprite.rect.width);
+        int origH = Mathf.RoundToInt(sprite.rect.height);
+        int newW = origW;
+        int newH = origH;
+        while (newW > TextureShrinkThreshold || newH > TextureShrinkThreshold)
+        {
+            newW = Mathf.Max(1, newW / 2);
+            newH = Mathf.Max(1, newH / 2);
+        }
+
+        if (newW == origW && newH == origH)
+            return null;
+
+        TextureImporterSettings srcSettings = new TextureImporterSettings();
+        importer.ReadTextureSettings(srcSettings);
+
+        // Read PPU/pivot/border off the actual placed Sprite instance, not the texture's
+        // on-disk importer default — they can (and here, do) diverge, e.g. a per-sprite
+        // override that was never re-baked into the importer's default. The importer is
+        // only trusted for settings that aren't visible on the Sprite object itself.
+        float originalPPU = sprite.pixelsPerUnit;
+        Vector2 originalPivot = new Vector2(sprite.pivot.x / sprite.rect.width, sprite.pivot.y / sprite.rect.height);
+        int originalAlignment = srcSettings.spriteAlignment;
+        Vector4 originalBorder = sprite.border;
+        FilterMode originalFilterMode = importer.filterMode;
+        TextureWrapMode originalWrapMode = importer.wrapMode;
+        SpriteMeshType originalMeshType = srcSettings.spriteMeshType;
+
+        bool wasReadable = importer.isReadable;
+        if (!wasReadable)
+        {
+            importer.isReadable = true;
+            importer.SaveAndReimport();
+        }
+
+        byte[] png;
+        Texture2D cropped = null;
+        try
+        {
+            var readableTex = AssetDatabase.LoadAssetAtPath<Texture2D>(srcPath);
+
+            // Crop to just the sprite's own rect first — resizing the full sheet and
+            // reusing SpriteImportMode.Single on it would render the *entire* sheet as
+            // one sprite, discarding the crop this specific sub-sprite actually uses.
+            cropped = new Texture2D(origW, origH, TextureFormat.RGBA32, false);
+            cropped.SetPixels(readableTex.GetPixels(cropX, cropY, origW, origH));
+            cropped.Apply();
+
+            var rt = RenderTexture.GetTemporary(newW, newH, 0, RenderTextureFormat.ARGB32);
+            rt.filterMode = FilterMode.Bilinear;
+            var prevActive = RenderTexture.active;
+            Graphics.Blit(cropped, rt);
+            RenderTexture.active = rt;
+
+            var resized = new Texture2D(newW, newH, TextureFormat.RGBA32, false);
+            resized.ReadPixels(new Rect(0, 0, newW, newH), 0, 0);
+            resized.Apply();
+
+            RenderTexture.active = prevActive;
+            RenderTexture.ReleaseTemporary(rt);
+
+            png = resized.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(resized);
+        }
+        finally
+        {
+            if (cropped != null)
+                UnityEngine.Object.DestroyImmediate(cropped);
+            if (!wasReadable)
+            {
+                importer.isReadable = false;
+                importer.SaveAndReimport();
+            }
+        }
+
+        const string destDir = "Assets/_Playable/HalvedTextures";
+        Directory.CreateDirectory(ToFull(destDir));
+
+        // Named after the sprite, not the sheet — a Multiple-mode sheet can contribute
+        // several distinct cropped sub-sprites, each needs its own file.
+        string sourceIdentity = srcPath + "::" + sprite.name;
+        string baseName = sprite.name;
+        string destPath = destDir + "/" + baseName + ".png";
+        int suffix = 1;
+        while (File.Exists(ToFull(destPath)) && !PathsRefToSameSource(destPath, sourceIdentity))
+        {
+            destPath = destDir + "/" + baseName + "_" + suffix + ".png";
+            suffix++;
+        }
+
+        File.WriteAllBytes(ToFull(destPath), png);
+        AssetDatabase.ImportAsset(destPath, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
+
+        float shrinkFactor = (float)origW / newW;
+
+        var newImporter = AssetImporter.GetAtPath(destPath) as TextureImporter;
+        if (newImporter != null)
+        {
+            newImporter.textureType = TextureImporterType.Sprite;
+            newImporter.spriteImportMode = SpriteImportMode.Single;
+            // PPU unchanged on purpose: the caller compensates by scaling up the
+            // renderer's transform instead, so the sprite must render at its natural
+            // (now smaller) size at PPU parity with the source, not be pre-corrected here.
+            newImporter.spritePixelsPerUnit = originalPPU;
+            newImporter.spritePivot = originalPivot;
+            newImporter.spriteBorder = originalBorder / shrinkFactor;
+            newImporter.filterMode = originalFilterMode;
+            newImporter.wrapMode = originalWrapMode;
+            newImporter.alphaIsTransparency = true;
+            newImporter.mipmapEnabled = false;
+
+            TextureImporterSettings newSettings = new TextureImporterSettings();
+            newImporter.ReadTextureSettings(newSettings);
+            newSettings.spriteAlignment = originalAlignment;
+            newSettings.spriteMeshType = originalMeshType;
+            newImporter.SetTextureSettings(newSettings);
+
+            newImporter.SaveAndReimport();
+        }
+
+        HalvedTextureShrinkFactor[destPath] = shrinkFactor;
+
+        log.Add("  - halved sprite '" + sprite.name + "' (from " + Path.GetFileName(srcPath) + ") " + origW + "x" + origH + " -> " + newW + "x" + newH +
+                " (x" + shrinkFactor.ToString("0.##") + ", PPU unchanged, consuming renderers scaled up to compensate)");
+
+        return destPath;
+    }
+
+    // Metadata sidecar tracks which source a cached halved copy came from, so a name
+    // collision between two different textures with the same filename doesn't reuse
+    // the wrong one on a later regeneration pass.
+    static bool PathsRefToSameSource(string destPath, string srcPath)
+    {
+        string sidecar = ToFull(destPath) + ".src";
+        if (File.Exists(sidecar))
+            return File.ReadAllText(sidecar).Trim() == srcPath;
+
+        File.WriteAllText(sidecar, srcPath);
+        return true;
     }
 
     static string StripUnkeptTransitions(string text, HashSet<int> keep, List<string> log)

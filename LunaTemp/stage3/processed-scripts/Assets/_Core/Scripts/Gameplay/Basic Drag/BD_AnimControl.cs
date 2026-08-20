@@ -38,7 +38,7 @@ public class BD_AnimControl : MonoBehaviour
 
     void Start()
     {
-        if (animator != null) animator.speed = 0;
+        if (animator != null) animator.speed = 0.001f; // Luna doesn't tick Update() at speed 0; kept ~frozen, manually scrubbed via Play()
         isDragging = false;
         thisCollider = GetComponent<Collider2D>();
     }

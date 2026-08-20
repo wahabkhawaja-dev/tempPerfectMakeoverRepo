@@ -40,7 +40,7 @@ public class BD_Welder : MonoBehaviour
 
     void Start()
     {
-        if (animator != null) animator.speed = 0;
+        if (animator != null) animator.speed = 0.001f; // Luna doesn't tick Update() at speed 0; kept ~frozen, manually scrubbed via Play()
         isDragging = false;
         _isFinished = false;
         thisCollider = GetComponent<Collider2D>();

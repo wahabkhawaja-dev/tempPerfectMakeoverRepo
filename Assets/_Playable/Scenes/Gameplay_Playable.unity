@@ -228,6 +228,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &68334548
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 2DxFX/Standard/Wave
+  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 0
+    - _DistanceX: 0
+    - _DistanceY: 0.03
+    - _OffsetX: 10
+    - _OffsetY: 10
+    - _WaveTimeX: 0.16
+    - _WaveTimeY: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &69932534
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +815,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513541906}
   m_CullTransparentMesh: 1
+--- !u!82 &552655446 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8184443055624205736, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+  m_PrefabInstance: {fileID: 975779059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &586982432
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +848,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1562696925}
   - {fileID: 1575911599}
@@ -1124,6 +1168,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa970f874b8df947901117cf7209949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!21 &920273238
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 2DxFX/Standard/Wave
+  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 0
+    - _DistanceX: 0
+    - _DistanceY: 0.03
+    - _OffsetX: 10
+    - _OffsetY: 10
+    - _WaveTimeX: 0.16
+    - _WaveTimeY: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &956037260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1460,7 @@ MonoBehaviour:
   defaultFOV: 60
   defaultDuration: 1
   defaultEase: 1
---- !u!1001 &967371865
+--- !u!1001 &975779059
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1385,6 +1468,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 345106612643548436, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 920273238}
+    - target: {fileID: 1241554671653327093, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3658249643697437277, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1425,19 +1516,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5042936003602639705, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 68334548}
+    - target: {fileID: 5145785426652370629, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: ToolStep3a
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145785426652370629, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: knittingView
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145785426652370629, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: step3aIndication
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145785426652370629, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: AllSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145785426652370629, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: AllDrags.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145785426652370629, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+      propertyPath: AllSources.Array.data[0]
+      value: 
+      objectReference: {fileID: 552655446}
     - target: {fileID: 5208916280903929933, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
       propertyPath: m_Name
       value: Level2_2_Playable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1241554671653327093, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
+    - {fileID: 7801015980143712067, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
---- !u!114 &967371866 stripped
+--- !u!114 &975779060 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5145785426652370629, guid: fe2b382298be78745b3b36fa2f898e46, type: 3}
-  m_PrefabInstance: {fileID: 967371865}
+  m_PrefabInstance: {fileID: 975779059}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -6544,7 +6665,7 @@ MonoBehaviour:
   stickerEffectShader: {fileID: 4800000, guid: e49e928592c6a854881b76ea851e8b3a, type: 3}
   isComplete: 0
   isPaused: 0
-  currentLevel: {fileID: 967371866}
+  currentLevel: {fileID: 975779060}
 --- !u!1 &1382184202
 GameObject:
   m_ObjectHideFlags: 0
@@ -47048,4 +47169,4 @@ SceneRoots:
   - {fileID: 154595406}
   - {fileID: 69932535}
   - {fileID: 880011002}
-  - {fileID: 967371865}
+  - {fileID: 975779059}
