@@ -73,15 +73,6 @@ public class Level2_Face_New_Playable : LevelData
     public GameObject[] ObjHideComp3;
     public GameObject[] ObjShowComp3;
 
-    [Space()]
-    [Header("----------------- STEP 4 ----------------------")]
-    [Space()]
-    public ZoomPos ZoomStep4;
-
-    [Space()]
-    public BasicDrag ToolStep4;
-    public BD_CameraFollow ToolStep4CameraFollow;
-
     IEnumerator Start()
     {
 
@@ -109,8 +100,7 @@ public class Level2_Face_New_Playable : LevelData
            
 
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
-        ForceCompleteStep1();
-        StartStep2();
+        Invoke(nameof(StartStep1),0.5f);
         yield break;
 }
 
@@ -120,6 +110,8 @@ public class Level2_Face_New_Playable : LevelData
 
     void StartStep1()
     {
+        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
+
         ToolStep1.transform.DOKill();
         ToolStep1.transform.DOLocalMoveX(0f, 0.5f).OnComplete(() =>
         {
@@ -329,7 +321,7 @@ public class Level2_Face_New_Playable : LevelData
             obj.SetActive(true);
         }
 
-        Invoke(nameof(StartStep4), 1f);
+        Invoke(nameof(LevelComplete), 1f);
 
         SetProgressBar();
 
@@ -366,74 +358,6 @@ public class Level2_Face_New_Playable : LevelData
         {
             obj.SetActive(true);
         }
-    }
-
-    #endregion
-
-    #region STEP 4
-
-    bool isStep4Done = false;
-
-    void StartStep4()
-    {
-        FaceWetDroplets.DOKill();
-        FaceWetDroplets.DOFade(0,0.0001f);
-        FaceWetDroplets.gameObject.SetActive(true);
-
-        CameraController.Instance.MoveCamera(ZoomStep4.CameraPos, ZoomStep4.CameraFOV);
-
-        ToolStep4.transform.DOKill();
-        ToolStep4.transform.DOLocalMoveX(0f, 0.5f).OnComplete(() =>
-        {
-            ToolInputToggle(ToolStep4.gameObject, true);
-
-            ToolStep4CameraFollow.enabled = true;
-        });
-    }
-
-    public void Step4Done()
-    {
-        if (isStep4Done)
-            return;
-
-        isStep4Done = true;
-
-        ToolStep4CameraFollow.enabled = false;
-
-        ToolInputToggle(ToolStep4.gameObject, false);
-
-        //CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
-
-        ToolStep4.transform.DOLocalMoveX(15f, 1f).OnComplete(() =>
-        {
-            ToolStep4.gameObject.SetActive(false);
-        });
-
-        SetProgressBar();
-
-        Invoke(nameof(LevelComplete), 1f);
-
-        try
-        {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
-        }
-        catch { }
-
-    }
-
-    void ForceCompleteStep4()
-    {
-        ForceCompleteStep3();
-
-        isStep4Done = true;
-
-        ToolStep4CameraFollow.enabled = false;
-
-        ToolInputToggle(ToolStep4.gameObject, false);
-
-        ToolStep4.gameObject.SetActive(false);
-
-        foamMix_E.SetActive(false);
     }
 
     #endregion

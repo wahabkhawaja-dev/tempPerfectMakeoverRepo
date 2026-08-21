@@ -668,7 +668,7 @@ public class BasicDrag : MonoBehaviour
             return true;
         }
 
-        if (Input.touchCount > 0)
+        if (EventSystem.current != null && Input.touchCount > 0)
         {
             if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 return true;

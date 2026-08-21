@@ -36254,7 +36254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: c4d70d8c0421b76479da430189a74032, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: 8a64bb66cb574df48b671cf9a799376a, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -71419,7 +71419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: 55e93db1b464a424e827230191a8533b, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: 2fe2b5cbca1d00d4ca447bf82c86d4cb, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -82768,7 +82768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: c4d70d8c0421b76479da430189a74032, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: 8a64bb66cb574df48b671cf9a799376a, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -93994,7 +93994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: d1d659b9c317ada449027330a072f061, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: e1aec41a618056f409b70852a6cdaa9a, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}

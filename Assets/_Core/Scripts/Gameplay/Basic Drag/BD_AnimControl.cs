@@ -138,7 +138,7 @@ public class BD_AnimControl : MonoBehaviour
     public bool isOverUI()
     {
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return true;
-        if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) return true;
+        if (EventSystem.current != null && Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) return true;
         return false;
     }
 }
