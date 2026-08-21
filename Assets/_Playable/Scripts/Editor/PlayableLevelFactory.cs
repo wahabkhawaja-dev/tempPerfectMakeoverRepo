@@ -260,6 +260,7 @@ public static class PlayableLevelFactory
         text = RestoreHideFieldDecls(text, hideDecls);
         text = ExcludeInnerLevels(text, log);
         text = StripSaveSystem(text, log);
+        text = RedirectLoadingManagerFades(text, log);
         text = Regex.Replace(text, @"(\r?\n){3,}", "\n\n");
         log.Add("Keeping steps [" + string.Join(",", keep.OrderBy(s => s)) + "], layers through step " + (last + 1) + ".");
         return text;
@@ -535,21 +536,36 @@ public static class PlayableLevelFactory
             }
         }
 
+        string forceCall;
+        string startInvoke;
+        ResolveSwitchBoot(body, text, first, out forceCall, out startInvoke);
+
+        // ForceCompleteStepN() snaps objects straight to their end state (no tween) —
+        // visible as a pop/flash if it runs on an unhidden frame. Cover the screen before
+        // it runs (as the very first thing in Start(), before any yield) and only reveal
+        // once the kept boot step has actually started.
+        bool coverPop = !string.IsNullOrEmpty(forceCall);
+
         var boot = new StringBuilder();
+        if (coverPop)
+            boot.Append("        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.").Append(nl)
+                .Append("        PlayableFadeCover.Cover();").Append(nl).Append(nl);
+
         boot.Append(keptLines);
         if (!keptLines.ToString().EndsWith(nl + nl))
             boot.Append(nl);
 
         boot.Append("        // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.").Append(nl);
-        string forceCall;
-        string startInvoke;
-        ResolveSwitchBoot(body, text, first, out forceCall, out startInvoke);
         if (!string.IsNullOrEmpty(forceCall))
             boot.Append("        ").Append(forceCall).Append(nl);
         boot.Append("        ").Append(startInvoke).Append(nl);
+
+        if (coverPop)
+            boot.Append("        PlayableFadeCover.Reveal();").Append(nl);
+
         boot.Append("        yield break;").Append(nl);
 
-        log.Add("Start() uses original switch boot → " + forceCall + " " + startInvoke);
+        log.Add("Start() uses original switch boot → " + forceCall + " " + startInvoke + (coverPop ? " (fade-covered)" : ""));
         return text.Substring(0, open + 1) + nl + boot + text.Substring(close);
     }
 
@@ -770,9 +786,9 @@ public static class PlayableLevelFactory
         {
             bool hasForce = Regex.IsMatch(text, @"\bvoid\s+ForceCompleteStep2b\s*\(");
             replacement = hasForce
-                ? "{ ForceCompleteStep2b(); Invoke(nameof(StartStep3), .5f); }"
+                ? "{ PlayableFadeCover.Cover(); ForceCompleteStep2b(); Invoke(nameof(StartStep3), .5f); PlayableFadeCover.Reveal(); }"
                 : "Invoke(nameof(StartStep3), .5f);";
-            log.Add("StartStep2b skipped → shampoo StartStep3.");
+            log.Add("StartStep2b skipped → shampoo StartStep3" + (hasForce ? " (fade-covered)." : "."));
         }
         else
         {
@@ -827,10 +843,12 @@ public static class PlayableLevelFactory
         int forceStep = next - 1;
         bool hasForce = Regex.IsMatch(sourceText, @"\bvoid\s+ForceCompleteStep" + forceStep + @"\s*\(");
         string force = hasForce ? "ForceCompleteStep" + forceStep + "(); " : "";
-        log.Add("StartStep" + targetStep + " skipped → " + (hasForce ? "ForceComplete " + forceStep + " then " : "") + "StartStep" + next + ".");
+        string cover = hasForce ? "PlayableFadeCover.Cover(); " : "";
+        string reveal = hasForce ? " PlayableFadeCover.Reveal();" : "";
+        log.Add("StartStep" + targetStep + " skipped → " + (hasForce ? "ForceComplete " + forceStep + " (fade-covered) then " : "") + "StartStep" + next + ".");
         if (isInvoke)
-            return "{ " + force + "Invoke(nameof(StartStep" + next + ")" + (invokeDelay ?? "") + "); }";
-        return force + "StartStep" + next + "()";
+            return "{ " + cover + force + "Invoke(nameof(StartStep" + next + ")" + (invokeDelay ?? "") + ");" + reveal + " }";
+        return cover + force + "StartStep" + next + "()" + (hasForce ? "; PlayableFadeCover.Reveal()" : "");
     }
 
     static string RewriteLastStepComplete(string text, int lastKept, List<string> log)
@@ -910,6 +928,22 @@ public static class PlayableLevelFactory
             @"(?<!void\s)(?<!nameof\s*\(\s*)StartStep(?:\d+|2b)\s*\(\s*\)\s*;",
             "LevelComplete();");
         return body;
+    }
+
+    // LoadingManager isn't present in the Playable scene (it's only ever instantiated by
+    // the full game's boot flow), so any surviving LoadingManager.instance.ShowFadeAnim
+    // call NullRef's at runtime and silently kills whatever coroutine chain called it.
+    // UI_Manager.FadeAnim is the equivalent that IS wired up in the Playable scene, and
+    // has an identical (duration, innerDelay) signature, so it's a straight swap.
+    static string RedirectLoadingManagerFades(string text, List<string> log)
+    {
+        string next = Regex.Replace(
+            text,
+            @"LoadingManager\.instance\.ShowFadeAnim\s*\(",
+            "UI_Manager.instance.FadeAnim(");
+        if (next != text)
+            log.Add("LoadingManager.ShowFadeAnim → UI_Manager.FadeAnim (LoadingManager doesn't exist in the Playable scene).");
+        return next;
     }
 
     static string StripSaveSystem(string text, List<string> log)
@@ -1015,6 +1049,12 @@ public static class PlayableLevelFactory
             log.Add("PlayableCTA attached to root (Trigger = Manual by default). " +
                     "Set a Trigger in the Inspector, or wire PlayableCTA.FireCTA() into any " +
                     "UnityEvent — that's how you fire the CTA mid-step.");
+
+            if (root.GetComponent<PlayableFadeCoverSettings>() == null)
+                root.AddComponent<PlayableFadeCoverSettings>();
+
+            log.Add("PlayableFadeCoverSettings attached to root — tune revealDelay/revealDuration " +
+                    "in the Inspector if the ForceComplete fade-cover isn't hiding a step's entrance tween.");
 
             PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
         }

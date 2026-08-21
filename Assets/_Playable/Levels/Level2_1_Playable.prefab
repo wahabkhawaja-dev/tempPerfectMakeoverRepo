@@ -30121,6 +30121,7 @@ GameObject:
   - component: {fileID: 332086356443164051}
   - component: {fileID: 5688674675062796708}
   - component: {fileID: 5738843699489609857}
+  - component: {fileID: 1244333104985012373}
   m_Layer: 0
   m_Name: Level2_1_Playable
   m_TagString: Untagged
@@ -30247,11 +30248,6 @@ MonoBehaviour:
   ObjShowComp3:
   - {fileID: 6426691277328116871}
   - {fileID: 1333366569047266775}
-  ZoomStep4:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 2.6
-  ToolStep4: {fileID: 0}
-  ToolStep4CameraFollow: {fileID: 0}
 --- !u!114 &5688674675062796708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30312,6 +30308,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   logWhenFired: 1
+--- !u!114 &1244333104985012373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208916280903929933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba918bb5d496aa4ca212024c7958176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealDelay: 0.15
+  revealDuration: 0.5
 --- !u!1 &5271981011555078375
 GameObject:
   m_ObjectHideFlags: 0

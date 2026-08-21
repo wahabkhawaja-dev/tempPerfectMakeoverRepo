@@ -29140,7 +29140,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 1
   Particles: {fileID: 0}
   isDone: 0
   isInArea: 0
@@ -51890,7 +51889,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 1
   Particles: {fileID: 7263718760518617806}
   isDone: 0
   isInArea: 0
@@ -73326,7 +73324,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 1
   Particles: {fileID: 0}
   isDone: 0
   isInArea: 0
@@ -99419,8 +99416,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3658249643697437277}
   - component: {fileID: 8091343114179555695}
+  - component: {fileID: 5912578042484018682}
   m_Layer: 0
-  m_Name: Level3_1
+  m_Name: Level3_1_Playable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99594,13 +99592,6 @@ MonoBehaviour:
   - {fileID: 666469017768273496}
   - {fileID: 8358494693966679105}
   stonesRemoved: 0
-  ZoomStep6:
-    CameraPos: {x: -0.25, y: -0.07, z: -10}
-    CameraFOV: 2.6
-  ToolStep6: {fileID: 3177472106371570661}
-  ToolStep6CameraFollow: {fileID: 6274448213743902426}
-  Step6Col: {fileID: 7533378614666258121}
-  Star_6: {fileID: 719848315345621168}
   ZoomStep7:
     CameraPos: {x: 0, y: 0.5, z: -10}
     CameraFOV: 2.5
@@ -99620,6 +99611,20 @@ MonoBehaviour:
   ToolStep8: {fileID: 3552629717130577919}
   Target_8: {fileID: 7212937253572055247}
   Hand_8: {fileID: 6007018749092415940}
+--- !u!114 &5912578042484018682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208916280903929933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba918bb5d496aa4ca212024c7958176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealDelay: 0.15
+  revealDuration: 0.5
 --- !u!1 &5219695026439262621
 GameObject:
   m_ObjectHideFlags: 0
@@ -100374,7 +100379,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 1
   Particles: {fileID: 2709668515837346606}
   isDone: 0
   isInArea: 0

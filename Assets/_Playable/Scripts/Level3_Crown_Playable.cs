@@ -145,6 +145,9 @@ public class Level3_Crown_Playable : LevelData
     IEnumerator Start()
     {
 
+        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
+        PlayableFadeCover.Cover();
+
         base.LevelStart();
 
         UI_Manager.instance.InitializeTools(ToolIcons);
@@ -184,6 +187,7 @@ public class Level3_Crown_Playable : LevelData
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
         ForceCompleteStep4();
         StartStep5();
+        PlayableFadeCover.Reveal();
         yield break;
 }
 
@@ -243,7 +247,7 @@ public class Level3_Crown_Playable : LevelData
             ToolStep1.gameObject.SetActive(false);
         });
 
-        { ForceCompleteStep4(); Invoke(nameof(StartStep5), 1f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep4(); Invoke(nameof(StartStep5), 1f); PlayableFadeCover.Reveal(); }
 
         try
         {
@@ -303,7 +307,7 @@ public class Level3_Crown_Playable : LevelData
 
         });
 
-        { ForceCompleteStep4(); Invoke(nameof(StartStep5), 1f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep4(); Invoke(nameof(StartStep5), 1f); PlayableFadeCover.Reveal(); }
 
         try
         {
@@ -371,7 +375,7 @@ public class Level3_Crown_Playable : LevelData
 
         });
 
-        { ForceCompleteStep4(); Invoke(nameof(StartStep5), 1f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep4(); Invoke(nameof(StartStep5), 1f); PlayableFadeCover.Reveal(); }
 
         try
         {

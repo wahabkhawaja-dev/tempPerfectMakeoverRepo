@@ -108439,6 +108439,7 @@ GameObject:
   - component: {fileID: 3658249643697437277}
   - component: {fileID: 3721143447342102756}
   - component: {fileID: 9069358626848304808}
+  - component: {fileID: 8529898155719099753}
   m_Layer: 0
   m_Name: Level3_2_Playable
   m_TagString: Untagged
@@ -108549,10 +108550,6 @@ MonoBehaviour:
   - {fileID: 0}
   View1: {fileID: 6454303923025690145}
   View2: {fileID: 6498340247162077296}
-  View3: {fileID: 0}
-  View4: {fileID: 0}
-  View5: {fileID: 0}
-  View6: {fileID: 0}
   ZoomStep1:
     CameraPos: {x: 0.85, y: 0, z: -10}
     CameraFOV: 3.2
@@ -108604,90 +108601,6 @@ MonoBehaviour:
   - {fileID: 4220618006966405146}
   - {fileID: 7751914263301792459}
   NailsHolder_3: {fileID: 8972695519395202718}
-  ZoomStep4:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 4.2
-  Kettle: {fileID: 1044245845973784029}
-  KettleCap: {fileID: 7290773591202776783}
-  MaskWaterfall: {fileID: 1091720551734448159}
-  Waterfall: {fileID: 1110876761088593238}
-  WaterInKettle: {fileID: 23445333510995024}
-  WaterInKettleParticles: {fileID: 1969377728196017946}
-  HoseTap1: {fileID: 3979346293841431520}
-  HoseTap2: {fileID: 7562090431734985307}
-  HandTap1: {fileID: 379166811766127852}
-  HandTap2: {fileID: 3093554635578569127}
-  ZoomStep5:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 4.2
-  HandTap1_5: {fileID: 0}
-  Dial_5: {fileID: 0}
-  Dial_5_Light: {fileID: 0}
-  Flame: {fileID: 0}
-  FlameMask: {fileID: 0}
-  Kettle_5: {fileID: 0}
-  Kettle_5_Target: {fileID: 0}
-  Kettle_5_HandAnim: {fileID: 0}
-  Kettle_5_Cap: {fileID: 0}
-  Smoke_5A: {fileID: 0}
-  Smoke_5B: {fileID: 0}
-  HandTap2_5: {fileID: 0}
-  StoveFixItBtn: {fileID: 0}
-  StoveDamageClip: {fileID: 8300000, guid: 161a6b073066b9d4d9f580f872337d24, type: 3}
-  ZoomStep6:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 4.2
-  Kettle_6: {fileID: 0}
-  Kettle_6_Col: {fileID: 0}
-  Indication_6: {fileID: 0}
-  ZoomStep7:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 6.5
-  ToolStep7: {fileID: 0}
-  ToolStep7Animator: {fileID: 0}
-  ToolStep7AnimatorDrag: {fileID: 0}
-  Indication_7: {fileID: 0}
-  HandClean_7: {fileID: 0}
-  ZoomStep8:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 4.2
-  ZoomStep8B:
-    CameraPos: {x: 0.7, y: -1.63, z: -10}
-    CameraFOV: 2.65
-  WetHand_8: {fileID: 0}
-  ToolStep8: {fileID: 0}
-  ToolStep8CameraFollow: {fileID: 0}
-  Indication_8: {fileID: 0}
-  Nail_8: {fileID: 0}
-  ZoomStep9:
-    CameraPos: {x: 0.2, y: -0.2, z: -10}
-    CameraFOV: 5
-  Tool9Holder: {fileID: 0}
-  CapAnimator_9: {fileID: 0}
-  ToolStep9: {fileID: 0}
-  ToolStep9Indications:
-  - {fileID: 0}
-  - {fileID: 0}
-  Mosturizer_9:
-  - {fileID: 0}
-  - {fileID: 0}
-  mosturizerOpenSfx: {fileID: 8300000, guid: d0e15b27203d5e649b3152d73314bf97, type: 3}
-  ZoomStep10:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 4.2
-  Tip10: {fileID: 0}
-  ToolStep10: {fileID: 0}
-  ToolStep10CameraFollow: {fileID: 0}
-  HandAnim10: {fileID: 0}
-  DryHand_SR: {fileID: 0}
-  FinalHand_SR: {fileID: 0}
-  MosturizerSR_10: {fileID: 0}
-  ZoomStep11:
-    CameraPos: {x: 0.8, y: -1.7, z: -10}
-    CameraFOV: 2.65
-  ToolStep11: {fileID: 0}
-  ToolStep11CameraFollow: {fileID: 0}
-  ToolStep11Indication: {fileID: 0}
 --- !u!114 &9069358626848304808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108700,17 +108613,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5862eb67503a0474bab9aa74eeed35ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  trigger: 0
   afterSeconds: 15
-  kettlePour: {fileID: 0}
-  shampoo: {fileID: 0}
-  surf: {fileID: 0}
-  progressThreshold: 0.5
+  afterTaps: 3
   refireOnEveryTap: 1
   refireDelay: 0.015
   onCtaFired:
     m_PersistentCalls:
       m_Calls: []
+  logWhenFired: 1
+--- !u!114 &8529898155719099753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208916280903929933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba918bb5d496aa4ca212024c7958176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealDelay: 0.15
+  revealDuration: 0.5
 --- !u!1 &5274347671895605496
 GameObject:
   m_ObjectHideFlags: 0

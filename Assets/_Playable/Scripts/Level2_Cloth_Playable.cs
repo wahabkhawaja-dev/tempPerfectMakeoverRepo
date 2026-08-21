@@ -118,6 +118,9 @@ public class Level2_Cloth_Playable : LevelData
     IEnumerator Start()
     {
 
+        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
+        PlayableFadeCover.Cover();
+
         base.LevelStart();
 
         UI_Manager.instance.InitializeTools(ToolIcons);
@@ -129,6 +132,7 @@ public class Level2_Cloth_Playable : LevelData
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
         ForceCompleteStep3();
         StartStep4();
+        PlayableFadeCover.Reveal();
         yield break;
 }
 
@@ -202,8 +206,7 @@ public class Level2_Cloth_Playable : LevelData
 
         DOVirtual.DelayedCall(1f, () =>
         {
-            LoadingManager.instance.ShowFadeAnim(0.5f, 0.5f);
-            { ForceCompleteStep3(); Invoke(nameof(StartStep4), 0.75f); }
+            { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 0.75f); PlayableFadeCover.Reveal(); }
 
         });
 
@@ -293,7 +296,7 @@ public class Level2_Cloth_Playable : LevelData
         ToolStep2.OnMouseDownEvent -= ClothStep2Picked;
         ToolStep2.OnMouseUpEvent -= ClothStep2Released;
 
-        { ForceCompleteStep3(); Invoke(nameof(StartStep4), 1f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1f); PlayableFadeCover.Reveal(); }
 
         SetProgressBar();
 

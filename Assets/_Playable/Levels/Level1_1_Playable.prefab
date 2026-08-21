@@ -266580,6 +266580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3658249643697437277}
   - component: {fileID: 5499122828158317451}
+  - component: {fileID: 2308069612038148561}
   m_Layer: 0
   m_Name: Level1_1_Playable
   m_TagString: Untagged
@@ -266773,6 +266774,20 @@ MonoBehaviour:
   waterShotParticle: {fileID: 3737410984708097731}
   showerProblemClip: {fileID: 8300000, guid: cc50c7ec62e76d643a04caca9f6b16ca, type: 3}
   wetHairs_E: {fileID: 7809936391764361209}
+--- !u!114 &2308069612038148561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208916280903929933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba918bb5d496aa4ca212024c7958176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealDelay: 0.15
+  revealDuration: 0.5
 --- !u!1 &5210400630389652622
 GameObject:
   m_ObjectHideFlags: 0

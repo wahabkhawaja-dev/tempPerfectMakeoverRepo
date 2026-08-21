@@ -1841,7 +1841,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 0
   Particles: {fileID: 0}
   isDone: 0
   isInArea: 0
@@ -25052,8 +25051,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3658249643697437277}
   - component: {fileID: 4476583809319839233}
+  - component: {fileID: 6612333815300707161}
   m_Layer: 0
-  m_Name: Level1_5
+  m_Name: Level1_5_Playable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25166,6 +25166,20 @@ MonoBehaviour:
   ToolStep4: {fileID: 6333865777802920981}
   camFollowStep4: {fileID: 7983054851395235480}
   starsParticles: {fileID: 5597004939165014589}
+--- !u!114 &6612333815300707161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208916280903929933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba918bb5d496aa4ca212024c7958176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealDelay: 0.15
+  revealDuration: 0.5
 --- !u!1 &5282078568335134937
 GameObject:
   m_ObjectHideFlags: 0
@@ -50751,7 +50765,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 0
   Particles: {fileID: 0}
   isDone: 0
   isInArea: 0

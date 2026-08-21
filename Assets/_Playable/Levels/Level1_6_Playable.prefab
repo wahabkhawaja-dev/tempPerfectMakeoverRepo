@@ -30348,6 +30348,7 @@ GameObject:
   - component: {fileID: 3658249643697437277}
   - component: {fileID: 1375948645951036895}
   - component: {fileID: 2264066875081561980}
+  - component: {fileID: 3537400873141099177}
   m_Layer: 0
   m_Name: Level1_6_Playable
   m_TagString: Untagged
@@ -30471,22 +30472,6 @@ MonoBehaviour:
   Tool5Container: {fileID: 1017756435151403530}
   Indication_5: {fileID: 0}
   TopCoverStep5: {fileID: 1154494878292978573}
-  ZoomStep6:
-    CameraPos: {x: 0, y: 0.48, z: -10}
-    CameraFOV: 3.4
-  screwContainer: {fileID: 1586509301458147306}
-  ToolStep6: {fileID: 0}
-  ZoomStep7:
-    CameraPos: {x: 0, y: 0, z: -10}
-    CameraFOV: 4.2
-  blackObject: {fileID: 2925797360078485673}
-  ToolStep7: {fileID: 5152353229543841716}
-  downViewWax: {fileID: 2992738180637849603}
-  onsound: {fileID: 8300000, guid: ffd20e139d5d2e346bf862de0abda7b5, type: 3}
-  upSideViewWax:
-  - {fileID: 4036731355058437387}
-  - {fileID: 1148420006398753326}
-  step7CameraFollow: {fileID: 7671259213762368965}
 --- !u!114 &2264066875081561980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30508,6 +30493,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   logWhenFired: 1
+--- !u!114 &3537400873141099177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208916280903929933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba918bb5d496aa4ca212024c7958176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealDelay: 0.15
+  revealDuration: 0.5
 --- !u!1 &5234290484390530190
 GameObject:
   m_ObjectHideFlags: 0
