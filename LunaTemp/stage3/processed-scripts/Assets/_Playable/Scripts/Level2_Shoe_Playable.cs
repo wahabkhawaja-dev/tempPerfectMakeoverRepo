@@ -106,6 +106,9 @@ public class Level2_Shoe_Playable : LevelData
     IEnumerator Start()
     {
 
+        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
+        PlayableFadeCover.Cover();
+
         base.LevelStart();
 
         UI_Manager.instance.InitializeTools(ToolIcons);
@@ -143,6 +146,7 @@ public class Level2_Shoe_Playable : LevelData
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
         ForceCompleteStep3();
         StartStep4();
+        PlayableFadeCover.Reveal();
         yield break;
 }
 
@@ -189,7 +193,7 @@ public class Level2_Shoe_Playable : LevelData
         }
         LayersToFade_Updated.DOFade(1, 1f).SetDelay(.5f);
         SetProgressBar();
-        { ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); PlayableFadeCover.Reveal(); }
 
         try
         {
@@ -253,7 +257,7 @@ public class Level2_Shoe_Playable : LevelData
             LayersToFade_2[i].DOFade(0, 1f).SetDelay(.5f);
         }
         SetProgressBar();
-        { ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); PlayableFadeCover.Reveal(); }
 
         try
         {

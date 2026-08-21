@@ -161,19 +161,25 @@ public class Level1_Hair_Playable : LevelData
 
     IEnumerator Start()
     {
+        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
+        PlayableFadeCover.Cover();
 
         base.LevelStart();
 
         UI_Manager.instance.InitializeTools(ToolIcons);
 
+        yield return new WaitForSeconds(0.25f);
+
         foamLight_E.SetActive(false);
         foam2_E.SetActive(false);
         wetHairs_E.SetActive(false);
-        yield return new WaitForSeconds(0.25f);
 
+        
 
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
-        StartStep1();
+        ForceCompleteStep2b();
+        Invoke(nameof(StartStep3), .5f);
+        PlayableFadeCover.Reveal();
         yield break;
 }
 
@@ -183,8 +189,6 @@ public class Level1_Hair_Playable : LevelData
 
     void StartStep1()
     {
-        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
-
         for (int i = 0; i < AllTrash.Length; i++)
         {
             AllTrash[i].thisCollider.enabled = true;
@@ -237,7 +241,7 @@ public class Level1_Hair_Playable : LevelData
 
         SetProgressBar();
 
-        Invoke(nameof(StartStep2), 0.25f);
+        { PlayableFadeCover.Cover(); ForceCompleteStep2(); Invoke(nameof(StartStep3), 0.25f); PlayableFadeCover.Reveal(); }
 
         try
         {
@@ -261,8 +265,6 @@ public class Level1_Hair_Playable : LevelData
 
     void StartStep2()
     {
-        CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
-
         ToolStep2.transform.DOKill();
         ToolStep2.transform.DOLocalMoveX(0f, .5f).SetDelay(.5f).OnComplete(() =>
         {
@@ -306,7 +308,7 @@ public class Level1_Hair_Playable : LevelData
             ToolStep2.gameObject.SetActive(false);
         });
 
-        Invoke(nameof(StartStep2b), .5f);
+        { PlayableFadeCover.Cover(); ForceCompleteStep2b(); Invoke(nameof(StartStep3), .5f); PlayableFadeCover.Reveal(); }
 
         try
         {
@@ -332,8 +334,6 @@ public class Level1_Hair_Playable : LevelData
 
     void StartStep2b()
     {
-        CameraController.Instance.MoveCamera(ZoomStep2b.CameraPos, ZoomStep2b.CameraFOV);
-
         dryHairAnim.DOKill();
         dryHairAnim.enabled = false;
 

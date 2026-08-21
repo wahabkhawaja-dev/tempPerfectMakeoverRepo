@@ -93,6 +93,9 @@ public class Lvl3_WaxMachine_Playable : LevelData
     IEnumerator Start()
     {
 
+        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
+        PlayableFadeCover.Cover();
+
         base.LevelStart();
 
         UI_Manager.instance.InitializeTools(ToolIcons);
@@ -106,6 +109,7 @@ public class Lvl3_WaxMachine_Playable : LevelData
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
         ForceCompleteStep3();
         StartStep4();
+        PlayableFadeCover.Reveal();
         yield break;
 }
 
@@ -203,7 +207,7 @@ public class Lvl3_WaxMachine_Playable : LevelData
             ToolStep1.gameObject.SetActive(false);
         });
 
-        { ForceCompleteStep3(); Invoke(nameof(StartStep4), 1f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1f); PlayableFadeCover.Reveal(); }
 
         stepsDone = 1;
 
@@ -282,7 +286,7 @@ public class Lvl3_WaxMachine_Playable : LevelData
             ToolStep2.gameObject.SetActive(false);
         });
 
-        { ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); }
+        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); PlayableFadeCover.Reveal(); }
 
         AudioController.instance.PlayAnySfx(0, WhooshSfx, 0f);
 

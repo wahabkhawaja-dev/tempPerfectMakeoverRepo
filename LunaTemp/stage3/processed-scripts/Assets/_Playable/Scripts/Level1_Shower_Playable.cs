@@ -86,6 +86,9 @@ public class Level1_Shower_Playable : LevelData
     IEnumerator Start()
     {
 
+        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
+        PlayableFadeCover.Cover();
+
         base.LevelStart();
         UI_Manager.instance.InitializeTools(ToolIcons);
 
@@ -96,6 +99,7 @@ public class Level1_Shower_Playable : LevelData
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
         ForceCompleteStep1();
         StartStep2();
+        PlayableFadeCover.Reveal();
         yield break;
 }
 
@@ -313,7 +317,7 @@ public class Level1_Shower_Playable : LevelData
                             BoilingSource.DOKill();
                             BoilingSource.DOFade(0f, 1f).SetDelay(.3f);
 
-                            LoadingManager.instance.ShowFadeAnim(1.25f, 1f);
+                            UI_Manager.instance.FadeAnim(1.25f, 1f);
 
                             DOVirtual.DelayedCall(1.3f, () =>
                             {
