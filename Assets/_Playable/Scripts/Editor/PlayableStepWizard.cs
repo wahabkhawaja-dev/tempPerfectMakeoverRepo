@@ -18,6 +18,10 @@ public class PlayableStepWizard : EditorWindow
     Vector2 _scroll;
     string _status = "Source level chuno, steps tick karo, Build Playable dabao.";
 
+    enum CtaTiming { OnStepComplete, OnStepStart }
+    CtaTiming _ctaTiming = CtaTiming.OnStepComplete;
+    int _ctaStep = -1; // -1 = last selected step (default, matches original behavior)
+
     [MenuItem("Playable/Step Wizard")]
     public static void Open()
     {
@@ -211,6 +215,9 @@ public class PlayableStepWizard : EditorWindow
             EditorGUILayout.LabelField(
                 ordered.Count == 0 ? "Koi step selected nahi." : "Playable: " + string.Join(" → ", ordered),
                 EditorStyles.miniLabel);
+
+            if (ordered.Count > 0)
+                DrawCtaSection(ordered);
         }
 
         EditorGUILayout.Space(12);
@@ -230,13 +237,65 @@ public class PlayableStepWizard : EditorWindow
         EditorGUILayout.HelpBox(_status, MessageType.None);
     }
 
+    void DrawCtaSection(List<int> ordered)
+    {
+        EditorGUILayout.Space(10);
+        EditorGUILayout.LabelField("CTA Trigger", EditorStyles.boldLabel);
+
+        int lastSelected = ordered[ordered.Count - 1];
+        if (_ctaStep < 0 || !ordered.Contains(_ctaStep))
+            _ctaStep = lastSelected;
+
+        _ctaTiming = (CtaTiming)EditorGUILayout.EnumPopup("Timing", _ctaTiming);
+
+        int ctaStepIndex = Mathf.Max(0, ordered.IndexOf(_ctaStep));
+        var stepLabels = ordered.ConvertAll(s => s.ToString()).ToArray();
+        ctaStepIndex = EditorGUILayout.Popup("CTA Step", ctaStepIndex, stepLabels);
+        _ctaStep = ordered[Mathf.Clamp(ctaStepIndex, 0, ordered.Count - 1)];
+
+        string help;
+        if (_ctaTiming == CtaTiming.OnStepStart)
+        {
+            help = "CTA fires the instant step " + _ctaStep + " would begin — it never actually plays. " +
+                   (_ctaStep == ordered[0]
+                       ? "This is the first selected step, so the CTA fires immediately."
+                       : "Steps before it in your selection still play normally.");
+        }
+        else
+        {
+            help = "CTA fires when step " + _ctaStep + " completes (default: last selected step).";
+        }
+
+        help += "\n\nFor any other moment — mid-step, on a timer, after N taps — use the " +
+                "PlayableCTA component added to the built prefab's root: set its Trigger, or wire " +
+                "PlayableCTA.FireCTA() into whichever UnityEvent marks that moment.";
+
+        EditorGUILayout.HelpBox(help, MessageType.None);
+    }
+
     void RunBuild()
     {
         if (_prefabPaths.Length == 0)
             return;
 
-        var keep = new List<int>(_selected);
-        keep.Sort();
+        var ordered = new List<int>(_selected);
+        ordered.Sort();
+        if (ordered.Count == 0)
+            return;
+
+        int ctaStep = ordered.Contains(_ctaStep) ? _ctaStep : ordered[ordered.Count - 1];
+
+        // "On Start" never lets that step's own content play — it's excluded entirely,
+        // matching the factory's existing "call beyond the kept range → CTA" behavior.
+        // "On Complete" / "On Progress" both keep everything through the CTA step; the
+        // progress case additionally attaches an early-trigger watcher on top of that.
+        int keepUpTo = _ctaTiming == CtaTiming.OnStepStart ? ctaStep - 1 : ctaStep;
+        var keep = ordered.FindAll(s => s <= keepUpTo);
+        if (keep.Count == 0)
+        {
+            _status = "CTA Step 'On Start' ka matlab pehla selected step bhi exclude ho gaya — kam az kam 1 step chahiye pehle.";
+            return;
+        }
 
         EditorUtility.DisplayProgressBar("Playable", "Building selected steps…", 0.4f);
         try

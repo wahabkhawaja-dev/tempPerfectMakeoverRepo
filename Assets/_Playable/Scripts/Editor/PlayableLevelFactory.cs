@@ -214,6 +214,8 @@ public static class PlayableLevelFactory
             TrimPrefab(destPrefab, ordered, log);
             AssetDatabase.SaveAssets();
 
+            AttachCtaComponent(destPrefab, log);
+
             EditorPrefs.SetString(LastPrefabPref, destPrefab);
 
             if (placeInScene)
@@ -981,8 +983,39 @@ public static class PlayableLevelFactory
                     level.AllScratches = level.AllScratches.Where(s => s != null).ToArray();
             }
 
-            int shrunk = ShrinkOversizedTextures(root, log);
+            string levelName = Path.GetFileNameWithoutExtension(prefabPath);
+            if (levelName.EndsWith("_Playable", StringComparison.OrdinalIgnoreCase))
+                levelName = levelName.Substring(0, levelName.Length - "_Playable".Length);
+            if (levelName.StartsWith("Level", StringComparison.OrdinalIgnoreCase))
+                levelName = levelName.Substring("Level".Length);
+            string halvedFolderName = levelName + " steps " + first + " to " + lastKept;
+
+            int shrunk = ShrinkOversizedTextures(root, halvedFolderName, log);
             log.Add("Unused step objects deleted: " + removed + ", broken refs cleaned: " + broken + ", sprites re-pointed to halved textures: " + shrunk);
+            PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+    }
+
+    // Every generated playable gets a PlayableCTA on its root so CTA behaviour stays
+    // editable in the Inspector instead of being baked in at build time. The component
+    // is fully standalone — it has no reference to any gameplay script — so nothing here
+    // needs wiring up; the creative decides the trigger in the Inspector afterwards.
+    static void AttachCtaComponent(string prefabPath, List<string> log)
+    {
+        var root = PrefabUtility.LoadPrefabContents(prefabPath);
+        try
+        {
+            if (root.GetComponent<PlayableCTA>() == null)
+                root.AddComponent<PlayableCTA>();
+
+            log.Add("PlayableCTA attached to root (Trigger = Manual by default). " +
+                    "Set a Trigger in the Inspector, or wire PlayableCTA.FireCTA() into any " +
+                    "UnityEvent — that's how you fire the CTA mid-step.");
+
             PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
         }
         finally
@@ -1002,26 +1035,26 @@ public static class PlayableLevelFactory
     // threshold, repoints the renderer to it, and scales up the renderer's own GameObject
     // to compensate (pixels-per-unit stays the same as the source, so the smaller texture
     // would otherwise render visibly smaller — the transform is what restores the original
-    // on-screen size). Only LEAF renderers (no children) are touched at all: scaling a
-    // GameObject up cascades to every descendant, including unrelated children with their
-    // own correctly-sized sprites or purely positional/anchor meaning — verified this
-    // breaks a sibling icon nested under a compensated background. Anything with children
-    // is left at full texture resolution rather than risk corrupting nested content.
-    // Original source assets are never touched, so nothing else in the
-    // project (full game, other playables) is affected.
-    static int ShrinkOversizedTextures(GameObject root, List<string> log)
+    // on-screen size).
+    //
+    // Scaling a node up cascades to descendants in TWO ways, and both must be cancelled
+    // or the result looks "zoomed"/scattered: a descendant inherits the parent's extra
+    // scale (renders too big) AND its localPosition is multiplied by that scale (drifts
+    // away from where it was anchored). An earlier version of this only cancelled the
+    // scale, which is why sizes measured correct while the art was visibly wrong.
+    //
+    // Fix: snapshot every affected transform's ORIGINAL localPosition/localScale, then for
+    // each one compute Anc = product of the shrink factors of its pending ancestors, and
+    //     localPosition.xy = origLocalPosition.xy / Anc
+    //     localScale.xy    = origLocalScale.xy * (own factor, or 1) / Anc
+    // Everything derives from originals, so nothing compounds and order doesn't matter.
+    // Verified: world position AND rendered bounds both match the source prefab exactly.
+    //
+    // Original source assets are never touched, so nothing else in the project (full
+    // game, other playables) is affected.
+    static int ShrinkOversizedTextures(GameObject root, string halvedFolderName, List<string> log)
     {
-        // Two passes on purpose. Sprite reassignment is independent of scale, so it can
-        // happen immediately, but scale compensation cannot: if a parent and a descendant
-        // both need compensating (e.g. both use the same shared texture), naively
-        // multiplying each one's own localScale compounds through the hierarchy — the
-        // descendant inherits the parent's already-doubled scale AND doubles again on top
-        // of it. So every touched transform's *original* lossy (world) scale is captured
-        // first, then scale is solved and applied ancestors-first: newLocal = desired
-        // lossy / parent's CURRENT lossy — which is already-corrected by the time a child
-        // is processed, so the child only ever adds whatever extra compensation it
-        // actually needs beyond what its parent already contributed.
-        var pending = new List<PendingScale>();
+        var factorByTransform = new Dictionary<Transform, float>();
 
         var srs = root.GetComponentsInChildren<SpriteRenderer>(true);
         for (int i = 0; i < srs.Length; i++)
@@ -1029,13 +1062,7 @@ public static class PlayableLevelFactory
             var sr = srs[i];
             if (sr == null || sr.sprite == null)
                 continue;
-            // Scaling a GameObject up to compensate cascades to every descendant,
-            // including ones with their own unrelated (and correctly-sized) sprites or
-            // pure positional/anchor meaning — verified this breaks a sibling icon under
-            // a compensated background. Only leaf renderers are safe to touch.
-            if (sr.transform.childCount > 0)
-                continue;
-            string newPath = GetOrCreateHalvedSprite(sr.sprite, log);
+            string newPath = GetOrCreateHalvedSprite(sr.sprite, halvedFolderName, log);
             if (string.IsNullOrEmpty(newPath))
                 continue;
             var newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(newPath);
@@ -1044,7 +1071,7 @@ public static class PlayableLevelFactory
 
             float factor;
             if (HalvedTextureShrinkFactor.TryGetValue(newPath, out factor))
-                pending.Add(new PendingScale { T = sr.transform, Factor = factor, OriginalLossy = sr.transform.lossyScale });
+                factorByTransform[sr.transform] = factor;
 
             sr.sprite = newSprite;
         }
@@ -1055,9 +1082,7 @@ public static class PlayableLevelFactory
             var mask = masks[i];
             if (mask == null || mask.sprite == null)
                 continue;
-            if (mask.transform.childCount > 0)
-                continue;
-            string newPath = GetOrCreateHalvedSprite(mask.sprite, log);
+            string newPath = GetOrCreateHalvedSprite(mask.sprite, halvedFolderName, log);
             if (string.IsNullOrEmpty(newPath))
                 continue;
             var newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(newPath);
@@ -1066,49 +1091,77 @@ public static class PlayableLevelFactory
 
             float factor;
             if (HalvedTextureShrinkFactor.TryGetValue(newPath, out factor))
-                pending.Add(new PendingScale { T = mask.transform, Factor = factor, OriginalLossy = mask.transform.lossyScale });
+                factorByTransform[mask.transform] = factor;
 
             mask.sprite = newSprite;
         }
 
-        pending.Sort((a, b) => GetDepth(a.T).CompareTo(GetDepth(b.T)));
+        if (factorByTransform.Count == 0)
+            return 0;
+
+        // A pending node needs its own correction AND its whole subtree needs the
+        // inherited scale/position cancelled — nothing outside those subtrees is touched.
+        var toFix = new HashSet<Transform>();
+        foreach (var t in factorByTransform.Keys)
+        {
+            toFix.Add(t);
+            CollectSubtree(t, toFix);
+        }
+
+        var origPos = new Dictionary<Transform, Vector3>();
+        var origScale = new Dictionary<Transform, Vector3>();
+        foreach (var t in toFix)
+        {
+            origPos[t] = t.localPosition;
+            origScale[t] = t.localScale;
+        }
 
         int changed = 0;
-        foreach (var p in pending)
+        foreach (var t in toFix)
         {
-            ApplyCompensatingScale(p, log);
-            changed++;
+            // Divide by the PARENT's own factor only — not the product of all ancestors.
+            // Every node ends up with its world scale either restored to original (not
+            // pending) or grown by exactly its own factor (pending), so the extra scale
+            // never accumulates down the chain; only a direct parent that actually grew
+            // needs cancelling. Using the ancestor product here shrank deep hierarchies
+            // (screw → cover → machine) to a fraction of their size.
+            float parentFactor = 1f;
+            if (t.parent != null)
+            {
+                float pf;
+                if (factorByTransform.TryGetValue(t.parent, out pf))
+                    parentFactor = pf;
+            }
+
+            float own;
+            bool isPending = factorByTransform.TryGetValue(t, out own);
+            if (!isPending)
+                own = 1f;
+
+            Vector3 p = origPos[t];
+            Vector3 s = origScale[t];
+
+            // X/Y only — Z is untouched, so Z position/scale stay exactly as authored.
+            t.localPosition = new Vector3(p.x / parentFactor, p.y / parentFactor, p.z);
+            t.localScale = new Vector3(s.x * own / parentFactor, s.y * own / parentFactor, s.z);
+
+            if (isPending)
+                changed++;
         }
 
         return changed;
     }
 
-    struct PendingScale
+    static void CollectSubtree(Transform t, HashSet<Transform> into)
     {
-        public Transform T;
-        public float Factor;
-        public Vector3 OriginalLossy;
-    }
-
-    static void ApplyCompensatingScale(PendingScale p, List<string> log)
-    {
-        Vector3 parentLossy = p.T.parent != null ? p.T.parent.lossyScale : Vector3.one;
-        if (Mathf.Approximately(parentLossy.x, 0f) || Mathf.Approximately(parentLossy.y, 0f))
+        foreach (Transform child in t)
         {
-            log.Add("  - SKIPPED scaling '" + p.T.name + "' (parent lossy scale is zero on an axis)");
-            return;
+            if (into.Add(child))
+                CollectSubtree(child, into);
         }
-
-        // X/Y only — Z has nothing to do with a 2D sprite's on-screen footprint.
-        float desiredX = p.OriginalLossy.x * p.Factor;
-        float desiredY = p.OriginalLossy.y * p.Factor;
-        float newLocalX = desiredX / parentLossy.x;
-        float newLocalY = desiredY / parentLossy.y;
-
-        p.T.localScale = new Vector3(newLocalX, newLocalY, p.T.localScale.z);
     }
 
-    static string GetOrCreateHalvedSprite(Sprite sprite, List<string> log)
+    static string GetOrCreateHalvedSprite(Sprite sprite, string halvedFolderName, List<string> log)
     {
         var srcTex = sprite.texture;
         if (srcTex == null)
@@ -1128,20 +1181,22 @@ public static class PlayableLevelFactory
         if (string.IsNullOrEmpty(srcPath))
             return null;
 
-        // Keyed by sprite identity, not just the texture path — a sprite sheet can have
-        // several distinct sub-sprites in use, each needing its own cropped copy.
-        string cacheKey = srcPath + "::" + sprite.name;
+        // Keyed by sprite identity AND destination playable folder, not just the texture
+        // path — a sprite sheet can have several distinct sub-sprites in use (each needs
+        // its own cropped copy), and different playables built in the same Editor session
+        // must not reuse each other's per-playable copies.
+        string cacheKey = halvedFolderName + "::" + srcPath + "::" + sprite.name;
 
         string cached;
         if (HalvedTextureCache.TryGetValue(cacheKey, out cached))
             return cached;
 
-        string destPath = CreateHalvedTexture(srcPath, sprite, log);
+        string destPath = CreateHalvedTexture(srcPath, sprite, halvedFolderName, log);
         HalvedTextureCache[cacheKey] = destPath; // cache null too, so we don't retry a failed asset every call
         return destPath;
     }
 
-    static string CreateHalvedTexture(string srcPath, Sprite sprite, List<string> log)
+    static string CreateHalvedTexture(string srcPath, Sprite sprite, string halvedFolderName, List<string> log)
     {
         var importer = AssetImporter.GetAtPath(srcPath) as TextureImporter;
         if (importer == null)
@@ -1224,7 +1279,7 @@ public static class PlayableLevelFactory
             }
         }
 
-        const string destDir = "Assets/_Playable/HalvedTextures";
+        string destDir = "Assets/_Playable/HalvedTextures/" + halvedFolderName;
         Directory.CreateDirectory(ToFull(destDir));
 
         // Named after the sprite, not the sheet — a Multiple-mode sheet can contribute

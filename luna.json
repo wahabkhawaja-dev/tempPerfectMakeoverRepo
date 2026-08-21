@@ -31578,6 +31578,16 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_Core/"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Playable/"
                     }
                 ]
             },
@@ -31621,6 +31631,26 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_Core/Audio/Common/SFX/Clock Count.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 30.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Air_Blower_3.0.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 30.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Brush/Dry_Brush.wav"
                     }
                 ]
             },
