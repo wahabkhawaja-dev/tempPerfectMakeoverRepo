@@ -31,6 +31,11 @@ public class PlayableCTA : MonoBehaviour
 
         /// <summary>Fires as soon as this object becomes active.</summary>
         Immediately = 3,
+
+        /// <summary>Fires once scratchProgress's collective erase/restore progress reaches
+        /// progressThreshold. Works for either ScratchMode — BD_Progress already normalizes
+        /// erase and restore into the same 0..1 "how done is it" value.</summary>
+        AfterProgress = 4,
     }
 
     [Header("When should the CTA fire?")]
@@ -41,6 +46,15 @@ public class PlayableCTA : MonoBehaviour
 
     [Tooltip("Trigger = AfterTaps: how many taps anywhere before the CTA fires.")]
     public int afterTaps = 3;
+
+    [Tooltip("Trigger = AfterProgress: the scratch card (erase or restore) whose progress to watch.")]
+    public BD_Progress scratchProgress;
+
+    [Tooltip("Trigger = AfterProgress: index into scratchProgress.AllScratches to track. -1 = collective progress of all of them.")]
+    public int scratchIndex = -1;
+
+    [Tooltip("Trigger = AfterProgress: 0..1 progress that fires the CTA once reached.")]
+    public float progressThreshold = 1f;
 
     [Header("After it has fired")]
     [Tooltip("Every further tap re-opens the store page. Standard playable end-card behaviour.")]
@@ -93,6 +107,16 @@ public class PlayableCTA : MonoBehaviour
                     FireCTA();
             }
 
+            if (trigger == Trigger.AfterProgress && scratchProgress != null)
+            {
+                float progressIs = scratchIndex >= 0
+                    ? scratchProgress.giveProgressForScratch(scratchIndex)
+                    : scratchProgress.giveCollectiveProgress();
+
+                if (progressIs >= progressThreshold)
+                    FireCTA();
+            }
+
             return;
         }
 
@@ -109,6 +133,21 @@ public class PlayableCTA : MonoBehaviour
         if (!HasFired)
         {
             HasFired = true;
+
+            // Freeze gameplay input (including any drag in progress) the instant the CTA
+            // fires, so the tap that opens the store can't also be read as a drag/scratch.
+            try
+            {
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.isPaused = true;
+                    GameManager.instance.StopAllDrags();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log("[PlayableCTA] Input block skipped (no GameManager, ok standalone): " + e.Message);
+            }
 
             if (onCtaFired != null)
                 onCtaFired.Invoke();

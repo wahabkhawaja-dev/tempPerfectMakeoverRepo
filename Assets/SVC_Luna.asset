@@ -80,7 +80,15 @@ MonoBehaviour:
     keywords:
       "\L\u2025": []
   - shaderCompilerPlatform: 9
-    shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
+    shader: {fileID: 10721, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords:
+      "\L\u2025": []
+  - shaderCompilerPlatform: 9
+    shader: {fileID: 4800000, guid: a80ce0a1aa5cb3a498fc31a6a7ce5369, type: 3}
     passType: 0
     passId: 0
     subShaderIndex: 0
@@ -140,15 +148,7 @@ MonoBehaviour:
     keywords:
       "\L\u2025": []
   - shaderCompilerPlatform: 9
-    shader: {fileID: 10721, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 0
-    keywords:
-      "\L\u2025": []
-  - shaderCompilerPlatform: 9
-    shader: {fileID: 4800000, guid: a80ce0a1aa5cb3a498fc31a6a7ce5369, type: 3}
+    shader: {fileID: 207, guid: 0000000000000000f000000000000000, type: 0}
     passType: 0
     passId: 0
     subShaderIndex: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   _usedByLunaBuild: []
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 128
+  version: 362
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0

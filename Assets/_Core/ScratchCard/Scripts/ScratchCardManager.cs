@@ -51,7 +51,7 @@ namespace ScratchCardAsset
 			{
 				scratchSurfaceMaterial = new Material(MaskShader) {mainTexture = ScratchSurfaceSprite.texture};
 				Card.ScratchSurface = scratchSurfaceMaterial;
-				scratchSurfaceMaterial.renderQueue = 2999; // Set render queue to ensure it renders on top of other objects
+				scratchSurfaceMaterial.renderQueue = 3000; // Set render queue to ensure it renders on top of other objects
             }
 
 			if (Card.Eraser == null)
