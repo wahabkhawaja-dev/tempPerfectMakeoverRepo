@@ -105,7 +105,6 @@ public class Level2_Shoe_Playable : LevelData
 
     IEnumerator Start()
     {
-        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
         PlayableFadeCover.Cover();
 
         base.LevelStart();
@@ -143,8 +142,7 @@ public class Level2_Shoe_Playable : LevelData
         
 
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
-        ForceCompleteStep1();
-        StartStep3();
+        StartStep1();
         PlayableFadeCover.Reveal();
         yield break;
 }
@@ -155,6 +153,8 @@ public class Level2_Shoe_Playable : LevelData
 
     void StartStep1()
     {
+        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
+
         ToolStep1.transform.DOKill();
         ToolStep1.transform.DOLocalMoveX(0f, 1f).SetDelay(1f).OnComplete(() =>
         {
@@ -184,6 +184,8 @@ public class Level2_Shoe_Playable : LevelData
         {
             ToolStep1.gameObject.SetActive(false);
         });
+
+        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
 
         for (int i = 0; i < LayersToFade_1.Length; i++)
         {
@@ -220,6 +222,8 @@ public class Level2_Shoe_Playable : LevelData
 
     void StartStep2()
     {
+        CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
+
         ToolStep2.transform.DOKill();
         ToolStep2.transform.DOLocalMoveX(0.82f, 1f).SetDelay(1f).OnComplete(() =>
         {
@@ -249,6 +253,8 @@ public class Level2_Shoe_Playable : LevelData
         {
             ToolStep2.gameObject.SetActive(false);
         }); 
+
+        CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
 
         for (int i = 0; i < LayersToFade_2.Length; i++)
         {
@@ -472,11 +478,11 @@ public class Level2_Shoe_Playable : LevelData
         }
 
         WetLayer.DOKill();
-       // WetLayer.DOFade(0, 2f).SetDelay(1f);
+        // WetLayer.DOFade(0, 2f).SetDelay(1f);
 
-       // DryLayer.SetActive(true);
+        // DryLayer.SetActive(true);
 
-        Invoke(nameof(LevelComplete), 1.2f);
+        Invoke(nameof(LevelComplete), 2.2f);
 
         try
         {
@@ -507,5 +513,4 @@ public class Level2_Shoe_Playable : LevelData
 
     #endregion
 
-    
 }
