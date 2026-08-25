@@ -63,8 +63,24 @@ public class PlayableCTA : MonoBehaviour
     [Tooltip("Minimum gap between re-fires, so one physical tap can't fire twice across frames.")]
     public float refireDelay = 0.015f;
 
+    [Header("End card (optional)")]
+    [Tooltip("Show endCard when the CTA fires.")]
+    public bool showEndCard;
+
+    [Tooltip("End-card canvas/root, activated when the CTA fires.")]
+    public GameObject endCard;
+
+    [Tooltip("Plays once the CTA fires. Set its own Looping module on to have it play continuously.")]
+    public ParticleSystem endParticles;
+
+    [Tooltip("If trigger = AfterProgress, play endParticles too (normally reserved for the last step completing, not mid-scratch progress).")]
+    public bool playEndParticlesOnProgressTrigger;
+
+    [Tooltip("One-shot burst played once the CTA fires (confetti cannon, etc). Looping should be off on this one.")]
+    public ParticleSystem stepCompleteParticles;
+
     [Header("Extras")]
-    [Tooltip("Runs once, the first time the CTA fires (hide HUD, show end card, ...).")]
+    [Tooltip("Runs once, the first time the CTA fires (hide HUD, ...).")]
     public UnityEvent onCtaFired;
 
     [Tooltip("Logs to the console every time the CTA fires. Handy while wiring things up.")]
@@ -134,6 +150,7 @@ public class PlayableCTA : MonoBehaviour
         {
             HasFired = true;
 
+
             // Freeze gameplay input (including any drag in progress) the instant the CTA
             // fires, so the tap that opens the store can't also be read as a drag/scratch.
             try
@@ -149,6 +166,14 @@ public class PlayableCTA : MonoBehaviour
                 Debug.Log("[PlayableCTA] Input block skipped (no GameManager, ok standalone): " + e.Message);
             }
 
+            if (showEndCard && endCard != null)
+                endCard.SetActive(true);
+
+            if (trigger != Trigger.AfterProgress || playEndParticlesOnProgressTrigger)
+                PlayParticles(endParticles);
+
+            PlayParticles(stepCompleteParticles);
+
             if (onCtaFired != null)
                 onCtaFired.Invoke();
         }
@@ -163,6 +188,17 @@ public class PlayableCTA : MonoBehaviour
             active.FireCTA();
         else
             OpenStoreStatic(true);
+    }
+
+    static void PlayParticles(ParticleSystem particles)
+    {
+        if (particles == null)
+            return;
+
+        if (!particles.gameObject.activeSelf)
+            particles.gameObject.SetActive(true);
+
+        particles.Play();
     }
 
     void OpenStore()

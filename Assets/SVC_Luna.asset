@@ -327,7 +327,7 @@ MonoBehaviour:
   _usedByLunaBuild: []
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 452
+  version: 455
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0
@@ -5283,4 +5283,4 @@ MonoBehaviour:
         - UNITY_UI_ALPHACLIP
         - UNITY_UI_CLIP_RECT
   _modifiedShaders: []
-  invalidShaders: 0
+  invalidShaders: 1
