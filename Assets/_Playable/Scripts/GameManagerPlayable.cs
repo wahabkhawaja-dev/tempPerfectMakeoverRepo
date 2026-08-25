@@ -2,15 +2,12 @@ using UnityEngine;
 
 /// <summary>
 /// Playable-scene copy of gameplay manager. Original GameManager.cs is unchanged.
-/// Complete / last step → store install instead of full-game complete UI.
-/// Once complete, every further tap anywhere re-fires the CTA (standard playable-ad
-/// end-card behavior), throttled so one physical tap can't double-fire across frames.
+/// Complete / last step → routes into PlayableCTA instead of the full-game complete UI, so
+/// wizard-built and manually-triggered CTAs both go through the same component (end card,
+/// particles, input-block toggle, tap-to-refire all live there — see PlayableCTA.cs).
 /// </summary>
 public class GameManagerPlayable : GameManager
 {
-    const float CtaRepeatDelay = 0.015f;
-    float lastCtaTime = -999f;
-
     public override void Complete()
     {
         if (timerCo != null)
@@ -19,26 +16,13 @@ public class GameManagerPlayable : GameManager
         isPaused = true;
         isComplete = true;
 
-        StopAllDrags();
         MuteLevelAudio();
 
         LunaDirect();
     }
 
-    void Update()
-    {
-        if (!isComplete)
-            return;
-
-        if (Input.GetMouseButtonDown(0) && Time.unscaledTime - lastCtaTime >= CtaRepeatDelay)
-        {
-            lastCtaTime = Time.unscaledTime;
-            LunaDirect();
-        }
-    }
-
     public void LunaDirect()
     {
-        PlayableInstall.Go();
+        PlayableCTA.FireNow();
     }
 }

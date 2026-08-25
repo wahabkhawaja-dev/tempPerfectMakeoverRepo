@@ -88,6 +88,8 @@ public class Level1_Hair_Playable : LevelData
     public AudioClip bottleOpenSfx;
     public AudioClip bottleSqueezSfx;
     public AudioClip bottlePourSfx;
+    [Space()]
+    public GameObject handIndicationShampoo;
 
     [Header("----------------- STEP 4 ----------------------")]
     [Space()]
@@ -422,7 +424,7 @@ public class Level1_Hair_Playable : LevelData
 
             DOVirtual.DelayedCall(1.25f, () =>
             {
-                //   shampooIndication.SetActive(true);
+                if (handIndicationShampoo != null) handIndicationShampoo.SetActive(true);
 
                 ShampooInHandCap.SetActive(false);
                 ToolStep3.gameObject.SetActive(true);
@@ -444,6 +446,7 @@ public class Level1_Hair_Playable : LevelData
 
     public void ShampooBottlePressed()
     {
+        if (handIndicationShampoo != null) handIndicationShampoo.SetActive(false);
 
         AudioController.instance.PlayAnySfx(0, bottleSqueezSfx, 0f);
 

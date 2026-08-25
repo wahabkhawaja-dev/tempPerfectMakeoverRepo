@@ -1064,6 +1064,59 @@ public static class PlayableLevelFactory
         }
     }
 
+    /// <summary>True if the source script declares a [Header("STEP n")] block at all —
+    /// used by the Step Wizard to tell whether a "tease step" beyond the last real step
+    /// actually exists before trying to build one.</summary>
+    public static bool StepHasContent(string sourcePrefabPath, int step)
+    {
+        var scan = Scan(sourcePrefabPath);
+        if (!string.IsNullOrEmpty(scan.Error))
+            return false;
+        string text = File.ReadAllText(ToFull(scan.ScriptPath));
+        return Regex.IsMatch(text, @"\[Header\(""[^""]*STEP\s*" + step + @"(?!\d)[^""]*""\)\]");
+    }
+
+    /// <summary>
+    /// Wires the built prefab's PlayableCTA to OnToolAppear, watching teaseStep's own tool.
+    /// teaseStep was built as a normal kept step (real entrance, real tool) by the caller —
+    /// this just arms the CTA to intercept the first tap on it instead of leaving Trigger on
+    /// the AttachCtaComponent default of Manual.
+    /// </summary>
+    public static void ConfigureTeaseCta(string prefabPath, int teaseStep, List<string> log)
+    {
+        var root = PrefabUtility.LoadPrefabContents(prefabPath);
+        try
+        {
+            var level = root.GetComponent<LevelData>() ?? root.GetComponentInChildren<LevelData>(true);
+            var cta = root.GetComponent<PlayableCTA>();
+            if (level == null || cta == null)
+            {
+                log.Add("Tease step " + teaseStep + ": LevelData/PlayableCTA not found on root — left as Manual.");
+                return;
+            }
+
+            var toolField = level.GetType().GetField("ToolStep" + teaseStep);
+            object val = toolField != null ? toolField.GetValue(level) : null;
+            GameObject tool = val as GameObject ?? (val as Component)?.gameObject;
+            if (tool == null)
+            {
+                log.Add("Tease step " + teaseStep + ": ToolStep" + teaseStep + " not found/unassigned — CTA left as Manual, wire watchedTool by hand.");
+                return;
+            }
+
+            cta.trigger = PlayableCTA.Trigger.OnToolAppear;
+            cta.watchedTool = tool;
+            log.Add("PlayableCTA → OnToolAppear watching '" + tool.name + "' (step " + teaseStep +
+                    "). Step " + teaseStep + " plays as a tease — tapping its tool redirects to store.");
+
+            PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+    }
+
     const int TextureShrinkThreshold = 512;
     static readonly Dictionary<string, string> HalvedTextureCache = new Dictionary<string, string>();
     static readonly Dictionary<string, float> HalvedTextureShrinkFactor = new Dictionary<string, float>();

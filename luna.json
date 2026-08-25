@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "25Aug2026_Lvl_1_1_Step1to3",
+    "creativeName": "25Aug2026_Lvl_1_1_Step3to5",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -201,7 +201,7 @@
             }
         ],
         "disableRuntimeAnalysisForCode": false,
-        "disableRuntimeAnalysisForShaders": false,
+        "disableRuntimeAnalysisForShaders": true,
         "useShadersCache": true,
         "usePreservativeDynamicBatching": true,
         "preventUpdatingRAListWhenRAIsDisabled": false,
@@ -8485,6 +8485,10 @@
             {
                 "name": "PlayableCTA.Trigger",
                 "excluded": false
+            },
+            {
+                "name": "Lvl3_Stove_Playable",
+                "excluded": true
             }
         ],
         "unusedMethods": [
@@ -18578,7 +18582,7 @@
                     },
                     {
                         "name": "OnDidApplyAnimationProperties",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -30119,14 +30123,6 @@
                     {
                         "name": "LunaDirect",
                         "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
                     }
                 ]
             },
@@ -32902,7 +32898,7 @@
                 "instanceMethods": [
                     {
                         "name": "FireNow",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OpenStoreStatic",
@@ -32926,6 +32922,10 @@
                     },
                     {
                         "name": "OpenStore",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlayParticles",
                         "excluded": false
                     }
                 ]

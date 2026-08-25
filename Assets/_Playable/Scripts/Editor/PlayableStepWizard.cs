@@ -285,12 +285,24 @@ public class PlayableStepWizard : EditorWindow
 
         int ctaStep = ordered.Contains(_ctaStep) ? _ctaStep : ordered[ordered.Count - 1];
 
-        // "On Start" never lets that step's own content play — it's excluded entirely,
-        // matching the factory's existing "call beyond the kept range → CTA" behavior.
-        // "On Complete" / "On Progress" both keep everything through the CTA step; the
-        // progress case additionally attaches an early-trigger watcher on top of that.
+        // The step right after the last genuinely playable one is the "tease" step:
+        // OnStepStart → ctaStep itself is the tease (nothing before it plays if it's first).
+        // OnStepComplete → ctaStep plays normally, ctaStep+1 is the tease.
+        // A tease step is built exactly like a normal kept step (real entrance, real tool,
+        // its own Complete() falls through to LevelComplete same as any last step) — the
+        // only difference is PlayableCTA gets wired to OnToolAppear, watching that step's
+        // tool, so tapping it redirects to store instead of actually playing.
         int keepUpTo = _ctaTiming == CtaTiming.OnStepStart ? ctaStep - 1 : ctaStep;
+        int teaseStep = keepUpTo + 1;
+        bool hasTease = PlayableLevelFactory.StepHasContent(_prefabPaths[_sourceIndex], teaseStep);
+
         var keep = ordered.FindAll(s => s <= keepUpTo);
+        if (hasTease && !keep.Contains(teaseStep))
+        {
+            keep.Add(teaseStep);
+            keep.Sort();
+        }
+
         if (keep.Count == 0)
         {
             _status = "CTA Step 'On Start' ka matlab pehla selected step bhi exclude ho gaya — kam az kam 1 step chahiye pehle.";
@@ -301,6 +313,13 @@ public class PlayableStepWizard : EditorWindow
         try
         {
             var built = PlayableLevelFactory.Build(_prefabPaths[_sourceIndex], keep, _placeInScene);
+            if (built.Ok && hasTease)
+            {
+                var teaseLog = new List<string>();
+                PlayableLevelFactory.ConfigureTeaseCta(built.PrefabPath, teaseStep, teaseLog);
+                built.Log += "\n" + string.Join("\n", teaseLog);
+            }
+
             if (built.Ok)
             {
                 _status = "Ready: " + built.PrefabPath + "\nSteps " + string.Join(",", keep) +

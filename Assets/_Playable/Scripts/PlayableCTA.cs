@@ -5,9 +5,11 @@ using UnityEngine.Events;
 /// <summary>
 /// Standalone CTA controller for a generated playable.
 ///
-/// Deliberately has ZERO dependencies on gameplay code — no GameManager, no LevelData,
-/// no tool/controller scripts. It only knows how to open the store. That means it can be
-/// dropped on any GameObject, in any scene, in any playable, and it will work.
+/// Deliberately has near-zero dependencies on gameplay code — no LevelData, no tool/
+/// controller scripts. It only knows how to open the store. That means it can be dropped
+/// on any GameObject, in any scene, in any playable, and it will work. (GameManager is
+/// touched only to block input on fire, PointerInput only for OnToolAppear's tap check —
+/// both generic, level-agnostic utilities, not per-level gameplay code.)
 ///
 /// Three ways to fire it, use whichever suits the creative:
 ///   1. Inspector triggers below (after N seconds / after N taps / immediately).
@@ -36,6 +38,11 @@ public class PlayableCTA : MonoBehaviour
         /// progressThreshold. Works for either ScratchMode — BD_Progress already normalizes
         /// erase and restore into the same 0..1 "how done is it" value.</summary>
         AfterProgress = 4,
+
+        /// <summary>watchedTool is visible in the scene but not really playable (a tease).
+        /// Fires the moment the player taps specifically on watchedTool's own collider —
+        /// their attempt to drag it — not on any other tap.</summary>
+        OnToolAppear = 5,
     }
 
     [Header("When should the CTA fire?")]
@@ -56,7 +63,13 @@ public class PlayableCTA : MonoBehaviour
     [Tooltip("Trigger = AfterProgress: 0..1 progress that fires the CTA once reached.")]
     public float progressThreshold = 1f;
 
+    [Tooltip("Trigger = OnToolAppear: the tease tool. CTA fires when the player taps specifically on its own collider (their attempt to drag it) — not on any other tap.")]
+    public GameObject watchedTool;
+
     [Header("After it has fired")]
+    [Tooltip("Stop all drags and pause GameManager the instant the CTA fires, so it can't also be read as a drag. Off = gameplay keeps running under the CTA (soft/banner CTA).")]
+    public bool blockInputOnFire = true;
+
     [Tooltip("Every further tap re-opens the store page. Standard playable end-card behaviour.")]
     public bool refireOnEveryTap = true;
 
@@ -133,6 +146,10 @@ public class PlayableCTA : MonoBehaviour
                     FireCTA();
             }
 
+            if (trigger == Trigger.OnToolAppear && tapped && watchedTool != null && watchedTool.activeInHierarchy
+                && PointerInput.IsOverCollider(watchedTool.GetComponent<Collider2D>()))
+                FireCTA();
+
             return;
         }
 
@@ -153,17 +170,20 @@ public class PlayableCTA : MonoBehaviour
 
             // Freeze gameplay input (including any drag in progress) the instant the CTA
             // fires, so the tap that opens the store can't also be read as a drag/scratch.
-            try
+            if (blockInputOnFire)
             {
-                if (GameManager.instance != null)
+                try
                 {
-                    GameManager.instance.isPaused = true;
-                    GameManager.instance.StopAllDrags();
+                    if (GameManager.instance != null)
+                    {
+                        GameManager.instance.isPaused = true;
+                        GameManager.instance.StopAllDrags();
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                Debug.Log("[PlayableCTA] Input block skipped (no GameManager, ok standalone): " + e.Message);
+                catch (Exception e)
+                {
+                    Debug.Log("[PlayableCTA] Input block skipped (no GameManager, ok standalone): " + e.Message);
+                }
             }
 
             if (showEndCard && endCard != null)

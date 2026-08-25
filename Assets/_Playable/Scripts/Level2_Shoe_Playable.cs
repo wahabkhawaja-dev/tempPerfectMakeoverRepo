@@ -105,7 +105,6 @@ public class Level2_Shoe_Playable : LevelData
 
     IEnumerator Start()
     {
-
         // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
         PlayableFadeCover.Cover();
 
@@ -144,8 +143,8 @@ public class Level2_Shoe_Playable : LevelData
         
 
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
-        ForceCompleteStep3();
-        StartStep4();
+        ForceCompleteStep1();
+        StartStep3();
         PlayableFadeCover.Reveal();
         yield break;
 }
@@ -193,7 +192,7 @@ public class Level2_Shoe_Playable : LevelData
         }
         LayersToFade_Updated.DOFade(1, 1f).SetDelay(.5f);
         SetProgressBar();
-        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); PlayableFadeCover.Reveal(); }
+        Invoke(nameof(StartStep3), 1.2f);
 
         try
         {
@@ -257,7 +256,7 @@ public class Level2_Shoe_Playable : LevelData
             LayersToFade_2[i].DOFade(0, 1f).SetDelay(.5f);
         }
         SetProgressBar();
-        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); PlayableFadeCover.Reveal(); }
+        Invoke(nameof(StartStep3), 1.2f);
 
         try
         {
@@ -289,6 +288,8 @@ public class Level2_Shoe_Playable : LevelData
 
     void StartStep3()
     {
+        CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
+
         ToolStep3.transform.DOKill();
         ToolStep3.transform.DOLocalMoveX(0f, 1f).SetDelay(1f).OnComplete(() =>
         {
@@ -315,6 +316,7 @@ public class Level2_Shoe_Playable : LevelData
             ToolStep3.gameObject.SetActive(false);
         });
 
+        CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
         SetProgressBar();
         for (int i = 0; i < LayersToFade_3.Length; i++)
         {

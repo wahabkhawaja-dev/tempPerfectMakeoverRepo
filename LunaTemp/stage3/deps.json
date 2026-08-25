@@ -88,6 +88,7 @@
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Level2_Cloth_Playable.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Level2_Shoe_Playable.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Level3_Crown_Playable.cs",
+      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Lvl3_Stove_Playable.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Lvl3_WaxMachine_Playable.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableFadeCoverSettings.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Level2_Face_New_Playable.cs",
@@ -99,6 +100,8 @@
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level1/RotaryTimerKnob.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level3/Lvl3_KettlePour.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/SpriteButton.cs",
+      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableCTA.cs",
+      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/GameManagerPlayable.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level3/Lvl3_LipstickPicker.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level3/Lvl3_ShakeToMelt.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level3/Lvl3_WaxMelt.cs",
@@ -139,12 +142,8 @@
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level3/Lvl3_PlaceLash.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/PlaySfxOnCollision.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level2/New/DoubleScratch_Controller.cs",
-      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableCTA.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Basic Drag/ToolScaleByCameraZoom.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/ScratchCard/Scripts/Core/Data/Triangle.cs",
-      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/GameManagerPlayable.cs",
-      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableInstall.cs",
-      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableHudRuntime.cs",
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Audio/MusicSource.cs"
     ],
     [
@@ -231,6 +230,10 @@
     ],
     [
       "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableHudLayout.cs"
+    ],
+    [
+      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableHudRuntime.cs",
+      "C:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableInstall.cs"
     ],
     [
       "C:/UNITY/LUNA/7.2.0/pipeline/templates/LunaCompiler/Scripts/Properties/AssemblyInfo.cs"
