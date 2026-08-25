@@ -1,8 +1,8 @@
 {
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
-    "applicationID": 23908,
-    "creativeName": "",
+    "applicationID": 42211,
+    "creativeName": "25Aug2026_Lvl_1_1_Step1to3",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -200,8 +200,8 @@
                 "forceIncluded": true
             }
         ],
-        "disableRuntimeAnalysisForCode": true,
-        "disableRuntimeAnalysisForShaders": true,
+        "disableRuntimeAnalysisForCode": false,
+        "disableRuntimeAnalysisForShaders": false,
         "useShadersCache": true,
         "usePreservativeDynamicBatching": true,
         "preventUpdatingRAListWhenRAIsDisabled": false,
@@ -34207,7 +34207,7 @@
                     "startTime": "00:00.000",
                     "endTime": "00:30.000",
                     "lengthInSeconds": 30.0,
-                    "bitrate": 128,
+                    "bitrate": 64,
                     "script": "",
                     "ext": ""
                 },
@@ -34341,6 +34341,126 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_Core/Audio/Levels/Gameplay/Hair Clean/Shampoo.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/UI SFX/Notice.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Levels/Lvl 1_1/Shawear_open.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Common/SFX/level_win.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 30.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Levels/Lvl 1_1/Shawear_Probleam.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Scratch_2.2.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Levels/Lvl 1_1/Lice Kill.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 30.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Candy_wrapper_pick.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Small_Wood_Pices_Pick.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 30.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/UI SFX/button_click.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Hair Clean/Shampoo_cap.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/UI SFX/pop.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:30.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Glew_squeeze_1.wav"
                     }
                 ]
             },
