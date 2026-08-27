@@ -49,6 +49,15 @@ public class Level1_Armpit_WaxCount : MonoBehaviour
 
                 UI_Manager.instance.SetProgressBar(progress);
 
+                // if (VibrationManager.instance && vibration)
+                {
+                    DOVirtual.DelayedCall(delayInVibration, () =>
+                    {
+                        // VibrationManager.instance.MediumImpact();
+
+                    });
+                }
+
                 try
                 {
                     AudioController.instance.PlayAnySfx(Random.Range(0, 3), waxDropSfx[Random.Range(0, waxDropSfx.Length)], delayInVibration);

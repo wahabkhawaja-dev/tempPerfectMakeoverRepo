@@ -1,4 +1,4 @@
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine;
 using System.Collections;
@@ -48,6 +48,8 @@ public class Level1_Cloth : LevelData
 
     [Space()]
     public BasicDrag ToolStep2;
+    [Space()]
+    public BD_CameraFollow ToolStep2CamFollow;
 
     [Space()]
     public GameObject drawerObj;
@@ -73,6 +75,8 @@ public class Level1_Cloth : LevelData
     public SpriteRenderer clothCleanInsideAnim;
     public SpriteRenderer waterWave;
     public BasicDrag clothCleanInside2;
+    public BD_CameraFollow clothCleanInside2Cam;
+
     [Space()]
     public GameObject clothBasketTarget;   // drop target inside the basket for the clean cloth
     public GameObject clothBasketTarget2;   // drop target inside the basket for the clean cloth
@@ -87,10 +91,6 @@ public class Level1_Cloth : LevelData
     [Space()]
     public Collider2D machineTimer;
     public GameObject machineTimerIndication;
-
-    [Space()]
-    /*  public Collider2D machineDoorCol;
-      public GameObject machineDoorIndication;*/
 
     [Space()]
     public AudioClip darazOpenSfx;
@@ -128,6 +128,9 @@ public class Level1_Cloth : LevelData
     [Space()]
     public GameObject patchCompleted;
 
+    [Space ()]
+    public GameObject patchOutline;
+
     [Header("----------------- STEP 4 ----------------------")]
     [Space()]
     [Space()]
@@ -148,8 +151,6 @@ public class Level1_Cloth : LevelData
     public ZoomPos ZoomStep5;
     [Space()]
     public BasicDrag ToolStep5;
-    [Space()]
-    public Transform ribbonHandParent;
     [Space()]
     public GameObject ribbonFinalTarget;
     [Space()]
@@ -173,7 +174,16 @@ public class Level1_Cloth : LevelData
         switch (stepsDone)
         {
             case 0:
+                // STEP START EVENT
+                try
+                {
+                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                        + "_" + levelName + "_Step1_Start");
+                }
+                catch { }
+
                 StartStep1();
+
                 break;
 
             case 1:
@@ -203,6 +213,7 @@ public class Level1_Cloth : LevelData
 
                 Invoke(nameof(StartStep3a), 1f);
                 break;
+
             case 5:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
 
@@ -218,6 +229,7 @@ public class Level1_Cloth : LevelData
 
                 Invoke(nameof(StartStep4), 2f);
                 break;
+
             case 7:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
 
@@ -260,6 +272,7 @@ public class Level1_Cloth : LevelData
         clothRound.sortingOrder = 100;
         clothInside.sortingOrder = 100;
     }
+
     void OnClothReleased()
     {
         DOVirtual.DelayedCall(0.5f, () =>
@@ -271,6 +284,7 @@ public class Level1_Cloth : LevelData
         });
 
     }
+
     public void Step1Complete()
     {
         if (step1Complete)
@@ -330,16 +344,15 @@ public class Level1_Cloth : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step1_Comp");
         }
         catch { }
-
-
     }
 
     void PlayClothPlacedSfx()
     {
-        
+        // VibrationManager.instance.MediumImpact();
         AudioController.instance.PlayAnySfx(0, clothSfx, 0f);
     }
 
@@ -376,7 +389,7 @@ public class Level1_Cloth : LevelData
 
     void StartStep2()
     {
-        CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
+        CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV,1.5f);
 
         ToolStep2.transform.DOKill();
         ToolStep2.transform.DOLocalMoveX(-0.751f, .5f).SetDelay(.5f).OnComplete(() =>
@@ -398,13 +411,15 @@ public class Level1_Cloth : LevelData
                 AudioController.instance.PlayAnySfx(0, darazOpenSfx, 0);
 
             drawerObj.SetActive(true);
+
             surfObj.SetActive(true);
 
             surfController.enabled = true;
+
             ToolInputToggle(ToolStep2.gameObject, true);
+
+            ToolStep2CamFollow.enabled = true;
         });
-
-
     }
 
     public void Step2Complete()
@@ -415,6 +430,8 @@ public class Level1_Cloth : LevelData
         step2Complete = true;
 
         ToolInputToggle(ToolStep2.gameObject, false);
+
+        ToolStep2CamFollow.enabled = false;
 
         ToolStep2.anim.enabled = false;
 
@@ -449,15 +466,14 @@ public class Level1_Cloth : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
 
     public void StartMachine()
     {
-        // UI_Manager.instance.ShowClockProgress(5);
-
         machineTimerIndication.SetActive(false);
 
         machineTimer.enabled = false;
@@ -518,9 +534,6 @@ public class Level1_Cloth : LevelData
                clothCleanInsideAnim.transform.DOKill();
                clothCleanInsideAnim.transform.DOLocalMoveY(-2, 2f).OnComplete(() =>
                {
-                   /* machineDoorCol.enabled = true;
-                    machineDoorIndication.SetActive(true);
- */
                    OpenDoor();
 
                    SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 3;
@@ -539,7 +552,8 @@ public class Level1_Cloth : LevelData
 
            try
            {
-               Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+               Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                   + "_" + levelName + "_Step3_Comp");
            }
            catch { }
        });
@@ -576,9 +590,6 @@ public class Level1_Cloth : LevelData
             clothCleanInsideAnim.transform.DOKill();
             clothCleanInsideAnim.transform.DOLocalMoveY(-2, 0).OnComplete(() =>
             {
-                /* machineDoorCol.enabled = true;
-                 machineDoorIndication.SetActive(true);*/
-
                 OpenDoor();
             });
         });
@@ -596,19 +607,13 @@ public class Level1_Cloth : LevelData
 
         AudioController.instance.PlayAnySfx(0, doorOpenSfx, 0f);
 
-        // machineDoorIndication.SetActive(false);
-
         doorOpened = true;
         machineDoor.SetActive(true);
         machineGlass.SetActive(false);
         clothCleanInside.gameObject.SetActive(false);
         clothCleanInside2.gameObject.SetActive(true);
 
-
-        CameraController.Instance.MoveCamera(new Vector3(0, 0f, -10f), 3.75f);
-
-        // Basket comes back to the centre so the clean cloth can be dropped into it,
-        // mirroring how the dirty cloth was placed into the machine in step 1.
+        CameraController.Instance.MoveCamera(new Vector3(0, 0f, -10f), 4.3f);
 
         Basket_Cloth.SetActive(true);
 
@@ -620,6 +625,8 @@ public class Level1_Cloth : LevelData
             clothCleanInside2.OnMouseDownEvent += OnCleanClothPicked;
 
             ToolInputToggle(clothCleanInside2.gameObject, true);
+
+            clothCleanInside2Cam.enabled = true;
 
             clothCleanInside2.GetComponent<SpriteRenderer>().sortingOrder = 26;
             clothCleanInside2.startOrder = 26;
@@ -638,7 +645,10 @@ public class Level1_Cloth : LevelData
     {
         clothBasketTarget2.SetActive(true);
 
-            
+        // if (VibrationManager.instance)
+            // VibrationManager.instance.MediumImpact();
+
+        clothCleanInside2Cam.enabled = false;
 
         clothCleanInside2.OnMouseDownEvent -= OnCleanClothPicked;
 
@@ -672,7 +682,8 @@ public class Level1_Cloth : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step4_Comp");
         }
         catch { }
     }
@@ -690,7 +701,8 @@ public class Level1_Cloth : LevelData
 
             yield return new WaitForSeconds(1f);   // 1 second wait
 
-                
+            // if (VibrationManager.instance)
+                // VibrationManager.instance.MediumImpact();
 
             if (AudioController.instance)
                 AudioController.instance.PlaySfx(0, 2, 0);
@@ -734,6 +746,7 @@ public class Level1_Cloth : LevelData
     {
         ToolStep3aRend.sortingOrder = 100;
     }
+
     void OnTool3aRelease()
     {
         DOVirtual.DelayedCall(0.4f, () =>
@@ -742,7 +755,6 @@ public class Level1_Cloth : LevelData
         });
     }
 
-    // Called by ToolStep3a's PlaceItem OnPlaced once it's dropped onto the dummy.
     public void Step3aComplete()
     {
         if (step3aComplete)
@@ -751,6 +763,7 @@ public class Level1_Cloth : LevelData
         step3aComplete = true;
 
         dummyFullParent.SetActive(false);
+
         DressParent.SetActive(true);
 
         UI_Manager.instance.SetProgressBar(1);
@@ -763,6 +776,7 @@ public class Level1_Cloth : LevelData
         dressingBasket.transform.DOLocalMoveX(-15f, 1f).OnComplete(() =>
         {
             dressingBasket.SetActive(false);
+
             UI_Manager.instance.SetProgressBarPos();
         });
 
@@ -772,7 +786,8 @@ public class Level1_Cloth : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step5_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step5_Comp");
         }
         catch { }
     }
@@ -784,9 +799,6 @@ public class Level1_Cloth : LevelData
 
         DressingView.SetActive(true);
         DressingTools.SetActive(true);
-        /*
-                ToolStep3a.gameObject.SetActive(false);
-                dressingBasket.SetActive(false);*/
     }
 
     #endregion
@@ -802,14 +814,25 @@ public class Level1_Cloth : LevelData
         ToolStep3.transform.DOKill();
         ToolStep3.transform.DOLocalMoveX(0.35f, .5f).SetDelay(.5f).OnComplete(() =>
         {
+            patchOutline.SetActive(true);
+
+            ToolStep3.OnMouseDownEvent += HideIndication;
+
             ToolInputToggle(ToolStep3.gameObject, true);
         });
+    }
+
+    void HideIndication()
+    {
+        patchOutline.SetActive(false);
     }
 
     public void Step3Complete()
     {
         if (step3Complete)
             return;
+
+        HideIndication();
 
         step3Complete = true;
 
@@ -824,12 +847,13 @@ public class Level1_Cloth : LevelData
         tornPatch.DOKill();
         tornPatch.DOFade(0, 0.1f);
 
-        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
+
+        CameraController.Instance.MoveCamera(ZoomStep4.CameraPos, ZoomStep4.CameraFOV);
+        // CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 6;
 
         Invoke(nameof(StartStep4), 0.5f);
-
 
         UI_Manager.instance.SetProgressBar(1f);
 
@@ -838,9 +862,12 @@ public class Level1_Cloth : LevelData
             UI_Manager.instance.SetProgressBarPos();
         });
 
+        ToolStep3.OnMouseDownEvent -= HideIndication;
+
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step6_Comp");
         }
         catch { }
     }
@@ -857,10 +884,6 @@ public class Level1_Cloth : LevelData
         dummyFullParent.SetActive(false);
 
         ToolStep3a.gameObject.SetActive(false);
-
-        /*
-                ToolStep3a.gameObject.SetActive(false);
-                dressingBasket.SetActive(false);*/
     }
 
     #endregion
@@ -907,6 +930,8 @@ public class Level1_Cloth : LevelData
             SteamerBottom.gameObject.SetActive(false);
         });
 
+        UI_Manager.instance.SetProgressBarPos();
+
         Invoke(nameof(StartStep5), .5f);
 
         CameraController.Instance.ResetCameraTween();
@@ -915,15 +940,14 @@ public class Level1_Cloth : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step7_Comp");
         }
         catch { }
     }
 
     void ForceCompleteStep5()
     {
-        //  patchCompleted.SetActive(true);
-
         WashingView.SetActive(false);
         WashingTools.SetActive(false);
 
@@ -950,10 +974,9 @@ public class Level1_Cloth : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep5.CameraPos, ZoomStep5.CameraFOV);
 
-        ribbonHandParent.DOKill();
-        ribbonHandParent.DOLocalMoveX(0f, .5f).SetDelay(.5f).OnComplete(() =>
+        ToolStep5.transform.DOKill();
+        ToolStep5.transform.DOLocalMoveX(0f, .5f).SetDelay(.5f).OnComplete(() =>
         {
-            ToolStep5.OnMouseDownEvent += OnCleanRibbonPicked;
             ToolStep5.OnMouseDownEvent += HideIndication5;
             ToolStep5.OnMouseUpEvent += ShowIndication5;
 
@@ -965,25 +988,17 @@ public class Level1_Cloth : LevelData
         });
     }
 
-    void OnCleanRibbonPicked()
+    void ShowIndication5()
     {
-        ToolStep5.transform.parent = null;
-        ToolStep5.OnMouseDownEvent -= OnCleanRibbonPicked;
-
-        ribbonHandParent.DOKill();
-        ribbonHandParent.DOLocalMoveX(-15f, 1f).SetDelay(.5f).OnComplete(() =>
+        DOVirtual.DelayedCall(.5f, () =>
         {
-            ribbonHandParent.gameObject.SetActive(false);
+            if (step5Complete)
+                return;
+
+            handIndication5.SetActive(true);
         });
     }
 
-    void ShowIndication5()
-    {
-        if (step5Complete)
-            return;
-
-        handIndication5.SetActive(true);
-    }
     void HideIndication5()
     {
         handIndication5.SetActive(false);
@@ -994,11 +1009,14 @@ public class Level1_Cloth : LevelData
         if (step5Complete)
             return;
 
+        handIndication5.SetActive(false);
+
         step5Complete = true;
 
         ToolInputToggle(ToolStep5.gameObject, false);
 
         ribbonFinal.SetActive(true);
+
         ToolStep5.gameObject.SetActive(false);
 
         ribbonFinalTarget.SetActive(false);
@@ -1008,6 +1026,10 @@ public class Level1_Cloth : LevelData
 
     public void Step5Complete()
     {
+        handIndication5.SetActive(false);
+
+        UI_Manager.instance.SetProgressBar(1f);
+
         Invoke(nameof(LevelComplete), 1f);
 
         CameraController.Instance.ResetCameraTween();
@@ -1016,12 +1038,11 @@ public class Level1_Cloth : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step8_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step8_Comp");
         }
         catch { }
     }
-
-
 
     #endregion
 }

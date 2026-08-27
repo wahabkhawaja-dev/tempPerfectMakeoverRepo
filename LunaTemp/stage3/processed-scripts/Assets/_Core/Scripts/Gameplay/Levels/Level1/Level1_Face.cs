@@ -97,6 +97,8 @@ public class Level1_Face : LevelData
 
     [Space()]
     public DraggableObject ToolStep2;
+    [Space()]
+    public DO_CameraFollow camFollowStep2;
 
     [Space()]
     public GameObject[] ToolStep2Indications;
@@ -144,6 +146,8 @@ public class Level1_Face : LevelData
 
     [Space()]
     public DraggableObject ToolStep4;
+    [Space()]
+    public DO_CameraFollow camFollowStep4;
 
 
     [Space()]
@@ -289,8 +293,8 @@ public class Level1_Face : LevelData
     public SpriteRenderer EyeLineForOpen_7;
 
     [Space()]
-  //  public GameObject EyeLinerIndication;
- //   public GameObject EyeLinerIndication_R;
+    //  public GameObject EyeLinerIndication;
+    //   public GameObject EyeLinerIndication_R;
 
     [Space()]
     public AudioClip EyeLinerOpenSfx;
@@ -514,7 +518,6 @@ public class Level1_Face : LevelData
         // STEP 4
         Tool4Holder.SetActive(false);
 
-
         // STEP 5
         Tool5Holder.SetActive(false);
 
@@ -561,10 +564,19 @@ public class Level1_Face : LevelData
         {
             // STARTING STEP 1
             case 0:
+                // STEP START EVENT
+                try
+                {
+                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                        + "_" + levelName + "_Step1_Start");
+                }
+                catch { }
+
                 DOVirtual.DelayedCall(1f, () =>
                 {
                     StartStep1();
                 });
+
                 break;
 
             // STARTING STEP 2
@@ -572,6 +584,7 @@ public class Level1_Face : LevelData
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
 
                 ForceCompleteStep1();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep2();
@@ -581,10 +594,11 @@ public class Level1_Face : LevelData
             // STARTING STEP 3
             case 2:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep2();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
-
                     StartStep3();
                 });
                 break;
@@ -592,7 +606,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 4
             case 3:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep3();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep4();
@@ -602,7 +618,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 5
             case 4:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep4();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep5();
@@ -612,7 +630,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 6
             case 5:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep5();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep6();
@@ -622,7 +642,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 7
             case 6:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep6();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep7();
@@ -632,7 +654,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 8
             case 7:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep7();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep8();
@@ -642,7 +666,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 9
             case 8:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep8();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep9();
@@ -652,7 +678,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 10
             case 9:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep9();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep10();
@@ -662,7 +690,9 @@ public class Level1_Face : LevelData
             // STARTING STEP 11
             case 10:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep10();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep11();
@@ -932,12 +962,14 @@ public class Level1_Face : LevelData
             Invoke(nameof(StartStep2), 1f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 1;
+
             SetProgressBar();
         });
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step1_Comp");
         }
         catch { }
     }
@@ -966,11 +998,6 @@ public class Level1_Face : LevelData
 
         MoveInTray();
 
-        /* DOVirtual.DelayedCall(1.2f, () =>
-         {
-             Tap_2.SetActive(true);
-         });*/
-
         Tool1Holder.SetActive(false);
         Tool2Holder.SetActive(true);
 
@@ -981,8 +1008,6 @@ public class Level1_Face : LevelData
 
     public void CapRemoved_2()
     {
-        //  Tap_2.SetActive(false);
-
         CapAnimator_2.enabled = true;
 
         if (primerOpenSfx != null)
@@ -996,11 +1021,10 @@ public class Level1_Face : LevelData
             ToolStep2.transform.DOLocalRotate(new Vector3(0, 0, 305.81f), 1f);
             ToolStep2.transform.DOMove(new Vector3(0, 0, 0f), 1f);
 
-
             DOVirtual.DelayedCall(1f, () =>
             {
                 ToolStep2.enabled = true;
-                // ToolInputToggle(ToolStep2.gameObject, true);
+                camFollowStep2.enabled = true;
 
                 for (int i = 0; i < ToolStep2Indications.Length; i++)
                 {
@@ -1019,8 +1043,8 @@ public class Level1_Face : LevelData
 
         isStep2Done = true;
 
-        ToolStep2.enabled = true;
-        // ToolInputToggle(ToolStep2.gameObject, false);
+        ToolStep2.enabled = false;
+        camFollowStep2.enabled = false;
 
         ToolStep2.transform.DOKill();
         ToolStep2.transform.DOLocalMoveX(10, 1f).SetDelay(1f).SetEase(Ease.InBack);
@@ -1034,12 +1058,14 @@ public class Level1_Face : LevelData
             Invoke(nameof(StartStep3), 1f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 2;
+
             SetProgressBar();
         });
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
@@ -1122,12 +1148,14 @@ public class Level1_Face : LevelData
             Invoke(nameof(StartStep4), 0.25f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 3;
+
             SetProgressBar();
         });
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step3_Comp");
         }
         catch { }
     }
@@ -1161,11 +1189,6 @@ public class Level1_Face : LevelData
 
         MoveInTray();
 
-        /* DOVirtual.DelayedCall(1.2f, () =>
-         {
-             Tap_4.SetActive(true);
-         });*/
-
         Tool2Holder.SetActive(false);
         Tool4Holder.SetActive(true);
 
@@ -1174,8 +1197,6 @@ public class Level1_Face : LevelData
 
     public void CapRemoved_4()
     {
-        //  Tap_4.SetActive(false);
-
         CapAnimator_4.enabled = true;
 
         if (baseOpenSfx != null)
@@ -1192,13 +1213,8 @@ public class Level1_Face : LevelData
 
             DOVirtual.DelayedCall(1f, () =>
             {
-                // ToolInputToggle(ToolStep4.gameObject, true);
                 ToolStep4.enabled = true;
-
-                /*  ToolStep4.OnMouseDownEvent += () =>
-                  {
-                      ToolStep4Shadow.SetActive(false);
-                  };*/
+                camFollowStep4.enabled = true;
 
                 for (int i = 0; i < ToolStep4Indications.Length; i++)
                 {
@@ -1219,6 +1235,7 @@ public class Level1_Face : LevelData
         isStep4Done = true;
 
         ToolStep4.enabled = false;
+        camFollowStep4.enabled = false;
 
         ToolInputToggle(ToolStep4.gameObject, false);
 
@@ -1236,12 +1253,14 @@ public class Level1_Face : LevelData
             Invoke(nameof(StartStep5), 1f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 4;
+
             SetProgressBar();
         });
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step4_Comp");
         }
         catch { }
     }
@@ -1274,13 +1293,12 @@ public class Level1_Face : LevelData
             ToolStep5CameraFollow.enabled = true;
 
             ToolStep5.transform.SetParent(ToolHolder.transform);
-            ToolStep5ToolRotate.enabled = true;
 
+            ToolStep5ToolRotate.enabled = true;
         });
 
         Tool5Simple.SetActive(false);
         Tool5Picked.SetActive(true);
-
 
         for (int i = 0; i < FaceBones.Length; i++)
         {
@@ -1314,6 +1332,7 @@ public class Level1_Face : LevelData
             Invoke(nameof(StartStep6), 1f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 5;
+
             SetProgressBar();
         });
 
@@ -1333,7 +1352,8 @@ public class Level1_Face : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step5_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step5_Comp");
         }
         catch { }
     }
@@ -1362,11 +1382,6 @@ public class Level1_Face : LevelData
 
         MoveInTray();
 
-        /* DOVirtual.DelayedCall(1.2f, () =>
-         {
-             Tap6.SetActive(true);
-         });*/
-
         Tool5Holder.SetActive(false);
         Tool6Holder.SetActive(true);
 
@@ -1375,13 +1390,13 @@ public class Level1_Face : LevelData
 
     public void EyeShadeOpen_6()
     {
-        //   Tap6.SetActive(false);
-
         if (EyeShadeOpenSfx != null)
             AudioController.instance.PlayAnySfx(0, EyeShadeOpenSfx, 0f);
 
         ObjOpen_6.SetActive(true);
         ObjClose_6.SetActive(false);
+
+        HandAnim6.SetActive(true);
 
         ToolStep6.transform.DOKill();
         ToolStep6.transform.DOLocalRotateQuaternion(ToolStep6Targets[0].transform.localRotation, 1f);
@@ -1464,7 +1479,7 @@ public class Level1_Face : LevelData
 
                             MoveOutTray(ToolStep6.transform);
 
-                            HandAnim6.SetActive(true);
+
                         });
 
                         ToolStep6ToolRotate.enabled = true;
@@ -1497,6 +1512,7 @@ public class Level1_Face : LevelData
             Invoke(nameof(StartStep7), 1f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 6;
+
             SetProgressBar();
         });
 
@@ -1504,7 +1520,8 @@ public class Level1_Face : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step6_Comp");
         }
         catch { }
     }
@@ -1552,27 +1569,19 @@ public class Level1_Face : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep7.CameraPos, ZoomStep7.CameraFOV);
 
-        /*DOVirtual.DelayedCall(1f, () =>
-        {
-            Tap7.SetActive(true);
-        });*/
-
         MoveInTray();
 
         Tool6Holder.SetActive(false);
-        Tool7Holder.SetActive(true);
 
+        Tool7Holder.SetActive(true);
 
         Invoke(nameof(EyeLinerOpen_7), 1f);
     }
 
     public void EyeLinerOpen_7()
     {
-        //  Tap7.SetActive(false);
-
         if (EyeLinerOpenSfx != null)
             AudioController.instance.PlayAnySfx(0, EyeLinerOpenSfx, 0);
-
 
         for (int i = 0; i < ObjOpen_7.Length; i++)
         {
@@ -1596,11 +1605,6 @@ public class Level1_Face : LevelData
             ToolStep7.transform.DOScale(new Vector3(0.65f, 0.65f, 0.65f), 1f);
             ToolStep7.transform.DORotate(new Vector3(0f, 0f, -40f), 1f);
 
-            /* ToolStep7.OnMouseDownEvent += () =>
-             {
-                 ToolStep7ToolRotate.enabled = true;
-             };*/
-
             DOVirtual.DelayedCall(1f, () =>
             {
 
@@ -1611,60 +1615,47 @@ public class Level1_Face : LevelData
 
                 DisableBreathAnim();
 
-
                 try
                 {
                     ToolInputToggle(ToolStep7Actual.gameObject, true);
                 }
                 catch
                 {
-                    Debug.LogError("ToolNotEnabled");
                 }
-
-             //   EyeLinerIndication.SetActive(true);
-
-                //  ToolStep7CameraFollow.enabled = true;
 
                 ToolStep7Actual.OnMouseDownEvent += Tool7_OnMouseDown;
 
                 ToolStep7Actual.OnMouseUpEvent += Tool7_OnMouseUp;
 
-
-                // Start continuous checking if not already running
-                /*  if (progressCheckCoroutine == null)
-                  {
-                      progressCheckCoroutine = StartCoroutine(CheckEyelinerProgress());
-                  }*/
-
                 HelperActionClose = () =>
                       {
-                  for (int i = 0; i < ObjOnHold_6.Length; i++)
-                  {
-                      ObjOnHold_6[i].SetActive(true);
-                  }
+                          for (int i = 0; i < ObjOnHold_6.Length; i++)
+                          {
+                              ObjOnHold_6[i].SetActive(true);
+                          }
 
-                  for (int i = 0; i < ObjOnHold_7.Length; i++)
-                  {
-                      ObjOnHold_7[i].SetActive(true);
-                  }
+                          for (int i = 0; i < ObjOnHold_7.Length; i++)
+                          {
+                              ObjOnHold_7[i].SetActive(true);
+                          }
 
-                  EyeShade_6.SetActive(false);
-              };
+                          EyeShade_6.SetActive(false);
+                      };
 
                 HelperActionOpen = () =>
                   {
-              for (int i = 0; i < ObjOnHold_6.Length; i++)
-              {
-                  ObjOnHold_6[i].SetActive(false);
-              }
+                      for (int i = 0; i < ObjOnHold_6.Length; i++)
+                      {
+                          ObjOnHold_6[i].SetActive(false);
+                      }
 
-              for (int i = 0; i < ObjOnHold_7.Length; i++)
-              {
-                  ObjOnHold_7[i].SetActive(false);
-              }
+                      for (int i = 0; i < ObjOnHold_7.Length; i++)
+                      {
+                          ObjOnHold_7[i].SetActive(false);
+                      }
 
-              EyeShade_6.SetActive(true);
-          };
+                      EyeShade_6.SetActive(true);
+                  };
 
                 MoveOutTray(ToolStep7.transform);
             });
@@ -1676,61 +1667,32 @@ public class Level1_Face : LevelData
         }
     }
 
-    private Coroutine progressCheckCoroutine;
+    Coroutine progressCheckCoroutine;
     WaitForSeconds waitp1 = new WaitForSeconds(0.2f);
-
 
     void Tool7_OnMouseDown()
     {
-     //   EyeLinerIndication_R.SetActive(false);
-
-
         step7Indication.SetActive(false);
 
-        if (isOnLeftStep7)
-        {
-           // EyeLinerIndication.SetActive(false);
-        }
-
-
         ToolStep7ToolRotate.enabled = true;
+
         ToolStep7SR.sortingOrder = 30;
     }
+
     void Tool7_OnMouseUp()
     {
-        if (!isOnLeftStep7)
-        {
-           // EyeLinerIndication_R.SetActive(true);
-        }
-
         if (!isStep7Done)
         {
-          //  EyeLinerIndication.SetActive(true);
-
             step7Indication.SetActive(true);
         }
-
-
-        /*  if (isOnLeftStep7)
-              return;
-
-          if (ToolStep7Progress.AllScratches[0].ScratchManager.Progress.GiveProgress() <= .55f)
-          {
-              ShiftSideToLeft();
-              EyeLinerIndication_R.SetActive(false);
-          }
-  */
     }
 
     public void ShiftSideToLeft7()
     {
-
-      //  EyeLinerIndication.SetActive(false);
-
         step7ScratchCard.ToolTip = step7ScratchTip;
 
         step7AnimObj.transform.DOKill();
-        step7AnimObj.transform.DOMoveX(15, 1f).OnComplete(() => 
+        step7AnimObj.transform.DOMoveX(15, 1f).OnComplete(() =>
         {
             step7AnimObj.SetActive(false);
 
@@ -1738,7 +1700,7 @@ public class Level1_Face : LevelData
         });
 
         CameraController.Instance.MoveCamera(ZoomStep7C.CameraPos, ZoomStep7C.CameraFOV);
-      
+
         step7AnimObj2.SetActive(true);
         step7AnimObj2.transform.DOKill();
         step7AnimObj2.transform.DOMoveX(-15, 0.0001f);
@@ -1747,59 +1709,8 @@ public class Level1_Face : LevelData
             step7AnimObj2.SetActive(true);
         });
 
-        
+
         isOnLeftStep7 = true;
-
-        /* isOnLeftStep7 = true;
-
-         ToolStep7ToolRotate.enabled = false;
-
-         ToolStep7CameraFollow.enabled = false;
-         BD_Clamp clampTemp = ToolStep7.transform.GetComponent<BD_Clamp>();
-
-         EyeLinerIndication.SetActive(false);
-         //  clampTemp.enabled=false;
-
-         //  ToolInputToggle(ToolStep7.gameObject, false);
-
-         // ToolStep7.transform.DOKill();
-         //  ToolStep7.transform.DOMove(new Vector3(0f, 1.6f, 0f), 1f);
-         //  ToolStep7.transform.DORotate(new Vector3(0f, 0f, -67.462f), 1f);
-         ToolStep7.Tool_Offset = Vector3.zero;
-
-         //  CameraController.Instance.MoveCamera(ZoomStep6B.CameraPos, ZoomStep6B.CameraFOV);
-       //  CameraController.Instance.MoveCamera(ZoomStep7C.CameraPos, ZoomStep7C.CameraFOV);
-         DOVirtual.DelayedCall(0.55f, () =>
-         {
-             ToolStep7ToolRotate.MinAngle = new Vector3(0, 0, -40f);
-             ToolStep7ToolRotate.MaxAngle = new Vector3(0, 0, -70f);
-
-             DOVirtual.DelayedCall(0.55f, () =>
-             {
-                 ToolStep7CameraFollow.X_L = -0.75f;
-                 ToolStep7CameraFollow.X_R = .15f;
-
-                 ToolStep7CameraFollow.enabled = true;
-
-                 ToolStep7.OnMouseDownEvent += () =>
-                 {
-                     EyeLinerIndication.SetActive(false);
-                  //   ToolStep7ToolRotate.enabled = true;
-                 };
-
-
-                 ToolInputToggle(ToolStep7.gameObject, true);
-             });
-
-
-
-             clampTemp.ClampX_L = -1f;
-             clampTemp.ClampX_H = 1f;
-
-
-             clampTemp.enabled = false;
-             clampTemp.enabled = true;
-         });*/
     }
 
     public void Step7Done()
@@ -1809,18 +1720,9 @@ public class Level1_Face : LevelData
 
         isStep7Done = true;
 
-       // EyeLinerIndication.SetActive(false);
-
-        // ToolStep7ToolRotate.enabled = false;
-
         ToolStep7CameraFollow.enabled = false;
 
         ToolInputToggle(ToolStep7Actualb.gameObject, false);
-
-        /* ToolStep7.OnMouseDownEvent -= () =>
-         {
-             ToolStep7ToolRotate.enabled = true;
-         };*/
 
         step7AnimObj2.transform.DOKill();
         step7AnimObj2.transform.DOLocalMoveX(10, 1f).SetDelay(.25f).SetEase(Ease.InBack).OnComplete(() =>
@@ -1850,6 +1752,7 @@ public class Level1_Face : LevelData
             });
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 7;
+
             SetProgressBar();
         });
 
@@ -1857,10 +1760,10 @@ public class Level1_Face : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step7_Comp");
         }
         catch { }
-
 
         ToolStep7Actual.OnMouseDownEvent -= Tool7_OnMouseDown;
 
@@ -1935,11 +1838,6 @@ public class Level1_Face : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep8.CameraPos, ZoomStep8.CameraFOV, 1.2f);
 
-        /*  DOVirtual.DelayedCall(1f, () =>
-          {
-              Tap8.SetActive(true);
-          });*/
-
         MoveInTray();
 
         Tool7Holder.SetActive(false);
@@ -1950,8 +1848,6 @@ public class Level1_Face : LevelData
 
     public void MascaraOpen_8()
     {
-        //  Tap8.SetActive(false);
-
         if (mascaraOpenSfx != null)
             AudioController.instance.PlayAnySfx(0, mascaraOpenSfx, 0);
 
@@ -2024,6 +1920,7 @@ public class Level1_Face : LevelData
             });
         });
     }
+
     void Tool8_OnMouseDown()
     {
         ToolStep8SR.sortingOrder = 31;
@@ -2034,11 +1931,9 @@ public class Level1_Face : LevelData
         if (isOnLeftStep8)
             mascaraIndication.SetActive(false);
 
-
         ToolStep8ToolRotate.enabled = true;
-
-
     }
+
     void Tool8_OnMouseUp()
     {
         if (!isOnLeftStep8)
@@ -2046,19 +1941,9 @@ public class Level1_Face : LevelData
 
         if (!isStep8Done)
             mascaraIndication.SetActive(true);
-        /*
-                if (isOnLeftStep8)
-                    return;
-
-                if (ToolStep8Progress.AllScratches[0].ScratchManager.Progress.GiveProgress() <= .55f)
-                {
-                    ShiftSideToLeft_8();
-                    mascaraIndication_R.SetActive(false);
-                }*/
-
     }
 
-    private IEnumerator CheckMascaraProgress()
+    IEnumerator CheckMascaraProgress()
     {
         while (!isOnLeftStep8 && !isStep8Done)
         {
@@ -2077,6 +1962,7 @@ public class Level1_Face : LevelData
 
         progressCheckCoroutine = null;
     }
+
     void ShiftSideToLeft_8()
     {
         isOnLeftStep8 = true;
@@ -2085,32 +1971,10 @@ public class Level1_Face : LevelData
 
         ToolStep8CameraFollow.enabled = false;
 
-        //  ToolInputToggle(ToolStep8.gameObject, false);
-
-        /* ToolStep8.transform.DOKill();
-         ToolStep8.transform.DOMove(new Vector3(0.1f, 1.4f, 0f), 1f);
-         ToolStep8.transform.DORotate(new Vector3(0f, 0f, -75.327f), 1f);*/
-
-        //ToolStep8.transform.GetChild(0).transform.localScale = new Vector3(1, -1, 1);
-
-        // CameraController.Instance.MoveCamera(ZoomStep8B.CameraPos, ZoomStep8B.CameraFOV);
-
         DOVirtual.DelayedCall(0.4f, () =>
         {
-            // CameraController.Instance.MoveCamera(ZoomStep8C.CameraPos, ZoomStep8C.CameraFOV);
-
             ToolStep8ToolRotate.MinAngle = new Vector3(0, 0, 316f);
             ToolStep8ToolRotate.MaxAngle = new Vector3(0, 0, 250f);
-
-            /*  ToolStep8.OnMouseDownEvent += () =>
-              {
-                  ToolStep8ToolRotate.enabled = true;
-
-                  ToolStep8.OnMouseDownEvent -= () =>
-                  {
-                      ToolStep8ToolRotate.enabled = true;
-                  };
-              };*/
 
             DOVirtual.DelayedCall(1f, () =>
             {
@@ -2125,9 +1989,6 @@ public class Level1_Face : LevelData
                 };
 
                 ToolInputToggle(ToolStep8.gameObject, true);
-
-
-
             });
 
             BD_Clamp clampTemp = ToolStep8.transform.GetComponent<BD_Clamp>();
@@ -2159,7 +2020,6 @@ public class Level1_Face : LevelData
             ToolStep8ToolRotate.enabled = true;
         };
 
-
         ToolInputToggle(ToolStep8.gameObject, false);
 
         ToolStep8.transform.DOKill();
@@ -2188,6 +2048,7 @@ public class Level1_Face : LevelData
                     Invoke(nameof(StartStep9), 1f);
 
                     SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 8;
+
                     SetProgressBar();
                 });
             });
@@ -2197,15 +2058,14 @@ public class Level1_Face : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step8_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step8_Comp");
         }
         catch { }
-
 
         ToolStep8.OnMouseDownEvent -= Tool8_OnMouseDown;
 
         ToolStep8.OnMouseUpEvent -= Tool8_OnMouseUp;
-
     }
 
     void ForceCompleteStep8()
@@ -2268,11 +2128,6 @@ public class Level1_Face : LevelData
 
         MoveInTray();
 
-        /* DOVirtual.DelayedCall(1.2f, () =>
-         {
-             Tap9.SetActive(true);
-         });*/
-
         Tool8Holder.SetActive(false);
         Tool9Holder.SetActive(true);
 
@@ -2331,8 +2186,6 @@ public class Level1_Face : LevelData
 
     public void EyeBrowOpen_9()
     {
-        //  Tap9.SetActive(false);
-
         if (eyeBrowOpenSfx != null)
             AudioController.instance.PlayAnySfx(0, eyeBrowOpenSfx, 0);
 
@@ -2424,6 +2277,7 @@ public class Level1_Face : LevelData
             EyeBrowBones[i].UpdateTip(Tip9);
         }
     }
+
     void Tool9_OnMouseDown()
     {
         ToolStep9ToolRotate.enabled = true;
@@ -2432,35 +2286,29 @@ public class Level1_Face : LevelData
         if (isStep9Done)
             EyeBrowIndication.SetActive(false);
     }
+
     void Tool9_OnMouseUp()
     {
         if (!isOnLeftStep9)
             EyeBrowIndication_R.SetActive(true);
 
-
         if (!isStep9Done)
             EyeBrowIndication.SetActive(true);
-
-        /*   if (isOnLeftStep9)
-              return;
-
-         if (ToolStep9Progress.AllScratches[0].ScratchManager.Progress.GiveProgress() <= .51f)
-          {
-              ShiftSideToLeft_9();
-              EyeBrowIndication_R.SetActive(false);
-          }*/
     }
-    private IEnumerator CheckEyebrowProgress()
+
+    IEnumerator CheckEyebrowProgress()
     {
         while (!isOnLeftStep9 && !isStep9Done)
         {
             if (ToolStep9Progress.AllScratches[0].ScratchManager.Progress.GiveProgress() <= .51f)
             {
                 ShiftSideToLeft_9();
+
                 EyeBrowIndication_R.SetActive(false);
 
                 // Optional: Stop checking once condition is met
                 progressCheckCoroutine = null;
+
                 yield break;
             }
 
@@ -2469,6 +2317,7 @@ public class Level1_Face : LevelData
 
         progressCheckCoroutine = null;
     }
+
     void ShiftSideToLeft_9()
     {
         isOnLeftStep9 = true;
@@ -2477,22 +2326,10 @@ public class Level1_Face : LevelData
 
         ToolStep9CameraFollow.enabled = false;
 
-        // ToolInputToggle(ToolStep9.gameObject, false);
-
-        /* ToolStep9.transform.DOKill();
-         ToolStep9.transform.DOMove(new Vector3(0f, 1.15f, 0f), 1f);
-         ToolStep9.transform.DORotate(new Vector3(0f, 0f, 14.545f), 1f);*/
-
-        //  CameraController.Instance.MoveCamera(ZoomStep6B.CameraPos, ZoomStep6B.CameraFOV);
-
         DOVirtual.DelayedCall(0.4f, () =>
         {
-            //  CameraController.Instance.MoveCamera(ZoomStep9C.CameraPos, ZoomStep9C.CameraFOV);
-
             ToolStep9ToolRotate.MinAngle = new Vector3(0, 0, 40f);
             ToolStep9ToolRotate.MaxAngle = new Vector3(0, 0, 0f);
-
-            //  ToolStep9ToolRotate.enabled = true;
 
             DOVirtual.DelayedCall(1f, () =>
             {
@@ -2501,15 +2338,12 @@ public class Level1_Face : LevelData
 
                 ToolStep9CameraFollow.enabled = true;
 
-
                 ToolStep9.OnMouseDownEvent += () =>
                 {
-                    // ToolStep9ToolRotate.enabled = true;
                     EyeBrowIndication.SetActive(false);
                 };
 
                 ToolInputToggle(ToolStep9.gameObject, true);
-
             });
 
             BD_Clamp clampTemp = ToolStep9.transform.GetComponent<BD_Clamp>();
@@ -2540,7 +2374,6 @@ public class Level1_Face : LevelData
             ToolStep9ToolRotate.enabled = true;
         };
 
-
         ToolInputToggle(ToolStep9.gameObject, false);
 
         ToolStep9.transform.DOKill();
@@ -2555,6 +2388,7 @@ public class Level1_Face : LevelData
             Invoke(nameof(StartStep10), .1f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 9;
+
             SetProgressBar();
         });
 
@@ -2562,7 +2396,8 @@ public class Level1_Face : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step9_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step9_Comp");
         }
         catch { }
 
@@ -2633,11 +2468,6 @@ public class Level1_Face : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep10.CameraPos, ZoomStep10.CameraFOV, 1.25f);
 
-        /*  DOVirtual.DelayedCall(1.2f, () =>
-          {
-              Tap10.SetActive(true);
-          });*/
-
         MoveInTray();
 
         Tool9Holder.SetActive(false);
@@ -2648,8 +2478,6 @@ public class Level1_Face : LevelData
 
     public void BlushOpen_10()
     {
-        //Tap10.SetActive(false);
-
         if (BlushOpenSfx != null)
             AudioController.instance.PlayAnySfx(0, BlushOpenSfx, 0);
 
@@ -2802,12 +2630,12 @@ public class Level1_Face : LevelData
 
         DOVirtual.DelayedCall(.5f, () =>
         {
-            //CameraController.Instance.MoveCamera(ZoomStep10.CameraPos, ZoomStep10.CameraFOV, 1.25f);
             CameraController.Instance.MoveCamera(ZoomStep11.CameraPos, ZoomStep11.CameraFOV, 1.25f);
 
             Invoke(nameof(StartStep11), 1f);
 
             SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 10;
+
             SetProgressBar();
         });
 
@@ -2815,7 +2643,8 @@ public class Level1_Face : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step10_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step10_Comp");
         }
         catch { }
     }
@@ -2884,11 +2713,6 @@ public class Level1_Face : LevelData
 
         MoveInTray();
 
-        /* DOVirtual.DelayedCall(1.2f, () =>
-         {
-             Tap11.SetActive(true);
-         });*/
-
         Tool10Holder.SetActive(false);
         Tool11Holder.SetActive(true);
 
@@ -2903,10 +2727,9 @@ public class Level1_Face : LevelData
         DOVirtual.DelayedCall(0.5f, () =>
         {
             CameraController.Instance.MoveCamera(ZoomStep11B.CameraPos, ZoomStep11B.CameraFOV);
+
             ToolStep11.transform.DOKill();
             ToolStep11.transform.DOMove(new Vector3(-0.04f, -0.25f, 0f), 1f);
-
-
 
             DOVirtual.DelayedCall(1f, () =>
             {
@@ -2971,6 +2794,7 @@ public class Level1_Face : LevelData
         {
             ToolStep11ToolRotate.enabled = true;
         };
+
         ToolInputToggle(ToolStep11.gameObject, false);
 
         ToolStep11.transform.DOKill();
@@ -2978,8 +2802,8 @@ public class Level1_Face : LevelData
 
         DOVirtual.DelayedCall(.5f, () =>
         {
-            // CameraController.Instance.MoveCamera(ZoomStep11.CameraPos, ZoomStep11.CameraFOV);
             CameraController.Instance.MoveCamera(MainZoom.CameraPos, MainZoom.CameraFOV, 1.5f);
+
             DOVirtual.DelayedCall(0.5f, () =>
             {
                 ToolStep11Shadow.SetActive(true);
@@ -2999,15 +2823,15 @@ public class Level1_Face : LevelData
 
                     SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 0;
 
-                    SetProgressBar();
+                    UI_Manager.instance.SetProgressBar(1f);
                 });
-
             });
         });
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step11_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step11_Comp");
         }
         catch { }
     }
@@ -3027,6 +2851,7 @@ public class Level1_Face : LevelData
             anim.DORestart();
         }
     }
+
     void DisableBreathAnim()
     {
         foreach (DOTweenAnimation anim in BreathingAnim)

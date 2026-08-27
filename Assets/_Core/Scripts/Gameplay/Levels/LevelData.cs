@@ -2,7 +2,9 @@ using DG.Tweening;
 using ScratchCardAsset;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class LevelData : MonoBehaviour
@@ -110,13 +112,14 @@ public class LevelData : MonoBehaviour
             if (drag != null)
             {
                 drag.canDrag = toggle;
-                if (drag.thisCollider != null)
-                    drag.thisCollider.enabled = toggle;
+                drag.thisCollider.enabled = toggle;
                 drag.enabled = toggle;
 
                 if (!toggle)
                 {
                     drag.isDragging = false;
+
+                    // VibrationManager.instance.StopVibration();
 
                     if (drag.ToolLoopClip != null)
                     {

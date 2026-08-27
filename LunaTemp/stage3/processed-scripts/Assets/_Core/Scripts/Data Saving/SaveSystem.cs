@@ -1,24 +1,24 @@
 using System;
-using System.IO;
-using DG.Tweening;
 using UnityEngine;
 
+/// <summary>
+/// Playable build: in-memory only. No JSON, no File I/O, no persistentDataPath — a playable
+/// is always a fresh session, so there is nothing to persist and Bridge.NET/WebGL cannot do
+/// file I/O reliably anyway.
+///
+/// The DataFields API is kept intact so every existing level script keeps compiling and
+/// behaving the same; the values simply live for the lifetime of the page.
+/// </summary>
 public class SaveSystem : MonoBehaviour
 {
     public static SaveSystem Instance;
-
-    public string path;
 
     [Space()]
     public int TotalLevels = 11;
 
     [Space()]
-    [Space()]
     public SaveDataFields DataFields;
 
-    string jsonInString = "";
-
-    [Space()]
     [Space()]
     public bool iAPShown = false;
 
@@ -33,24 +33,7 @@ public class SaveSystem : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(this);
         EnsureReady();
-    }
-
-    void Start()
-    {
-        try
-        {
-            PlayerPrefs.SetInt("OneTimeCheck", 1);
-
-            DOVirtual.DelayedCall(0.2f, () =>
-            {
-                DataFields.sessionCount++;
-            });
-        }
-        catch
-        {
-        }
     }
 
     public void EnsureReady()
@@ -61,21 +44,7 @@ public class SaveSystem : MonoBehaviour
         if (DataFields == null)
             DataFields = new SaveDataFields();
 
-        try
-        {
-            path = Path.Combine(Application.persistentDataPath, "SaveData.json");
-
-            if (File.Exists(path))
-                LoadJSON();
-            else
-                CreateJSON();
-        }
-        catch
-        {
-        }
-
         EnsureAllLevelsExist();
-        EnsureSubLevels();
 
         if (DataFields.levelToPlay < 1)
             DataFields.levelToPlay = 1;
@@ -84,85 +53,27 @@ public class SaveSystem : MonoBehaviour
             DataFields.partToPlay = 1;
     }
 
-    #region JSON
-
-    public void CreateJSON()
-    {
-        try
-        {
-            jsonInString = JsonUtility.ToJson(DataFields, true);
-
-            File.WriteAllText(path, jsonInString);
-        }
-
-        catch
-        {
-
-        }
-
-        if (File.Exists(path))
-        {
-            LoadJSON();
-        }
-    }
-
-    public void LoadJSON()
-    {
-        try
-        {
-            string loadedJsonDataString = File.ReadAllText(path);
-
-            JsonUtility.FromJsonOverwrite(loadedJsonDataString, DataFields);
-
-            EnsureAllLevelsExist(); // Ensure new levels are added
-        }
-        catch
-        {
-        }
-    }
-
     void EnsureAllLevelsExist()
     {
-        if (DataFields.AllLevels == null)
+        if (DataFields.AllLevels == null || DataFields.AllLevels.Length < TotalLevels)
         {
-            DataFields.AllLevels = new LevelSaveData[TotalLevels];
+            LevelSaveData[] neu = new LevelSaveData[TotalLevels];
+
+            int oldLen = DataFields.AllLevels != null ? DataFields.AllLevels.Length : 0;
 
             for (int i = 0; i < TotalLevels; i++)
-            {
-                DataFields.AllLevels[i] = new LevelSaveData();
-            }
-        }
+                neu[i] = i < oldLen && DataFields.AllLevels[i] != null
+                    ? DataFields.AllLevels[i]
+                    : new LevelSaveData();
 
-        else if (DataFields.AllLevels.Length < TotalLevels)
-        {
-            int oldLevelCount = DataFields.AllLevels.Length;
-            LevelSaveData[] newLevelsArray = new LevelSaveData[TotalLevels];
-
-            // Copy existing levels (preserving progress)
-            for (int i = 0; i < oldLevelCount; i++)
-            {
-                newLevelsArray[i] = DataFields.AllLevels[i];
-            }
-
-            // Initialize only the new levels
-            for (int i = oldLevelCount; i < TotalLevels; i++)
-            {
-                newLevelsArray[i] = new LevelSaveData();
-            }
-
-            // Assign back to totalLevels
-            DataFields.AllLevels = newLevelsArray;
+            DataFields.AllLevels = neu;
         }
 
         EnsureSubLevels();
-        SaveJSON();
     }
 
     void EnsureSubLevels()
     {
-        if (DataFields == null || DataFields.AllLevels == null)
-            return;
-
         for (int i = 0; i < DataFields.AllLevels.Length; i++)
         {
             if (DataFields.AllLevels[i] == null)
@@ -175,52 +86,11 @@ public class SaveSystem : MonoBehaviour
 
             SubLevelData[] neu = new SubLevelData[MinSubLevels];
             for (int j = 0; j < MinSubLevels; j++)
-            {
-                if (subs != null && j < oldLen && subs[j] != null)
-                    neu[j] = subs[j];
-                else
-                    neu[j] = new SubLevelData();
-            }
+                neu[j] = subs != null && j < oldLen && subs[j] != null ? subs[j] : new SubLevelData();
 
             DataFields.AllLevels[i].subLevels = neu;
         }
     }
-
-    public void SaveJSON()
-    {
-        try
-        {
-            jsonInString = JsonUtility.ToJson(DataFields, true);
-
-            File.WriteAllText(path, jsonInString);
-        }
-
-        catch
-        {
-
-        }
-    }
-
-    #endregion
-
-    void OnApplicationQuit()
-    {
-        try
-        {
-            SaveJSON();
-        }
-        catch { }
-    }
-
-    public void OnApplicationPause()
-    {
-        try
-        {
-            SaveJSON();
-        }
-        catch { }
-    }
-
 }
 
 [Serializable]
@@ -253,6 +123,9 @@ public class SaveDataFields
     [Space()]
     public bool mapUnlocked = false;
     public bool mapTutorial = false;
+
+    [Space()]
+    public int NextlevelToStart = 0;
 }
 
 
@@ -261,6 +134,7 @@ public class SubLevelData
 {
     public string subLevelName;
     public bool isCompleted;
+    public bool isLocked;
 
     [Space()]
     public int stepsDone;
@@ -274,10 +148,4 @@ public class LevelSaveData
 
     [Space()]
     public bool Completed = false;
-
 }
-
-
-
-
-

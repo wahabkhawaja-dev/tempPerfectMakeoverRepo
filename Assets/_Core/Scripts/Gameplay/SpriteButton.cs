@@ -7,176 +7,387 @@ using UnityEngine.EventSystems;
 public class SpriteButton : MonoBehaviour
 {
     [Space(10)]
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Transform pivot;
 
     [Space(10)]
-    [SerializeField] private Sprite normalSprite;
-    [SerializeField] private Sprite hoverSprite;
-    [SerializeField] private Sprite pressedSprite;
+    [Header("Press Scale Settings")]
+    [Tooltip("Percentage by which the SpriteRenderer scale is reduced while held.")]
+    [Range(0f, 100f)]
+    [SerializeField] private float reductionChange = 10f;
 
-    [Space(10)]
-    [Header("Scale Settings")]
-    [SerializeField] private float hoverScale = 1.12f;     // Hover mein kitna bada hoga
-    [SerializeField] private float pressScale = 0.9f;      // Press mein kitna chhota hoga (0.175f bohot chhota tha)
     [SerializeField] private float animationDuration = 0.1f;
 
-    [Space(10)]
+    [Space()]
+    public bool isLocked = false;
+
+    public string lockMsg = "";
+
+    [Space()]
     public UnityEvent onClick;
 
-    private Vector3 originalScale;
+    // Scale of the SpriteRenderer only
+    private Vector3 originalSpriteScale;
+
     private Tween currentTween;
+    private Tween delayedClickTween;
+    private Tween finishResetTween;
 
-    bool isFinished;
+    private bool isFinished;
+    private bool isPressed;
 
-    Collider2D thisCollider;
-    bool wasOver;
-    bool downOnThis;
+    [Space()]
+    public bool isLevelBtnSfx = false;
+
+    // Only one SpriteButton can be actively pressed at a time
+    private static SpriteButton activeButton;
+
+    // Prevents automatic interaction when collider is enabled
+    // while mouse is already sitting on the button.
+    private bool ignoreInitialHover;
+
+    private Vector3 lastMousePosition;
+    private bool hasMousePosition;
+
+    bool scaleSaved = false;
 
     void Awake()
     {
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponent<SpriteRenderer>();
+        if (pivot != null)
+            originalSpriteScale = pivot.transform.localScale;
 
-        originalScale = transform.localScale;
+        lastMousePosition = Input.mousePosition;
 
-        // Agar normalSprite assign nahi kiya to current sprite ko normal bana do
-        if (normalSprite == null && spriteRenderer != null)
-            normalSprite = spriteRenderer.sprite;
-
-        thisCollider = GetComponent<Collider2D>();
+        hasMousePosition = true;
     }
+
+    // =========================================================
+    // ENABLE
+    // =========================================================
+
+    void OnEnable()
+    {
+        isFinished = false;
+        isPressed = false;
+
+        currentTween?.Kill();
+        delayedClickTween?.Kill();
+        finishResetTween?.Kill();
+
+        currentTween = null;
+        delayedClickTween = null;
+        finishResetTween = null;
+
+        // Reset ONLY the SpriteRenderer scale.
+        if (pivot != null)
+            pivot.transform.localScale = originalSpriteScale;
+
+        // Prevent automatic interaction when the collider is enabled
+        // while the mouse is already sitting over the button.
+        ignoreInitialHover = true;
+
+        lastMousePosition = Input.mousePosition;
+        hasMousePosition = true;
+
+        if (activeButton == this)
+            activeButton = null;
+    }
+
+
+    // =========================================================
+    // UPDATE
+    // =========================================================
 
     void Update()
     {
-        bool isOver = PointerInput.IsOverCollider(thisCollider);
+        if (!ignoreInitialHover)
+            return;
 
-        if (isOver && !wasOver)
-            MouseEnter();
-        else if (!isOver && wasOver)
-            MouseExit();
+        Vector3 currentMousePosition = Input.mousePosition;
 
-        wasOver = isOver;
-
-        if (Input.GetMouseButtonDown(0) && isOver)
-            downOnThis = true;
-
-        if (Input.GetMouseButtonUp(0))
+        if (hasMousePosition &&
+            (currentMousePosition - lastMousePosition).sqrMagnitude > 0.01f)
         {
-            if (downOnThis && isOver)
-                MouseUpAsButton();
-
-            downOnThis = false;
+            ignoreInitialHover = false;
         }
+
+        lastMousePosition = currentMousePosition;
     }
 
-    // ==================== HOVER ====================
-    void MouseEnter()
-    {
-        if (isOverUI()) return;
-        
-        if (isFinished) return;
 
-        // Previous tween kill kar do
+    // =========================================================
+    // MOUSE ENTER
+    // =========================================================
+
+    void OnMouseEnter()
+    {
+        if (isOverUI())
+            return;
+
+        if (isFinished)
+            return;
+
+        if (ignoreInitialHover)
+            return;
+
+        // No hover animation.
+    }
+
+
+    // =========================================================
+    // MOUSE EXIT
+    // =========================================================
+
+    void OnMouseExit()
+    {
+        if (isOverUI())
+            return;
+
+        if (isFinished)
+            return;
+
+        // Do nothing.
+        // While holding, the button stays reduced until release.
+    }
+
+
+    // =========================================================
+    // MOUSE DOWN
+    // =========================================================
+
+    void OnMouseDown()
+    {
+        if (isOverUI())
+            return;
+
+        if (isFinished)
+            return;
+
+        if (ignoreInitialHover)
+            ignoreInitialHover = false;
+
+        if (!scaleSaved)
+        {
+            scaleSaved = true;
+
+            if (pivot != null)
+                originalSpriteScale = pivot.transform.localScale;
+        }
+
+        // Reset previously active button
+        // without triggering its click event.
+        if (activeButton != null && activeButton != this)
+        {
+            activeButton.ResetButtonState();
+        }
+
+        activeButton = this;
+        isPressed = true;
+
         currentTween?.Kill();
 
-        // Scale up + Hover Sprite
-        currentTween = transform.DOScale(originalScale * hoverScale, animationDuration).SetEase(Ease.OutQuad);
+        if (pivot == null)
+            return;
 
-        if (hoverSprite != null)
-            spriteRenderer.sprite = hoverSprite;
+        // Calculate reduction from the SpriteRenderer's scale.
+        float reductionMultiplier = 1f - (reductionChange / 100f);
+
+        Vector3 reducedScale =
+            originalSpriteScale * reductionMultiplier;
+
+        // Animate ONLY the SpriteRenderer.
+        currentTween = pivot.transform
+            .DOScale(reducedScale, animationDuration)
+            .SetEase(Ease.OutQuad);
+
+        // Haptics
+        // if (VibrationManager.instance)
+            // VibrationManager.instance.MediumImpact();
     }
 
-    void MouseExit()
+
+    // =========================================================
+    // MOUSE UP
+    // =========================================================
+
+    void OnMouseUp()
     {
-        if (isOverUI()) return;
+        if (!isPressed)
+            return;
 
-        if (isFinished) return;
+        isPressed = false;
 
-        currentTween?.Kill();
+        // Check whether released while still over this button.
+        bool releasedOnButton = IsPointerOverThisObject();
 
-        // Wapas normal scale + normal sprite
-        currentTween = transform.DOScale(originalScale, animationDuration).SetEase(Ease.OutQuad);
+        // Always restore SpriteRenderer scale.
+        if (pivot != null)
+        {
+            currentTween?.Kill();
 
-        if (normalSprite != null)
-            spriteRenderer.sprite = normalSprite;
-    }
+            currentTween = pivot.transform
+                .DOScale(originalSpriteScale, animationDuration)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() =>
+                {
+                    currentTween = null;
+                });
+        }
 
-    // ==================== PRESS ====================
-    void MouseUpAsButton()
-    {
-        if (isOverUI()) return;
+        // ---------------------------------------------------------
+        // RELEASED OUTSIDE
+        // ---------------------------------------------------------
 
-        if (isFinished) return;
+        if (!releasedOnButton)
+        {
+            // Cancel the press completely.
+            // No click event, no SFX, no locked toast.
+
+            if (activeButton == this)
+                activeButton = null;
+
+            return;
+        }
+
+        // ---------------------------------------------------------
+        // RELEASED ON BUTTON
+        // ---------------------------------------------------------
 
         isFinished = true;
 
-        currentTween?.Kill();
+        delayedClickTween?.Kill();
 
-        // Press Effect
-        transform.DOScale(originalScale * pressScale, animationDuration).SetEase(Ease.OutQuad);
-
-        if (pressedSprite != null)
-            spriteRenderer.sprite = pressedSprite;
-
-        // Click invoke with small delay
-        DOVirtual.DelayedCall(0.1f, () =>
+        delayedClickTween = DOVirtual.DelayedCall(0.1f, () =>
         {
-            onClick?.Invoke();
-
-            // Wapas hover state pe le aao (agar mouse abhi bhi upar hai)
-            if (IsPointerOverThisObject())
+            if (isLocked)
             {
-                transform.DOScale(originalScale * hoverScale, 0.1f);
-                if (hoverSprite != null)
-                    spriteRenderer.sprite = hoverSprite;
+                // if (ToastManager.instance != null)
+                    // ToastManager.instance.SendToast(lockMsg);
+
+                if (isLevelBtnSfx)
+                {
+                    if (AudioController.instance != null)
+                        AudioController.instance.PlaySfx(0, 2, 0);
+                }
+                else
+                {
+                    if (AudioController.instance != null)
+                        AudioController.instance.PlaySfx(0, 1, 0);
+                }
             }
             else
             {
-                transform.DOScale(originalScale, 0.1f);
-                if (normalSprite != null)
-                    spriteRenderer.sprite = normalSprite;
+                onClick?.Invoke();
             }
+
+            delayedClickTween = null;
         });
 
-        // Haptics & Sound
-            
+        // Allow button to be pressed again after 2 seconds.
+        finishResetTween?.Kill();
 
-        DOVirtual.DelayedCall(2f, () =>
+        finishResetTween = DOVirtual.DelayedCall(2f, () =>
         {
             isFinished = false;
+            finishResetTween = null;
         });
-
-       /* if (AudioController.instance)
-            AudioController.instance.PlayUiClickSfx();*/
     }
 
-    // Optional: Better check for mouse over this specific object
-    private bool IsPointerOverThisObject()
+
+    // =========================================================
+    // RESET
+    // =========================================================
+
+    private void ResetButtonState()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        currentTween?.Kill();
+        currentTween = null;
 
-        return hit.collider != null && hit.collider.gameObject == gameObject;
+        delayedClickTween?.Kill();
+        delayedClickTween = null;
+
+        finishResetTween?.Kill();
+        finishResetTween = null;
+
+        isFinished = false;
+        isPressed = false;
+
+        // Reset ONLY SpriteRenderer scale.
+        if (pivot != null)
+            pivot.transform.localScale = originalSpriteScale;
+
+        if (activeButton == this)
+            activeButton = null;
     }
+
+
+    // =========================================================
+    // POINTER CHECK
+    // =========================================================
+
+    bool IsPointerOverThisObject()
+    {
+        if (Camera.main == null)
+            return false;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            ray.origin,
+            ray.direction
+        );
+
+        return hit.collider != null &&
+               hit.collider.gameObject == gameObject;
+    }
+
+
+    // =========================================================
+    // UI CHECK
+    // =========================================================
 
     public bool isOverUI()
     {
-        if (EventSystem.current == null) return false;
+        if (EventSystem.current == null)
+            return false;
 
         if (EventSystem.current.IsPointerOverGameObject())
             return true;
 
         if (Input.touchCount > 0)
         {
-            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            if (EventSystem.current.IsPointerOverGameObject(
+                Input.GetTouch(0).fingerId))
+            {
                 return true;
+            }
         }
 
         return false;
     }
 
-    private void OnDisable()
+
+    // =========================================================
+    // DISABLE
+    // =========================================================
+
+    void OnDisable()
     {
         currentTween?.Kill();
+        delayedClickTween?.Kill();
+        finishResetTween?.Kill();
+
+        currentTween = null;
+        delayedClickTween = null;
+        finishResetTween = null;
+
+        isPressed = false;
+        isFinished = false;
+
+        // Reset ONLY SpriteRenderer scale.
+        if (pivot != null)
+            pivot.transform.localScale = originalSpriteScale;
+
+        if (activeButton == this)
+            activeButton = null;
     }
 }

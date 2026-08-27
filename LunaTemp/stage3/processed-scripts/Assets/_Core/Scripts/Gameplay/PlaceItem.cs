@@ -27,6 +27,11 @@ public class PlaceItem : MonoBehaviour
 
     Collider2D thisCol;
 
+    [Space()]
+    public bool changeScaleOnPlace;
+    public Transform item;
+    public Vector3 newScaleOnPlace = Vector3.one;
+
     public UnityEvent OnPlaced;
     void Start()
     {
@@ -93,6 +98,13 @@ public class PlaceItem : MonoBehaviour
         Vector3 targetPos = Target.transform.position;
         float placeDuration = 0.25f;
 
+
+        if (changeScaleOnPlace) 
+        {
+            item.DOKill();
+            item.DOScale(newScaleOnPlace, 0.25f);
+        }
+
         if (jumpOnPlace)
         {
             placeDuration = jumpDuration + settleDuration;
@@ -116,10 +128,21 @@ public class PlaceItem : MonoBehaviour
             OnPlaced.Invoke();
         });
 
-        if (Clip != null)
-            AudioController.instance.PlayAnySfx(2, Clip, 0f);
+        if(jumpOnPlace)
+        {
+            if (Clip != null)
+                AudioController.instance.PlayAnySfx(2, Clip, 0.2f);
 
-            
+        }
+        else
+        {
+            if (Clip != null)
+                AudioController.instance.PlayAnySfx(2, Clip, 0f);
+        }
+
+
+        // if (VibrationManager.instance != null)
+            // VibrationManager.instance.MediumImpact();
 
     }
 }

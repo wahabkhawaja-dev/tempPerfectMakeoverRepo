@@ -45,9 +45,12 @@ public class Level1_HairAnim : MonoBehaviour
     private bool hairAnimStarted = false;
     private Tween[] hairsAnimTimeScaleTweens;
 
-    private void Awake()
+    private IEnumerator Start()
     {
         currentProgress = 0f;
+
+        yield return new WaitForSeconds(0.15f);
+
         thisTool.OnMouseDownEvent += EnableToolTip;
         thisTool.OnMouseUpEvent += DisableToolTip;
     }
@@ -141,24 +144,27 @@ public class Level1_HairAnim : MonoBehaviour
 
         while (timer < holdDuration)
         {
-            timer += Time.deltaTime;
-            currentProgress = timer / holdDuration;
-
-
-            UI_Manager.instance.SetProgressBar(currentProgress);
-
-            UpdateVisuals();
-
-            if (currentProgress >= 1f)
+            if (thisTool.isObjectMovingWhileDragging)
             {
-                CompleteHold();
-                if (wetHairRend != null)
-                {
-                    wetHairRend.DOKill();
-                    wetHairRend.DOFade(0, 2f);
+                timer += Time.deltaTime;
+                currentProgress = timer / holdDuration;
 
+
+                UI_Manager.instance.SetProgressBar(currentProgress);
+
+                UpdateVisuals();
+
+                if (currentProgress >= 1f)
+                {
+                    CompleteHold();
+                    if (wetHairRend != null)
+                    {
+                        wetHairRend.DOKill();
+                        wetHairRend.DOFade(0, 2f);
+
+                    }
+                    yield break;
                 }
-                yield break;
             }
 
             yield return null;

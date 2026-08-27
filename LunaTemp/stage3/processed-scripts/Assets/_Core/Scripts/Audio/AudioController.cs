@@ -66,4 +66,14 @@ public class AudioController : MonoBehaviour
     {
         UiClickSource.PlayOneShot(UiClick);
     }
+
+    public void PlayBtnClickSfx()
+    {
+        PlaySfx(2, 0, 0);
+    }
+
+    public void PlayBtnClickSfxGameplay()
+    {
+        PlaySfx(0, 4, 0);
+    }
 }

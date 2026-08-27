@@ -252,7 +252,7 @@ public class DraggableObject : MonoBehaviour
             AudioController.instance.PlayAnySfx(0, hitSfx, 0);
 
         // if (VibrationManager.instance)
-        //     VibrationManager.instance.MediumImpact();
+            // VibrationManager.instance.MediumImpact();
 
         DispenseDrop(targetPos);
 

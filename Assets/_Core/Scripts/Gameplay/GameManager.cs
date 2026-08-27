@@ -25,10 +25,14 @@ public class GameManager : MonoBehaviour
     [Space()]
     public LevelData currentLevel;
 
+    [Tooltip("OFF for menu-driven playables: the level is activated later by PlayableRouter " +
+             "instead of being loaded at Start. Leave ON for scenes that hold a single level.")]
+    public bool startLevelOnPlay = true;
+
     LevelData Temp;
     float levelEndTime;
     float levelStartTime;
-    int currentLevelNo = 0;
+    public int currentLevelNo = 0;
     public Coroutine timerCo; // used by GameManagerPlayable duplicate scene
 
     void Awake()
@@ -41,7 +45,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Start()
     {
-        LoadLevel();
+        if (startLevelOnPlay)
+            LoadLevel();
 
         if (BG_Music != null && MusicSource.instance != null)
             MusicSource.instance.PlayMusic(BG_Music);
@@ -94,6 +99,27 @@ public class GameManager : MonoBehaviour
 
         Temp = currentLevel;
         ApplySaveForSceneLevel(currentLevel);
+    }
+
+    /// <summary>
+    /// Binds a level that already sits in the scene (typically inactive) and primes its
+    /// state. Call this BEFORE activating the level object — the level's own Start() reads
+    /// levelToPlay / partToPlay / stepsDone the moment it wakes up.
+    /// </summary>
+    public void BindLevel(LevelData level)
+    {
+        if (level == null)
+            return;
+
+        currentLevel = level;
+        Temp = level;
+
+        ApplySaveForSceneLevel(level);
+
+        currentLevelNo = SaveSystem.Instance != null ? SaveSystem.Instance.DataFields.levelToPlay : 1;
+        levelStartTime = Time.time;
+
+        RecordLevelStartEvent(currentLevelNo);
     }
 
     void ApplySaveForSceneLevel(LevelData level)
@@ -394,7 +420,7 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    void RecordLevelCompleteEvent()
+    public void RecordLevelCompleteEvent()
     {
         levelEndTime = Time.time;
     }

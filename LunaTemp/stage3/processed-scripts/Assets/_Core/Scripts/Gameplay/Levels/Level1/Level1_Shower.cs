@@ -1,7 +1,6 @@
+using UnityEngine;
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class Level1_Shower : LevelData
 {
@@ -10,10 +9,10 @@ public class Level1_Shower : LevelData
     [Space()]
     public ZoomPos MainZoom;
 
+    [Space()]
     public GameObject view1;
     public GameObject view2;
 
-  
     [Space()]
     [Header("----------------- STEP 1 ----------------------")]
     [Space()]
@@ -21,6 +20,8 @@ public class Level1_Shower : LevelData
 
     [Space()]
     public BasicDrag ToolStep1;
+    [Space()]
+    public BD_CameraFollow ToolStep1CameraFollow;
 
     [Space()]
     [Header("Jar Drop")]
@@ -86,25 +87,41 @@ public class Level1_Shower : LevelData
     IEnumerator Start()
     {
         base.LevelStart();
+
+        CameraController.Instance.SetCameraInstant(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
+
         UI_Manager.instance.InitializeTools(ToolIcons);
+
+        yield return new WaitForSeconds(0.1f);
+
         levelNo = SaveSystem.Instance.DataFields.levelToPlay - 1;
+
         partNo = SaveSystem.Instance.DataFields.partToPlay - 1;
 
         stepsDone = SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone;
 
-        yield return new WaitForSeconds(0.25f);
-
         switch (stepsDone)
         {
             case 0:
-                DOVirtual.DelayedCall(1.5f, () =>
+                // STEP START EVENT
+                try
+                {
+                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                        + "_" + levelName + "_Step1_Start");
+                }
+                catch { }
+
+                DOVirtual.DelayedCall(0.5f, () =>
                 {
                     StartStep1();
                 });
                 break;
+
             case 1:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep1();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep2();
@@ -113,8 +130,11 @@ public class Level1_Shower : LevelData
 
             case 2:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep1();
+
                 ForceCompleteStep2();
+
                 DOVirtual.DelayedCall(.5f, () =>
                 {
                     StartStep3();
@@ -123,8 +143,11 @@ public class Level1_Shower : LevelData
 
             case 3:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep1();
+
                 ForceCompleteStep2();
+
                 ForceCompleteStep3();
                 DOVirtual.DelayedCall(.5f, () =>
                 {
@@ -143,16 +166,18 @@ public class Level1_Shower : LevelData
         CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
 
         ToolStep1.transform.DOKill();
-        ToolStep1.transform.DOLocalMoveX(0f, 1f).SetDelay(1f).OnComplete(() =>
+        ToolStep1.transform.DOLocalMoveX(0f, 1f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep1.gameObject, true);
 
-            //ToolStep1CameraFollow.enabled = true;
+            ToolStep1CameraFollow.enabled = true;
         });
     }
 
     public void MoveInsideJar()
     {
+
+        ToolStep1CameraFollow.enabled = false;
         // Stop input first so BasicDrag can't fight the placement animation
         ToolInputToggle(ToolStep1.gameObject, false);
 
@@ -188,8 +213,6 @@ public class Level1_Shower : LevelData
 
         isStep1Done = true;
 
-        // ToolStep1CameraFollow.enabled = false;
-
         ToolInputToggle(ToolStep1.gameObject, false);
 
         CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
@@ -200,11 +223,12 @@ public class Level1_Shower : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step1_Comp");
         }
         catch { }
 
-        DOVirtual.DelayedCall(1f, () =>
+        DOVirtual.DelayedCall(0.5f, () =>
         {
             StartStep2();
         });
@@ -278,7 +302,8 @@ public class Level1_Shower : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
@@ -322,7 +347,7 @@ public class Level1_Shower : LevelData
 
     void StartBoiling()
     {
-        UI_Manager.instance.ShowClockProgress(6);
+        UI_Manager.instance.ShowClockProgress(3.5f);
 
         foreach (SpriteRenderer sp in cleanAcid)
         {
@@ -332,7 +357,7 @@ public class Level1_Shower : LevelData
         foreach (SpriteRenderer sp in dirtyAcid)
         {
             sp.DOKill();
-            sp.DOFade(0.6f, 5f).OnComplete(() =>
+            sp.DOFade(0.6f, 3f).OnComplete(() =>
             {
                 showerAfterAcid.gameObject.SetActive(true);
                 showerAfterAcid.DOKill();
@@ -356,14 +381,14 @@ public class Level1_Shower : LevelData
                             BoilingSource.DOKill();
                             BoilingSource.DOFade(0f, 1f).SetDelay(.3f);
 
-                            LoadingManager.instance.ShowFadeAnim(1.25f, 1f);
+                            LoadingManager.instance.ShowFadeAnim(0.5f, 0.7f);
 
-                            DOVirtual.DelayedCall(1.3f, () =>
+                            DOVirtual.DelayedCall(1f, () =>
                             {
                                 view1.SetActive(false);
                                 view2.SetActive(true);
 
-                                Invoke(nameof(StartStep3), 2);
+                                Invoke(nameof(StartStep3), 0.55f);
                             });
                         });
 
@@ -418,7 +443,7 @@ public class Level1_Shower : LevelData
             ToolStep3.gameObject.SetActive(false);
         });
 
-        Invoke(nameof(StartStep4), 1f);
+        Invoke(nameof(StartStep4), 0.5f);
 
         SetProgressBar();
 
@@ -428,7 +453,8 @@ public class Level1_Shower : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step3_Comp");
         }
         catch { }
     }
@@ -464,7 +490,6 @@ public class Level1_Shower : LevelData
 
             CameraController.Instance.MoveCamera(ZoomStep4.CameraPos, ZoomStep3.CameraFOV);
         });
-
     }
 
     public void Step4Done()
@@ -487,26 +512,35 @@ public class Level1_Shower : LevelData
         starsParticles.Play();
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].isCompleted = true;
-        Invoke(nameof(LoadHairLevelAgian), 2f);
 
         CameraController.Instance.ResetCameraTween();
-        SetProgressBar();
+
+        UI_Manager.instance.SetProgressBar(1f);
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 0;
 
+        Invoke(nameof(LoadHairLevelAgian), 1f);
+
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step4_Comp");
         }
         catch { }
+
+        GameManager.instance.RecordLevelCompleteEvent();
     }
 
     void LoadHairLevelAgian()
     {
         SaveSystem.Instance.DataFields.levelToPlay = 1;
+
         SaveSystem.Instance.DataFields.partToPlay = 1;
 
         LoadingManager.instance.ShowFadeAnim(0.5f, 1f);
+
+        UI_Manager.instance.TopBarAnim.DOPlayBackwards();
+
         DOVirtual.DelayedCall(1f, () =>
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(

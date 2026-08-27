@@ -28,38 +28,14 @@ public class RotaryTimerKnob : MonoBehaviour
 
     public GameObject handIndication;
 
-    Collider2D thisCollider;
-    bool downOnThis;
-
+   
     void Start()
     {
         stepAngle = 360f / numSteps;
-        thisCollider = GetComponent<Collider2D>();
         ResetKnob();
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (PointerInput.IsOverCollider(thisCollider))
-            {
-                downOnThis = true;
-                MouseDownPressed();
-            }
-        }
-
-        if (downOnThis)
-            MouseDragUpdate();
-
-        if (Input.GetMouseButtonUp(0) && downOnThis)
-        {
-            downOnThis = false;
-            MouseUpPressed();
-        }
-    }
-
-    private void MouseDownPressed()
+    private void OnMouseDown()
     {
         if(isOverUI())
             return;
@@ -72,7 +48,7 @@ public class RotaryTimerKnob : MonoBehaviour
         handIndication.SetActive(false);
     }
 
-    private void MouseUpPressed()
+    private void OnMouseUp()
     {
         if (isOverUI())
             return;
@@ -82,9 +58,9 @@ public class RotaryTimerKnob : MonoBehaviour
         handIndication.SetActive(true);
     }
 
+   
 
-
-    private void MouseDragUpdate()
+    private void OnMouseDrag()
     {
         if (isOverUI())
             return;
@@ -154,6 +130,9 @@ public class RotaryTimerKnob : MonoBehaviour
     {
         if (clickSound != null)
             AudioController.instance.PlayAnySfx(0, clickSound, 0);
+
+        // if (enableVibration)
+        //     VibrationManager.instance.MediumImpact();
     }
 
     public void ResetKnob()
@@ -175,7 +154,7 @@ public class RotaryTimerKnob : MonoBehaviour
             return true;
         }
 
-        if (EventSystem.current != null && Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 return true;

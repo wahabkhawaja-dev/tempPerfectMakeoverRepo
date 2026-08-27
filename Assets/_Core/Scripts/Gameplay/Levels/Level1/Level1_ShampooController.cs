@@ -46,50 +46,31 @@ public class Level1_ShampooController : MonoBehaviour
     float m_LastPressTime;
     float m_PressDelay = 0.25f;
 
-    Collider2D thisCollider;
-    bool downOnThis;
+
+   
 
     private void Start()
     {
         defaultRotation = transform.localEulerAngles;
-
+       
         if (shampoo_Particles != null)
             shampoo_Particles.SetActive(false);
 
         if (Indication)
             Indication.SetActive(true);
 
-        thisCollider = GetComponent<Collider2D>();
 
         DOTween.Init();
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (PointerInput.IsOverCollider(thisCollider))
-            {
-                downOnThis = true;
-                MouseDownPressed();
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0) && downOnThis)
-        {
-            downOnThis = false;
-            MouseUpPressed();
-        }
-    }
-
-    private void MouseDownPressed()
+    private void OnMouseDown()
     {
         if (isCompleted) return;
         isHolding = true;
         StartFadeAnimation();
     }
 
-    private void MouseUpPressed()
+    private void OnMouseUp()
     {
         if (isCompleted) return;
         isHolding = false;
@@ -151,7 +132,8 @@ public class Level1_ShampooController : MonoBehaviour
                 if (m_LastPressTime + m_PressDelay < Time.unscaledTime)
                 {
                     m_LastPressTime = Time.unscaledTime;
-                        
+                    // if (VibrationManager.instance != null)
+                        // VibrationManager.instance.MediumImpact();
                 }
             }
 

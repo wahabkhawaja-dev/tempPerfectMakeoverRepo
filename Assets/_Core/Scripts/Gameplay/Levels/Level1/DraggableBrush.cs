@@ -21,8 +21,6 @@ public class DraggableBrush : MonoBehaviour
     private int currentStepIndex = 0;
     private Camera mainCamera;
     private bool isDragging = false;
-    private Collider2D thisCollider;
-    private bool downOnThis;
 
     [Space()]
     public UnityEvent OnComplete;
@@ -30,7 +28,6 @@ public class DraggableBrush : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        thisCollider = GetComponent<Collider2D>();
         if (movementSteps.Count > 0)
         {
             SetStep(currentStepIndex);
@@ -38,36 +35,25 @@ public class DraggableBrush : MonoBehaviour
 
     }
 
-    void MouseDownPressed()
+    void OnMouseDown()
     {
-        downOnThis = true;
-
         // Check karein ke steps baki hain ya nahi
         if (currentStepIndex < movementSteps.Count)
             isDragging = true;
 
-        BD_Progress.EnableProgress();
+        BD_Progress.EnableProgress();   
     }
 
-    void MouseUpPressed()
+    void OnMouseUp()
     {
-        downOnThis = false;
         isDragging = false;
+
 
         BD_Progress.DisableProgress();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (PointerInput.IsOverCollider(thisCollider))
-                MouseDownPressed();
-        }
-
-        if (Input.GetMouseButtonUp(0) && downOnThis)
-            MouseUpPressed();
-
         if (isDragging && currentStepIndex < movementSteps.Count)
         {
             HandleDrag();

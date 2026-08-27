@@ -86,19 +86,22 @@ public class Level3_Crown : LevelData
     public ZoomPos ZoomStep5;
 
     [Space()]
+    public GameObject HammerHolder_5;
+    public Animator HammerAnimator_5;
+
+    [Space()]
     public GameObject[] HammerTaps_5;
     public GameObject[] Hand_5;
 
     [Space()]
+    public GameObject[] StoneAboveParts_5;
     public GameObject[] StoneAroundParts_5;
     public GameObject[] GemParts_5;
-    public GameObject BlueGem;
 
     [Space()]
     public bool[] Status_5;
 
     [Space()]
-    public SpriteRenderer[] Stones_5;
     public ParticleSystem[] Particles_5;
 
     [Space()]
@@ -106,6 +109,8 @@ public class Level3_Crown : LevelData
 
     [Space()]
     public int stonesRemoved = 0;
+
+    public AudioClip[] hammerSounds;
 
     [Header("----------------- STEP 6 ----------------------")]
     [Space()]
@@ -129,21 +134,13 @@ public class Level3_Crown : LevelData
 
     [Space()]
     public BasicDrag ToolStep7;
+    public GameObject ToolStep7Detect;
+    public GameObject ToolStep7HandAnim;
 
     [Space()]
-    public BD_Progress ToolStep7Progress;
-
-    [Space()]
-    public BD_CameraFollow ToolStep7CameraFollow;
-
-    [Space()]
-    public GameObject[] Indications_7;
-
-    [Space()]
-    public bool[] Status_7;
-
-    [Space()]
-    public SpriteRenderer[] Glues_7;
+    public Animator ToolStep7AnimationHolder;
+    public GameObject ToolStep7AnimationTool;
+    public SpriteRenderer Glue_7;
 
     [Header("----------------- STEP 8 ----------------------")]
     [Space()]
@@ -196,9 +193,6 @@ public class Level3_Crown : LevelData
 
         ToolStep6CameraFollow.enabled = false;
 
-        // STEP 7
-        ToolStep7CameraFollow.enabled = false;
-
         levelNo = SaveSystem.Instance.DataFields.levelToPlay - 1;
         partNo = SaveSystem.Instance.DataFields.partToPlay - 1;
 
@@ -212,6 +206,14 @@ public class Level3_Crown : LevelData
         {
             // STARTING STEP 1
             case 0:
+                // STEP START EVENT
+                try
+                {
+                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                        + "_" + levelName + "_Step1_Start");
+                }
+                catch { }
+
                 DOVirtual.DelayedCall(1f, () =>
                 {
                     StartStep1();
@@ -370,7 +372,8 @@ public class Level3_Crown : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step1_Comp");
         }
         catch { }
     }
@@ -435,7 +438,8 @@ public class Level3_Crown : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
@@ -508,7 +512,8 @@ public class Level3_Crown : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step3_Comp");
         }
         catch { }
     }
@@ -596,7 +601,8 @@ public class Level3_Crown : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step4_Comp");
         }
         catch { }
     }
@@ -635,7 +641,10 @@ public class Level3_Crown : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep5.CameraPos, ZoomStep5.CameraFOV);
 
-        DOVirtual.DelayedCall(1.2f, () =>
+        HammerHolder_5.transform.DOKill();
+        HammerHolder_5.transform.DOLocalMoveX(4f, .5f).SetDelay(1f);
+
+        DOVirtual.DelayedCall(1.5f, () =>
         {
             HammerTaps_5[0].SetActive(true);
         });
@@ -655,102 +664,117 @@ public class Level3_Crown : LevelData
         {
             Hand_5[index].SetActive(false);
 
-            Particles_5[index].Play();
+            HammerAnimator_5.enabled = true;
+            HammerAnimator_5.Play("Hammer", 0, 0f);
 
-            Stones_5[index].DOKill();
-            Stones_5[index].transform.DOKill();
+            DOVirtual.DelayedCall(.25f, () =>
+            {
+                Particles_5[index].Play();
 
-            Stones_5[index].transform.DOLocalMoveX(-2.2f, 0.2f).SetEase(Ease.Linear);
+                for (int i = 0; i < StoneAboveParts_5.Length; i++)
+                {
+                    Transform part = StoneAboveParts_5[i].transform;
+                    SpriteRenderer partSR = StoneAboveParts_5[i].GetComponent<SpriteRenderer>();
 
-            Stones_5[index].transform.DOLocalMoveX(-8.79f, 1.5f).SetDelay(.6f).SetEase(Ease.Linear);
+                    // all pieces sit at localPosition zero (shared ring-centre pivot), so outward direction comes from sprite bounds
+                    Vector3 dir = part.parent.InverseTransformPoint(partSR.bounds.center).normalized;
 
-            Stones_5[index].DOFade(0f, 1f).SetDelay(1f);
+                    float delay = Random.Range(0f, 0.1f);
+
+                    part.DOKill();
+                    partSR.DOKill();
+
+                    part.DOLocalMove(part.localPosition + dir * Random.Range(.5f, .65f), 0.25f).SetEase(Ease.OutQuad).SetDelay(delay);
+
+                    GameObject partGO = StoneAboveParts_5[i];
+
+                    partSR.DOFade(0f, 0.5f).SetDelay(delay + Random.Range(0.7f, 0.9f)).OnComplete(() =>
+                    {
+                        partGO.SetActive(false);
+                    });
+                }
+            });
         }
 
         else if (index == 1)
         {
             Hand_5[index].SetActive(false);
 
-            Particles_5[index].Play();
+            HammerAnimator_5.enabled = true;
+            HammerAnimator_5.Play("Hammer", 0, 0f);
 
-            Stones_5[index].DOKill();
-            Stones_5[index].transform.DOKill();
+            DOVirtual.DelayedCall(.25f, () =>
+            {
+                Particles_5[index].Play();
 
-            Stones_5[index].transform.DOLocalMoveX(3.7f, 0.2f).SetEase(Ease.Linear);
+                for (int i = 0; i < StoneAroundParts_5.Length; i++)
+                {
+                    Transform part = StoneAroundParts_5[i].transform;
+                    SpriteRenderer partSR = StoneAroundParts_5[i].GetComponent<SpriteRenderer>();
 
-            Stones_5[index].transform.DOLocalMoveX(8f, 1.5f).SetDelay(.6f).SetEase(Ease.Linear);
+                    // all pieces sit at localPosition zero (shared ring-centre pivot), so outward direction comes from sprite bounds
+                    Vector3 dir = part.parent.InverseTransformPoint(partSR.bounds.center).normalized;
 
-            Stones_5[index].DOFade(0f, 1f).SetDelay(1f);
+                    float delay = Random.Range(0f, 0.2f);
+
+                    part.DOKill();
+                    partSR.DOKill();
+
+                    part.DOLocalMove(part.localPosition + dir * Random.Range(.2f, 2f), 0.25f).SetEase(Ease.OutQuad).SetDelay(delay);
+
+                    //part.DOLocalMoveX(part.localPosition.x + dir.x * Random.Range(1f, 2f), Random.Range(0.9f, 1.3f)).SetEase(Ease.Linear).SetDelay(delay + 0.25f);
+
+                    //part.DOLocalMoveY(part.localPosition.y - Random.Range(10f, 20f), Random.Range(0.9f, 1.3f)).SetEase(Ease.InQuad).SetDelay(delay + 0.25f);
+
+                    GameObject partGO = StoneAroundParts_5[i];
+
+                    partSR.DOFade(0f, 0.5f).SetDelay(delay + Random.Range(0.7f, 0.9f)).OnComplete(() =>
+                    {
+                        partGO.SetActive(false);
+                    });
+                }
+
+            });
         }
 
         else if (index == 2)
         {
             Hand_5[index].SetActive(false);
 
-            Particles_5[index].Play();
+            HammerAnimator_5.enabled = true;
+            HammerAnimator_5.Play("Hammer", 0, 0f);
 
-            for (int i = 0; i < StoneAroundParts_5.Length; i++)
+            DOVirtual.DelayedCall(.25f, () =>
             {
-                Transform part = StoneAroundParts_5[i].transform;
-                SpriteRenderer partSR = StoneAroundParts_5[i].GetComponent<SpriteRenderer>();
+                Particles_5[index].Play();
 
-                // all pieces sit at localPosition zero (shared ring-centre pivot), so outward direction comes from sprite bounds
-                Vector3 dir = part.parent.InverseTransformPoint(partSR.bounds.center).normalized;
-
-                float delay = Random.Range(0f, 0.2f);
-
-                part.DOKill();
-                partSR.DOKill();
-
-                part.DOLocalMove(part.localPosition + dir * Random.Range(.2f, 2f), 0.25f).SetEase(Ease.OutQuad).SetDelay(delay);
-
-                //part.DOLocalMoveX(part.localPosition.x + dir.x * Random.Range(1f, 2f), Random.Range(0.9f, 1.3f)).SetEase(Ease.Linear).SetDelay(delay + 0.25f);
-
-                //part.DOLocalMoveY(part.localPosition.y - Random.Range(10f, 20f), Random.Range(0.9f, 1.3f)).SetEase(Ease.InQuad).SetDelay(delay + 0.25f);
-
-                GameObject partGO = StoneAroundParts_5[i];
-
-                partSR.DOFade(0f, 0.5f).SetDelay(delay + Random.Range(0.7f, 0.9f)).OnComplete(() =>
+                for (int i = 0; i < GemParts_5.Length; i++)
                 {
-                    partGO.SetActive(false);
-                });
-            }
+                    Transform part = GemParts_5[i].transform;
+                    SpriteRenderer partSR = GemParts_5[i].GetComponent<SpriteRenderer>();
 
-            BlueGem.SetActive(false);
-        }
+                    // all pieces sit at localPosition zero (shared ring-centre pivot), so outward direction comes from sprite bounds
+                    Vector3 dir = part.parent.InverseTransformPoint(partSR.bounds.center).normalized;
 
-        else if (index == 3)
-        {
-            Hand_5[index].SetActive(false);
+                    float delay = Random.Range(0f, 0.1f);
 
-            Particles_5[index].Play();
+                    part.DOKill();
+                    partSR.DOKill();
 
-            for (int i = 0; i < GemParts_5.Length; i++)
-            {
-                Transform part = GemParts_5[i].transform;
-                SpriteRenderer partSR = GemParts_5[i].GetComponent<SpriteRenderer>();
+                    part.DOLocalMove(part.localPosition + dir * Random.Range(.75f, 1f), 0.25f).SetEase(Ease.OutQuad).SetDelay(delay);
 
-                // all pieces sit at localPosition zero (shared ring-centre pivot), so outward direction comes from sprite bounds
-                Vector3 dir = part.parent.InverseTransformPoint(partSR.bounds.center).normalized;
+                    //part.DOLocalMoveX(part.localPosition.x + dir.x * Random.Range(1f, 2f), Random.Range(0.9f, 1.3f)).SetEase(Ease.Linear).SetDelay(delay + 0.1f);
 
-                float delay = Random.Range(0f, 0.1f);
+                    //part.DOLocalMoveY(part.localPosition.y - Random.Range(3f, 6f), Random.Range(0.9f, 1.3f)).SetEase(Ease.InQuad).SetDelay(delay + 0.1f);
 
-                part.DOKill();
-                partSR.DOKill();
+                    GameObject partGO = GemParts_5[i];
 
-                part.DOLocalMove(part.localPosition + dir * Random.Range(.75f, 1f), 0.25f).SetEase(Ease.OutQuad).SetDelay(delay);
-
-                //part.DOLocalMoveX(part.localPosition.x + dir.x * Random.Range(1f, 2f), Random.Range(0.9f, 1.3f)).SetEase(Ease.Linear).SetDelay(delay + 0.1f);
-
-                //part.DOLocalMoveY(part.localPosition.y - Random.Range(3f, 6f), Random.Range(0.9f, 1.3f)).SetEase(Ease.InQuad).SetDelay(delay + 0.1f);
-
-                GameObject partGO = GemParts_5[i];
-
-                partSR.DOFade(0f, 0.5f).SetDelay(delay + Random.Range(0.7f, 0.9f)).OnComplete(() =>
-                {
-                    partGO.SetActive(false);
-                });
-            }
+                    partSR.DOFade(0f, 0.5f).SetDelay(delay + Random.Range(0.7f, 0.9f)).OnComplete(() =>
+                    {
+                        partGO.SetActive(false);
+                    });
+                }
+            });
         }
 
         DOVirtual.DelayedCall(2f, () =>
@@ -774,20 +798,35 @@ public class Level3_Crown : LevelData
             }
         });
 
-        CameraController.Instance.Camera_Shake();
+        DOVirtual.DelayedCall(.25f, () =>
+        {
+            CameraController.Instance.Camera_Shake();
+        });
     }
 
     public void Step5Done()
     {
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 5;
 
+        HammerHolder_5.transform.DOKill();
+        HammerHolder_5.transform.DOLocalMoveX(30f, .5f).SetDelay(1f);
+
         Invoke(nameof(StartStep6), 1f);
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step5_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step5_Comp");
         }
         catch { }
+    }
+
+    public void PlayHammerSound(int index)
+    {
+        if (index < 0 || index >= hammerSounds.Length)
+            return;
+
+        AudioController.instance.PlayAnySfx( 1,hammerSounds[index],.1f);
     }
 
     void ForceCompleteStep5()
@@ -813,7 +852,7 @@ public class Level3_Crown : LevelData
         CameraController.Instance.MoveCamera(ZoomStep6.CameraPos, ZoomStep6.CameraFOV);
 
         ToolStep6.transform.DOKill();
-        ToolStep6.transform.DOLocalMoveX(-0.185f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep6.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep6.gameObject, true);
 
@@ -866,7 +905,8 @@ public class Level3_Crown : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step6_Comp");
         }
         catch { }
     }
@@ -897,36 +937,12 @@ public class Level3_Crown : LevelData
         {
             ToolInputToggle(ToolStep7.gameObject, true);
 
-            ToolStep7CameraFollow.enabled = true;
+            ToolStep7Detect.SetActive(true);
 
-            for (int i = 0; i < Indications_7.Length; i++)
-            {
-                Indications_7[i].SetActive(true);
-            }
+            ToolStep7HandAnim.SetActive(true);
 
-            Co_7 = StartCoroutine(Exec_7());
+            ToolStep7.OnMouseDownEvent += () => ToolStep7HandAnim.SetActive(false);
         });
-    }
-
-    Coroutine Co_7;
-    WaitForSeconds waitIs = new WaitForSeconds(.2f);
-
-    IEnumerator Exec_7()
-    {
-        while (true)
-        {
-            for (int i = 0; i < Indications_7.Length; i++)
-            {
-                if (ToolStep7Progress.giveProgressForScratch(i) >= .8f && !Status_7[i])
-                {
-                    Status_7[i] = true;
-
-                    Indications_7[i].SetActive(false);
-                }
-            }
-
-            yield return waitIs;
-        }
     }
 
     public void Step7Done()
@@ -936,40 +952,47 @@ public class Level3_Crown : LevelData
 
         isStep7Done = true;
 
-        if (Co_7 != null)
-            StopCoroutine(Co_7);
+        UI_Manager.instance.SetProgressBar(1f, 1.5f);
 
-        ToolStep7CameraFollow.enabled = false;
-
-        ToolInputToggle(ToolStep7.gameObject, false);
-
-        CameraController.Instance.MoveCamera(ZoomStep7.CameraPos, ZoomStep7.CameraFOV);
-
-        ToolStep7.transform.DOKill();
-        ToolStep7.transform.DOLocalMoveX(-10f, 1f).SetDelay(.25f).OnComplete(() =>
+        DOVirtual.DelayedCall(1.2f, () =>
         {
-            ToolStep7.gameObject.SetActive(false);
+            ToolStep7Detect.SetActive(false);
+
+            ToolStep7AnimationHolder.gameObject.SetActive(true);
+            ToolStep7AnimationHolder.enabled = false;
+
+            Glue_7.maskInteraction = SpriteMaskInteraction.None;
+
+            ToolStep7AnimationTool.transform.DOKill();
+            ToolStep7AnimationTool.transform.DOLocalMoveX(-10f, 1f).SetDelay(.25f).OnComplete(() =>
+            {
+                ToolStep7AnimationTool.gameObject.SetActive(false);
+            });
+
+            CameraController.Instance.MoveCamera(ZoomStep7.CameraPos, ZoomStep7.CameraFOV);
+
+            SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 7;
+
+            Invoke(nameof(StartStep8), 1f);
+
+            try
+            {
+                Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                    + "_" + levelName + "_Step7_Comp");
+            }
+            catch { }
         });
-
-        SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 7;
-
-        Invoke(nameof(StartStep8), 1f);
-
-        try
-        {
-            Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
-        }
-        catch { }
     }
 
     void ForceCompleteStep7()
     {
         ForceCompleteStep6();
 
-        for (int i = 0; i < Glues_7.Length; i++)
-        {
-            Glues_7[i].material = GameManager.instance.DefaultMat;
-        }
+        ToolStep7AnimationHolder.gameObject.SetActive(true);
+        ToolStep7AnimationHolder.enabled = false;
+
+        ToolStep7AnimationTool.gameObject.SetActive(false);
+        Glue_7.maskInteraction = SpriteMaskInteraction.None;
     }
 
     #endregion
@@ -1018,7 +1041,8 @@ public class Level3_Crown : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step8_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step8_Comp");
         }
         catch { }
     }

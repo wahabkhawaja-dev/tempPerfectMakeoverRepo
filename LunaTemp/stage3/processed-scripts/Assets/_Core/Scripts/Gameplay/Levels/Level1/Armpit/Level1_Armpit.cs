@@ -4,11 +4,11 @@ using System.Collections;
 
 public class Level1_Armpit : LevelData
 {
-
     [Space()]
     [Header("----------------------------------------------------------------------------------")]
     [Space()]
     public ZoomPos MainZoom;
+
     [Space()]
     [Space()]
     public GameObject view1;
@@ -20,40 +20,53 @@ public class Level1_Armpit : LevelData
     [Header("----------------- STEP 1 ----------------------")]
     [Space()]
     public ZoomPos ZoomStep1;
-    [Space()]
+
     [Space()]
     public BasicDrag ToolStep1;
+
     [Space()]
     public BD_CameraFollow ToolStep1CameraFollow;
+
     [Header("SFX")]
     public AudioClip eraserSfx;
-
 
     [Header("----------------- STEP 2 ----------------------")]
     [Space()]
     public ZoomPos ZoomStep2;
+
     [Space()]
     public Transform ToolStep2Parent;
+
     [Space()]
     public Transform BeansParent;
-
 
     [Header("----------------- STEP 3 ----------------------")]
     [Space()]
     public ZoomPos ZoomStep3;
+
     [Space()]
     public GameObject JarHandIndication;
     public Transform GreenBtnCol_Damaged;
     public Transform GreenBtnCol_Fixed;
+    [Space()]
+    public ActionOnTap HandTap1_3;
+    [Space()]
     public GameObject GreenBtn;
     public GameObject GreenBtnIndication;
     public GameObject machineDamage;
+    public GameObject machineBlackImg;
+    public ParticleSystem blackSmokeVfx;
+    public AudioClip fixItErrorSfx;
+
     [Space()]
     public SpriteRenderer boilingWax;
+
     [Space()]
     public GameObject boilingParticle;
+
     [Space()]
     public SpriteRenderer[] AllBeans;
+
     [Header("SFX")]
     public AudioClip machineBtnSfx;
     public AudioSource boilingSfx;
@@ -64,7 +77,7 @@ public class Level1_Armpit : LevelData
     public Transform ToolStep4;
     public GameObject spatulaFull;
     public GameObject spatulaFaded;
-    public GameObject spatulaFadedAnim;
+
     [Space()]
     public GameObject waxMixControler;
     public SpriteRenderer waxOnSpatula;
@@ -75,9 +88,9 @@ public class Level1_Armpit : LevelData
     public Transform spatulaParent;
 
     [Space()]
-    public BasicDrag waxStickyBD;
-    public GameObject fadedAnim;
-    public GameObject fullAnim;
+    //public BasicDrag waxStickyBD;
+   // public GameObject fadedAnim;
+   // public GameObject fullAnim;
     public GameObject finalSpatula;
 
     [Space()]
@@ -86,11 +99,13 @@ public class Level1_Armpit : LevelData
     [Header("----------------- STEP 5 ----------------------")]
     [Space()]
     public ZoomPos ZoomStep5;
-    [Space()]
+
     [Space()]
     public BasicDrag ToolStep5;
+
     [Space()]
     public BD_CameraFollow ToolStep5CameraFollow;
+
     [Space()]
     public SpriteRenderer hairSmall;
     public SpriteRenderer skinBumpy;
@@ -102,7 +117,7 @@ public class Level1_Armpit : LevelData
     [Header("----------------- STEP 6 ----------------------")]
     [Space()]
     public ZoomPos ZoomStep6;
-    [Space()]
+
     [Space()]
     public Transform ToolStep6Parent;
     public Transform ToolStep6;
@@ -117,17 +132,20 @@ public class Level1_Armpit : LevelData
     public GameObject dropletAnim;
     public GameObject droperPlaceIndication;
     public BasicDrag ToolStep6Actual;
+
     [Header("SFX")]
     public AudioClip serumCapSfx;
 
     [Header("----------------- STEP 7 ----------------------")]
     [Space()]
-    [Space()]
     public ZoomPos ZoomStep7;
+
     [Space()]
     public BasicDrag ToolStep7;
+
     [Space()]
     public BD_CameraFollow ToolStep7CameraFollow;
+
     [Space()]
     public GameObject serumDropped;
     public SpriteRenderer SerumRubbed;
@@ -142,33 +160,33 @@ public class Level1_Armpit : LevelData
     public Animator perfumeCapAnim;
     public GameObject perfumeButton;
     public ParticleSystem perfumeParticles;
-    // public GameObject perfumePressIndication;
     public GameObject starsParticles;
-
     public GameObject bodyStright;
     public GameObject bodyTilt;
+
     [Header("SFX")]
     public AudioClip PerfumeCapOpen;
     public AudioClip PerfumeSfx;
 
     [Header("----------------- Machine FIX GATE ----------------------")]
     [Space()]
-    [SerializeField] GameObject fixItPrompt;
+    public GameObject fixItPrompt;
+    public GameObject fixItPromptHand;
 
-
-    // Start is called before the first frame update
     IEnumerator Start()
     {
         base.LevelStart();
 
         UI_Manager.instance.InitializeTools(ToolIcons);
 
+        yield return new WaitForSeconds(0.1f);
+
         levelNo = SaveSystem.Instance.DataFields.levelToPlay - 1;
         partNo = SaveSystem.Instance.DataFields.partToPlay - 1;
 
         stepsDone = SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone;
 
-        yield return new WaitForSeconds(0.25f);
+        machineDamage.SetActive(!IsMachineFixed());
 
         serumDropped.SetActive(false);
 
@@ -177,45 +195,59 @@ public class Level1_Armpit : LevelData
         switch (stepsDone)
         {
             case 0:
+                // STEP START EVENT
+                try
+                {
+                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                        + "_" + levelName + "_Step1_Start");
+                }
+                catch { }
+
                 Invoke(nameof(StartStep1), 1.2f);
-                // StartStep1();
+
                 break;
+
             case 1:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
                 ForceCompleteStep1();
                 StartStep2();
                 break;
+
             case 2:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
                 ForceCompleteStep2();
                 StartStep3();
                 break;
+
             case 3:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
                 ForceCompleteStep3();
                 Invoke(nameof(StartStep4), 1f);
                 break;
+
             case 4:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
                 ForceCompleteStep4();
                 StartStep5();
                 break;
+
             case 5:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone + 1);
                 ForceCompleteStep5();
                 StartStep6();
                 break;
+
             case 6:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone + 1);
                 ForceCompleteStep6();
                 StartStep7();
                 break;
+
             case 7:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone + 1);
                 ForceCompleteStep7();
                 StartStep8();
                 break;
-
         }
     }
 
@@ -234,8 +266,10 @@ public class Level1_Armpit : LevelData
             ToolStep1CameraFollow.enabled = true;
         });
     }
+
     float m_LastEraserTime;
     float m_EraserCallDelay = 0.45f;
+
     public void PlayEraserSfx()
     {
         if (m_LastEraserTime + m_EraserCallDelay > Time.unscaledTime)
@@ -246,14 +280,14 @@ public class Level1_Armpit : LevelData
         if (AudioController.instance)
             AudioController.instance.PlayAnySfx(0, eraserSfx, 0);
 
-            
+        // if (VibrationManager.instance)
+            // VibrationManager.instance.MediumImpact();
     }
+
     public void Step1Complete()
     {
         if (isStep1Done)
             return;
-
-        //   UI_Manager.instance.SetProgressBar(1f);
 
         isStep1Done = true;
 
@@ -268,20 +302,22 @@ public class Level1_Armpit : LevelData
         DOVirtual.DelayedCall(1f, () =>
         {
             LoadingManager.instance.ShowFadeAnim(1, 1);
+
             Invoke(nameof(StartStep2), 1f);
         });
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 1;
 
-
         SetProgressBar();
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step1_Comp");
         }
         catch { }
     }
+
     void ForceCompleteStep1()
     {
         hairArmpit.SetActive(false);
@@ -295,7 +331,6 @@ public class Level1_Armpit : LevelData
 
     void StartStep2()
     {
-
         view1.SetActive(false);
         view2.SetActive(true);
 
@@ -309,9 +344,7 @@ public class Level1_Armpit : LevelData
             BeansParent.parent = null;
 
             JarHandIndication.SetActive(true);
-
         });
-
     }
 
     public void Step2Complete()
@@ -319,17 +352,14 @@ public class Level1_Armpit : LevelData
         if (isStep2Done)
             return;
 
-        //   UI_Manager.instance.SetProgressBar(1f);
-
         isStep2Done = true;
+
         ToolStep2Parent.transform.DOLocalMoveX(-15f, 1f).SetDelay(.5f).OnComplete(() =>
         {
             ToolStep2Parent.gameObject.SetActive(false);
-
         });
 
         Invoke(nameof(StartStep3), 1f);
-
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 2;
 
@@ -337,11 +367,11 @@ public class Level1_Armpit : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
-
 
     void ForceCompleteStep2()
     {
@@ -349,11 +379,18 @@ public class Level1_Armpit : LevelData
         view2.SetActive(true);
 
         BeansParent.parent = null;
-        BeansParent.transform.position = Vector3.zero;
-        BeansParent.transform.DOLocalMoveY(0.5f, 0.01f);
+        BeansParent.gameObject.SetActive(false);
+
+        DOVirtual.DelayedCall(0.5f, () =>
+        {
+            BeansParent.gameObject.SetActive(true);
+            BeansParent.transform.position = Vector3.zero;
+            BeansParent.transform.DOLocalMoveY(0.5f, 0.01f);
+        });
 
         hairArmpit.SetActive(false);
     }
+
     #endregion
 
     #region STEP 3
@@ -364,14 +401,13 @@ public class Level1_Armpit : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
-        machineDamage.SetActive(!IsMachineFixed());
-
-        if (IsMachineFixed()) 
+        if (IsMachineFixed())
         {
             GreenBtnCol_Fixed.gameObject.SetActive(true);
             GreenBtnCol_Damaged.gameObject.SetActive(false);
         }
-        else 
+
+        else
         {
             GreenBtnCol_Fixed.gameObject.SetActive(false);
             GreenBtnCol_Damaged.gameObject.SetActive(true);
@@ -382,7 +418,7 @@ public class Level1_Armpit : LevelData
 
     bool IsMachineFixed()
     {
-        bool remoteStatus = RemoteManager.Instance.FixInnerLevel();  
+        bool remoteStatus = RemoteManager.Instance.FixInnerLevel();
         bool isCompleted = SaveSystem.Instance.DataFields.AllLevels[0].subLevels[5].isCompleted;
 
         if (!remoteStatus)
@@ -395,15 +431,54 @@ public class Level1_Armpit : LevelData
         return isCompleted;
     }
 
-    public void GreenBtnPressedDmg() 
+    public void GreenBtnPressedDmg()
     {
+
+        HandTap1_3.OnTapExtra += () =>
+        {
+            blackSmokeVfx.Play();
+
+            AudioController.instance.PlayAnySfx(0, fixItErrorSfx, 0);
+
+            machineDamage.transform.parent.DOKill();
+
+            // Little shake for 2D object
+            machineDamage.transform.parent.DOShakePosition(
+                duration: 0.35f,
+                strength: new Vector3(0.025f, 0.025f, 0f),  // only X/Y
+                vibrato: 8,
+                randomness: 70,
+                snapping: false,
+                fadeOut: true
+            );
+        };
+
+
         GreenBtnIndication.SetActive(false);
         fixItPrompt.SetActive(true);
+        fixItPromptHand.SetActive(true);
+
+
+        blackSmokeVfx.Play();
+
+        AudioController.instance.PlayAnySfx(0, fixItErrorSfx, 0);
+
+        machineDamage.transform.parent.DOKill();
+
+        // Little shake for 2D object
+        machineDamage.transform.parent.DOShakePosition(
+               duration: 0.35f,
+               strength: new Vector3(0.025f, 0.025f, 0f),  // only X/Y
+               vibrato: 8,
+               randomness: 70,
+               snapping: false,
+               fadeOut: true
+           );
     }
 
-    public void OnFixitPressed() 
+    public void OnFixitPressed()
     {
-        fixItPrompt.SetActive(false);
+        fixItPromptHand.SetActive(false);
         SaveSystem.Instance.DataFields.levelToPlay = 1;
         SaveSystem.Instance.DataFields.partToPlay = 6;
 
@@ -416,16 +491,31 @@ public class Level1_Armpit : LevelData
                     UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
             });
         });
+
+        fixItPrompt.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+        DOVirtual.DelayedCall(0.51f, () =>
+        {
+            fixItPrompt.SetActive(false);
+        });
+
+        AudioController.instance.PlayUiClickSfx();
     }
 
     public void GreenBtnPressed()
     {
-            
+        // if (VibrationManager.instance)
+            // VibrationManager.instance.MediumImpact();
 
         if (AudioController.instance)
             AudioController.instance.PlayAnySfx(0, machineBtnSfx, 0);
 
         GreenBtn.SetActive(true);
+
+        SpriteRenderer sp = machineBlackImg.GetComponent<SpriteRenderer>();
+
+        sp.DOKill();
+        sp.DOFade(0, 1f);
+
 
         GreenBtnIndication.SetActive(false);
 
@@ -454,13 +544,16 @@ public class Level1_Armpit : LevelData
 
         });
     }
+
     WaitForSeconds wait1sec = new WaitForSeconds(1);
+
     IEnumerator timerRoutine()
     {
         UI_Manager.instance.SetProgressBar(0.333f);
+
         yield return wait1sec;
+
         UI_Manager.instance.SetProgressBar(0.666f);
-      
     }
 
     public void Step3Complete()
@@ -468,11 +561,9 @@ public class Level1_Armpit : LevelData
         if (isStep3Done)
             return;
 
-        //   UI_Manager.instance.SetProgressBar(1f);
-
         isStep3Done = true;
 
-        Invoke(nameof(StartStep4), 2f);
+        Invoke(nameof(StartStep4), 1f);
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 3;
 
@@ -480,7 +571,8 @@ public class Level1_Armpit : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step3_Comp");
         }
         catch { }
     }
@@ -501,8 +593,9 @@ public class Level1_Armpit : LevelData
         hairArmpit.SetActive(false);
 
         boilingWax.transform.DOLocalMoveY(0f, 0.01f);
-    }
 
+        machineBlackImg.SetActive(false);
+    }
 
     #endregion
 
@@ -543,88 +636,38 @@ public class Level1_Armpit : LevelData
 
         waxMixControler.SetActive(false);
 
-
-        //   spatulaDrag.OnMouseDownEvent += SpatulaPicked;
-        //   spatulaDrag.OnMouseUpEvent += SpatulaReleased;
-
-
         spatulaParent.DOLocalMoveY(-1.86f, 0.1f);
         spatulaParent.DOLocalMoveX(0f, 0.1f).OnComplete(() =>
         {
             spatulaPickIndication.transform.position = spatulaParent.position;
             spatulaPickIndication.SetActive(true);
 
-            //  ToolInputToggle(spatulaDrag.gameObject, true);
-
-            //  spatulaClamp.enabled = true;
             spatulaFaded.transform.parent = null;
             spatulaFull.transform.parent = null;
-            spatulaFadedAnim.transform.position = spatulaFaded.transform.position;
+         //   spatulaFadedAnim.transform.position = spatulaFaded.transform.position;
             spatulaFaded.SetActive(false);
-            spatulaFadedAnim.SetActive(true);
+          //  spatulaFadedAnim.SetActive(true);
 
-            waxStickyBD.gameObject.SetActive(true);
+            SpatulaPicked();
 
+          
+           // waxStickyBD.gameObject.SetActive(true);
         });
-
-
-        /* DOVirtual.DelayedCall(0.15f, () =>
-         {
-             spatulaFull.SetActive(true);
-             spatulaFaded.SetActive(false);
-
-             waxOnSpatula.gameObject.SetActive(true);
-             waxOnSpatula.DOKill();
-             waxOnSpatula.DOFade(1, 0.25f).OnComplete(() =>
-             {
-                 waxDrippinfParticle.SetActive(true);
-             });
-
-         });*/
-
-        /*  ToolStep4.transform.DOKill();
-          ToolStep4.DOLocalMove(new Vector3(1f, 2.55f, 0), 0.75f).SetDelay(0.01f).OnComplete(() =>
-          {
-
-          });
-          ToolStep4.DORotate(new Vector3(0, 0, -55f), 1f).SetDelay(0.2f);*/
-
-        //UI_Manager.instance.SetProgressBar(1f);
-
-        /*  DOVirtual.DelayedCall(3f, () =>
-          {
-              LoadingManager.instance.ShowFadeAnim(1, 1);
-              if (boilingSfx != null)
-              {
-                  boilingSfx.DOFade(0, 2f).OnComplete(() =>
-                  {
-                      boilingSfx.gameObject.SetActive(false);
-                  });
-              }
-              Invoke(nameof(StartStep5), 1f);
-              SetProgressBar();
-          });
-
-          SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 4;
-
-          try
-          {
-              Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
-          }
-          catch { }*/
     }
-
-    bool spatulaReleased = false;
 
     public void SpatulaPicked()
     {
-        ToolInputToggle(waxStickyBD.gameObject, false);
+        // ToolInputToggle(waxStickyBD.gameObject, false);
 
-        spatulaFadedAnim.GetComponent<Animator>().enabled = false;
+        spatulaFull.SetActive(false);
+        finalSpatula.gameObject.SetActive(true);
+
+
+       // spatulaFadedAnim.GetComponent<Animator>().enabled = false;
 
         spatulaPickIndication.SetActive(false);
 
-        Invoke(nameof(SpatulaReleased), 3);
+        Invoke(nameof(SpatulaReleased), 1.5f);
 
         AudioController.instance.PlayAnySfx(0, DropClip, 1.5f);
 
@@ -652,7 +695,7 @@ public class Level1_Armpit : LevelData
 
                 spatulaFull.SetActive(false);
 
-                waxStickyBD.gameObject.SetActive(false);
+             //   waxStickyBD.gameObject.SetActive(false);
 
             }
 
@@ -665,11 +708,10 @@ public class Level1_Armpit : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step4_Comp");
         }
         catch { }
-
-        // spatulaDrag.OnMouseUpEvent -= SpatulaReleased;
     }
 
     void ForceCompleteStep4()
@@ -678,9 +720,7 @@ public class Level1_Armpit : LevelData
         view2.SetActive(false);
 
         hairArmpit.SetActive(false);
-
     }
-
 
     #endregion
 
@@ -703,6 +743,7 @@ public class Level1_Armpit : LevelData
         ToolStep5.transform.DOLocalMoveX(-1.5f, .5f).SetDelay(1f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep5.gameObject, true);
+
             ToolStep5CameraFollow.enabled = true;
         });
     }
@@ -711,8 +752,6 @@ public class Level1_Armpit : LevelData
     {
         if (isStep5Done)
             return;
-
-        //   UI_Manager.instance.SetProgressBar(1f);
 
         hairSmall.DOFade(0, 2f);
 
@@ -723,6 +762,7 @@ public class Level1_Armpit : LevelData
         ToolStep5.transform.DOLocalMoveX(-15f, .5f).OnComplete(() =>
         {
             ToolStep5.gameObject.SetActive(false);
+
             ToolStep5CameraFollow.enabled = false;
         });
 
@@ -738,7 +778,8 @@ public class Level1_Armpit : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step5_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step5_Comp");
         }
         catch { }
     }
@@ -748,9 +789,9 @@ public class Level1_Armpit : LevelData
         waxEraseIndication.SetActive(false);
 
         skinBumpy.gameObject.SetActive(true);
+
         skinBumpy.DOKill();
         skinBumpy.DOFade(1, 3f);
-
 
         waxErase.transform.DOKill();
         waxErase.transform.DOLocalMoveX(-15f, 1);
@@ -763,11 +804,11 @@ public class Level1_Armpit : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step6_Comp");
         }
         catch { }
     }
-
 
     void ForceCompleteStep5()
     {
@@ -777,13 +818,9 @@ public class Level1_Armpit : LevelData
         hairArmpit.SetActive(false);
         hairSmall.gameObject.SetActive(false);
 
-
         skinBumpy.gameObject.SetActive(true);
         skinBumpy.DOKill();
         skinBumpy.DOFade(1, 0.01f);
-
-
-
     }
 
     #endregion
@@ -794,7 +831,6 @@ public class Level1_Armpit : LevelData
 
     void StartStep6()
     {
-
         CameraController.Instance.MoveCamera(ZoomStep6.CameraPos, ZoomStep6.CameraFOV);
 
         ToolStep6Parent.DOKill();
@@ -823,10 +859,6 @@ public class Level1_Armpit : LevelData
                 ToolStep6.gameObject.SetActive(false);
             });
 
-            //  ToolInputToggle(ToolStep6.gameObject, true);
-
-            //   dropperTarget.SetActive(true);
-
             DOVirtual.DelayedCall(0.5f, () =>
             {
                 droperPlaceIndication.SetActive(true);
@@ -843,58 +875,6 @@ public class Level1_Armpit : LevelData
 
         });
     }
-
-
-    /*  public void DropperPlaced()
-      {
-
-              
-
-
-
-          ToolInputToggle(ToolStep6.gameObject, false);
-          dropperTapobj.SetActive(true);
-
-          dropperTarget.SetActive(false);
-
-          droperPlaceIndication.SetActive(false);
-
-          dropletAnim.SetActive(true);
-      }
-  */
-    /* public void DropperPressed()
-     {
-
-             
-
-
-         ToolsStep6Rend.sprite = droperPressed;
-
-         dropletAnim.SetActive(true);
-
-
-         // Current size lo
-         Vector2 currentSize = ToolsStep6Liquid.size;
-
-         // Sirf Height change karke tween karo
-         DOTween.To(() => ToolsStep6Liquid.size,
-                    x => ToolsStep6Liquid.size = x,
-                    new Vector2(currentSize.x, 0.7f),
-                    2.5f)
-                .SetEase(Ease.OutQuad);   // Ease change kar sakte ho
-
-
-
-         DOVirtual.DelayedCall(2.45f, () =>
-         {
-
-             dropletAnim.SetActive(false);
-             serumDropped.SetActive(true);
-
-         });
-
-         Invoke(nameof(Step6Complete), 2.75f);
-     }*/
 
     public void Step6Complete()
     {
@@ -916,11 +896,11 @@ public class Level1_Armpit : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step7_Comp");
         }
         catch { }
     }
-
 
     void ForceCompleteStep6()
     {
@@ -941,8 +921,6 @@ public class Level1_Armpit : LevelData
         skinBumpy.DOFade(1, 0.01f);
 
     }
-
-
 
     #endregion
 
@@ -990,14 +968,14 @@ public class Level1_Armpit : LevelData
 
         Invoke(nameof(StartStep8), 0.5f);
 
-
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 7;
 
         SetProgressBar();
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step8_Comp");
         }
         catch { }
     }
@@ -1009,10 +987,7 @@ public class Level1_Armpit : LevelData
 
         hairArmpit.SetActive(false);
         hairSmall.gameObject.SetActive(false);
-
-
     }
-
 
     #endregion
 
@@ -1036,29 +1011,27 @@ public class Level1_Armpit : LevelData
 
     public void PerfumeCapRemoved()
     {
-
         perfumeCapAnim.enabled = true;
 
         DOVirtual.DelayedCall(0.25f, () =>
         {
             perfumeCapAnim.enabled = false;
             perfumeCap.transform.DOKill();
-            perfumeCap.transform.DOLocalMoveX(-15, 1f);/*.SetDelay(0.01f).OnComplete(() =>
-            {
-                perfumePressIndication.SetActive(true);
-            });*/
+            perfumeCap.transform.DOLocalMoveX(-15, 1f);
+
             perfumeBtnTriger.SetActive(true);
         });
     }
+
     public void PerfumePressed()
     {
-
-            
+        // if (VibrationManager.instance)
+            // VibrationManager.instance.MediumImpact();
 
         bodyStright.SetActive(false);
+
         bodyTilt.SetActive(true);
 
-        //  perfumePressIndication.SetActive(false);
         perfumeBtnTriger.SetActive(false);
 
         DOVirtual.DelayedCall(0.01f, () =>
@@ -1080,7 +1053,6 @@ public class Level1_Armpit : LevelData
                 AudioController.instance.PlayAnySfx(0, PerfumeSfx, 0);
         });
 
-
         perfumeButton.transform.DOKill();
         perfumeButton.transform.DOLocalMoveY(perfumeButton.transform.localPosition.y - 0.12f, 0.2f).SetLoops(4, LoopType.Yoyo).OnComplete(() =>
         {
@@ -1100,25 +1072,21 @@ public class Level1_Armpit : LevelData
         ToolStep8.transform.DOKill();
         ToolStep8.transform.DOLocalMoveX(-15f, 1f);
 
-
         CameraController.Instance.MoveCamera(MainZoom.CameraPos, MainZoom.CameraFOV, 1.25f);
-
-        Invoke(nameof(LevelComplete), 2f);
-
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 0;
 
-        SetProgressBar();
+        UI_Manager.instance.SetProgressBar(1f);
+
+        Invoke(nameof(LevelComplete), 2f);
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step9_Comp");
         }
         catch { }
     }
 
-
-
     #endregion
-
 }

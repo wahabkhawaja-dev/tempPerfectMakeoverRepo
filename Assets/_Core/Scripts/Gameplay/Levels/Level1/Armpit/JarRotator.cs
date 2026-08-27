@@ -98,13 +98,12 @@ public class JarRotator : MonoBehaviour
         else
             inputValue = delta.y;
 
-        float rotationAmount = inputValue * rotationSpeed * 0.1f;
+        // Any drag direction pushes rotation toward the target extreme -
+        // only the amount of movement matters, not which way it went.
+        float rotationAmount = Mathf.Abs(inputValue) * rotationSpeed * 0.1f;
 
         if (invertRotation)
-            rotationAmount = -rotationAmount;
-
-        if (rotationMode == RotationMode.Horizontal)
-            currentAngle -= rotationAmount;
+            currentAngle += rotationAmount;
         else
             currentAngle -= rotationAmount;
 

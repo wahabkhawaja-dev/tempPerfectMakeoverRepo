@@ -19,6 +19,36 @@ public static class PlayableFadeCover
         img.DOFade(1f, 0f);
     }
 
+    /// <summary>
+    /// Fades TO opaque over <paramref name="duration"/>, then runs <paramref name="onCovered"/>.
+    /// Use for a menu → level swap: the hard cut happens while the screen is fully covered, so
+    /// the level never appears out of nowhere. Pair with Reveal() at the end of onCovered.
+    /// If there is no fade image, onCovered still runs — the swap must never be lost.
+    /// </summary>
+    public static void Cover(float duration, System.Action onCovered)
+    {
+        var img = UI_Manager.instance != null ? UI_Manager.instance.Fade_Img : null;
+        if (img == null)
+        {
+            if (onCovered != null)
+                onCovered();
+            return;
+        }
+
+        img.gameObject.SetActive(true);
+        img.DOKill();
+
+        var c = img.color;
+        c.a = 0f;
+        img.color = c;
+
+        img.DOFade(1f, duration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            if (onCovered != null)
+                onCovered();
+        });
+    }
+
     public static void Reveal()
     {
         var settings = PlayableFadeCoverSettings.Active;

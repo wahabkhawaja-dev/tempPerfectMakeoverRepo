@@ -156,7 +156,7 @@ public class ScrewdriverOpener : MonoBehaviour
             if (vibeTimer >= screwFrameInterval)
             {
                 vibeTimer = 0f;
-                
+                // VibrationManager.instance.MediumImpact();
             }
 
             if (unscrewProgress >= 1f)
@@ -305,7 +305,7 @@ public class ScrewdriverOpener : MonoBehaviour
                 ArmUnscrew();
         });
 
-        
+        // VibrationManager.instance.MediumImpact();
     }
 
     void ArmUnscrew()
@@ -435,7 +435,7 @@ public class ScrewdriverOpener : MonoBehaviour
         if (ScrewRemoveSource != null)
             ScrewRemoveSource.Play();
 
-        
+        // VibrationManager.instance.StartVibration();
     }
 
     void ApplyToolIdleSprite()
@@ -454,7 +454,7 @@ public class ScrewdriverOpener : MonoBehaviour
         if (ScrewRemoveSource != null)
             ScrewRemoveSource.Stop();
 
-        
+        // VibrationManager.instance.StopVibration();
     }
 
     void UpdateScrewSpriteAnimation()
@@ -515,8 +515,8 @@ public class ScrewdriverOpener : MonoBehaviour
 
         // Hold the close shot when a neighbour is still waiting, so a cluster of
         // screws gets done in one framing instead of pulling back between each.
-        if (!HasPendingScrewNear(finishedAt))
-            ZoomOutFromScrew();
+     /*   if (!HasPendingScrewNear(finishedAt))
+            ZoomOutFromScrew();*/
 
         var ps = currentTarget.GetComponentInChildren<ParticleSystem>();
         if (ps) ps.Play();

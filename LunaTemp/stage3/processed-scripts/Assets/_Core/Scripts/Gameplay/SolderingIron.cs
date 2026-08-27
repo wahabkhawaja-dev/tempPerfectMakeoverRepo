@@ -9,6 +9,8 @@ public class SolderingIron : MonoBehaviour
 
     [Header("Soldering Iron")]
     public BasicDrag Tool;
+    [Space()]
+    public BD_ToolRotate ToolRotate;
 
     [Tooltip("Circuit / pad collider object that the iron tip must trigger.")]
     public GameObject CircuitTarget;
@@ -251,7 +253,7 @@ public class SolderingIron : MonoBehaviour
             SolderingAudio.Play();
         }
 
-        
+        // VibrationManager.instance.MediumImpact();
 
         if (Indication != null)
             Indication.SetActive(false);
@@ -263,12 +265,12 @@ public class SolderingIron : MonoBehaviour
 
     void LockIronAtWax()
     {
-        Tool.dontResetItIsInCollider = true;
+      /*  Tool.dontResetItIsInCollider = true;
         Tool.isDragging = false;
         Tool.canDrag = false;
         if (Tool.thisCollider != null)
             Tool.thisCollider.enabled = false;
-        Tool.enabled = false;
+        Tool.enabled = false;*/
 
         if (CameraFollow == null)
             CameraFollow = Tool.GetComponent<BD_CameraFollow>();
@@ -291,7 +293,7 @@ public class SolderingIron : MonoBehaviour
 
         Tool.enabled = true;
         Tool.canDrag = true;
-        Tool.isDragging = false;
+       // Tool.isDragging = false;
         Tool.dontResetItIsInCollider = false;
         if (Tool.thisCollider != null)
             Tool.thisCollider.enabled = true;
@@ -344,7 +346,7 @@ public class SolderingIron : MonoBehaviour
             MoveIronToPosition();
         }
 
-        
+        // VibrationManager.instance.MediumImpact();
     }
 
     void PlaceCircuitMarkAtTip()
@@ -367,6 +369,7 @@ public class SolderingIron : MonoBehaviour
 
     void MoveIronToPosition()
     {
+        ToolRotate.enabled = false;
         // Always align the TIP (this object) to the solder point — not the iron body/root
         Vector3 tipTarget;
 
@@ -383,6 +386,8 @@ public class SolderingIron : MonoBehaviour
         Vector3 tipOffset = transform.position - Tool.transform.position;
         Vector3 toolPos = tipTarget - tipOffset;
         toolPos.z = Tool.transform.position.z;
+
+        
 
         Tool.transform.DOKill();
         Tool.transform.DOMove(toolPos, snapDuration).SetEase(Ease.OutBack).OnComplete(ZoomCameraThenRod);
@@ -516,7 +521,7 @@ public class SolderingIron : MonoBehaviour
             SolderingAudio.Play();
         }
 
-        
+        // VibrationManager.instance.StartVibration();
     }
 
     void StopHoldFeedback()
@@ -529,7 +534,7 @@ public class SolderingIron : MonoBehaviour
         if (SolderingAudio != null)
             SolderingAudio.Stop();
 
-        
+        // VibrationManager.instance.StopVibration();
     }
 
     void ShowMolten()
@@ -695,7 +700,7 @@ public class SolderingIron : MonoBehaviour
         UpdateSolderProgress();
         SettleWobble();
 
-        
+        // VibrationManager.instance.MediumImpact();
 
         // Keep iron locked on pad after done
         OnComplete?.Invoke();

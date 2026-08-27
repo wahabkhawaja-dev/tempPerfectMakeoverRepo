@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class MusicSource : MonoBehaviour
@@ -26,5 +27,18 @@ public class MusicSource : MonoBehaviour
         source.clip = musicClip;
         source.volume = volume;
         source.Play();
+    }
+
+
+    public void PlayMusicSmooth(AudioClip musicClip, float volume = 0.5f)
+    {
+        source.DOFade(0, 1f).OnComplete(() =>
+        {
+            source.clip = musicClip;
+            source.volume = volume;
+            source.Play();
+            source.DOFade(volume, 1f);
+        });
+
     }
 }

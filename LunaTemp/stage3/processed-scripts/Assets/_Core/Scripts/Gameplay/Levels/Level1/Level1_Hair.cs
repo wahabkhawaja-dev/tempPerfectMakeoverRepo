@@ -71,7 +71,7 @@ public class Level1_Hair : LevelData
     public ZoomPos ZoomStep3;
 
     [Space()]
-    public Transform ShampooInHand;
+    // public Transform ShampooInHand;
     public Transform ShampooOnHand;
     public GameObject ShampooInHandCap;
 
@@ -107,6 +107,14 @@ public class Level1_Hair : LevelData
     public GameObject handIndicationHands;
     public BD_Progress progressStep4;
 
+    /*  [Header("----------------- STEP 4b ----------------------")]
+      [Space()]
+      [Header("STEP 4b")]
+      public ZoomPos ZoomStep4b;
+      [Space()]
+      public Transform ToolStep4bParent;
+      public BasicDrag ToolStep4b;*/
+
     [Header("----------------- STEP 5a ----------------------")]   //Open Shower items
     [Space()]
     [Header("STEP 5a")]
@@ -116,6 +124,7 @@ public class Level1_Hair : LevelData
     public ZoomPos ZoomStep5b;
     [Space()]
     public Transform ShowerDamaged;  //damaged
+    public BasicDrag ShowerDamaged_Drag;  //damaged
     [Space()]
     public GameObject ShowerBackDMG;
     public GameObject ShowerInner_dirty;
@@ -133,6 +142,8 @@ public class Level1_Hair : LevelData
     public GameObject showerDragDamage;
     public BasicDrag ToolStep5Rev;
 
+
+    public GameObject handIndicationShowerPlace;
 
 
     [Header("----------------- STEP 5 ----------------------")]
@@ -158,6 +169,7 @@ public class Level1_Hair : LevelData
 
     [Space()]
     public AudioClip showerProblemClip;
+    public AudioClip FixErrorClip;
 
     [Header("----------------- STEP 6 ----------------------")]
     [Space()]
@@ -194,6 +206,7 @@ public class Level1_Hair : LevelData
     [Header("----------------- SHOWER FIX GATE ----------------------")]
     [Space()]
     [SerializeField] GameObject fixItPrompt;
+    [SerializeField] GameObject fixItPromptHand;
 
     bool isShowerFixed;
 
@@ -203,12 +216,12 @@ public class Level1_Hair : LevelData
 
         UI_Manager.instance.InitializeTools(ToolIcons);
 
+        yield return new WaitForSeconds(0.1f);
+
         levelNo = SaveSystem.Instance.DataFields.levelToPlay - 1;
         partNo = SaveSystem.Instance.DataFields.partToPlay - 1;
 
         stepsDone = SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone;
-
-        yield return new WaitForSeconds(0.25f);
 
         foamLight_E.SetActive(false);
         foam2_E.SetActive(false);
@@ -218,49 +231,74 @@ public class Level1_Hair : LevelData
         switch (stepsDone)
         {
             case 0:
+                // STEP START EVENT
+                try
+                {
+                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                        + "_" + levelName + "_Step1_Start");
+                }
+                catch { }
+
                 StartStep1();
+
                 break;
 
             case 1:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep1();
+
                 Invoke(nameof(StartStep2), .5f);
                 break;
 
             case 2:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep2();
+
                 Invoke(nameof(StartStep2b), .5f);
                 break;
 
             case 3:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep2b();
+
                 Invoke(nameof(StartStep3), .5f);
                 break;
+
             case 4:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep3();
+
                 Invoke(nameof(StartStep4), .5f);
                 break;
+
             case 5:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep4();
-                Invoke(nameof(StartStep5), .5f);
+
+                Invoke(nameof(StartStep5), .1f);
                 break;
+
             case 6:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep5();
+
                 Invoke(nameof(StartStep6), .5f);
                 break;
+
             case 7:
                 UI_Manager.instance.SetProgressIconIndex(stepsDone);
+
                 ForceCompleteStep6();
+
                 Invoke(nameof(StartStep7), .5f);
                 break;
-
         }
-
     }
 
     #region STEP 1
@@ -281,9 +319,8 @@ public class Level1_Hair : LevelData
         {
             AllTrashOutlines[i].EnableAnim();
         }
-
-        //  bd_Sticky.gameObject.SetActive(true);
     }
+
     public void TrashThrownStep1()
     {
         if (trashDone)
@@ -309,15 +346,12 @@ public class Level1_Hair : LevelData
             bubbleGum.DOKill();
             bubbleGum.DOLocalMoveX(10f, 2f);
         });
-
     }
 
     public void Step1Complete()
     {
         if (isStep1Done)
             return;
-
-        //   UI_Manager.instance.SetProgressBar(1f);
 
         isStep1Done = true;
 
@@ -329,7 +363,8 @@ public class Level1_Hair : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step1_Comp");
         }
         catch { }
     }
@@ -342,6 +377,7 @@ public class Level1_Hair : LevelData
             AllTrash[i].gameObject.SetActive(false);
         }
     }
+
     #endregion
 
     #region Step 2
@@ -397,12 +433,12 @@ public class Level1_Hair : LevelData
             ToolStep2.gameObject.SetActive(false);
         });
 
-
         Invoke(nameof(StartStep2b), .5f);
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
@@ -477,7 +513,8 @@ public class Level1_Hair : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step3_Comp");
         }
         catch { }
     }
@@ -502,43 +539,21 @@ public class Level1_Hair : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
-        ShampooInHand.transform.DOKill();
-        ShampooInHand.transform.DOLocalMoveX(0.8f, .5f).SetDelay(.5f).OnComplete(() =>
+        ToolStep3.transform.DOKill();
+        ToolStep3.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
         {
-
-            DOVirtual.DelayedCall(0.5f, () =>
+            DOVirtual.DelayedCall(2f, () =>
             {
-                ShampooInHandCap.SetActive(true);
-
-                AudioController.instance.PlayAnySfx(0, bottleOpenSfx, 0f);
-
+                waterDripingParticle.Stop(false);
             });
-
-            DOVirtual.DelayedCall(1.25f, () =>
-            {
-                //   shampooIndication.SetActive(true);
-
-                ShampooInHandCap.SetActive(false);
-                ToolStep3.gameObject.SetActive(true);
-
-                ShampooInHand.gameObject.SetActive(false);
-
-                DOVirtual.DelayedCall(2f, () =>
-                {
-                    waterDripingParticle.Stop(false);
-                });
-
-            });
-
         });
-        ShampooOnHand.transform.DOKill();
-        ShampooOnHand.transform.DOLocalMoveX(-1.163f, .5f).SetDelay(2.25f);
 
+        ShampooOnHand.transform.DOKill();
+        ShampooOnHand.transform.DOLocalMoveX(-1.163f, .5f).SetDelay(1f);
     }
 
     public void ShampooBottlePressed()
     {
-
         AudioController.instance.PlayAnySfx(0, bottleSqueezSfx, 0f);
 
         shampooDropping.DOKill();
@@ -566,10 +581,10 @@ public class Level1_Hair : LevelData
         if (step3Complete)
             return;
 
-        //  shampooIndication.SetActive(false);
         step3Complete = true;
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 4;
+
         SetProgressBar();
 
         ToolStep3.transform.DOKill();
@@ -581,12 +596,12 @@ public class Level1_Hair : LevelData
         ShampooOnHand.transform.DOKill();
         ShampooOnHand.transform.DOLocalMoveX(-15f, 1f);
 
-
         Invoke(nameof(StartStep4), 0.5f);
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step4_Comp");
         }
         catch { }
     }
@@ -599,7 +614,6 @@ public class Level1_Hair : LevelData
         hairDirtyWetStatic.SetActive(true);
         hairDirtyStatic.SetActive(false);
     }
-
 
     #endregion
 
@@ -614,23 +628,34 @@ public class Level1_Hair : LevelData
         ToolStep4.transform.DOKill();
         ToolStep4.transform.DOLocalMoveY(0f, .5f).SetDelay(.5f).OnComplete(() =>
         {
+            ToolStep4.OnMouseDownEvent += Hidestep4Indication;
+            ToolStep4.OnMouseUpEvent += Showstep4Indication;
+
             ToolInputToggle(ToolStep4.gameObject, true);
 
             camFollowStep4.enabled = true;
 
             foamCol.SetActive(true);
 
-
             handIndicationHands.SetActive(true);
-
-            progressStep4.SubCompleteEvent += Hidestep4Indication;
         });
 
     }
+
     void Hidestep4Indication()
     {
         handIndicationHands.SetActive(false);
-        progressStep4.SubCompleteEvent -= Hidestep4Indication;
+    }
+
+    void Showstep4Indication()
+    {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            if (step4Complete)
+                return;
+
+            handIndicationHands.SetActive(true);
+        });
     }
 
     public void Step4Complete()
@@ -641,6 +666,7 @@ public class Level1_Hair : LevelData
         step4Complete = true;
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 5;
+
         SetProgressBar();
 
         camFollowStep4.enabled = false;
@@ -657,9 +683,13 @@ public class Level1_Hair : LevelData
 
         Invoke(nameof(StartStep5), 1f);
 
+        ToolStep4.OnMouseDownEvent -= Hidestep4Indication;
+        ToolStep4.OnMouseUpEvent -= Showstep4Indication;
+
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step5_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step5_Comp");
         }
         catch { }
     }
@@ -694,6 +724,7 @@ public class Level1_Hair : LevelData
             ShowerDamaged.transform.DOKill();
             ShowerDamaged.transform.DOLocalMoveX(0f, .5f).SetDelay(.5f).OnComplete(() =>
             {
+                ToolInputToggle(ShowerDamaged_Drag.gameObject, true);
                 ShowerDamaged.GetComponent<Collider2D>().enabled = true;
 
                 waitingForStep5PickAttempt = true;
@@ -701,9 +732,16 @@ public class Level1_Hair : LevelData
 
             return;
         }
-        else if (PlayerPrefs.GetInt("CleanShowerPlaced", 0) == 0)
+
+        else if (PlayerPrefs.GetInt("CleanShowerPlaced", 0) == 0 && RemoteManager.Instance.FixInnerLevel())
         {
-            CameraController.Instance.MoveCamera(ZoomStep5b.CameraPos, ZoomStep5b.CameraFOV);
+
+            ShowerDamaged_Drag.ToolSelectClip = null;
+            UI_Manager.instance.SetProgressBar(0);
+            ToolInputToggle(ShowerDamaged_Drag.gameObject, false);
+            ShowerDamaged.GetComponent<Collider2D>().enabled = false;
+            CameraController.Instance.SetCameraInstant(ZoomStep5b.CameraPos, ZoomStep5b.CameraFOV);
+            // CameraController.Instance.MoveCamera(ZoomStep5b.CameraPos, ZoomStep5b.CameraFOV);
             ShowerBackDMG.SetActive(false);
             ShowerFrontDMG.SetActive(true);
             ShowerInner_dirty.SetActive(false);
@@ -716,6 +754,12 @@ public class Level1_Hair : LevelData
                 ToolStep5Placeable.transform.DOKill();
                 ToolStep5Placeable.transform.DOLocalMoveX(0f, .5f).SetDelay(.5f).OnComplete(() =>
                 {
+
+                    handIndicationShowerPlace.SetActive(true);
+
+                    ToolStep5Placeable.OnMouseDownEvent += HidehowerplaceInd;
+                    ToolStep5Placeable.OnMouseUpEvent += ShowShowerplaceInd;
+
                     ToolInputToggle(ToolStep5Placeable.gameObject, true);
                 });
             });
@@ -763,6 +807,24 @@ public class Level1_Hair : LevelData
 
     }
 
+    void ShowShowerplaceInd()
+    {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            if (showePutAgain)
+                return;
+
+
+            handIndicationShowerPlace.SetActive(true);
+        });
+
+    }
+
+    void HidehowerplaceInd()
+    {
+        handIndicationShowerPlace.SetActive(false);
+    }
+
     bool waitingForStep5PickAttempt;
 
     // Polled manually instead of going through BasicDrag's own OnMouseDown so its built-in
@@ -798,9 +860,13 @@ public class Level1_Hair : LevelData
         DOVirtual.DelayedCall(0.6f, () =>
         {
             fixItPrompt.SetActive(true);
+
+            if (PlayerPrefs.GetInt("showerOpend", 0) == 0)
+                fixItPromptHand.SetActive(true);
         });
 
         AudioController.instance.PlayAnySfx(0, showerProblemClip, 0);
+        AudioController.instance.PlayAnySfx(1, FixErrorClip, 0);
     }
 
     // Looks up the "Shower" sub-level (Level1_5, the showerhead-fixing mini level) and remote config control
@@ -820,10 +886,11 @@ public class Level1_Hair : LevelData
     }
 
     bool showerOpend = false;
+
     public void ShowerOpened()
     {
-
         PlayerPrefs.SetInt("showerOpend", 1);
+
         showerOpend = true;
 
         showerDisk.DOKill();
@@ -836,10 +903,10 @@ public class Level1_Hair : LevelData
                  SaveSystem.Instance.DataFields.levelToPlay = 1;
                  SaveSystem.Instance.DataFields.partToPlay = 5;
 
-                 DOVirtual.DelayedCall(1f, () =>
+                 DOVirtual.DelayedCall(0.1f, () =>
                  {
-                     LoadingManager.instance.ShowFadeAnim(0.5f, 1f);
-                     DOVirtual.DelayedCall(1f, () =>
+                     LoadingManager.instance.ShowFadeAnim(0.5f, 0.25f);
+                     DOVirtual.DelayedCall(0.7f, () =>
                      {
                          UnityEngine.SceneManagement.SceneManager.LoadScene(
                              UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
@@ -847,10 +914,8 @@ public class Level1_Hair : LevelData
                  });
              });
          });
-
-
-
     }
+
     void ShowShowerOpenInd()
     {
         if (showerOpend)
@@ -859,45 +924,61 @@ public class Level1_Hair : LevelData
         OpenShowerIndication.SetActive(true);
 
     }
+
     void HideShowerOpenInd()
     {
         OpenShowerIndication.SetActive(false);
     }
+
     public void OnFixItPressed()
     {
+        fixItPromptHand.SetActive(false);
+
         if (PlayerPrefs.GetInt("showerOpend", 0) == 0)
         {
 
+            ToolInputToggle(ShowerDamaged_Drag.gameObject, false);
+
+            ShowerDamaged_Drag.transform.DOKill();
+            ShowerDamaged_Drag.transform.DOLocalMove(new Vector3(0, 2f, 0f), 1f);
+
             DOVirtual.DelayedCall(1f, () =>
             {
-                // CameraController.Instance.MoveCamera(new Vector3(0, 2.5f, -10f), 1.55f);
                 CameraController.Instance.MoveCamera(ZoomStep5b.CameraPos, ZoomStep5b.CameraFOV);
-
 
                 OpenShowerIndication.SetActive(true);
 
                 showrOpenInput.OnMouseDownEvent += HideShowerOpenInd;
                 showrOpenInput.OnMouseUpEvent += ShowShowerOpenInd;
-                ToolInputToggle(showrOpenInput.gameObject, true);
 
+                ToolInputToggle(showrOpenInput.gameObject, true);
             });
 
             waterShotParticle.Stop();
+
             ShowerBackDMG.SetActive(false);
+
             ShowerFrontDMG.SetActive(true);
 
-            fixItPrompt.SetActive(false);
+            fixItPrompt.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+
+            DOVirtual.DelayedCall(0.51f, () =>
+            {
+                fixItPrompt.SetActive(false);
+            });
+
             ShowerDamaged.GetComponent<Collider2D>().enabled = false;
         }
+
         else
         {
             SaveSystem.Instance.DataFields.levelToPlay = 1;
             SaveSystem.Instance.DataFields.partToPlay = 5;
 
-            DOVirtual.DelayedCall(1f, () =>
+            DOVirtual.DelayedCall(0.5f, () =>
             {
-                LoadingManager.instance.ShowFadeAnim(0.5f, 1f);
-                DOVirtual.DelayedCall(1f, () =>
+                LoadingManager.instance.ShowFadeAnim(0.5f, 0.5f);
+                DOVirtual.DelayedCall(0.85f, () =>
                 {
                     UnityEngine.SceneManagement.SceneManager.LoadScene(
                         UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
@@ -905,51 +986,27 @@ public class Level1_Hair : LevelData
             });
         }
 
-        /* // Flip sprite on X 4-6 times, then move a little down on Y, then continue
-         Sequence flipSeq = DOTween.Sequence();
-         int flipCount = 6; // 4, 5 or 6 flips
-
-         for (int i = 0; i < flipCount; i++)
-         {
-             flipSeq.AppendCallback(() => showerRender.flipX = !showerRender.flipX);
-             flipSeq.AppendInterval(0.08f); // speed of each flip – adjust as needed
-         }
-
-         // Move a little below on Y axis
-         flipSeq.Append(showerRender.transform.DOMoveY(showerRender.transform.position.y - 0.25f, 0.35f)
-             .SetEase(Ease.OutQuad));
-
-         // After the whole animation finishes → continue with the rest of the logic
-         flipSeq.OnComplete(() =>
-         {
-             SaveSystem.Instance.DataFields.levelToPlay = 1;
-             SaveSystem.Instance.DataFields.partToPlay = 5;
-
-             LoadingManager.instance.ShowFadeAnim(0.5f, 1f);
-             DOVirtual.DelayedCall(1f, () =>
-             {
-                 UnityEngine.SceneManagement.SceneManager.LoadScene(
-                     UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
-             });
-         });*/
+        AudioController.instance.PlayUiClickSfx();
     }
+
+    bool showePutAgain = false;
 
     public void OnCleanShowerPlaced()
     {
+        HidehowerplaceInd();
+
+        showePutAgain = true;
 
         ToolInputToggle(ToolStep5Placeable.gameObject, false);
 
         ToolStep5Placeable.gameObject.SetActive(false);
         showerFixReverseAnimDrag.gameObject.SetActive(true);
 
-
         OpenShowerIndication.transform.parent = showerFixReverseAnimDrag.transform;
         CloseShowerIndication.SetActive(true);
 
         ToolStep5Rev.OnMouseDownEvent += hideInd;
         ToolStep5Rev.OnMouseDownEvent += showInd;
-
-
     }
 
     void showInd()
@@ -959,15 +1016,16 @@ public class Level1_Hair : LevelData
 
         CloseShowerIndication.SetActive(true);
     }
+
     void hideInd()
     {
         CloseShowerIndication.SetActive(false);
     }
 
     bool placedAgain;
+
     public void OnShowerPlacedAgain()
     {
-
         if (placedAgain)
             return;
 
@@ -984,7 +1042,7 @@ public class Level1_Hair : LevelData
         showerFixReverseAnimDrag.SetActive(false);
 
         ToolStep5.transform.DOKill();
-        ToolStep5.transform.DOLocalMoveX(0f, 0.001f).OnComplete(() => 
+        ToolStep5.transform.DOLocalMoveX(0f, 0.001f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep5.gameObject, true);
         });
@@ -992,6 +1050,7 @@ public class Level1_Hair : LevelData
         CameraController.Instance.MoveCamera(ZoomStep5.CameraPos, ZoomStep5.CameraFOV);
 
     }
+
     public void Step5Complete()
     {
         if (step5Complete)
@@ -1020,7 +1079,8 @@ public class Level1_Hair : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step6_Comp");
         }
         catch { }
     }
@@ -1032,7 +1092,6 @@ public class Level1_Hair : LevelData
         hairDirtyStatic.SetActive(false);
 
         wetHairs_E.SetActive(true);
-
     }
 
     #endregion
@@ -1048,18 +1107,15 @@ public class Level1_Hair : LevelData
         ToolStep6.transform.DOKill();
         ToolStep6.transform.DOLocalMoveX(0f, .5f).SetDelay(.5f).OnComplete(() =>
         {
-
             camFollowStep6.enabled = true;
 
             ToolInputToggle(ToolStep6.gameObject, true);
-
-
         });
+
         DOVirtual.DelayedCall(.5f, () =>
         {
             waterDripingParticle.Stop(false);
         });
-
     }
 
     public void Step6Complete()
@@ -1067,10 +1123,12 @@ public class Level1_Hair : LevelData
         if (step6Complete)
             return;
 
-
         step6Complete = true;
+
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 7;
+
         SetProgressBar();
+
         camFollowStep6.enabled = false;
 
         ToolInputToggle(ToolStep6.gameObject, false);
@@ -1085,7 +1143,8 @@ public class Level1_Hair : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step7_Comp");
         }
         catch { }
     }
@@ -1093,9 +1152,10 @@ public class Level1_Hair : LevelData
     void ForceCompleteStep6()
     {
         ForceCompleteStep1();
-        ForceCompleteStep2();
-        hairDirtyStatic.SetActive(false);
 
+        ForceCompleteStep2();
+
+        hairDirtyStatic.SetActive(false);
     }
 
     #endregion
@@ -1115,24 +1175,18 @@ public class Level1_Hair : LevelData
             hairDryFade.gameObject.SetActive(false);
         });
 
-
         dryCombed_BG.SetActive(true);
         dryHairs_E.SetActive(true);
 
         ToolStep7.transform.DOKill();
         ToolStep7.transform.DOLocalMoveX(0.2f, .5f).SetDelay(.5f).OnComplete(() =>
         {
-
             camFollowStep7.enabled = true;
-
-
-            //  brushController.enabled = true;
 
             ToolInputToggle(ToolStep7.gameObject, true);
 
             handIndicationBrush.SetActive(true);
         });
-
     }
 
     public void Step7Complete()
@@ -1141,15 +1195,12 @@ public class Level1_Hair : LevelData
             return;
 
         step7Complete = true;
+
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 0;
-        SetProgressBar();
+
+        UI_Manager.instance.SetProgressBar(1f);
 
         handIndicationBrush.SetActive(false);
-
-
-        //   camFollowStep7.enabled = false;
-
-        // ToolInputToggle(ToolStep7.gameObject, false);
 
         ToolStep7.transform.DOKill();
         ToolStep7.transform.DOLocalMoveX(-20f, .5f).SetDelay(0.25f).OnComplete(() =>
@@ -1157,11 +1208,12 @@ public class Level1_Hair : LevelData
             ToolStep7.gameObject.SetActive(false);
         });
 
-        Invoke(nameof(LevelComplete), 1f);
+        Invoke(nameof(LevelComplete), 1.2f);
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step8_Comp");
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step8_Comp");
         }
         catch { }
     }

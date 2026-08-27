@@ -317,7 +317,7 @@ public class ScrewCloser : MonoBehaviour
             if (vibeTimer >= screwFrameInterval)
             {
                 vibeTimer = 0f;
-                
+                // VibrationManager.instance.MediumImpact();
             }
 
             if (progress >= 1f)
@@ -489,7 +489,7 @@ public class ScrewCloser : MonoBehaviour
                 ArmHold();
         });
 
-        
+        // VibrationManager.instance.MediumImpact();
     }
 
     void ArmHold()
@@ -605,7 +605,7 @@ public class ScrewCloser : MonoBehaviour
         if (ScrewTightenSource != null)
             ScrewTightenSource.Play();
 
-        
+        // VibrationManager.instance.StartVibration();
     }
 
     void ApplyToolIdleSprite()
@@ -624,7 +624,7 @@ public class ScrewCloser : MonoBehaviour
         if (ScrewTightenSource != null)
             ScrewTightenSource.Stop();
 
-        
+        // VibrationManager.instance.StopVibration();
     }
 
     void UpdateScrewSpriteAnimation()
@@ -712,7 +712,7 @@ public class ScrewCloser : MonoBehaviour
         if (!HasPendingScrewNear(finishedAt))
             ZoomOutFromScrew();
 
-        
+        // VibrationManager.instance.MediumImpact();
 
         if (WhooshClip)
             AudioController.instance.PlayAnySfx(1, WhooshClip, 0);

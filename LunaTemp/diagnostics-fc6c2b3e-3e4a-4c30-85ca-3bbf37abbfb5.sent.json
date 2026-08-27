@@ -1,0 +1,3108 @@
+{
+    "BuildID": "fc6c2b3e-3e4a-4c30-85ca-3bbf37abbfb5",
+    "Command": "project:build",
+    "ProjectID": "0ba141233dac4ae439f0736e4efac688",
+    "ProjectStateHash": "f22d9944a586093ada804fb22f5dac80f7e01efce2832af8a2b3394aed637e0e",
+    "StageCompletedAt": 3,
+    "EarliestFatalError": 3,
+    "StartTime": 1787814125225,
+    "EndTime": 1787814173478,
+    "PlaygroundUserID": 17104,
+    "OperatingSystem": "win32",
+    "UnityPackageID": null,
+    "TargetPlatform": "develop",
+    "UnityVersion": "2022.3.62f2\r",
+    "LunaVersion": "7.2.0",
+    "LogCount": 124,
+    "Logs": [
+        {
+            "LogID": "a125dbfc-6cea-4f86-a2d6-0ac3e149dbed",
+            "Order": 65,
+            "Timestamp": 1787814174937,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: On",
+            "Details": [
+                "You are using a reserved keyword: On for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "On"
+            ],
+            "DetailsValues": [
+                "On"
+            ],
+            "LogCount": 1,
+            "LinePosition": 132,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Gameplay\\Levels\\Level3\\Lvl3_ShakeToMelt.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "de7a4e29-4888-4bb6-a3a6-d5b6164da5a5",
+            "Order": 65,
+            "Timestamp": 1787814174999,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: On",
+            "Details": [
+                "You are using a reserved keyword: On for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "On"
+            ],
+            "DetailsValues": [
+                "On"
+            ],
+            "LogCount": 1,
+            "LinePosition": 257,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Gameplay\\Levels\\Level3\\Lvl3_WaxMelt.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "095db269-24e3-4018-b03c-bd7c17fc97dd",
+            "Order": 65,
+            "Timestamp": 1787814175849,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: Destroyed",
+            "Details": [
+                "You are using a reserved keyword: Destroyed for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "Destroyed"
+            ],
+            "DetailsValues": [
+                "Destroyed"
+            ],
+            "LogCount": 1,
+            "LinePosition": 23,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_DestroyedFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "4238ba9c-4e02-4764-bf80-a1a016759347",
+            "Order": 65,
+            "Timestamp": 1787814176023,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 50,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "0b669fc4-8286-4fc2-b1e3-b8208cc1be59",
+            "Order": 65,
+            "Timestamp": 1787814176025,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 55,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "2bc7efeb-10d1-4087-90a2-4722e1d34fe5",
+            "Order": 65,
+            "Timestamp": 1787814176026,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 60,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "e79d89fa-c51f-4231-b141-799c4d5306f0",
+            "Order": 65,
+            "Timestamp": 1787814176027,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 65,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "374c5035-52d0-47a3-a628-7fe1268e1152",
+            "Order": 65,
+            "Timestamp": 1787814176028,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 70,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d1c0f1b6-a692-4572-961f-b61f2d5ee1a2",
+            "Order": 65,
+            "Timestamp": 1787814176029,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 75,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "3a3679b4-19d0-4ced-b156-d4e935407ab3",
+            "Order": 65,
+            "Timestamp": 1787814176030,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 80,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "7d24a25a-9ac7-44d3-98f6-1dc312054b1a",
+            "Order": 65,
+            "Timestamp": 1787814176031,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 85,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "7bf49d9d-701d-4159-a06a-4522c876a14e",
+            "Order": 65,
+            "Timestamp": 1787814176033,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 90,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d5e71c34-ab3a-4cc2-9e87-9f9a7574f6b7",
+            "Order": 65,
+            "Timestamp": 1787814176034,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 95,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "77b4502b-f094-488e-a11c-cc8337f3dae1",
+            "Order": 65,
+            "Timestamp": 1787814176035,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 100,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d5eb8250-410d-4174-aea8-dbca9cb9fc08",
+            "Order": 65,
+            "Timestamp": 1787814176036,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 105,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "79a66ec3-2ee3-49a0-8020-020629cd250c",
+            "Order": 65,
+            "Timestamp": 1787814176038,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 110,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "14ed0e15-f8e0-4f7b-9afa-42afa18966d6",
+            "Order": 65,
+            "Timestamp": 1787814176039,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 115,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "72bfe865-e989-4cd2-861a-627de7172f8d",
+            "Order": 65,
+            "Timestamp": 1787814176040,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 120,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "48bda0d9-a1e9-4271-8877-6fb53c1183f5",
+            "Order": 65,
+            "Timestamp": 1787814176042,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 125,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "6564b1ca-9d82-4ac5-992d-0fd9dcd2fb5e",
+            "Order": 65,
+            "Timestamp": 1787814176043,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 130,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "5df1d605-a06a-417f-961d-02736de2ee40",
+            "Order": 65,
+            "Timestamp": 1787814176047,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 135,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "f968cf4e-e36c-4d5a-9e3d-3d6f9811d4d8",
+            "Order": 65,
+            "Timestamp": 1787814176048,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 140,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d07aff09-a194-4906-a78c-5c65afdec7bb",
+            "Order": 65,
+            "Timestamp": 1787814176049,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 145,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "78ef0472-bab8-4b96-b41e-d3aeb997d8bb",
+            "Order": 65,
+            "Timestamp": 1787814176051,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 150,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "13c34640-d22f-4ca6-a6ec-1c88ecec3b30",
+            "Order": 65,
+            "Timestamp": 1787814176052,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 155,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "6143d386-d2d8-4eba-be63-c5d93d9af699",
+            "Order": 65,
+            "Timestamp": 1787814176053,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 160,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "751c86a1-62df-4447-a321-7a402496b221",
+            "Order": 65,
+            "Timestamp": 1787814176054,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 165,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ecde37b7-8626-4475-a032-0b7137ab67dc",
+            "Order": 65,
+            "Timestamp": 1787814176095,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 55,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1471c64b-99cb-4015-b383-f725cbb3d2ae",
+            "Order": 65,
+            "Timestamp": 1787814176096,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 60,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1afa26e1-0d4d-4c85-81db-d605288bdb4a",
+            "Order": 65,
+            "Timestamp": 1787814176098,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 65,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "f4e94106-bc15-4d8e-b29f-833011ac213a",
+            "Order": 65,
+            "Timestamp": 1787814176099,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 70,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ff2b9c2c-26a6-4f91-a0ef-23d83746c05f",
+            "Order": 65,
+            "Timestamp": 1787814176100,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 75,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "71d6352d-f171-45b3-a887-a13c14753815",
+            "Order": 65,
+            "Timestamp": 1787814176102,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 80,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "327fec46-5618-4366-afef-63b0517697e0",
+            "Order": 65,
+            "Timestamp": 1787814176103,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 85,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "b64114fd-7966-4d4c-a272-6876132d22da",
+            "Order": 65,
+            "Timestamp": 1787814176104,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 90,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "94c242fd-7173-4f1a-aacf-70cc6ae63f63",
+            "Order": 65,
+            "Timestamp": 1787814176105,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 95,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "66bdc3a0-38a8-455f-a52a-35dd4b6d4965",
+            "Order": 65,
+            "Timestamp": 1787814176107,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 100,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "e750916a-6c70-4c92-a457-1d1eecde307d",
+            "Order": 65,
+            "Timestamp": 1787814176108,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 105,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "2fb97e69-4908-47cf-bd45-6e2caa32fc64",
+            "Order": 65,
+            "Timestamp": 1787814176109,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 110,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "9d27fb1b-2c16-4684-8811-3123e29b2bda",
+            "Order": 65,
+            "Timestamp": 1787814176110,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 115,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1dcdc9f7-33b7-4a10-b851-d7dbb85dfa8b",
+            "Order": 65,
+            "Timestamp": 1787814176112,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 120,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "84547403-8f84-4d88-adc8-ebd078b378fa",
+            "Order": 65,
+            "Timestamp": 1787814176113,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 125,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "582d0b3f-7d67-47b9-99dd-397dcb6398c8",
+            "Order": 65,
+            "Timestamp": 1787814176114,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 130,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "7db4b368-5eee-401c-b735-810c1cb21094",
+            "Order": 65,
+            "Timestamp": 1787814176115,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 135,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d095e622-ea37-40cf-aa5a-3348bc33529e",
+            "Order": 65,
+            "Timestamp": 1787814176117,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 140,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "0fe6d98e-627b-4b41-8aa9-a0c9c7b61deb",
+            "Order": 65,
+            "Timestamp": 1787814176118,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 145,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d99e9147-a343-4205-9fd4-10dd831a9251",
+            "Order": 65,
+            "Timestamp": 1787814176119,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 150,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "498f6436-8952-4067-a5a5-81d5ac0a7582",
+            "Order": 65,
+            "Timestamp": 1787814176121,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 155,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "48e4bff1-0935-4482-8c37-4c040ba675e4",
+            "Order": 65,
+            "Timestamp": 1787814176122,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 160,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "cead4df8-06eb-47b7-bc80-ba66abcd0d96",
+            "Order": 65,
+            "Timestamp": 1787814176123,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 165,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "884803cb-eb53-4d8b-8d9d-9b858baf3a67",
+            "Order": 65,
+            "Timestamp": 1787814176124,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 170,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "5caaee7f-1e3a-4058-bd46-acba2552dd0b",
+            "Order": 65,
+            "Timestamp": 1787814176719,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 69,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "63fb1460-eec8-407a-9f98-d3a432736bee",
+            "Order": 65,
+            "Timestamp": 1787814176721,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 74,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "85b49c8c-8835-4b9e-bca6-f9d2600674bd",
+            "Order": 65,
+            "Timestamp": 1787814176725,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 79,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "39172669-78c9-47e6-85ab-cfd9f00c0704",
+            "Order": 65,
+            "Timestamp": 1787814176726,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 84,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "a68ce10f-50c1-49cc-9671-d5e227192e82",
+            "Order": 65,
+            "Timestamp": 1787814176727,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 89,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "d698e53e-db9d-46d9-b1ec-395cd9ed73ed",
+            "Order": 65,
+            "Timestamp": 1787814176728,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 94,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "a1333aab-22e5-4069-830f-b5e07cb68af1",
+            "Order": 65,
+            "Timestamp": 1787814177044,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: Destroyed",
+            "Details": [
+                "You are using a reserved keyword: Destroyed for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "Destroyed"
+            ],
+            "DetailsValues": [
+                "Destroyed"
+            ],
+            "LogCount": 1,
+            "LinePosition": 30,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\AllIn1SpriteShader\\Scripts\\AllIn1Shader.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1b705077-3f6d-4c14-9bec-94f80c4e30af",
+            "Order": 65,
+            "Timestamp": 1787814177274,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3007",
+            "Description": "You are not using any custom events",
+            "Details": [
+                "You are not using any custom events. It is recommended to use custom events to have a better understanding of the playable."
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "8644df80-0791-4e40-b738-aab57285d3b1",
+            "Order": 65,
+            "Timestamp": 1787814177274,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3011",
+            "Description": "You are not using any LunaPlaygroundFields attributes.",
+            "Details": [
+                "You are not using any LunaPlaygroundFields attributes, it allows you to configure your playable to different concepts to find the best variation, which can drastically improve playable performance on all ad networks."
+            ],
+            "DescriptionValues": null,
+            "DetailsValues": null,
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "74a687a3-f5d9-4ece-9ef1-849b3a0ab3ca",
+            "Order": 0,
+            "Timestamp": 1787814141445,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1031",
+            "Description": "We recommend running Runtime Analysis to find and remove all unused shader variants",
+            "Details": [
+                "You have 15 shaders and 29 shader variants in your scene, this can be detrimental to the loading times and size of your playable.\n\nRuntime Analysis has only found 0 shader variants in use within your playable. Navigate to the Runtime Analysis > Shaders tab to enable shader stripping to help reduce the amount of shaders, and shader variants present in your playable"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "15",
+                "29",
+                "0"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ee6a5ae8-ab47-4daa-b39d-03196e443770",
+            "Order": 1,
+            "Timestamp": 1787814141446,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1016",
+            "Description": "Extensive usage of ParticleSystem Component",
+            "Details": [
+                "There is extensive usage of the ParticleSystem component.\nExcessive usage of any component can be detrimental to performance on lower and in some cases higher end devices, consider reducing the amount the component is used.\nRecommended count: 10, current count 57."
+            ],
+            "DescriptionValues": [
+                "ParticleSystem"
+            ],
+            "DetailsValues": [
+                "ParticleSystem",
+                "10",
+                "57"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "9ee38a1c-7b5e-4813-9306-cab535dab439",
+            "Order": 2,
+            "Timestamp": 1787814141447,
+            "Stage": 1,
+            "ErrorType": 1,
+            "ErrorCode": "LP1023",
+            "Description": "Too many files for facebook platform",
+            "Details": [
+                "Too many files for facebook platform in use ($161) only $100 available"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "161",
+                "100"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "65532135-6bd1-484d-88a9-f1f53f767b21",
+            "Order": 3,
+            "Timestamp": 1787814141476,
+            "Stage": 1,
+            "ErrorType": 3,
+            "ErrorCode": "LP1008",
+            "Description": "There are missing components on Text_Message.",
+            "Details": [
+                "Text_Message",
+                "Text_Message",
+                "Text_Message",
+                "Text_Message",
+                "Text_Message",
+                "Text_Message",
+                "Text_Message",
+                "Text_Message",
+                "Text (TMP)",
+                "Text (TMP)",
+                "Text_Description"
+            ],
+            "DescriptionValues": [
+                "Text_Message"
+            ],
+            "DetailsValues": [],
+            "LogCount": 11,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "176bdf73-6c56-4e16-adad-ee4342141729",
+            "Order": 4,
+            "Timestamp": 1787814173476,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'TextGenerator' does not contain a definition for 'Invalidate' and no accessible extension method 'Invalidate' accepting a first argument of type 'TextGenerator' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "text.cachedTextGenerator.Invalidate();"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 496,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\2D Data\\StoryBoarding\\Level3\\Level3_StartAnimation.cs",
+            "ClassName": "TextGenerator",
+            "MemberName": "Invalidate",
+            "Severity": 1
+        },
+        {
+            "LogID": "e8b30be4-7c0d-491d-8829-619a559c4585",
+            "Order": 5,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'TextGenerator' does not contain a definition for 'Populate' and no accessible extension method 'Populate' accepting a first argument of type 'TextGenerator' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "text.cachedTextGenerator.Populate(message, text.GetGenerationSettings(text.rectTransform.rect.size));"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 497,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\2D Data\\StoryBoarding\\Level3\\Level3_StartAnimation.cs",
+            "ClassName": "TextGenerator",
+            "MemberName": "Populate",
+            "Severity": 1
+        },
+        {
+            "LogID": "1c420baf-e0d2-4961-b153-4b2597ec6a93",
+            "Order": 6,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'TextGenerator' does not contain a definition for 'Invalidate' and no accessible extension method 'Invalidate' accepting a first argument of type 'TextGenerator' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "text.cachedTextGenerator.Invalidate();"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 339,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\2D Data\\StoryBoarding\\Level2\\Level2_StartAnimation.cs",
+            "ClassName": "TextGenerator",
+            "MemberName": "Invalidate",
+            "Severity": 1
+        },
+        {
+            "LogID": "91b0d0a1-ec82-4a73-a238-3191a2dd0989",
+            "Order": 7,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'TextGenerator' does not contain a definition for 'Populate' and no accessible extension method 'Populate' accepting a first argument of type 'TextGenerator' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "text.cachedTextGenerator.Populate(message, text.GetGenerationSettings(text.rectTransform.rect.size));"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 340,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\2D Data\\StoryBoarding\\Level2\\Level2_StartAnimation.cs",
+            "ClassName": "TextGenerator",
+            "MemberName": "Populate",
+            "Severity": 1
+        },
+        {
+            "LogID": "540d6b3b-d10c-442f-9171-2f5d176868c0",
+            "Order": 8,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'TextGenerator' does not contain a definition for 'Invalidate' and no accessible extension method 'Invalidate' accepting a first argument of type 'TextGenerator' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "text.cachedTextGenerator.Invalidate();"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 304,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\2D Data\\StoryBoarding\\Level 1\\Level1_StartAnimation.cs",
+            "ClassName": "TextGenerator",
+            "MemberName": "Invalidate",
+            "Severity": 1
+        },
+        {
+            "LogID": "30228570-9b87-4006-ad84-441fc13e94e7",
+            "Order": 9,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'TextGenerator' does not contain a definition for 'Populate' and no accessible extension method 'Populate' accepting a first argument of type 'TextGenerator' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "text.cachedTextGenerator.Populate(message, text.GetGenerationSettings(text.rectTransform.rect.size));"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 305,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\2D Data\\StoryBoarding\\Level 1\\Level1_StartAnimation.cs",
+            "ClassName": "TextGenerator",
+            "MemberName": "Populate",
+            "Severity": 1
+        },
+        {
+            "LogID": "96b85628-4e5f-4ddd-b4c2-776855265bae",
+            "Order": 10,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[0].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 56,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "b1560859-a218-4e85-bcf0-9d6ab4bbaa1f",
+            "Order": 11,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[1].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 61,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "18f383a9-c2b3-46bd-a39c-a8cecaea60cb",
+            "Order": 12,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[2].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 66,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "8f887640-4fa0-4aca-aa57-20354996d667",
+            "Order": 13,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[3].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 71,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "2cdeca33-a80b-4605-a08d-9b0d8918597c",
+            "Order": 14,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[4].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 76,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "6db4a146-b4ef-4265-9678-33b1d7d8fbbc",
+            "Order": 15,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[5].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 81,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "614e61ef-fba0-41ea-8895-a297d3763172",
+            "Order": 16,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[6].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 86,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "f1b76319-0de8-4cc6-abc4-f90b9da1bfc8",
+            "Order": 17,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[7].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 91,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "355ec717-1fbb-4771-8b44-22cb16fccc09",
+            "Order": 18,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[8].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 96,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "c0580680-3a8c-41e1-bd27-00872da51f3a",
+            "Order": 19,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[9].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 101,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "17b02fce-1006-46e7-a272-a4a017852fff",
+            "Order": 20,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[10].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 106,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "fb167700-c6be-4bed-8a06-d1f422db78d9",
+            "Order": 21,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[11].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 111,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "1189fc14-86ce-4781-8ef1-2326d105818e",
+            "Order": 22,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[12].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 116,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "729ca18f-d55d-48e3-b5df-30bbde444079",
+            "Order": 23,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[13].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 121,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "d35c0dd0-9361-4ab5-8aa2-393d3c4e06ba",
+            "Order": 24,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[14].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 126,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "a3f62aaf-3f63-4056-bb28-361a3ee6828e",
+            "Order": 25,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[15].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 131,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "1cda8d04-b235-490d-ae3d-4b486812a01a",
+            "Order": 26,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[16].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 136,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "5a2074fc-240d-4634-a276-50a76b981058",
+            "Order": 27,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[17].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 141,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "bd239cff-968b-4b3e-93b4-698d660c41b4",
+            "Order": 28,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[18].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 146,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "61356104-52be-469c-85ae-9cefa6580b7d",
+            "Order": 29,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[19].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 151,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "6ff0889a-c760-47da-a4cd-60183e96cee2",
+            "Order": 30,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[20].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 156,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "598e0bb5-78ad-426e-b62e-27a8844c6e50",
+            "Order": 31,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[21].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 161,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "6675797d-5169-457c-af52-4c04a0e59b34",
+            "Order": 32,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[22].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 166,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "31cb33f0-e2a6-4f15-bfcf-914d021dccfa",
+            "Order": 33,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[23].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 171,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "8287071e-b40a-4b80-832b-e84d2ee8501e",
+            "Order": 34,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[0].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 51,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "938a17de-8762-4f71-b8eb-fccff0325470",
+            "Order": 35,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[1].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 56,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "005aedbc-505e-4deb-9285-01aefebec1b2",
+            "Order": 36,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[2].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 61,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "5eb266fc-6bc2-4ef3-8f0c-cdad3506e3e0",
+            "Order": 37,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[3].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 66,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "7a4c2594-d38d-496b-9b97-ca3ff2e2bf15",
+            "Order": 38,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[4].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 71,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "4dff5c31-b757-4983-8acb-f68815168473",
+            "Order": 39,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[5].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 76,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "f5178aa5-3910-4fc1-ac58-22bdfa7148e5",
+            "Order": 40,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[6].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 81,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "6746c3a9-3cc7-4f77-8d86-b98e97540065",
+            "Order": 41,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[7].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 86,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "64af279f-739b-40c3-9a89-7e3bbb7ce2e2",
+            "Order": 42,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[8].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 91,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "809bbafa-2da2-40de-a459-ac53f3fd4a29",
+            "Order": 43,
+            "Timestamp": 1787814173477,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[9].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 96,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "d0974182-a0fa-401d-a428-89e83f8e7800",
+            "Order": 44,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[10].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 101,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "6e243213-77bf-43d6-bb55-c5a76b6cefec",
+            "Order": 45,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[11].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 106,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "61ce3d1b-c153-4688-bd19-0c5439add825",
+            "Order": 46,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[12].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 111,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "5259df49-3de3-4f78-a295-83c12e305ffa",
+            "Order": 47,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[13].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 116,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "0b0cfe0c-d2c6-471c-b968-d0c1ecb42e2d",
+            "Order": 48,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[14].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 121,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "d56d1e00-7154-47a7-82df-f673ca711d04",
+            "Order": 49,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[15].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 126,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "403c1fa4-1d1d-4de9-b555-89f5778bd748",
+            "Order": 50,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[16].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 131,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "cdb9f088-1aec-492a-8fd5-440b1b25caf4",
+            "Order": 51,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[17].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 136,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "b3eec0de-1171-42f4-b7cd-3e693ded1008",
+            "Order": 52,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[18].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 141,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "bf4ec955-d076-4ffd-b5a9-12fa1ef95043",
+            "Order": 53,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[19].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 146,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "af221ebd-d02c-49a8-bfa3-9872152b4f4d",
+            "Order": 54,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[20].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 151,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "bbfb4a24-db8b-4331-946c-6746547146e7",
+            "Order": 55,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[21].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 156,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "8fe6faf9-385a-45c5-b425-bdc893117447",
+            "Order": 56,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[22].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 161,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "ff6a007e-0b9e-4ad7-8e43-8a9564f317c5",
+            "Order": 57,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "Wind.keys[23].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 166,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "f70e0ea3-9a62-4385-a606-71fd258e1e83",
+            "Order": 58,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "ShinyLightCurve.keys [0].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 70,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "54194f63-9799-4f2b-9b6d-c979592af04f",
+            "Order": 59,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "ShinyLightCurve.keys [1].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 75,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "34d711eb-f8f1-41c3-b3e7-69d5492e7e04",
+            "Order": 60,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "ShinyLightCurve.keys [2].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 80,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "0dcf1efd-a4dd-48bf-90ba-d1405fc0d547",
+            "Order": 61,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "ShinyLightCurve.keys [3].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 85,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "d9f166c0-934d-4d33-88c0-25bed26df67f",
+            "Order": 62,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "ShinyLightCurve.keys [4].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 90,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        },
+        {
+            "LogID": "cd175d82-2cb7-4773-a5e3-18804beb069f",
+            "Order": 63,
+            "Timestamp": 1787814173478,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "CS1061",
+            "Description": "'Keyframe' does not contain a definition for 'tangentMode' and no accessible extension method 'tangentMode' accepting a first argument of type 'Keyframe' could be found (are you missing a using directive or an assembly reference?)",
+            "Details": [
+                "ShinyLightCurve.keys [5].tangentMode = 0;"
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": 95,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "Keyframe",
+            "MemberName": "tangentMode",
+            "Severity": 1
+        }
+    ]
+}
