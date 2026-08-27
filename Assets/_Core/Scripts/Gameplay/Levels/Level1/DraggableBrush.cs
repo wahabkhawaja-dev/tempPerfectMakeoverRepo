@@ -25,9 +25,14 @@ public class DraggableBrush : MonoBehaviour
     [Space()]
     public UnityEvent OnComplete;
 
+    private Collider2D myCollider;
+
     void Start()
     {
         mainCamera = Camera.main;
+
+        myCollider = GetComponent<Collider2D>();
+
         if (movementSteps.Count > 0)
         {
             SetStep(currentStepIndex);
@@ -35,16 +40,16 @@ public class DraggableBrush : MonoBehaviour
 
     }
 
-    void OnMouseDown()
+    void PointerDown()
     {
         // Check karein ke steps baki hain ya nahi
         if (currentStepIndex < movementSteps.Count)
             isDragging = true;
 
-        BD_Progress.EnableProgress();   
+        BD_Progress.EnableProgress();
     }
 
-    void OnMouseUp()
+    void PointerUp()
     {
         isDragging = false;
 
@@ -54,6 +59,12 @@ public class DraggableBrush : MonoBehaviour
 
     void Update()
     {
+        // Luna/Bridge.NET never delivers OnMouseDown/OnMouseUp for a Collider2D, so poll.
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(myCollider))
+            PointerDown();
+        else if (Input.GetMouseButtonUp(0) && isDragging)
+            PointerUp();
+
         if (isDragging && currentStepIndex < movementSteps.Count)
         {
             HandleDrag();

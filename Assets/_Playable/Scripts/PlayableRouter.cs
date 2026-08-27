@@ -31,13 +31,18 @@ public class PlayableRouter : MonoBehaviour
         public LevelData level;
 
         public bool Unlocked { get { return level != null; } }
+
+        /// <summary>Runtime only: how many times this locked button has been tapped.</summary>
+        [NonSerialized] public int lockedTaps;
     }
 
-    [Tooltip("Menu root, shown at boot and hidden once a sub-level starts.")]
-    [SerializeField] GameObject menu;
+    [Tooltip("MENU SIDE — active while the menu is up, switched OFF when a sub-level starts.\n" +
+             "Put the menu root here, plus anything else that belongs to the menu.")]
+    [SerializeField] GameObject[] menuObjects;
 
-    [Tooltip("Gameplay HUD root (progress bar, tool icons). Hidden during the menu, shown on play. Optional.")]
-    [SerializeField] GameObject gameplayHud;
+    [Tooltip("GAMEPLAY SIDE — switched OFF while the menu is up, switched ON when a sub-level starts.\n" +
+             "Gameplay HUD, in-game overlays, anything that must not show behind the menu.")]
+    [SerializeField] GameObject[] gameplayObjects;
 
     [Tooltip("One entry per menu button. Assign a level to unlock that button; leave the level " +
              "empty to lock it. Array position = the index passed to Play().")]
@@ -46,11 +51,21 @@ public class PlayableRouter : MonoBehaviour
     [Tooltip("Seconds to fade to black before the menu is swapped for the level.")]
     [SerializeField] float fadeDuration = 0.35f;
 
+    [Tooltip("Toast shown when a LOCKED button is tapped.\n" +
+             "{0} is replaced with the NUMBER of the level that IS unlocked (its slot position).\n" +
+             "Leave empty for no toast.")]
+    [SerializeField] string lockedMessage = "Complete Level {0} to unlock!";
+
+    [Tooltip("How many taps on a LOCKED button before the store CTA fires.\n" +
+             "Counted per button. 0 or less = never fire the CTA from locked taps.")]
+    [SerializeField] int lockedTapsToCTA = 2;
+
     // Child-name prefixes on a SpriteButton for its locked / unlocked art.
     const string LockChildPrefix = "Lock";
     const string IconChildPrefix = "Icon";
 
     LevelData playing;
+    bool lockedCtaFired;
 
     void Awake()
     {
@@ -64,13 +79,31 @@ public class PlayableRouter : MonoBehaviour
                 slot.level.gameObject.SetActive(false);
 
             ApplyLockState(slot);
+
+            if (slot.button != null)
+            {
+                if (slot.button.onLockedClick == null)
+                    slot.button.onLockedClick = new UnityEngine.Events.UnityEvent();
+
+                int slotIndex = i; // capture per iteration, not the shared loop variable
+                slot.button.onLockedClick.AddListener(delegate { OnLockedTap(slotIndex); });
+            }
         }
 
-        if (gameplayHud != null)
-            gameplayHud.SetActive(false);
+        SetAll(gameplayObjects, false);
+        SetAll(menuObjects, true);
+    }
 
-        if (menu != null)
-            menu.SetActive(true);
+    static void SetAll(GameObject[] items, bool active)
+    {
+        if (items == null)
+            return;
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+                items[i].SetActive(active);
+        }
     }
 
     /// <summary>Locked buttons refuse the tap (SpriteButton.isLocked) and show their lock art.</summary>
@@ -83,6 +116,9 @@ public class PlayableRouter : MonoBehaviour
 
         slot.button.isLocked = !unlocked;
 
+        // SpriteButton shows this via ToastManager when a locked button is tapped.
+        slot.button.lockMsg = unlocked ? string.Empty : BuildLockedMessage();
+
         GameObject lockArt = FindChild(slot.button.transform, LockChildPrefix);
         GameObject iconArt = FindChild(slot.button.transform, IconChildPrefix);
 
@@ -91,6 +127,69 @@ public class PlayableRouter : MonoBehaviour
 
         if (iconArt != null)
             iconArt.SetActive(unlocked);
+    }
+
+    /// <summary>
+    /// A locked button was tapped (SpriteButton refuses the tap and raises onLockedClick).
+    /// Count it per button; once that button has been tapped lockedTapsToCTA times, read it as
+    /// "they really want this level" and send them to the store.
+    /// </summary>
+    void OnLockedTap(int index)
+    {
+        if (playing != null)
+            return; // already heading into a level
+
+        if (index < 0 || index >= subLevels.Length)
+            return;
+
+        SubLevelSlot slot = subLevels[index];
+
+        if (slot.Unlocked)
+            return; // not actually locked
+
+        slot.lockedTaps++;
+
+        // Once only. While the menu is up the level (and its PlayableCTA) is inactive, so
+        // FireNow() falls back to its static open-store path, which has no once-guard of its
+        // own — without this every further tap would re-open the store.
+        if (lockedCtaFired || lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
+            return;
+
+        lockedCtaFired = true;
+        PlayableCTA.FireNow();
+    }
+
+    /// <summary>The locked message filled in with the unlocked level's number.</summary>
+    string BuildLockedMessage()
+    {
+        if (string.IsNullOrEmpty(lockedMessage))
+            return string.Empty;
+
+        string number = UnlockedLevelNumber();
+
+        if (string.IsNullOrEmpty(number))
+            return string.Empty;
+
+        // Accept [0] as well as {0} — [0] is an easy thing to type into the inspector, and
+        // getting it wrong would ship a toast reading "Play [0] level first!".
+        string format = lockedMessage.Replace("[0]", "{0}");
+
+        return string.Format(format, number);
+    }
+
+    /// <summary>
+    /// Number of the unlocked level as the player sees it: its 1-based position in the menu,
+    /// so the first button is "Level 1". Empty when nothing is unlocked.
+    /// </summary>
+    string UnlockedLevelNumber()
+    {
+        for (int i = 0; i < subLevels.Length; i++)
+        {
+            if (subLevels[i].level != null)
+                return (i + 1).ToString();
+        }
+
+        return string.Empty;
     }
 
     static GameObject FindChild(Transform parent, string prefix)
@@ -154,11 +253,8 @@ public class PlayableRouter : MonoBehaviour
 
     void SwapToLevel()
     {
-        if (menu != null)
-            menu.SetActive(false);
-
-        if (gameplayHud != null)
-            gameplayHud.SetActive(true);
+        SetAll(menuObjects, false);
+        SetAll(gameplayObjects, true);
 
         // Bind BEFORE activating: the level's Start() reads levelToPlay/partToPlay/stepsDone
         // the instant it wakes, so that state has to be in place first.

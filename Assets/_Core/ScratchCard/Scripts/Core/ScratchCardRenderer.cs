@@ -286,7 +286,7 @@ namespace ScratchCardAsset.Core
                     {
                         if (meshLine != null)
                         {
-                            meshLine.Clear(false);
+                            meshLine.Clear(); // Luna/Bridge.NET does not implement Mesh.Clear(bool); the mesh is fully reassigned below anyway
                         }
                         else
                         {
@@ -384,7 +384,7 @@ namespace ScratchCardAsset.Core
                 {
                     if (meshLine != null)
                     {
-                        meshLine.Clear(false);
+                        meshLine.Clear(); // Luna/Bridge.NET does not implement Mesh.Clear(bool); the mesh is fully reassigned below anyway
                     }
                     else
                     {

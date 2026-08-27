@@ -111,7 +111,7 @@ public class PlayableCTA : MonoBehaviour
         enabledAt = Time.unscaledTime;
 
         if (trigger == Trigger.Immediately)
-            FireCTA();
+            FireFromTrigger();
     }
 
     void Update()
@@ -122,7 +122,7 @@ public class PlayableCTA : MonoBehaviour
         {
             if (trigger == Trigger.AfterSeconds && Time.unscaledTime - enabledAt >= afterSeconds)
             {
-                FireCTA();
+                FireFromTrigger();
                 return;
             }
 
@@ -130,7 +130,7 @@ public class PlayableCTA : MonoBehaviour
             {
                 tapCount++;
                 if (tapCount >= afterTaps)
-                    FireCTA();
+                    FireFromTrigger();
             }
 
             if (trigger == Trigger.AfterProgress && scratchProgress != null)
@@ -140,12 +140,12 @@ public class PlayableCTA : MonoBehaviour
                     : scratchProgress.giveCollectiveProgress();
 
                 if (progressIs >= progressThreshold)
-                    FireCTA();
+                    FireFromTrigger();
             }
 
             if (trigger == Trigger.OnToolAppear && tapped && watchedTool != null && watchedTool.activeInHierarchy
                 && PointerInput.IsOverCollider(watchedTool.GetComponent<Collider2D>()))
-                FireCTA();
+                FireFromTrigger();
 
             return;
         }
@@ -159,6 +159,27 @@ public class PlayableCTA : MonoBehaviour
     /// Inspector to trigger the CTA at exactly the moment you want, including mid-step.
     /// </summary>
     public void FireCTA()
+    {
+        // Explicit fire (level complete, a UnityEvent, FireNow) — this IS the celebration
+        // moment, so the end card always shows. The trigger-based suppression below only
+        // exists for the mid-gameplay triggers firing themselves.
+        Fire(true);
+    }
+
+    /// <summary>
+    /// Fired by this component's own trigger. AfterProgress (mid-scratch) and OnToolAppear
+    /// (a tease — the level isn't actually done) suppress the end card unless their opt-in
+    /// flag is set.
+    /// </summary>
+    void FireFromTrigger()
+    {
+        bool showCardThisFire = (trigger != Trigger.AfterProgress || showEndCardOnProgressTrigger)
+            && (trigger != Trigger.OnToolAppear || showEndCardOnToolAppearTrigger);
+
+        Fire(showCardThisFire);
+    }
+
+    void Fire(bool showCardThisFire)
     {
         if (!HasFired)
         {
@@ -182,12 +203,6 @@ public class PlayableCTA : MonoBehaviour
                     Debug.Log("[PlayableCTA] Input block skipped (no GameManager, ok standalone): " + e.Message);
                 }
             }
-
-            // AfterProgress (mid-scratch) and OnToolAppear (a tease: the level isn't
-            // actually done) don't show the end card by default — the CTA is just blocking
-            // input at that point, not celebrating.
-            bool showCardThisFire = (trigger != Trigger.AfterProgress || showEndCardOnProgressTrigger)
-                && (trigger != Trigger.OnToolAppear || showEndCardOnToolAppearTrigger);
 
             if (showCardThisFire && showEndCard && endCard != null)
                 endCard.SetActive(true);

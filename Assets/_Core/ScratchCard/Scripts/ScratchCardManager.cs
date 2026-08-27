@@ -51,7 +51,8 @@ namespace ScratchCardAsset
 			{
 				scratchSurfaceMaterial = new Material(MaskShader) {mainTexture = ScratchSurfaceSprite.texture};
 				Card.ScratchSurface = scratchSurfaceMaterial;
-			}
+				scratchSurfaceMaterial.renderQueue = 3000; // Set render queue to Transparent
+            }
 
 			if (Card.Eraser == null)
 			{
@@ -62,6 +63,7 @@ namespace ScratchCardAsset
 			Card.BrushScale = EraseTextureScale;
 			Card.Mode = Mode;
 
+			if (Card.Progress == null)
 			if (Card.Progress == null)
 			{
 				var shader = ScratchSurfaceSpriteHasAlpha ? MaskProgressCutOffShader : MaskProgressShader;

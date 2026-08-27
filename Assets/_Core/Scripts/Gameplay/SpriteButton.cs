@@ -25,6 +25,10 @@ public class SpriteButton : MonoBehaviour
     [Space()]
     public UnityEvent onClick;
 
+    [Tooltip("Fired when this button is tapped while isLocked. PlayableRouter listens to this " +
+             "to count locked taps and fire the store CTA after N of them.")]
+    public UnityEvent onLockedClick;
+
     // Scale of the SpriteRenderer only
     private Vector3 originalSpriteScale;
 
@@ -50,10 +54,14 @@ public class SpriteButton : MonoBehaviour
 
     bool scaleSaved = false;
 
+    private Collider2D myCollider;
+
     void Awake()
     {
         if (pivot != null)
             originalSpriteScale = pivot.transform.localScale;
+
+        myCollider = GetComponent<Collider2D>();
 
         lastMousePosition = Input.mousePosition;
 
@@ -99,62 +107,38 @@ public class SpriteButton : MonoBehaviour
 
     void Update()
     {
-        if (!ignoreInitialHover)
-            return;
-
-        Vector3 currentMousePosition = Input.mousePosition;
-
-        if (hasMousePosition &&
-            (currentMousePosition - lastMousePosition).sqrMagnitude > 0.01f)
+        if (ignoreInitialHover)
         {
-            ignoreInitialHover = false;
+            Vector3 currentMousePosition = Input.mousePosition;
+
+            if (hasMousePosition &&
+                (currentMousePosition - lastMousePosition).sqrMagnitude > 0.01f)
+            {
+                ignoreInitialHover = false;
+            }
+
+            lastMousePosition = currentMousePosition;
         }
 
-        lastMousePosition = currentMousePosition;
+        // Luna/Bridge.NET never delivers OnMouseDown/OnMouseUp for a Collider2D, so the press
+        // is polled here instead — same pattern BasicDrag already uses. See PointerInput.
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!isOverUI() && PointerInput.IsOverCollider(myCollider))
+                PointerDown();
+        }
+        else if (Input.GetMouseButtonUp(0) && isPressed)
+        {
+            PointerUp();
+        }
     }
 
 
     // =========================================================
-    // MOUSE ENTER
+    // POINTER DOWN  (polled from Update, see note there)
     // =========================================================
 
-    void OnMouseEnter()
-    {
-        if (isOverUI())
-            return;
-
-        if (isFinished)
-            return;
-
-        if (ignoreInitialHover)
-            return;
-
-        // No hover animation.
-    }
-
-
-    // =========================================================
-    // MOUSE EXIT
-    // =========================================================
-
-    void OnMouseExit()
-    {
-        if (isOverUI())
-            return;
-
-        if (isFinished)
-            return;
-
-        // Do nothing.
-        // While holding, the button stays reduced until release.
-    }
-
-
-    // =========================================================
-    // MOUSE DOWN
-    // =========================================================
-
-    void OnMouseDown()
+    void PointerDown()
     {
         if (isOverUI())
             return;
@@ -206,10 +190,10 @@ public class SpriteButton : MonoBehaviour
 
 
     // =========================================================
-    // MOUSE UP
+    // POINTER UP  (polled from Update, see note there)
     // =========================================================
 
-    void OnMouseUp()
+    void PointerUp()
     {
         if (!isPressed)
             return;
@@ -260,8 +244,8 @@ public class SpriteButton : MonoBehaviour
         {
             if (isLocked)
             {
-                // if (ToastManager.instance != null)
-                    // ToastManager.instance.SendToast(lockMsg);
+                if (ToastManager.instance != null && !string.IsNullOrEmpty(lockMsg))
+                    ToastManager.instance.SendToast(lockMsg);
 
                 if (isLevelBtnSfx)
                 {
@@ -273,6 +257,8 @@ public class SpriteButton : MonoBehaviour
                     if (AudioController.instance != null)
                         AudioController.instance.PlaySfx(0, 1, 0);
                 }
+
+                onLockedClick?.Invoke();
             }
             else
             {
@@ -326,18 +312,8 @@ public class SpriteButton : MonoBehaviour
 
     bool IsPointerOverThisObject()
     {
-        if (Camera.main == null)
-            return false;
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit2D hit = Physics2D.Raycast(
-            ray.origin,
-            ray.direction
-        );
-
-        return hit.collider != null &&
-               hit.collider.gameObject == gameObject;
+        // Same 2D-safe check the press uses, so press and release can't disagree.
+        return PointerInput.IsOverCollider(myCollider);
     }
 
 

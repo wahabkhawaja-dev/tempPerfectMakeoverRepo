@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
@@ -82,7 +83,9 @@ public class MenuLevel : MonoBehaviour
 
         ResetSelectBtns();
 
-        if (PlayerPrefs.GetInt(levelKey, 0) == 0)
+        // No Storyboard (playable builds strip the intro) => go straight to the menu,
+        // otherwise MainView would stay hidden waiting on an intro that never plays.
+        if (Storyboard != null && PlayerPrefs.GetInt(levelKey, 0) == 0)
         {
             mainGameView.SetActive(false);
 
@@ -100,7 +103,8 @@ public class MenuLevel : MonoBehaviour
         {
             mainGameView.SetActive(true);
 
-            Storyboard.gameObject.SetActive(false);
+            if (Storyboard != null)
+                Storyboard.gameObject.SetActive(false);
 
             isTutPlayed = false;
 
@@ -112,7 +116,11 @@ public class MenuLevel : MonoBehaviour
 
         if (MenuManager.instance != null && MenuManager.instance.msgController != null) MenuManager.instance.msgController.OnSkipPressed += HandleSkip;
 
-        if (PlayerPrefs.GetInt("HandTut1", 0) == 0)
+        // Full-game first-run tutorial hand. It hides every level button except one, and it
+        // only runs while PlayerPrefs["HandTut1"] is unset — which in a playable is the FIRST
+        // page load, every session. That made the buttons invisible on first load and fine
+        // after a refresh. No storyboard => playable build => skip the tutorial entirely.
+        if (Storyboard != null && PlayerPrefs.GetInt("HandTut1", 0) == 0)
         {
             PlayerPrefs.SetInt("HandTut1", 1);
 
@@ -121,10 +129,12 @@ public class MenuLevel : MonoBehaviour
 
             for (int i = 0; i < AllSteps.Length; i++)
             {
-                AllSteps[i].UiBtn.SetActive(false);
+                if (AllSteps[i].UiBtn != null)
+                    AllSteps[i].UiBtn.SetActive(false);
             }
 
-            AllSteps[1].UiBtn.SetActive(true);
+            if (AllSteps.Length > 1 && AllSteps[1].UiBtn != null)
+                AllSteps[1].UiBtn.SetActive(true);
 
             //MenuManager.instance.MapBtn.transform.parent.gameObject.SetActive(false);
             
@@ -144,30 +154,29 @@ public class MenuLevel : MonoBehaviour
 
     void ResetSelectBtns()
     {
-        for (int i = 0; i < AllSteps.Length; i++)
+        // Every slot is null-checked: this runs first in Start(), so a single empty or stale
+        // inspector reference used to throw here and abort the whole menu setup — leaving
+        // MainView hidden and the level buttons never revealed.
+        for (int i = 0; i < AllSteps.Length && i < subLevels.Length; i++)
         {
-            AllSteps[i].ExclamationIcon.SetActive(false);
+            if (AllSteps[i].ExclamationIcon == null)
+                continue;
 
-            if (subLevels[i].stepsDone > 0)
-            {
-                AllSteps[i].ExclamationIcon.SetActive(true);
-            }
+            AllSteps[i].ExclamationIcon.SetActive(subLevels[i].stepsDone > 0);
         }
 
-        for (int i = 0; i < AllSteps.Length; i++)
+        for (int i = 0; i < AllSteps.Length && i < subLevels.Length; i++)
         {
-            if (subLevels[i].stepsDone <= 0)
-                AllSteps[i].TickBtn.SetActive(subLevels[i].isCompleted);
+            if (AllSteps[i].TickBtn == null)
+                continue;
 
-            else
-            {
-                AllSteps[i].TickBtn.SetActive(false);
-            }
+            AllSteps[i].TickBtn.SetActive(subLevels[i].stepsDone <= 0 && subLevels[i].isCompleted);
         }
 
         for (int i = 0; i < BtnsCols.Length; i++)
         {
-            BtnsCols[i].enabled = false;
+            if (BtnsCols[i] != null)
+                BtnsCols[i].enabled = false;
         }
     }
 
@@ -282,8 +291,13 @@ public class MenuLevel : MonoBehaviour
 
     void HandleStartLogic(GameObject[] enable, GameObject[] disable)
     {
-        foreach (GameObject obj in enable) obj.SetActive(true);
-        foreach (GameObject obj in disable) obj.SetActive(false);
+        // Null-checked on purpose: an empty or stale slot in these arrays used to throw and
+        // abort SetupLevel() half-way, which left the level buttons hidden and untappable.
+        if (enable != null)
+            foreach (GameObject obj in enable) if (obj != null) obj.SetActive(true);
+
+        if (disable != null)
+            foreach (GameObject obj in disable) if (obj != null) obj.SetActive(false);
     }
 
     public void HandleSkip()
@@ -330,7 +344,26 @@ public class MenuLevel : MonoBehaviour
 
         for (int i = 0; i < BtnsCols.Length; i++)
         {
-            BtnsCols[i].enabled = true;
+            if (BtnsCols[i] != null)
+                BtnsCols[i].enabled = true;
+        }
+
+        // With a Storyboard, the intro calls PlayBtnAnim() when it finishes. Playable builds
+        // strip the intro, so nothing would ever run it and the buttons would sit at their
+        // tween's start scale — present, but far too small to see.
+        if (Storyboard == null)
+        {
+            // Inlined on purpose — do NOT call PlayBtnAnim() here. Luna strips that method
+            // from the build (it was only reachable from the intro, which playable builds
+            // remove), and calling it throws "this.PlayBtnAnim is not a function" in the
+            // browser, aborting this method before the buttons are ever revealed.
+            // Kept free of DOTweenPro types for the same reason: the buttons' pop-in was a
+            // DOTweenPro "From" scale tween that snaps them to 0 and never recovers in the
+            // browser, so those tweens are disabled and the authored scale is used as-is.
+            Transform btns = buttonparent.transform;
+
+            for (int i = 0; i < btns.childCount; i++)
+                btns.GetChild(i).gameObject.SetActive(true);
         }
     }
 
@@ -448,13 +481,17 @@ public class MenuLevel : MonoBehaviour
     {
         for (int i = 0; i < BtnsDotweenAnims.Length; i++)
         {
+            if (BtnsDotweenAnims[i] == null)
+                continue;
+
             BtnsDotweenAnims[i].gameObject.SetActive(true);
             BtnsDotweenAnims[i].DORestart();
         }
 
         for (int i = 0; i < BtnsCols.Length; i++)
         {
-            BtnsCols[i].enabled = true;
+            if (BtnsCols[i] != null)
+                BtnsCols[i].enabled = true;
         }
 
         if (isHandOn)
