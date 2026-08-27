@@ -26,6 +26,7 @@ public class Level3_Manicure : LevelData
 
     [Space()]
     public BasicDrag ToolStep1;
+    public Transform ToolStep1Body;
 
     [Space()]
     public GameObject ToolStep1Tip;
@@ -48,7 +49,9 @@ public class Level3_Manicure : LevelData
 
     [Space()]
     public GameObject Tool2Holder;
-    public GameObject Tool2HolderInner;
+
+    [Space()]
+    public GameObject Tool2Indication;
 
     [Space()]
     public BasicDrag ToolStep2;
@@ -68,20 +71,11 @@ public class Level3_Manicure : LevelData
 
     [Space()]
     public Transform Wipe;
-    public Transform WipeStart;
-    public Transform WipeTarget;
 
     [Space()]
     public Animator BottleAnimator;
-    public SpriteRenderer RemoverBodySR;
-    public Sprite RemoverBodySprite1;
-    public Sprite RemoverBodySprite2;
 
     [Space()]
-    public GameObject Tap_2;
-
-    [Space()]
-    public Transform DropOnWipe_2;
     public SpriteRenderer SpreadOnWipe_2;
 
     [Space()]
@@ -129,13 +123,14 @@ public class Level3_Manicure : LevelData
     [Space()]
     public GameObject HandTap1;
     public GameObject HandTap2;
+    public AudioClip[] WaterSfxstep4;
 
     [Header("----------------- STEP 5 ----------------------")]
     [Space()]
     public ZoomPos ZoomStep5;
 
     [Space()]
-    public GameObject HandTap1_5;
+    public ActionOnTap HandTap1_5;
 
     [Space()]
     public Transform Dial_5;
@@ -160,7 +155,14 @@ public class Level3_Manicure : LevelData
 
     [Space()]
     public GameObject StoveFixItBtn;
+    public DOTweenAnimation StoveFixItBtnAnim;
+    [SerializeField] GameObject fixItPromptHand;
+
     public AudioClip StoveDamageClip;
+
+    public GameObject stoveFireAudio;
+    public GameObject KattleSfx;
+    public GameObject KattleCapShakingSfx;
 
     [Header("----------------- STEP 6 ----------------------")]
     [Space()]
@@ -178,16 +180,13 @@ public class Level3_Manicure : LevelData
     public ZoomPos ZoomStep7;
 
     [Space()]
-    public BasicDrag ToolStep7;
-
-    [Space()]
+    public Collider2D ToolStep7Col;
     public Animator ToolStep7Animator;
 
     [Space()]
-    public BD_AnimatorDrag ToolStep7AnimatorDrag;
-
-    [Space()]
     public GameObject Indication_7;
+
+    public HandDipEvent actionOnTap;
 
     [Space()]
     public SpriteRenderer HandClean_7;
@@ -264,13 +263,26 @@ public class Level3_Manicure : LevelData
     public ZoomPos ZoomStep11;
 
     [Space()]
+    public Transform ToolStep11Holder;
+    public Transform ToolStep11Bottle;
+
+    [Space()]
     public BasicDrag ToolStep11;
+    public Transform ToolStep11Bone1;
+    public Transform ToolStep11Bone2;
+
+    [Space()]
+    public BD_Progress ToolStep11BdProgress;
 
     [Space()]
     public BD_CameraFollow ToolStep11CameraFollow;
 
     [Space()]
+    public BD_ToolRotate ToolStep11ToolRotate;
+
+    [Space()]
     public GameObject ToolStep11Indication;
+    public AudioClip tool11Sfx;
 
     IEnumerator Start()
     {
@@ -317,6 +329,14 @@ public class Level3_Manicure : LevelData
         {
             // STARTING STEP 1
             case 0:
+                // STEP START EVENT
+                try
+                {
+                    // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                    //     + "_" + levelName + "_Step1_Start");
+                }
+                catch { }
+
                 DOVirtual.DelayedCall(1f, () =>
                 {
                     StartStep1();
@@ -488,7 +508,7 @@ public class Level3_Manicure : LevelData
         CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
 
         ToolStep1.transform.DOKill();
-        ToolStep1.transform.DOLocalMoveX(1f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep1.transform.DOLocalMoveX(0.3f, .5f).SetDelay(1f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep1.gameObject, true);
 
@@ -527,9 +547,20 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step1_Comp");
         }
         catch { }
+    }
+
+    public void PrespectiveL_1()
+    {
+        ToolStep1Body.localScale = new Vector3(-1f, 1f, 1f);
+    }
+
+    public void PrespectiveR_1()
+    {
+        ToolStep1Body.localScale = new Vector3(1f, 1f, 1f);
     }
 
     void ForceCompleteStep1()
@@ -543,8 +574,6 @@ public class Level3_Manicure : LevelData
 
     bool isStep2Done;
 
-    int tapsDone = 0;
-
     void StartStep2()
     {
         AdvanceProgressIcon();
@@ -555,65 +584,33 @@ public class Level3_Manicure : LevelData
         Tool2Holder.transform.DOKill();
         Tool2Holder.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
         {
-            Wipe.DOKill();
-            Wipe.DOMove(WipeTarget.position, 1f).OnComplete(() =>
-            {
-                Tap_2.SetActive(true);
-            });
+            BottleTap();
         });
 
         UpdateHandBonesTip(ToolStep2Tip);
     }
 
-    public void BottleTap()
+    void BottleTap()
     {
         BottleAnimator.enabled = true;
-        BottleAnimator.Play("Drop", 0, 0f);
 
-        if (tapsDone == 0)
+        if (makeupRemoverSfx != null)
+            AudioController.instance.PlayAnySfx(0, makeupRemoverSfx, 0f);
+
+        DOVirtual.DelayedCall(0.5f, () =>
         {
-            tapsDone++;
+            AudioController.instance.PlayAnySfx(1, makeupRemoverSfx, 0f);
+            SpreadOnWipe_2.DOKill();
+            SpreadOnWipe_2.DOFade(1f, 2f);
 
-            if (makeupRemoverSfx != null)
-                AudioController.instance.PlayAnySfx(0, makeupRemoverSfx, 0f);
-
-            DOVirtual.DelayedCall(0.5f, () =>
-            {
-                DropOnWipe_2.DOKill();
-                DropOnWipe_2.DOScale(1f, 1f);
-
-                RemoverBodySR.sprite = RemoverBodySprite1;
-            });
-
-            Tap_2.SetActive(false);
-
-            Invoke(nameof(BottleTap), 0.7f);
-        }
-
-        else
-        {
-            if (makeupRemoverSfx != null)
-                AudioController.instance.PlayAnySfx(0, makeupRemoverSfx, 0f);
-
-            DOVirtual.DelayedCall(0.5f, () =>
-            {
-                DropOnWipe_2.DOKill();
-                DropOnWipe_2.DOScale(1.5f, 1f);
-
-                SpreadOnWipe_2.DOKill();
-                SpreadOnWipe_2.DOFade(1f, 1f);
-
-                Invoke(nameof(Drop2Done), 1f);
-
-                RemoverBodySR.sprite = RemoverBodySprite2;
-            });
-        }
+            Invoke(nameof(Drop2Done), 2f);
+        });
     }
 
     void Drop2Done()
     {
         Wipe.DOKill();
-        Wipe.DOLocalMove(new Vector3(2.05f, 1.78f, 0f), 1f).SetDelay(.5f).OnComplete(() =>
+        Wipe.DOLocalMove(new Vector3(2f, 1f, 0f), 1f).SetDelay(.5f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep2.gameObject, true);
 
@@ -626,10 +623,14 @@ public class Level3_Manicure : LevelData
 
                 ToolStep2ToolRotate.enabled = true;
             };
+
+            Tool2Indication.SetActive(true);
         });
 
-        Tool2HolderInner.transform.DOKill();
-        Tool2HolderInner.transform.DOLocalMoveX(-10, 1f);
+        BottleAnimator.enabled = false;
+
+        BottleAnimator.transform.DOKill();
+        BottleAnimator.transform.DOLocalMoveX(-10, 1f);
 
         CameraController.Instance.MoveCamera(ZoomStep2B.CameraPos, ZoomStep2B.CameraFOV);
     }
@@ -640,6 +641,8 @@ public class Level3_Manicure : LevelData
             return;
 
         isStep2Done = true;
+
+        Tool2Indication.SetActive(false);
 
         ToolStep2ToolRotate.enabled = false;
 
@@ -658,7 +661,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
@@ -683,7 +687,7 @@ public class Level3_Manicure : LevelData
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
         ToolStep3.transform.DOKill();
-        ToolStep3.transform.DOLocalMoveX(0.65f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep3.transform.DOLocalMoveX(0.75f, .5f).SetDelay(1f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep3.gameObject, true);
 
@@ -708,8 +712,7 @@ public class Level3_Manicure : LevelData
             Indications_3[i].SetActive(false);
         }
 
-        if (ToolStep3CameraFollow != null)
-            ToolStep3CameraFollow.enabled = false;
+        ToolStep3CameraFollow.enabled = false;
 
         ToolInputToggle(ToolStep3.gameObject, false);
 
@@ -741,7 +744,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step3_Comp");
         }
         catch { }
     }
@@ -867,9 +871,23 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step4_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step4_Comp");
         }
         catch { }
+    }
+
+    public void PlayWaterSounds(int index)
+    {
+        if (index < 0 || index >= WaterSfxstep4.Length)
+            return;
+
+        AudioController.instance.PlayAnySfx(1, WaterSfxstep4[index], 0f);
+    }
+
+    public void PlayAnySound(AudioClip audioClip)
+    {
+        AudioController.instance.PlayAnySfx(1, audioClip, 0f);
     }
 
     void ForceCompleteStep4()
@@ -893,7 +911,7 @@ public class Level3_Manicure : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep5.CameraPos, ZoomStep5.CameraFOV);
 
-        HandTap1_5.SetActive(true);
+        HandTap1_5.gameObject.SetActive(true);
     }
 
     // Looks up the "Shower" sub-level (Level1_5, the showerhead-fixing mini level) and remote config control
@@ -914,29 +932,49 @@ public class Level3_Manicure : LevelData
 
     public void DialStart_5()
     {
-        HandTap1_5.SetActive(false);
-
         if (!IsStoveFixed())
         {
+            HandTap1_5.OnTapExtra += () =>
+            {
+                Dial_5.DOKill();
+                Dial_5.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                Dial_5.DOLocalRotate(new Vector3(0, 0, -22f), .2f).SetLoops(4, LoopType.Yoyo);
+
+                AudioController.instance.PlayAnySfx(3, StoveDamageClip, 0);
+            };
+
             Dial_5.DOKill();
+            Dial_5.transform.localRotation = Quaternion.Euler(0, 0, 0);
             Dial_5.DOLocalRotate(new Vector3(0, 0, -22f), .2f).SetLoops(4, LoopType.Yoyo);
 
             DOVirtual.DelayedCall(0.6f, () =>
             {
                 StoveFixItBtn.SetActive(true);
+
+                fixItPromptHand.SetActive(true);
             });
 
             AudioController.instance.PlayAnySfx(3, StoveDamageClip, 0);
+            
+            HandTap1_5.transform.GetChild(0).gameObject.SetActive(false);
         }
 
         else
         {
+            HandTap1_5.gameObject.SetActive(false);
+
             Dial_5_Light.DOKill();
             Dial_5_Light.DOFade(1f, .5f);
+
+            DOVirtual.DelayedCall(.1f, () =>
+            {
+                stoveFireAudio.SetActive(true);
+            });
 
             Dial_5.DOKill();
             Dial_5.DOLocalRotate(new Vector3(0, 0, -70f), .5f).OnComplete(() =>
             {
+
                 Flame.SetActive(true);
                 FlameMask.gameObject.SetActive(true);
 
@@ -970,11 +1008,17 @@ public class Level3_Manicure : LevelData
 
         fixItPressed = true;
 
+        fixItPromptHand.SetActive(false);
+
+        StoveFixItBtnAnim.DOPlayBackwards();
+
         SaveSystem.Instance.DataFields.levelToPlay = 3;
         SaveSystem.Instance.DataFields.partToPlay = 5;
 
-        DOVirtual.DelayedCall(1f, () =>
+        DOVirtual.DelayedCall(.5f, () =>
         {
+            StoveFixItBtnAnim.gameObject.SetActive(false);
+
             LoadingManager.instance.ShowFadeAnim(0.5f, 1f);
 
             DOVirtual.DelayedCall(1f, () =>
@@ -993,11 +1037,13 @@ public class Level3_Manicure : LevelData
 
         DOVirtual.DelayedCall(2f, () =>
         {
+            KattleSfx.SetActive(true);
             Smoke_5A.gameObject.SetActive(true);
         });
 
         DOVirtual.DelayedCall(3f, () =>
         {
+
             Smoke_5B.gameObject.SetActive(true);
 
             Kettle_5_Cap.enabled = true;
@@ -1022,7 +1068,7 @@ public class Level3_Manicure : LevelData
         Dial_5.DOLocalRotate(new Vector3(0, 0, 0f), .5f).OnComplete(() =>
         {
             Kettle_5_Cap.enabled = false;
-
+            KattleCapShakingSfx.SetActive(false);
             Kettle_5_Cap.transform.DOKill();
             Kettle_5_Cap.transform.DOLocalMove(new Vector3(-0.092f, 0.714f, 0), .5f);
             Kettle_5_Cap.transform.DOLocalRotate(new Vector3(0, 0, -74.215f), .5f);
@@ -1055,6 +1101,10 @@ public class Level3_Manicure : LevelData
         DOVirtual.DelayedCall(1f, () =>
         {
             UI_Manager.instance.FadeAnim(1f, 1f);
+            KattleSfx.GetComponent<AudioSource>().DOFade(0f, .5f).OnComplete(() =>
+            {
+                KattleSfx.SetActive(false);
+            });
 
             DOVirtual.DelayedCall(1.1f, () =>
             {
@@ -1072,7 +1122,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step5_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step5_Comp");
         }
         catch { }
     }
@@ -1141,7 +1192,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step6_Comp");
         }
         catch { }
     }
@@ -1169,14 +1221,17 @@ public class Level3_Manicure : LevelData
 
         DOVirtual.DelayedCall(1f, () =>
         {
-            Indication_7.SetActive(true);
+            actionOnTap.EventCalled();
 
-            ToolInputToggle(ToolStep7.gameObject, true);
-            ToolStep7AnimatorDrag.enabled = true;
-            ToolStep7Animator.enabled = true;
-
-            ToolStep7.OnMouseDownEvent += () => Indication_7.SetActive(false);
+            ToolStep7Col.enabled = true;
         });
+    }
+
+    public void StartTimer_7()
+    {
+        UI_Manager.instance.ShowClockProgress(3);
+
+        UI_Manager.instance.SetProgressBar(1f, 4f);
     }
 
     public void Step7Done()
@@ -1186,9 +1241,7 @@ public class Level3_Manicure : LevelData
 
         isStep7Done = true;
 
-        ToolInputToggle(ToolStep7.gameObject, false);
-
-        ToolStep7AnimatorDrag.enabled = false;
+        ToolStep7Col.enabled = false;
 
         ToolStep7Animator.enabled = false;
 
@@ -1216,7 +1269,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step7_Comp");
         }
         catch { }
     }
@@ -1294,7 +1348,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step8_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step8_Comp");
         }
         catch { }
     }
@@ -1365,7 +1420,8 @@ public class Level3_Manicure : LevelData
 
             try
             {
-                Statics.GA_CustomStringEvent(levelName + "_Step9_Comp");
+                // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                //     + "_" + levelName + "_Step9_Comp");
             }
             catch { }
         });
@@ -1443,7 +1499,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step10_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step10_Comp");
         }
         catch { }
     }
@@ -1479,19 +1536,62 @@ public class Level3_Manicure : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep11.CameraPos, ZoomStep11.CameraFOV);
 
-        ToolStep11.transform.DOKill();
-        ToolStep11.transform.DOLocalMoveX(0.85f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep11Holder.transform.DOKill();
+        ToolStep11Holder.transform.DOLocalMoveX(0.9f, .5f).SetDelay(1f).OnComplete(() =>
         {
-            ToolInputToggle(ToolStep11.gameObject, true);
+            ToolStep11.transform.DOKill();
+            DOVirtual.DelayedCall(.5f, () => PlayAnySound(tool11Sfx));
+            ToolStep11.transform.DOLocalMoveY(0.3f, .2f).SetLoops(4, LoopType.Yoyo).SetDelay(.5f).OnComplete(() =>
+            {
+                ToolStep11.transform.DOKill();
+                ToolStep11.transform.DOLocalMoveY(1.536f, .5f).OnComplete(() =>
+                {
+                    ToolStep11Bottle.transform.DOKill();
+                    ToolStep11Bottle.transform.DOLocalMoveX(15f, .5f).SetDelay(.5f);
 
-            ToolStep11CameraFollow.enabled = true;
+                    ToolStep11.transform.DOKill();
+                    ToolStep11.transform.DOLocalRotate(new Vector3(0, 0, 180f), .5f).SetDelay(.5f);
+                    ToolStep11.transform.DOLocalMoveY(0f, .5f).SetDelay(.5f).OnComplete(() =>
+                    {
+                        ToolInputToggle(ToolStep11.gameObject, true);
 
-            ToolStep11Indication.SetActive(true);
+                        ToolStep11ToolRotate.enabled = true;
 
-            ToolStep11.GetComponent<BD_Progress>().SubCompleteEvent
-            += () =>
-            ToolStep11Indication.SetActive(false);
+                        ToolStep11CameraFollow.enabled = true;
+
+                        ToolStep11Indication.SetActive(true);
+
+                        ToolStep11.GetComponent<BD_Progress>().SubCompleteEvent
+                        += () =>
+                        ToolStep11Indication.SetActive(false);
+                    });
+                });
+
+                //ToolStep11Bone1.transform.DOKill();
+                //ToolStep11Bone1.transform.DOLocalRotate(new Vector3(0, 0, -68f), .5f).SetDelay(.85f);
+
+                //ToolStep11Bone2.transform.DOKill();
+                //ToolStep11Bone2.transform.DOLocalRotate(new Vector3(0, 0, -110f), .5f).SetDelay(.85f);
+            });
         });
+    }
+
+    public void ShrinkIn_11()
+    {
+        ToolStep11Bone1.transform.DOKill();
+        ToolStep11Bone1.transform.DOLocalRotate(new Vector3(0, 0, -87f), .4f);
+
+        ToolStep11Bone2.transform.DOKill();
+        ToolStep11Bone2.transform.DOLocalRotate(new Vector3(0, 0, -93f), .4f);
+    }
+
+    public void ShrinkOut_11()
+    {
+        ToolStep11Bone1.transform.DOKill();
+        ToolStep11Bone1.transform.DOLocalRotate(new Vector3(0, 0, -93f), .4f);
+
+        ToolStep11Bone2.transform.DOKill();
+        ToolStep11Bone2.transform.DOLocalRotate(new Vector3(0, 0, -89f), .4f);
     }
 
     public void Step11Done()
@@ -1510,7 +1610,7 @@ public class Level3_Manicure : LevelData
         ToolStep11.transform.DOKill();
         ToolStep11.transform.DOLocalMoveY(-10f, 1f).SetDelay(.25f).OnComplete(() =>
         {
-            ToolStep11.gameObject.SetActive(false);
+            ToolStep11Holder.gameObject.SetActive(false);
         });
 
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 0;
@@ -1519,7 +1619,8 @@ public class Level3_Manicure : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step11_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step11_Comp");
         }
         catch { }
     }

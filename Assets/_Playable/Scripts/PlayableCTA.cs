@@ -83,14 +83,11 @@ public class PlayableCTA : MonoBehaviour
     [Tooltip("End-card canvas/root, activated when the CTA fires.")]
     public GameObject endCard;
 
-    [Tooltip("Plays once the CTA fires. Set its own Looping module on to have it play continuously.")]
-    public ParticleSystem endParticles;
+    [Tooltip("If trigger = AfterProgress, show the end card too (normally reserved for genuine level completion, not mid-scratch progress).")]
+    public bool showEndCardOnProgressTrigger;
 
-    [Tooltip("If trigger = AfterProgress, play endParticles too (normally reserved for the last step completing, not mid-scratch progress).")]
-    public bool playEndParticlesOnProgressTrigger;
-
-    [Tooltip("One-shot burst played once the CTA fires (confetti cannon, etc). Looping should be off on this one.")]
-    public ParticleSystem stepCompleteParticles;
+    [Tooltip("If trigger = OnToolAppear, show the end card too. Off by default — OnToolAppear is a tease (the level isn't actually done), so it blocks input without showing an end card.")]
+    public bool showEndCardOnToolAppearTrigger;
 
     [Header("Extras")]
     [Tooltip("Runs once, the first time the CTA fires (hide HUD, ...).")]
@@ -186,13 +183,14 @@ public class PlayableCTA : MonoBehaviour
                 }
             }
 
-            if (showEndCard && endCard != null)
+            // AfterProgress (mid-scratch) and OnToolAppear (a tease: the level isn't
+            // actually done) don't show the end card by default — the CTA is just blocking
+            // input at that point, not celebrating.
+            bool showCardThisFire = (trigger != Trigger.AfterProgress || showEndCardOnProgressTrigger)
+                && (trigger != Trigger.OnToolAppear || showEndCardOnToolAppearTrigger);
+
+            if (showCardThisFire && showEndCard && endCard != null)
                 endCard.SetActive(true);
-
-            if (trigger != Trigger.AfterProgress || playEndParticlesOnProgressTrigger)
-                PlayParticles(endParticles);
-
-            PlayParticles(stepCompleteParticles);
 
             if (onCtaFired != null)
                 onCtaFired.Invoke();
@@ -208,17 +206,6 @@ public class PlayableCTA : MonoBehaviour
             active.FireCTA();
         else
             OpenStoreStatic(true);
-    }
-
-    static void PlayParticles(ParticleSystem particles)
-    {
-        if (particles == null)
-            return;
-
-        if (!particles.gameObject.activeSelf)
-            particles.gameObject.SetActive(true);
-
-        particles.Play();
     }
 
     void OpenStore()

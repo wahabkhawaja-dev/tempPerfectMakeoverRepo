@@ -25,46 +25,34 @@ public class Lvl3_NailTrim : MonoBehaviour
 
     void Start()
     {
-        if (Tool != null)
+        Tool.OnMouseDownEvent += () =>
         {
-            Tool.OnMouseDownEvent += () =>
-            {
-                if (thisCol != null)
-                    thisCol.enabled = true;
-            };
+            thisCol.enabled = true;
+        };
 
-            Tool.OnMouseUpEvent += () =>
-            {
-                if (thisCol != null)
-                    thisCol.enabled = false;
-            };
-        }
-
-        if (thisCol != null)
+        Tool.OnMouseUpEvent += () =>
+        {
             thisCol.enabled = false;
+        };
+
+        thisCol.enabled = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        TryTrim(collision);
-    }
-
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        TryTrim(collision);
-    }
-
-    void TryTrim(Collider2D collision)
-    {
-        if (isDone || collision == null || Targets == null)
+        if (isDone)
             return;
 
-        for (int i = 0; i < Targets.Length; i++)
+        if (collision != null)
         {
-            if (Targets[i] != null && collision.gameObject == Targets[i].gameObject)
+            for (int i = 0; i < Targets.Length; i++)
             {
-                TrimNail(i);
-                break;
+                if (collision.gameObject == Targets[i].gameObject)
+                {
+                    TrimNail(i);
+
+                    break;
+                }
             }
         }
     }
@@ -74,62 +62,52 @@ public class Lvl3_NailTrim : MonoBehaviour
         if (isDone)
             return;
 
-        if (NailsStatus != null && index < NailsStatus.Length && NailsStatus[index])
+        if (NailsStatus[index])
             return;
 
-        if (NailsStatus != null && index < NailsStatus.Length)
-            NailsStatus[index] = true;
+        NailsStatus[index] = true;
 
-        if (Targets != null && index < Targets.Length && Targets[index] != null)
-            Targets[index].SetActive(false);
+        Targets[index].SetActive(false);
 
-        if (NailParticles != null && index < NailParticles.Length && NailParticles[index] != null)
-            NailParticles[index].Play();
+        NailParticles[index].Play();
 
-        if (Nails != null && index < Nails.Length && Nails[index] != null)
-        {
-            Nails[index].DOKill();
-            Nails[index].DOFade(0, 1f);
-        }
-
-        try
-        {
-            if (TrimClip != null && AudioController.instance != null)
-                AudioController.instance.PlayAnySfx(1, TrimClip, 0.1f);
-        }
-        catch
-        {
-        }
+        Nails[index].DOKill();
+        Nails[index].DOFade(0, 1f);
 
         DOVirtual.DelayedCall(.51f, () =>
         {
             nailsRemoved++;
 
-            try
-            {
-                if (UI_Manager.instance != null && Targets != null && Targets.Length > 0)
-                    UI_Manager.instance.SetProgressBar((float)nailsRemoved / (float)Targets.Length);
-            }
-            catch
-            {
-            }
+            UI_Manager.instance.SetProgressBar((float)nailsRemoved / (float)Targets.Length);
 
-            if (Targets != null && nailsRemoved >= Targets.Length)
-                FireComplete();
+            if (nailsRemoved >= Targets.Length)
+            {
+                if (Tool.isDragging)
+                {
+                    Tool.OnMouseUpEvent += () =>
+                    {
+                        if (OnComplete != null)
+                            OnComplete.Invoke();
+                    };
+                }
+                else
+                {
+                    if (OnComplete != null)
+                        OnComplete.Invoke();
+                }
+            }
         });
-    }
 
-    void FireComplete()
-    {
-        if (isDone)
-            return;
+        try
+        {
+            if (TrimClip != null)
+                AudioController.instance.PlayAnySfx(1, TrimClip, 0.1f);
 
-        isDone = true;
+            // VibrationManager.instance.MediumImpact();
+        }
+        catch
+        {
+        }
 
-        if (thisCol != null)
-            thisCol.enabled = false;
-
-        if (OnComplete != null)
-            OnComplete.Invoke();
     }
 }

@@ -21,6 +21,7 @@ public class Level3_Manicure_Playable : LevelData
 
     [Space()]
     public BasicDrag ToolStep1;
+    public Transform ToolStep1Body;
 
     [Space()]
     public GameObject ToolStep1Tip;
@@ -43,7 +44,9 @@ public class Level3_Manicure_Playable : LevelData
 
     [Space()]
     public GameObject Tool2Holder;
-    public GameObject Tool2HolderInner;
+
+    [Space()]
+    public GameObject Tool2Indication;
 
     [Space()]
     public BasicDrag ToolStep2;
@@ -63,20 +66,11 @@ public class Level3_Manicure_Playable : LevelData
 
     [Space()]
     public Transform Wipe;
-    public Transform WipeStart;
-    public Transform WipeTarget;
 
     [Space()]
     public Animator BottleAnimator;
-    public SpriteRenderer RemoverBodySR;
-    public Sprite RemoverBodySprite1;
-    public Sprite RemoverBodySprite2;
 
     [Space()]
-    public GameObject Tap_2;
-
-    [Space()]
-    public Transform DropOnWipe_2;
     public SpriteRenderer SpreadOnWipe_2;
 
     [Space()]
@@ -175,7 +169,7 @@ public class Level3_Manicure_Playable : LevelData
         CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
 
         ToolStep1.transform.DOKill();
-        ToolStep1.transform.DOLocalMoveX(1f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep1.transform.DOLocalMoveX(0.3f, .5f).SetDelay(1f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep1.gameObject, true);
 
@@ -212,9 +206,20 @@ public class Level3_Manicure_Playable : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step1_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step1_Comp");
         }
         catch { }
+    }
+
+    public void PrespectiveL_1()
+    {
+        ToolStep1Body.localScale = new Vector3(-1f, 1f, 1f);
+    }
+
+    public void PrespectiveR_1()
+    {
+        ToolStep1Body.localScale = new Vector3(1f, 1f, 1f);
     }
 
     void ForceCompleteStep1()
@@ -228,8 +233,6 @@ public class Level3_Manicure_Playable : LevelData
 
     bool isStep2Done;
 
-    int tapsDone = 0;
-
     void StartStep2()
     {
         AdvanceProgressIcon();
@@ -240,65 +243,33 @@ public class Level3_Manicure_Playable : LevelData
         Tool2Holder.transform.DOKill();
         Tool2Holder.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
         {
-            Wipe.DOKill();
-            Wipe.DOMove(WipeTarget.position, 1f).OnComplete(() =>
-            {
-                Tap_2.SetActive(true);
-            });
+            BottleTap();
         });
 
         UpdateHandBonesTip(ToolStep2Tip);
     }
 
-    public void BottleTap()
+    void BottleTap()
     {
         BottleAnimator.enabled = true;
-        BottleAnimator.Play("Drop", 0, 0f);
 
-        if (tapsDone == 0)
+        if (makeupRemoverSfx != null)
+            AudioController.instance.PlayAnySfx(0, makeupRemoverSfx, 0f);
+
+        DOVirtual.DelayedCall(0.5f, () =>
         {
-            tapsDone++;
+            AudioController.instance.PlayAnySfx(1, makeupRemoverSfx, 0f);
+            SpreadOnWipe_2.DOKill();
+            SpreadOnWipe_2.DOFade(1f, 2f);
 
-            if (makeupRemoverSfx != null)
-                AudioController.instance.PlayAnySfx(0, makeupRemoverSfx, 0f);
-
-            DOVirtual.DelayedCall(0.5f, () =>
-            {
-                DropOnWipe_2.DOKill();
-                DropOnWipe_2.DOScale(1f, 1f);
-
-                RemoverBodySR.sprite = RemoverBodySprite1;
-            });
-
-            Tap_2.SetActive(false);
-
-            Invoke(nameof(BottleTap), 0.7f);
-        }
-
-        else
-        {
-            if (makeupRemoverSfx != null)
-                AudioController.instance.PlayAnySfx(0, makeupRemoverSfx, 0f);
-
-            DOVirtual.DelayedCall(0.5f, () =>
-            {
-                DropOnWipe_2.DOKill();
-                DropOnWipe_2.DOScale(1.5f, 1f);
-
-                SpreadOnWipe_2.DOKill();
-                SpreadOnWipe_2.DOFade(1f, 1f);
-
-                Invoke(nameof(Drop2Done), 1f);
-
-                RemoverBodySR.sprite = RemoverBodySprite2;
-            });
-        }
+            Invoke(nameof(Drop2Done), 2f);
+        });
     }
 
     void Drop2Done()
     {
         Wipe.DOKill();
-        Wipe.DOLocalMove(new Vector3(2.05f, 1.78f, 0f), 1f).SetDelay(.5f).OnComplete(() =>
+        Wipe.DOLocalMove(new Vector3(2f, 1f, 0f), 1f).SetDelay(.5f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep2.gameObject, true);
 
@@ -311,10 +282,14 @@ public class Level3_Manicure_Playable : LevelData
 
                 ToolStep2ToolRotate.enabled = true;
             };
+
+            Tool2Indication.SetActive(true);
         });
 
-        Tool2HolderInner.transform.DOKill();
-        Tool2HolderInner.transform.DOLocalMoveX(-10, 1f);
+        BottleAnimator.enabled = false;
+
+        BottleAnimator.transform.DOKill();
+        BottleAnimator.transform.DOLocalMoveX(-10, 1f);
 
         CameraController.Instance.MoveCamera(ZoomStep2B.CameraPos, ZoomStep2B.CameraFOV);
     }
@@ -325,6 +300,8 @@ public class Level3_Manicure_Playable : LevelData
             return;
 
         isStep2Done = true;
+
+        Tool2Indication.SetActive(false);
 
         ToolStep2ToolRotate.enabled = false;
 
@@ -341,7 +318,8 @@ public class Level3_Manicure_Playable : LevelData
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step2_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step2_Comp");
         }
         catch { }
     }
@@ -366,7 +344,7 @@ public class Level3_Manicure_Playable : LevelData
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
         ToolStep3.transform.DOKill();
-        ToolStep3.transform.DOLocalMoveX(0.65f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep3.transform.DOLocalMoveX(0.75f, .5f).SetDelay(1f).OnComplete(() =>
         {
             ToolInputToggle(ToolStep3.gameObject, true);
 
@@ -391,8 +369,7 @@ public class Level3_Manicure_Playable : LevelData
             Indications_3[i].SetActive(false);
         }
 
-        if (ToolStep3CameraFollow != null)
-            ToolStep3CameraFollow.enabled = false;
+        ToolStep3CameraFollow.enabled = false;
 
         ToolInputToggle(ToolStep3.gameObject, false);
 
@@ -404,11 +381,14 @@ public class Level3_Manicure_Playable : LevelData
             ToolStep3.gameObject.SetActive(false);
         });
 
+
+        CameraController.Instance.MoveCamera(MainZoom.CameraPos, MainZoom.CameraFOV);
         Invoke(nameof(LevelComplete), 1f);
 
         try
         {
-            Statics.GA_CustomStringEvent(levelName + "_Step3_Comp");
+            // Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+            //     + "_" + levelName + "_Step3_Comp");
         }
         catch { }
     }

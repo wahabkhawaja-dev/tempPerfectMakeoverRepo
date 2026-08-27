@@ -80,7 +80,7 @@ public class Lvl3_PlaceItem : MonoBehaviour
             if (PlaceClip != null)
                 AudioController.instance.PlayAnySfx(2, PlaceClip, 0.4f);
 
-            
+            // VibrationManager.instance.MediumImpact();
         }
         catch
         {

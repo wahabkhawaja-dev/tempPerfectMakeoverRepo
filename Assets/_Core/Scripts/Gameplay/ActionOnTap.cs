@@ -1,26 +1,21 @@
+using System;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.Events;
 
 public class ActionOnTap : MonoBehaviour
 {
     [Space()]
     public UnityEvent OnTap;
+    
+    [Space()]
+    public Action OnTapExtra;
 
     bool isDone;
-    Collider2D thisCollider;
+    bool extraCalled = false;
 
-    void Start()
-    {
-        thisCollider = GetComponent<Collider2D>();
-    }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(thisCollider))
-            MouseDownPressed();
-    }
-
-    void MouseDownPressed()
+    public void OnMouseDown()
     {
         if (GameManager.instance.isOverUI())
             return;
@@ -29,11 +24,28 @@ public class ActionOnTap : MonoBehaviour
             return;
 
         if (isDone)
+        {
+            if (extraCalled)
+                return;
+            
+            extraCalled = true;
+
+            if (OnTapExtra != null)
+                OnTapExtra.Invoke();
+
+            DOVirtual.DelayedCall(.5f, () =>
+            {
+                extraCalled = false;
+            });
+
             return;
+        }
 
         isDone = true;
 
         if (OnTap != null)
             OnTap.Invoke();
+
+        // VibrationManager.instance.MediumImpact();
     }
 }

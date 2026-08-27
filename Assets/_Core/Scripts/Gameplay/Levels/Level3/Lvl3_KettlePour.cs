@@ -62,6 +62,9 @@ public class Lvl3_KettlePour : MonoBehaviour
     [Space()]
     public GameObject Indication;
 
+
+    public GameObject fillingSfx;
+
     bool particleStarted;
     bool isHolding;
     bool isPouring;
@@ -71,7 +74,6 @@ public class Lvl3_KettlePour : MonoBehaviour
     float startRotZ;
 
     SpriteRenderer waterfallSR;
-    Collider2D thisCollider;
 
     void Awake()
     {
@@ -80,8 +82,6 @@ public class Lvl3_KettlePour : MonoBehaviour
 
         if (Waterfall != null)
             waterfallSR = Waterfall.GetComponent<SpriteRenderer>();
-
-        thisCollider = GetComponent<Collider2D>();
     }
 
     void Start()
@@ -102,15 +102,13 @@ public class Lvl3_KettlePour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (PointerInput.IsOverCollider(thisCollider))
-                MouseDownPressed();
-        }
-
-        // finger lifted, whether still over the collider or not
+        // safety: finger lifted outside the collider
         if (isHolding && !Input.GetMouseButton(0))
-            MouseUpPressed();
+        {
+            isHolding = false;
+
+            StopPour();
+        }
 
         if (!isPouring || isDone)
             return;
@@ -138,7 +136,7 @@ public class Lvl3_KettlePour : MonoBehaviour
 
     #region INPUT
 
-    void MouseDownPressed()
+    void OnMouseDown()
     {
         if (isDone)
             return;
@@ -154,7 +152,7 @@ public class Lvl3_KettlePour : MonoBehaviour
         StartPour();
     }
 
-    void MouseUpPressed()
+    void OnMouseUp()
     {
         if (!isHolding)
             return;
@@ -181,7 +179,7 @@ public class Lvl3_KettlePour : MonoBehaviour
             BeginStream();
         });
 
-        
+        // VibrationManager.instance.MediumImpact();
 
         if (Indication != null)
             Indication.SetActive(false);
@@ -201,7 +199,10 @@ public class Lvl3_KettlePour : MonoBehaviour
     void BeginStream()
     {
         isPouring = true;
-
+        fillingSfx.SetActive(true);
+        fillingSfx.GetComponent<AudioSource>().DOFade(1f, .5f).OnComplete(() =>
+        {
+        });
         if (Waterfall != null)
             Waterfall.SetActive(true);
 
@@ -219,7 +220,11 @@ public class Lvl3_KettlePour : MonoBehaviour
         // cut the stream instantly, let the splash finish on its own
         if (waterfallSR != null)
             waterfallSR.enabled = false;
-
+        fillingSfx.GetComponent<AudioSource>().DOKill();
+        fillingSfx.GetComponent<AudioSource>().DOFade(0f, .5f).OnComplete(() =>
+        {
+            fillingSfx.SetActive(false);
+        });
         if (Shower != null)
             Shower.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 

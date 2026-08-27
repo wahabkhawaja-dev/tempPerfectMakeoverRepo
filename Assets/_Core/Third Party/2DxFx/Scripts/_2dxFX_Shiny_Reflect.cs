@@ -67,32 +67,26 @@ public class _2dxFX_Shiny_Reflect : MonoBehaviour
 		if (ShinyLightCurve.length == 0) 
 		{
 			ShinyLightCurve.AddKey (7.780734E-06f, -0.4416301f);
-			ShinyLightCurve.keys [0].tangentMode = 0;
 			ShinyLightCurve.keys [0].inTangent = 0f;
 			ShinyLightCurve.keys [0].outTangent = 0f;
 		
 			ShinyLightCurve.AddKey (0.4310643f, 1.113406f);
-			ShinyLightCurve.keys [1].tangentMode = 0;
 			ShinyLightCurve.keys [1].inTangent = 0.2280953f;
 			ShinyLightCurve.keys [1].outTangent = 0.2280953f;
 		
 			ShinyLightCurve.AddKey (0.5258899f, 1.229086f);
-			ShinyLightCurve.keys [2].tangentMode = 0;
 			ShinyLightCurve.keys [2].inTangent = -0.1474274f;
 			ShinyLightCurve.keys [2].outTangent = -0.1474274f;
 		
 			ShinyLightCurve.AddKey (0.6136486f, 1.113075f);
-			ShinyLightCurve.keys [3].tangentMode = 0;
 			ShinyLightCurve.keys [3].inTangent = 0.005268873f;
 			ShinyLightCurve.keys [3].outTangent = 0.005268873f;
 		
 			ShinyLightCurve.AddKey (0.9367767f, -0.4775873f);
-			ShinyLightCurve.keys [4].tangentMode = 0;
 			ShinyLightCurve.keys [4].inTangent = -3.890693f;
 			ShinyLightCurve.keys [4].outTangent = -3.890693f;
 		
 			ShinyLightCurve.AddKey (1.144408f, -0.4976555f);
-			ShinyLightCurve.keys [5].tangentMode = 0;
 			ShinyLightCurve.keys [5].inTangent = 0f;
 			ShinyLightCurve.keys [5].outTangent = 0f;
 		

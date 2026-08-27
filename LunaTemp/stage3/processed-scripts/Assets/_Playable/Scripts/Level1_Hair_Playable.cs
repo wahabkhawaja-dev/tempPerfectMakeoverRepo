@@ -242,6 +242,7 @@ public class Level1_Hair_Playable : LevelData
         isStep1Done = true;
 
         SetProgressBar();
+        GameManagerPlayable.PlayStepComplete();
 
         { PlayableFadeCover.Cover(); ForceCompleteStep2(); Invoke(nameof(StartStep3), 0.25f); PlayableFadeCover.Reveal(); }
 
@@ -299,6 +300,7 @@ public class Level1_Hair_Playable : LevelData
         step2Complete = true;
 
         SetProgressBar();
+        GameManagerPlayable.PlayStepComplete();
 
         camFollowStep2.enabled = false;
 
@@ -361,6 +363,7 @@ public class Level1_Hair_Playable : LevelData
 
         step2bComplete = true;
         SetProgressBar();
+        GameManagerPlayable.PlayStepComplete();
 
         camFollowStep2b.enabled = false;
 
@@ -479,6 +482,7 @@ public class Level1_Hair_Playable : LevelData
         step3Complete = true;
 
         SetProgressBar();
+        GameManagerPlayable.PlayStepComplete();
 
         ToolStep3.transform.DOKill();
         ToolStep3.transform.DOLocalMoveX(15f, 1f).OnComplete(() =>
@@ -546,6 +550,7 @@ public class Level1_Hair_Playable : LevelData
         step4Complete = true;
 
         SetProgressBar();
+        GameManagerPlayable.PlayStepComplete();
 
         camFollowStep4.enabled = false;
 
@@ -654,6 +659,7 @@ public class Level1_Hair_Playable : LevelData
 
         step5Complete = true;
         SetProgressBar();
+        GameManagerPlayable.PlayStepComplete();
 
         camFollowStep5.enabled = false;
 

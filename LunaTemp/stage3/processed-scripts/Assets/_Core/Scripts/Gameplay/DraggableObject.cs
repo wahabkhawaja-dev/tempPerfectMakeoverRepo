@@ -204,7 +204,11 @@ public class DraggableObject : MonoBehaviour
     {
 
         float progress = (float)completedTargets.Count / dropTargets.Count;
-        UI_Manager.instance.SetProgressBar(progress);
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            UI_Manager.instance.SetProgressBar(progress);
+        });
+           
 
         if (completedTargets.Count >= dropTargets.Count)
         {
@@ -247,7 +251,8 @@ public class DraggableObject : MonoBehaviour
         if (hitSfx && AudioController.instance)
             AudioController.instance.PlayAnySfx(0, hitSfx, 0);
 
-            
+        // if (VibrationManager.instance)
+        //     VibrationManager.instance.MediumImpact();
 
         DispenseDrop(targetPos);
 
@@ -305,7 +310,7 @@ public class DraggableObject : MonoBehaviour
             return true;
         }
 
-        if (EventSystem.current != null && Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                 return true;
