@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "27Aug2026_Level_3_1_Step_1to3",
+    "creativeName": "28Aug2026_Level_3_1_Step_1to3",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -32698,7 +32698,7 @@
                 "instanceMethods": [
                     {
                         "name": "Go",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -33469,124 +33469,6 @@
                     {
                         "name": "LunaDirect",
                         "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Level1_Hair_Playable",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "TrashThrownStep1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "BubbelGumPicked",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Step1Complete",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ForceCompleteStep1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep2",
-                        "excluded": true
-                    },
-                    {
-                        "name": "AllBugsKilled",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Step2Complete",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ForceCompleteStep2",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep2b",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Step2bComplete",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ForceCompleteStep2b",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep3",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ShampooBottlePressed",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Step3Complete",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ForceCompleteStep3",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep4",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Hidestep4Indication",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Step4Complete",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ForceCompleteStep4",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep5",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IsShowerFixed",
-                        "excluded": true
-                    },
-                    {
-                        "name": "showInd",
-                        "excluded": true
-                    },
-                    {
-                        "name": "hideInd",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Step5Complete",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ForceCompleteStep5",
-                        "excluded": true
                     }
                 ]
             },
