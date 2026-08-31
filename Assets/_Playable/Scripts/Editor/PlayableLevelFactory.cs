@@ -62,6 +62,40 @@ public static class PlayableLevelFactory
         public string Error;
         public bool HasInnerLevels;
         public string InnerNote;
+
+        /// <summary>Source prefab of the Fix-It inner level this one hops into (Level{L}_{P}), if any.</summary>
+        public string InnerPrefabPath;
+
+        /// <summary>Step whose StartStepN() gates on Is...Fixed() — where the Fix-It button lives.</summary>
+        public int FixStep;
+    }
+
+    /// <summary>How a build treats the level's inner Fix-It level.</summary>
+    public enum InnerMode
+    {
+        /// <summary>Cut it out: gates flattened to "already fixed", hop methods and objects deleted.</summary>
+        Exclude,
+
+        /// <summary>This IS the outer level: keep the Fix-It button, hop into the inner level in-scene.</summary>
+        Outer,
+
+        /// <summary>This IS the inner level: its return-hop comes back to the outer level in-scene.</summary>
+        Inner,
+
+        /// <summary>
+        /// Keep the Fix-It button exactly as the level ships it, but tapping it fires the store
+        /// CTA instead of entering the inner level — so the inner level itself is never built.
+        /// </summary>
+        CtaOnFix
+    }
+
+    /// <summary>The [Header] a level puts above its Fix-It gate fields ("... FIX GATE ...").</summary>
+    const string GateHeaderPattern = @"\[Header\(""[^""]*FIX[^""]*""\)\]";
+
+    /// <summary>Modes where the Fix-It button and its damaged art stay in the playable.</summary>
+    static bool KeepsFixItButton(InnerMode mode)
+    {
+        return mode == InnerMode.Outer || mode == InnerMode.CtaOnFix;
     }
 
     public class BuildResult
@@ -71,6 +105,9 @@ public static class PlayableLevelFactory
         public string ScriptPath;
         public string Log;
         public string Error;
+
+        /// <summary>Built inner Fix-It playable prefab, when the build included one.</summary>
+        public string InnerPrefabPath;
     }
 
     public static string[] ListSourcePrefabs()
@@ -144,10 +181,65 @@ public static class PlayableLevelFactory
         else if (hasSceneHop)
             result.InnerNote = "Return/scene hop detect hui — playable LevelComplete + CTA, dusre level pe nahi jayega.";
 
+        result.InnerPrefabPath = FindInnerPrefabPath(text);
+        result.FixStep = FindFixStep(text);
+
         return result;
     }
 
+    /// <summary>
+    /// The Fix-It hop sets levelToPlay / partToPlay and reloads the scene; those two numbers
+    /// ARE the inner level's prefab name (Level{level}_{part}), so the wizard never has to ask.
+    /// </summary>
+    static string FindInnerPrefabPath(string text)
+    {
+        var m = Regex.Match(
+            text,
+            @"levelToPlay\s*=\s*(\d+)\s*;[\s\S]{0,400}?partToPlay\s*=\s*(\d+)\s*;[\s\S]{0,800}?LoadScene");
+        if (!m.Success)
+            return null;
+
+        string path = LevelsRoot + "/Level" + m.Groups[1].Value + "_" + m.Groups[2].Value + ".prefab";
+        return File.Exists(ToFull(path)) ? path : null;
+    }
+
+    /// <summary>The step that shows the Fix-It button: its StartStepN() gates on Is...Fixed().</summary>
+    static int FindFixStep(string text)
+    {
+        foreach (Match m in Regex.Matches(
+                     text,
+                     @"^    (?:public |private |protected |internal )?(?:static )?void\s+StartStep(\d+)\s*\(\s*\)\s*\{",
+                     RegexOptions.Multiline))
+        {
+            int open = m.Index + m.Length - 1;
+            int close = FindMatchingBrace(text, open);
+            if (close < 0)
+                continue;
+
+            if (Regex.IsMatch(text.Substring(open, close - open + 1), @"\bIs\w+Fixed\s*\("))
+                return int.Parse(m.Groups[1].Value);
+        }
+
+        return 0;
+    }
+
     public static BuildResult Build(string sourcePrefabPath, IList<int> keepSteps, bool placeInScene)
+    {
+        return Build(sourcePrefabPath, keepSteps, placeInScene, InnerMode.Exclude, null);
+    }
+
+    /// <summary>
+    /// <paramref name="mode"/> decides what happens to the level's Fix-It inner level:
+    /// cut it out (the old behaviour), or keep it and swap in-scene via PlayableInnerLevel.
+    /// <paramref name="innerBuiltPrefab"/> is the already-built inner playable prefab, wired
+    /// into the scene alongside this one when placeInScene is on.
+    /// </summary>
+    public static BuildResult Build(
+        string sourcePrefabPath,
+        IList<int> keepSteps,
+        bool placeInScene,
+        InnerMode mode,
+        string innerBuiltPrefab)
     {
         var log = new List<string>();
         var result = new BuildResult();
@@ -175,7 +267,7 @@ public static class PlayableLevelFactory
 
             string destScript = PlayableScripts + "/" + playableClass + ".cs";
             string sourceText = File.ReadAllText(ToFull(scan.ScriptPath));
-            string playableText = RewriteScript(sourceText, scan.ClassName, playableClass, keep, first, last, log);
+            string playableText = RewriteScript(sourceText, scan.ClassName, playableClass, keep, first, last, mode, scan.FixStep, log);
 
             File.WriteAllText(ToFull(destScript), playableText);
             AssetDatabase.ImportAsset(destScript, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
@@ -211,7 +303,7 @@ public static class PlayableLevelFactory
 
             AssetDatabase.ImportAsset(destPrefab, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
 
-            TrimPrefab(destPrefab, ordered, log);
+            TrimPrefab(destPrefab, ordered, mode, log);
             AssetDatabase.SaveAssets();
 
             AttachCtaComponent(destPrefab, log);
@@ -219,10 +311,11 @@ public static class PlayableLevelFactory
             EditorPrefs.SetString(LastPrefabPref, destPrefab);
 
             if (placeInScene)
-                PlayableEditorMenu.SwapSceneLevel(destPrefab);
+                PlayableEditorMenu.SwapSceneLevel(destPrefab, innerBuiltPrefab);
 
             result.Ok = true;
             result.PrefabPath = destPrefab;
+            result.InnerPrefabPath = innerBuiltPrefab;
             result.ScriptPath = destScript;
             result.Log = string.Join("\n", log);
             Debug.Log("[Playable] Built " + destPrefab + " steps [" + string.Join(",", ordered) + "]\n" + result.Log);
@@ -245,6 +338,8 @@ public static class PlayableLevelFactory
         HashSet<int> keep,
         int first,
         int last,
+        InnerMode mode,
+        int fixStep,
         List<string> log)
     {
         text = Regex.Replace(
@@ -253,17 +348,158 @@ public static class PlayableLevelFactory
             "class " + playableClass);
         log.Add("Class → " + playableClass);
 
-        text = RewriteStart(text, keep, first, last, log);
+        text = RewriteStart(text, keep, first, last, mode == InnerMode.Outer ? fixStep : 0, log);
         text = FixStepChaining(text, keep, last, log);
         var hideDecls = CaptureHideFieldDecls(text, last);
-        text = StripUnusedStepScript(text, keep, first, last, log);
+        text = StripUnusedStepScript(text, keep, first, last, KeepsFixItButton(mode), log);
         text = RestoreHideFieldDecls(text, hideDecls);
-        text = ExcludeInnerLevels(text, log);
+        if (mode == InnerMode.Exclude)
+            text = ExcludeInnerLevels(text, log);
+        else
+            text = KeepInnerLevels(text, mode, log);
         text = StripSaveSystem(text, log);
         text = RedirectLoadingManagerFades(text, log);
         text = Regex.Replace(text, @"(\r?\n){3,}", "\n\n");
         log.Add("Keeping steps [" + string.Join(",", keep.OrderBy(s => s)) + "], layers through step " + (last + 1) + ".");
         return text;
+    }
+
+    /// <summary>
+    /// The opposite of ExcludeInnerLevels: the Fix-It button (and, in Outer mode, its inner
+    /// level) stay in the playable exactly as the level ships them. Only the scene reloads have
+    /// to go, since a playable is a single scene — Enter() hops into the inner level, Return()
+    /// comes back, and CtaOnFix sends the tap to the store instead.
+    /// </summary>
+    static string KeepInnerLevels(string text, InnerMode mode, List<string> log)
+    {
+        if (KeepsFixItButton(mode))
+        {
+            // RemoteManager is the live game's kill-switch for inner levels and its playable
+            // stub answers false ("already fixed"), which would hide the Fix-It button again.
+            int gates = 0;
+            text = Regex.Replace(
+                text,
+                @"RemoteManager\.Instance\.FixInnerLevel\s*\(\s*\)",
+                m => { gates++; return "true"; });
+            if (gates > 0)
+                log.Add("RemoteManager.FixInnerLevel() -> true (" + gates + ") — Fix-It gate stays live.");
+        }
+
+        string call;
+        if (mode == InnerMode.CtaOnFix)
+            call = "PlayableCTA.FireNow();";
+        else if (mode == InnerMode.Outer)
+            call = "PlayableInnerLevel.Enter();";
+        else
+            call = "PlayableInnerLevel.Return();";
+
+        // CtaOnFix ends the playable on the button, so the button has to stay on screen for
+        // every further tap. Anything in the hop that dismissed the prompt has to go with the hop.
+        return RewireInnerHops(text, call, mode == InnerMode.CtaOnFix, log);
+    }
+
+    /// <summary>
+    /// Every method that reloads the scene is a Fix-It hop. Swap the reload for the in-scene
+    /// swap and drop the two things that only existed to survive it: the levelToPlay /
+    /// partToPlay handoff (PlayableInnerLevel names the level instead) and the loading fade
+    /// (PlayableFadeCover does that, on the same image — two of them would fight).
+    /// </summary>
+    static string RewireInnerHops(string text, string call, bool keepPromptVisible, List<string> log)
+    {
+        var rx = new Regex(
+            @"^    (?:public |private |protected |internal )?(?:static )?[\w.<>,\[\]]+\s+(\w+)\s*\([^;{]*\)\s*\{",
+            RegexOptions.Multiline);
+        var matches = rx.Matches(text);
+        int n = 0;
+
+        for (int i = matches.Count - 1; i >= 0; i--)
+        {
+            var m = matches[i];
+            int open = m.Index + m.Length - 1;
+            int close = FindMatchingBrace(text, open);
+            if (close < 0)
+                continue;
+
+            string body = text.Substring(open, close - open + 1);
+            if (body.IndexOf("LoadScene", StringComparison.Ordinal) < 0)
+                continue;
+
+            string next = Regex.Replace(
+                body,
+                @"(?:UnityEngine\.SceneManagement\.)?SceneManager\.LoadScene\s*\(\s*(?:UnityEngine\.SceneManagement\.)?SceneManager\.GetActiveScene\s*\(\s*\)\s*\.buildIndex\s*\)\s*;",
+                call);
+            next = Regex.Replace(
+                next,
+                @"(?:UnityEngine\.SceneManagement\.)?SceneManager\.LoadScene\s*\([^()]*\)\s*;",
+                call);
+            next = Regex.Replace(
+                next,
+                @"^[ \t]*SaveSystem\.Instance\.DataFields\.(?:levelToPlay|partToPlay)\s*=\s*\d+\s*;[ \t]*\r?\n",
+                string.Empty,
+                RegexOptions.Multiline);
+            next = Regex.Replace(
+                next,
+                @"^[ \t]*(?:LoadingManager\.instance\.ShowFadeAnim|UI_Manager\.instance\.FadeAnim)\s*\([^;]*;[ \t]*\r?\n",
+                string.Empty,
+                RegexOptions.Multiline);
+
+            if (keepPromptVisible)
+                next = KeepFixItPromptOnScreen(next);
+
+            // The delays that are left only existed to let the loading fade play before the
+            // reload. PlayableFadeCover covers the swap itself, so an otherwise-empty
+            // DelayedCall is just dead screen time — unwrap it (twice: they nest).
+            for (int pass = 0; pass < 2; pass++)
+                next = Regex.Replace(
+                    next,
+                    @"DOVirtual\.DelayedCall\s*\(\s*[\d.]+f?\s*,\s*\(\s*\)\s*=>\s*\{\s*" +
+                    Regex.Escape(call) + @"\s*\}\s*\)\s*;",
+                    call);
+
+            if (next == body)
+                continue;
+
+            text = text.Substring(0, open) + next + text.Substring(close + 1);
+            n++;
+            log.Add("  - " + m.Groups[1].Value + "() scene reload -> " + call);
+        }
+
+        if (n > 0)
+            log.Add("Fix-It button KEPT — " + n + " hop(s) rewired to " + call +
+                    (keepPromptVisible ? " (prompt stays on screen for re-taps)." : "."));
+        else
+            log.Add("Fix-It button KEPT, but no scene-reload hop found to rewire — check the level script.");
+
+        return text;
+    }
+
+    /// <summary>
+    /// Strip the prompt dismissal out of a Fix-It hop: the SetActive(false) calls and the
+    /// DOTween reverse that made the prompt shrink away once tapped. With the CTA on that
+    /// button the level ends there, so the prompt must stay put and take every further tap —
+    /// PlayableCTA.refireOnEveryTap re-opens the store each time. The click SFX stays.
+    /// </summary>
+    static string KeepFixItPromptOnScreen(string body)
+    {
+        body = Regex.Replace(
+            body,
+            @"[ \t]*\w*[Ff]ix[Ii]t\w*\.(?:gameObject\.)?SetActive\s*\(\s*false\s*\)\s*;[ \t]*\r?\n?",
+            string.Empty);
+
+        // e.g. fixItPrompt.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+        body = Regex.Replace(
+            body,
+            @"[ \t]*\w*[Ff]ix[Ii]t\w*\.[^;\r\n]*\bDOPlayBackwards\s*\(\s*\)\s*;[ \t]*\r?\n?",
+            string.Empty);
+
+        // Whatever wrapper those lines were the only body of is now dead weight.
+        for (int pass = 0; pass < 2; pass++)
+            body = Regex.Replace(
+                body,
+                @"[ \t]*DOVirtual\.DelayedCall\s*\(\s*[\d.]+f?\s*,\s*\(\s*\)\s*=>\s*\{\s*\}\s*\)\s*;[ \t]*\r?\n?",
+                string.Empty);
+
+        return body;
     }
 
     static readonly HashSet<string> InnerExcludeKeepMethods = new HashSet<string>
@@ -479,7 +715,7 @@ public static class PlayableLevelFactory
         return text;
     }
 
-    static string RewriteStart(string text, HashSet<int> keep, int first, int last, List<string> log)
+    static string RewriteStart(string text, HashSet<int> keep, int first, int last, int resumeStep, List<string> log)
     {
         var m = Regex.Match(text, @"IEnumerator\s+Start\s*\(\s*\)\s*\{");
         if (!m.Success)
@@ -554,6 +790,32 @@ public static class PlayableLevelFactory
         boot.Append(keptLines);
         if (!keptLines.ToString().EndsWith(nl + nl))
             boot.Append(nl);
+
+        // Coming back from the inner Fix-It level there is no stepsDone to resume from (the
+        // scene never reloaded), so PlayableInnerLevel.Resuming stands in for it: boot the
+        // Fix-It step through the very same case the original switch used for it.
+        string resumeForce = null;
+        string resumeInvoke = null;
+        if (resumeStep > 0 && resumeStep != first)
+            ResolveSwitchBoot(body, text, resumeStep, out resumeForce, out resumeInvoke);
+
+        if (resumeInvoke != null)
+        {
+            boot.Append("        // PLAYABLE: back from the inner Fix-It level — boot straight into that step.").Append(nl);
+            boot.Append("        if (PlayableInnerLevel.Resuming)").Append(nl);
+            boot.Append("        {").Append(nl);
+            boot.Append("            PlayableInnerLevel.Resuming = false;").Append(nl);
+            // PlayableInnerLevel already faded to black for the swap; re-assert it so the
+            // ForceComplete snap stays hidden, and own the reveal from here.
+            boot.Append("            PlayableFadeCover.Cover();").Append(nl);
+            if (!string.IsNullOrEmpty(resumeForce))
+                boot.Append("            ").Append(resumeForce).Append(nl);
+            boot.Append("            ").Append(resumeInvoke).Append(nl);
+            boot.Append("            PlayableFadeCover.Reveal();").Append(nl);
+            boot.Append("            yield break;").Append(nl);
+            boot.Append("        }").Append(nl).Append(nl);
+            log.Add("Start() resume branch added for Fix-It step " + resumeStep + " → " + resumeForce + " " + resumeInvoke);
+        }
 
         boot.Append("        // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.").Append(nl);
         if (!string.IsNullOrEmpty(forceCall))
@@ -968,7 +1230,7 @@ public static class PlayableLevelFactory
         return next;
     }
 
-    static void TrimPrefab(string prefabPath, List<int> orderedKeep, List<string> log)
+    static void TrimPrefab(string prefabPath, List<int> orderedKeep, InnerMode mode, List<string> log)
     {
         var keep = new HashSet<int>(orderedKeep);
         var root = PrefabUtility.LoadPrefabContents(prefabPath);
@@ -1003,7 +1265,10 @@ public static class PlayableLevelFactory
 
             int removed = DestroyUnusedStepObjects(root, keepObjects, lastKept, log);
             removed += DestroyExtraLayerObjects(root, lastKept, log);
-            removed += DestroyInnerLevelObjects(root, log);
+            // Only Exclude cuts the Fix-It art. Outer/CtaOnFix need the button itself, and the
+            // inner level's own objects match the same markers — deleting there guts the level.
+            if (mode == InnerMode.Exclude)
+                removed += DestroyInnerLevelObjects(root, log);
             removed += DestroyUnreferencedScratchCards(root, keepObjects, log);
             int broken = CleanupBrokenPlayableRefs(root, log);
 
@@ -1466,7 +1731,7 @@ public static class PlayableLevelFactory
         return next;
     }
 
-    static string StripUnusedStepScript(string text, HashSet<int> keep, int first, int last, List<string> log)
+    static string StripUnusedStepScript(string text, HashSet<int> keep, int first, int last, bool keepFixGate, List<string> log)
     {
         var keepScript = new HashSet<int>(keep);
         for (int s = 1; s < first; s++)
@@ -1485,7 +1750,7 @@ public static class PlayableLevelFactory
             if (keepScript.Contains(step))
                 continue;
             text = RemoveStepRegion(text, step);
-            text = RemoveStepHeaderBlock(text, step);
+            text = RemoveStepHeaderBlock(text, step, keepFixGate);
             log.Add("Script removed step " + step + " region + fields.");
         }
 
@@ -1518,10 +1783,10 @@ public static class PlayableLevelFactory
         return regionRx.Replace(text, string.Empty);
     }
 
-    static string RemoveStepHeaderBlock(string text, int step)
+    static string RemoveStepHeaderBlock(string text, int step, bool keepFixGate)
     {
         int start, end;
-        if (!TryGetStepHeaderRange(text, step, out start, out end))
+        if (!TryGetStepHeaderRange(text, step, out start, out end, keepFixGate))
             return text;
         return text.Remove(start, end - start);
     }
@@ -1535,6 +1800,17 @@ public static class PlayableLevelFactory
     }
 
     static bool TryGetStepHeaderRange(string text, int step, out int start, out int end)
+    {
+        return TryGetStepHeaderRange(text, step, out start, out end, false);
+    }
+
+    /// <summary>
+    /// A step's field block runs to the next STEP header or to Start(). The Fix-It gate's own
+    /// [Header] sits in that gap on some levels, so when the build keeps the Fix-It button the
+    /// range has to stop there too -- otherwise the last dropped step takes the gate's fields
+    /// (fixItPrompt and friends) down with it and the generated script won't compile.
+    /// </summary>
+    static bool TryGetStepHeaderRange(string text, int step, out int start, out int end, bool keepFixGate)
     {
         start = 0;
         end = 0;
@@ -1554,6 +1830,13 @@ public static class PlayableLevelFactory
             relEnd = Math.Min(relEnd, next.Index);
         if (startMethod.Success)
             relEnd = Math.Min(relEnd, startMethod.Index);
+
+        if (keepFixGate)
+        {
+            var gate = Regex.Match(rest, GateHeaderPattern, RegexOptions.IgnoreCase);
+            if (gate.Success)
+                relEnd = Math.Min(relEnd, gate.Index);
+        }
 
         end = start + startMatch.Length + relEnd;
         return true;

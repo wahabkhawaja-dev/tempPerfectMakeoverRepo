@@ -89,11 +89,30 @@ public class Lvl3_WaxMachine_Playable : LevelData
 
     public GameObject TopCoverStep5;
 
+    [Header("----------------- STEP 6 ----------------------")]
+    [Space()]
+    public ZoomPos ZoomStep6;
+
+    public GameObject screwContainer;
+    [Space()]
+    public BasicDrag ToolStep6;
+
+    [Header("----------------- STEP 7 ----------------------")]
+    [Space()]
+    public ZoomPos ZoomStep7;
+
+    public SpriteRenderer blackObject;
+
+    [Space()]
+    public BasicDrag ToolStep7;
+
+    public GameObject downViewWax;
+    public AudioClip onsound;
+    public GameObject[] upSideViewWax;
+    public BD_CameraFollow step7CameraFollow;
+
     IEnumerator Start()
     {
-
-        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
-        PlayableFadeCover.Cover();
 
         base.LevelStart();
 
@@ -106,9 +125,7 @@ public class Lvl3_WaxMachine_Playable : LevelData
         
 
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
-        ForceCompleteStep3();
-        StartStep4();
-        PlayableFadeCover.Reveal();
+        StartStep1();
         yield break;
 }
 
@@ -138,6 +155,8 @@ public class Lvl3_WaxMachine_Playable : LevelData
 
     void StartStep1()
     {
+        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
+       
         for (int i = 0; i < OutlinePulseStep1.Count; i++)
         {
             OutlinePulseStep1[i].EnableAnim();
@@ -161,6 +180,7 @@ public class Lvl3_WaxMachine_Playable : LevelData
         {
             Step1Done();
             UI_Manager.instance.SetProgressBar(1);
+            CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
             ToolStep2.transform.DORotate(new Vector3(0, 0, -5.5f), 0.25f).SetEase(Ease.OutBack);
             ToolStep2.transform.DOLocalMoveX(1.08f, 0.25f).SetEase(Ease.OutBack);
             //  dustParticles.Play();
@@ -200,13 +220,15 @@ public class Lvl3_WaxMachine_Playable : LevelData
             ToolStep1.thisCollider.enabled = false;
         ToolInputToggle(ToolStep1.gameObject, false);
 
+        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
+
         ToolStep1.transform.DOKill();
         ToolStep1.transform.DOLocalMoveX(-10f, 1f).OnComplete(() =>
         {
             ToolStep1.gameObject.SetActive(false);
         });
 
-        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1f); PlayableFadeCover.Reveal(); }
+        Invoke(nameof(StartStep2), 1f);
 
         stepsDone = 1;
 
@@ -237,6 +259,8 @@ public class Lvl3_WaxMachine_Playable : LevelData
 
     void StartStep2()
     {
+        CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
+
         AdvanceProgressIcon();
 
         outCoverPluse.EnableAnim();
@@ -285,7 +309,9 @@ public class Lvl3_WaxMachine_Playable : LevelData
             ToolStep2.gameObject.SetActive(false);
         });
 
-        { PlayableFadeCover.Cover(); ForceCompleteStep3(); Invoke(nameof(StartStep4), 1.2f); PlayableFadeCover.Reveal(); }
+        CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
+
+        Invoke(nameof(StartStep3), 1.2f);
 
         AudioController.instance.PlayAnySfx(0, WhooshSfx, 0f);
 
@@ -319,6 +345,8 @@ public class Lvl3_WaxMachine_Playable : LevelData
     void StartStep3()
     {
         AdvanceProgressIcon();
+        CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
+
         ToolStep3.transform.DOKill();
         ToolStep3.transform.DOLocalMoveX(0, .5f).SetDelay(.5f).OnComplete(() =>
         {
@@ -343,6 +371,7 @@ public class Lvl3_WaxMachine_Playable : LevelData
         });
 
         UI_Manager.instance.SetProgressBar(1);
+        CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
         Invoke(nameof(StartStep3A), 2f);
 
 /*        DOVirtual.DelayedCall(1f, () =>
@@ -395,6 +424,8 @@ public class Lvl3_WaxMachine_Playable : LevelData
 
     void StartStep3A()
     {
+        CameraController.Instance.MoveCamera(ZoomStep3A.CameraPos, ZoomStep3A.CameraFOV);
+
         AdvanceProgressIcon();
 
         indicationStep3A.SetActive(true);
@@ -642,7 +673,7 @@ public class Lvl3_WaxMachine_Playable : LevelData
         CameraController.Instance.MoveCamera(MainZoom.CameraPos, MainZoom.CameraFOV);
         UI_Manager.instance.SetProgressBar(1f, .5f);
         detectStep5.SetActive(false);
-        Invoke(nameof(LevelComplete), 1f);
+        Invoke(nameof(StartStep6), 1f);
 
         stepsDone = 5;
 
@@ -666,5 +697,182 @@ public class Lvl3_WaxMachine_Playable : LevelData
 
     #endregion
 
-    
+    #region STEP 6
+
+    bool isStep6Done;
+
+    void StartStep6()
+    {
+        AdvanceProgressIcon();
+        CameraController.Instance.MoveCamera(ZoomStep6.CameraPos, ZoomStep6.CameraFOV);
+        screwContainer.SetActive(true);
+        ToolStep6.transform.DOKill();
+        DOVirtual.DelayedCall(.5f, () =>
+        {
+            ToolStep6.transform.DOLocalMoveX(0.563f, .5f).SetDelay(1f).OnComplete(() =>
+            {
+                ToolInputToggle(ToolStep6.gameObject, true);
+            });
+        });
+
+    }
+
+    int screw_removedStep6 = 0;
+    int totalScrewsStep6 = 1;
+    public void ScrewRemovedStep6()
+    {
+        if (isStep6Done)
+            return;
+
+        if (screw_removedStep6 >= totalScrewsStep6 - 1)
+        {
+            Step6Done();
+            UI_Manager.instance.SetProgressBar(1);
+            //  dustParticles.Play();
+
+            //     AudioController.instance.PlayAnySfx(3, CoverRotateSfx, 0f);
+
+            return;
+        }
+
+        screw_removedStep6++;
+
+        UI_Manager.instance.SetProgressBar((float)screw_removedStep6 / (float)totalScrewsStep6);
+
+        ToolStep6.gameObject.SetActive(true);
+
+        DOVirtual.DelayedCall(0.1f, () =>
+        {
+            if (!isStep6Done)
+            {
+                ToolStep6.enabled = true;
+                ToolStep6.thisCollider.enabled = true;
+                ToolStep6.canDrag = true;
+            }
+        });
+    }
+
+    public void Step6Done()
+    {
+        if (isStep6Done)
+            return;
+
+        isStep6Done = true;
+        ToolStep6.canDrag = false;
+        ToolStep6.isDragging = false;
+        ToolStep6.enabled = false;
+        if (ToolStep6.thisCollider != null)
+            ToolStep6.thisCollider.enabled = false;
+        ToolInputToggle(ToolStep6.gameObject, false);
+
+        CameraController.Instance.MoveCamera(ZoomStep6.CameraPos, ZoomStep6.CameraFOV);
+
+        ToolStep6.transform.DOKill();
+        ToolStep6.transform.DOLocalMoveX(-10f, 1f).OnComplete(() =>
+        {
+            ToolStep6.gameObject.SetActive(false);
+        });
+
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            UI_Manager.instance.FadeAnim(1f, 1f);
+
+            DOVirtual.DelayedCall(1.1f, () =>
+            {
+                CameraController.Instance.MoveCamera(ZoomStep6.CameraPos, ZoomStep6.CameraFOV, .1f);
+
+                downViewWax.SetActive(false);
+                for (int i = 0; i < upSideViewWax.Length; i++)
+                    upSideViewWax[i].SetActive(true);
+
+                Invoke(nameof(StartStep7), 1.2f);
+            });
+        });
+
+        stepsDone = 6;
+
+        try
+        {
+            Statics.GA_CustomStringEvent(levelName + "_Step6_Comp");
+        }
+        catch { }
+    }
+
+    void ForceCompleteStep6()
+    {
+        ForceCompleteStep5();
+
+        isStep6Done = true;
+
+        ToolStep6.gameObject.SetActive(false);
+
+        downViewWax.SetActive(false);
+
+        for (int i = 0; i < upSideViewWax.Length; i++)
+        {
+            upSideViewWax[i].SetActive(true);
+        }
+    }
+
+    #endregion
+
+    #region STEP 7
+
+    bool isStep7Done;
+
+    void StartStep7()
+    {
+        AdvanceProgressIcon();
+        CameraController.Instance.MoveCamera(ZoomStep7.CameraPos, ZoomStep7.CameraFOV);
+        screwContainer.SetActive(true);
+        ToolStep7.transform.DOKill();
+        ToolStep7.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
+        {
+            ToolInputToggle(ToolStep7.gameObject, true);
+        });
+    }
+
+    public void Step7Done()
+    {
+        if (isStep7Done)
+            return;
+        isStep7Done = true;
+        ToolStep7.canDrag = false;
+        ToolStep7.isDragging = false;
+        ToolStep7.enabled = false;
+        if (ToolStep7.thisCollider != null)
+            ToolStep7.thisCollider.enabled = false;
+        ToolInputToggle(ToolStep7.gameObject, false);
+        CameraController.Instance.MoveCamera(ZoomStep7.CameraPos, ZoomStep7.CameraFOV);
+
+        ToolStep7.transform.DOKill();
+        ToolStep7.transform.DOLocalMoveX(-10f, 1f).OnComplete(() =>
+        {
+            ToolStep7.gameObject.SetActive(false);
+        });
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            AudioController.instance.PlayAnySfx(3, onsound, 0f);
+            blackObject.DOFade(0f, 1f);
+            blackObject.gameObject.SetActive(false);
+
+            stepsDone = 0;
+
+            SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].isCompleted = true;
+            Invoke(nameof(LoadWaxLevelAgian), 1f);
+
+            try
+            {
+                Statics.GA_CustomStringEvent(levelName + "_Step7_Comp");
+            }
+            catch { }
+
+        });
+    }
+    void LoadWaxLevelAgian()
+    {
+
+        PlayableInnerLevel.Return();
+    }
+    #endregion
 }
