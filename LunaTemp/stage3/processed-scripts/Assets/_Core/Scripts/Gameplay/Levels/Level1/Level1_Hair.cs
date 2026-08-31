@@ -1208,6 +1208,16 @@ public class Level1_Hair : LevelData
             ToolStep7.gameObject.SetActive(false);
         });
 
+        PlayerPrefs.SetInt("showerOpend", 0);
+
+        PlayerPrefs.SetInt("CleanShowerPlaced", 0);
+
+        PlayerPrefs.SetInt("showerFixedBack", 0);
+
+        SaveSystem.Instance.DataFields.AllLevels[0].subLevels[4].stepsDone = 0;
+
+        SaveSystem.Instance.DataFields.AllLevels[0].subLevels[4].isCompleted = false;
+
         Invoke(nameof(LevelComplete), 1.2f);
 
         try

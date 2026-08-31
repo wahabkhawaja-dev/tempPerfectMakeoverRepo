@@ -42,12 +42,7 @@ public static class PlayableEditorMenu
     public static void SwapSceneLevel(string prefabPath, string innerPrefabPath)
     {
         var scene = EditorSceneManager.OpenScene(PlayableScene);
-        var existing = Object.FindObjectsOfType<LevelData>(true);
-        for (int i = 0; i < existing.Length; i++)
-        {
-            if (existing[i] != null)
-                Object.DestroyImmediate(existing[i].gameObject);
-        }
+        RemoveExistingLevels(scene);
 
         var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
         if (prefab == null)
@@ -68,6 +63,38 @@ public static class PlayableEditorMenu
         EditorSceneManager.MarkSceneDirty(scene);
         EditorSceneManager.SaveScene(scene);
         Debug.Log("Playable scene now uses " + prefabPath);
+    }
+
+    /// <summary>
+    /// Clear out whatever level is currently in the playable scene.
+    ///
+    /// Deliberately NOT just FindObjectsOfType&lt;LevelData&gt;: the generated level script is
+    /// rewritten by every build, and while it is failing to compile Unity unloads it, so the
+    /// instance sitting in the scene has a missing script and answers to no component query.
+    /// The old level then survives the swap and the new one is added beside it — build a few
+    /// times and the scene ends up holding two or three copies of the same level.
+    /// So also drop any root that came from a prefab under _Playable/Levels, script or no script.
+    /// </summary>
+    static void RemoveExistingLevels(UnityEngine.SceneManagement.Scene scene)
+    {
+        foreach (GameObject root in scene.GetRootGameObjects())
+        {
+            if (root == null)
+                continue;
+
+            bool isLevel = root.GetComponentInChildren<LevelData>(true) != null;
+
+            if (!isLevel)
+            {
+                Object source = PrefabUtility.GetCorrespondingObjectFromOriginalSource(root);
+                string sourcePath = source != null ? AssetDatabase.GetAssetPath(source) : null;
+                isLevel = !string.IsNullOrEmpty(sourcePath) &&
+                          sourcePath.StartsWith(PlayableLevelFactory.PlayableLevels, System.StringComparison.OrdinalIgnoreCase);
+            }
+
+            if (isLevel)
+                Object.DestroyImmediate(root);
+        }
     }
 
     static void WireInnerLevel(GameObject outerPrefab, string innerPrefabPath)

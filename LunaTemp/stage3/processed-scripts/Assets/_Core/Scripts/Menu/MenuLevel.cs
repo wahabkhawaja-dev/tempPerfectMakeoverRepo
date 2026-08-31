@@ -75,8 +75,11 @@ public class MenuLevel : MonoBehaviour
     [Space()]
     public GameObject Hand_Tut1;
 
+    public GameObject Button_Hand;
+
     void Start()
     {
+        Button_Hand.SetActive(false);
         int currentLevelIdx = SaveSystem.Instance.DataFields.levelToPlay - 1;
 
         subLevels = SaveSystem.Instance.DataFields.AllLevels[currentLevelIdx].subLevels;
@@ -347,6 +350,11 @@ public class MenuLevel : MonoBehaviour
             if (BtnsCols[i] != null)
                 BtnsCols[i].enabled = true;
         }
+
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            Button_Hand.SetActive(true);
+        });
 
         // With a Storyboard, the intro calls PlayBtnAnim() when it finishes. Playable builds
         // strip the intro, so nothing would ever run it and the buttons would sit at their

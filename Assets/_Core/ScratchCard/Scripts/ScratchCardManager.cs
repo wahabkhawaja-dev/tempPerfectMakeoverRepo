@@ -64,7 +64,6 @@ namespace ScratchCardAsset
 			Card.Mode = Mode;
 
 			if (Card.Progress == null)
-			if (Card.Progress == null)
 			{
 				var shader = ScratchSurfaceSpriteHasAlpha ? MaskProgressCutOffShader : MaskProgressShader;
 				var progressMaterial = new Material(shader);

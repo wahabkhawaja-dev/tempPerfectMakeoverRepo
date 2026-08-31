@@ -429,39 +429,71 @@ public class PlayableStepWizard : EditorWindow
                 ? PlayableLevelFactory.InnerMode.Outer
                 : PlayableLevelFactory.InnerMode.Exclude;
 
-        EditorUtility.DisplayProgressBar("Playable", "Building selected steps…", 0.4f);
+        if (!wantInner)
+        {
+            BuildOuter(keep, outerMode, null, hasTease, teaseStep);
+            return;
+        }
+
+        var innerScan = PlayableLevelFactory.Scan(_scan.InnerPrefabPath);
+        if (!string.IsNullOrEmpty(innerScan.Error))
+        {
+            _status = "Inner level scan fail: " + innerScan.Error;
+            EditorUtility.DisplayDialog("Playable", _status, "OK");
+            return;
+        }
+
+        PlayableLevelFactory.BuildResult innerBuild;
+        EditorUtility.DisplayProgressBar("Playable", "Building Fix-It inner level…", 0.25f);
         try
         {
-            string innerBuilt = null;
-            if (wantInner)
-            {
-                var innerScan = PlayableLevelFactory.Scan(_scan.InnerPrefabPath);
-                if (!string.IsNullOrEmpty(innerScan.Error))
-                {
-                    _status = "Inner level scan fail: " + innerScan.Error;
-                    EditorUtility.DisplayDialog("Playable", _status, "OK");
-                    return;
-                }
+            innerBuild = PlayableLevelFactory.Build(
+                _scan.InnerPrefabPath,
+                innerScan.Steps,
+                false,
+                PlayableLevelFactory.InnerMode.Inner,
+                null);
+        }
+        finally
+        {
+            EditorUtility.ClearProgressBar();
+        }
 
-                var innerBuild = PlayableLevelFactory.Build(
-                    _scan.InnerPrefabPath,
-                    innerScan.Steps,
-                    false,
-                    PlayableLevelFactory.InnerMode.Inner,
-                    null);
+        if (!innerBuild.Ok)
+        {
+            _status = "Inner level build fail: " + innerBuild.Error + "\n" + innerBuild.Log;
+            EditorUtility.DisplayDialog("Playable", _status, "OK");
+            return;
+        }
 
-                if (!innerBuild.Ok)
-                {
-                    _status = "Inner level build fail: " + innerBuild.Error + "\n" + innerBuild.Log;
-                    EditorUtility.DisplayDialog("Playable", _status, "OK");
-                    return;
-                }
+        // Hand the editor a frame before building the outer level. Shrinking textures flips each
+        // source texture readable and back through SaveAndReimport; running the second build in
+        // this same call reads those textures while the reimport is still settling and throws
+        // "texture data is not readable", which kills that build. A tick is all it needs, and it
+        // keeps the texture pipeline itself untouched.
+        _status = "Inner level ready: " + innerBuild.PrefabPath + " — outer level agle frame pe…";
+        string innerPath = innerBuild.PrefabPath;
+        var keepCopy = new List<int>(keep);
+        EditorApplication.delayCall += delegate
+        {
+            BuildOuter(keepCopy, outerMode, innerPath, hasTease, teaseStep);
+            Repaint();
+        };
+    }
 
-                innerBuilt = innerBuild.PrefabPath;
-            }
-
+    void BuildOuter(
+        List<int> keep,
+        PlayableLevelFactory.InnerMode outerMode,
+        string innerBuilt,
+        bool hasTease,
+        int teaseStep)
+    {
+        EditorUtility.DisplayProgressBar("Playable", "Building selected steps…", 0.6f);
+        try
+        {
             var built = PlayableLevelFactory.Build(
                 _prefabPaths[_sourceIndex], keep, _placeInScene, outerMode, innerBuilt);
+
             if (built.Ok && hasTease)
             {
                 var teaseLog = new List<string>();

@@ -243,6 +243,7 @@ public static class PlayableLevelFactory
     {
         var log = new List<string>();
         var result = new BuildResult();
+        string destPrefab = null;
 
         try
         {
@@ -285,7 +286,7 @@ public static class PlayableLevelFactory
             string prefabName = Path.GetFileNameWithoutExtension(sourcePrefabPath);
             if (prefabName.EndsWith("_Playable", StringComparison.OrdinalIgnoreCase))
                 prefabName = prefabName.Substring(0, prefabName.Length - "_Playable".Length);
-            string destPrefab = PlayableLevels + "/" + prefabName + "_Playable.prefab";
+            destPrefab = PlayableLevels + "/" + prefabName + "_Playable.prefab";
 
             File.Copy(ToFull(sourcePrefabPath), ToFull(destPrefab), true);
             string yaml = File.ReadAllText(ToFull(destPrefab));
@@ -323,6 +324,17 @@ public static class PlayableLevelFactory
         }
         catch (Exception e)
         {
+            // A build that dies partway leaves the WORST possible artifact: the generated script
+            // is already written and the copied prefab already rebound to it, but TrimPrefab threw
+            // before saving, so that prefab is still the untrimmed original. Playing it looks like
+            // a broken level — steps stall, tools take no input — rather than a failed build.
+            // Delete it: a missing prefab is an obvious failure, a poisoned one is not.
+            if (!string.IsNullOrEmpty(destPrefab) && File.Exists(ToFull(destPrefab)))
+            {
+                AssetDatabase.DeleteAsset(destPrefab);
+                log.Add("Half-built prefab deleted: " + destPrefab);
+            }
+
             result.Ok = false;
             result.Error = e.Message;
             result.Log = string.Join("\n", log);
@@ -1425,7 +1437,13 @@ public static class PlayableLevelFactory
                 continue;
             var newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(newPath);
             if (newSprite == null)
-                continue;
+            {
+                // Never skip quietly: skipping means this playable ships the full-size texture,
+                // which is the exact defect the halving exists to prevent and is invisible until
+                // someone notices the build is huge. Fail the build and say which one.
+                throw new Exception(
+                    "Halved sprite could not be loaded, playable would keep the full-size texture: " + newPath);
+            }
 
             float factor;
             if (HalvedTextureShrinkFactor.TryGetValue(newPath, out factor))
@@ -1445,7 +1463,13 @@ public static class PlayableLevelFactory
                 continue;
             var newSprite = AssetDatabase.LoadAssetAtPath<Sprite>(newPath);
             if (newSprite == null)
-                continue;
+            {
+                // Never skip quietly: skipping means this playable ships the full-size texture,
+                // which is the exact defect the halving exists to prevent and is invisible until
+                // someone notices the build is huge. Fail the build and say which one.
+                throw new Exception(
+                    "Halved sprite could not be loaded, playable would keep the full-size texture: " + newPath);
+            }
 
             float factor;
             if (HalvedTextureShrinkFactor.TryGetValue(newPath, out factor))
@@ -1547,12 +1571,129 @@ public static class PlayableLevelFactory
 
         string cached;
         if (HalvedTextureCache.TryGetValue(cacheKey, out cached))
-            return cached;
+        {
+            // A cached path is only trustworthy while that file still exists. The cache is static,
+            // so it outlives the assets: delete the generated prefab and its HalvedTextures folder
+            // (or let a failed build leave half of one behind) and every later build in the same
+            // editor session got handed a path to a file that is gone — LoadAssetAtPath then
+            // returned null and the caller silently kept the FULL-SIZE sprite. Re-create instead.
+            if (string.IsNullOrEmpty(cached) || AssetDatabase.LoadAssetAtPath<Sprite>(cached) != null)
+                return cached;
+
+            HalvedTextureCache.Remove(cacheKey);
+        }
 
         string destPath = CreateHalvedTexture(srcPath, sprite, halvedFolderName, log);
         HalvedTextureCache[cacheKey] = destPath; // cache null too, so we don't retry a failed asset every call
         return destPath;
     }
+
+    /// <summary>
+    /// The crop's pixels, read by decoding the image file ourselves.
+    ///
+    /// The old route flipped the source texture's importer to readable, SaveAndReimport'd, and
+    /// called GetPixels. That is unreliable in THIS project: something (Luna, going by the
+    /// LunaTemp/luna-cache.json lock errors) intermittently holds source .meta files open, the
+    /// meta write fails, isReadable never actually applies, and GetPixels throws "texture data is
+    /// either not readable, corrupted or does not exist" — killing the build inside TrimPrefab
+    /// before the prefab is saved. Decoding the file needs no importer, no reimport and no .meta
+    /// write, so no lock can break it.
+    ///
+    /// The file is usually LARGER than the imported texture (maxTextureSize downscales it — e.g.
+    /// girl_.png is 1126x1553 on disk and imports at 742x1024). The sprite's rect is in imported
+    /// space, so resample to the imported size first; then the rect lines up exactly.
+    /// </summary>
+    static Color[] ReadSourcePixels(
+        string srcPath, Texture2D srcTex, TextureImporter importer, int x, int y, int w, int h)
+    {
+        Texture2D decoded = null;
+        Texture2D scaled = null;
+        try
+        {
+            string full = ToFull(srcPath);
+            if (srcTex != null && srcTex.width > 0 && srcTex.height > 0 && File.Exists(full))
+            {
+                decoded = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                if (decoded.LoadImage(File.ReadAllBytes(full)))
+                {
+                    Texture2D source = decoded;
+                    if (decoded.width != srcTex.width || decoded.height != srcTex.height)
+                    {
+                        scaled = ResampleTexture(decoded, srcTex.width, srcTex.height);
+                        source = scaled;
+                    }
+
+                    return source.GetPixels(x, y, w, h);
+                }
+            }
+        }
+        catch (Exception)
+        {
+            // fall through to the importer route
+        }
+        finally
+        {
+            if (decoded != null)
+                UnityEngine.Object.DestroyImmediate(decoded);
+            if (scaled != null)
+                UnityEngine.Object.DestroyImmediate(scaled);
+        }
+
+        return ReadSourcePixelsViaImporter(srcPath, importer, x, y, w, h);
+    }
+
+    /// <summary>Bilinear resample through a RenderTexture — the same path the halving itself uses.</summary>
+    static Texture2D ResampleTexture(Texture2D source, int width, int height)
+    {
+        var rt = RenderTexture.GetTemporary(width, height, 0, RenderTextureFormat.ARGB32);
+        rt.filterMode = FilterMode.Bilinear;
+
+        var prevActive = RenderTexture.active;
+        Graphics.Blit(source, rt);
+        RenderTexture.active = rt;
+
+        var result = new Texture2D(width, height, TextureFormat.RGBA32, false);
+        result.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        result.Apply();
+
+        RenderTexture.active = prevActive;
+        RenderTexture.ReleaseTemporary(rt);
+
+        return result;
+    }
+
+    /// <summary>Original route, kept for anything ImageConversion cannot decode (.psd, .tga).</summary>
+    static Color[] ReadSourcePixelsViaImporter(
+        string srcPath, TextureImporter importer, int x, int y, int w, int h)
+    {
+        if (importer == null)
+            throw new Exception("No TextureImporter to read pixels from: " + srcPath);
+
+        bool wasReadable = importer.isReadable;
+        if (!wasReadable)
+        {
+            importer.isReadable = true;
+            importer.SaveAndReimport();
+        }
+
+        try
+        {
+            Texture2D tex = AssetDatabase.LoadAssetAtPath<Texture2D>(srcPath);
+            if (tex == null)
+                throw new Exception("Texture could not be loaded for shrinking: " + srcPath);
+
+            return tex.GetPixels(x, y, w, h);
+        }
+        finally
+        {
+            if (!wasReadable)
+            {
+                importer.isReadable = false;
+                importer.SaveAndReimport();
+            }
+        }
+    }
+
 
     static string CreateHalvedTexture(string srcPath, Sprite sprite, string halvedFolderName, List<string> log)
     {
@@ -1590,24 +1731,18 @@ public static class PlayableLevelFactory
         TextureWrapMode originalWrapMode = importer.wrapMode;
         SpriteMeshType originalMeshType = srcSettings.spriteMeshType;
 
-        bool wasReadable = importer.isReadable;
-        if (!wasReadable)
-        {
-            importer.isReadable = true;
-            importer.SaveAndReimport();
-        }
+        Color[] srcPixels = ReadSourcePixels(srcPath, sprite.texture, importer, cropX, cropY, origW, origH);
 
         byte[] png;
         Texture2D cropped = null;
         try
         {
-            var readableTex = AssetDatabase.LoadAssetAtPath<Texture2D>(srcPath);
 
             // Crop to just the sprite's own rect first — resizing the full sheet and
             // reusing SpriteImportMode.Single on it would render the *entire* sheet as
             // one sprite, discarding the crop this specific sub-sprite actually uses.
             cropped = new Texture2D(origW, origH, TextureFormat.RGBA32, false);
-            cropped.SetPixels(readableTex.GetPixels(cropX, cropY, origW, origH));
+            cropped.SetPixels(srcPixels);
             cropped.Apply();
 
             var rt = RenderTexture.GetTemporary(newW, newH, 0, RenderTextureFormat.ARGB32);
@@ -1630,11 +1765,6 @@ public static class PlayableLevelFactory
         {
             if (cropped != null)
                 UnityEngine.Object.DestroyImmediate(cropped);
-            if (!wasReadable)
-            {
-                importer.isReadable = false;
-                importer.SaveAndReimport();
-            }
         }
 
         string destDir = "Assets/_Playable/HalvedTextures/" + halvedFolderName;

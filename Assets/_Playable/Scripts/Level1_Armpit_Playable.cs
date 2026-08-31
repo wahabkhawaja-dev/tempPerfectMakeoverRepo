@@ -78,8 +78,6 @@ public class Level1_Armpit_Playable : LevelData
 
     IEnumerator Start()
     {
-        // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
-        PlayableFadeCover.Cover();
 
         base.LevelStart();
 
@@ -91,10 +89,19 @@ public class Level1_Armpit_Playable : LevelData
 
         
 
+        // PLAYABLE: back from the inner Fix-It level — boot straight into that step.
+        if (PlayableInnerLevel.Resuming)
+        {
+            PlayableInnerLevel.Resuming = false;
+            PlayableFadeCover.Cover();
+            ForceCompleteStep2();
+            StartStep3();
+            PlayableFadeCover.Reveal();
+            yield break;
+        }
+
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
-        ForceCompleteStep1();
-        StartStep2();
-        PlayableFadeCover.Reveal();
+        StartStep1();
         yield break;
 }
 
@@ -104,6 +111,8 @@ public class Level1_Armpit_Playable : LevelData
 
     void StartStep1()
     {
+        CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
+
         ToolStep1.transform.DOKill();
         ToolStep1.transform.DOLocalMoveX(-1.35f, .5f).SetDelay(1f).OnComplete(() =>
         {
@@ -317,8 +326,15 @@ public class Level1_Armpit_Playable : LevelData
 
     public void OnFixitPressed()
     {
+        fixItPromptHand.SetActive(false);
 
-        PlayableCTA.FireNow();
+        PlayableInnerLevel.Enter();
+
+        fixItPrompt.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+        DOVirtual.DelayedCall(0.51f, () =>
+        {
+            fixItPrompt.SetActive(false);
+        });
 
         AudioController.instance.PlayUiClickSfx();
     }
