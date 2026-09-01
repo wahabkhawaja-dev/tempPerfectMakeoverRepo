@@ -50,7 +50,8 @@ namespace ScratchCardAsset
 			if (Card.ScratchSurface == null)
 			{
 				scratchSurfaceMaterial = new Material(MaskShader) {mainTexture = ScratchSurfaceSprite.texture};
-				Card.ScratchSurface = scratchSurfaceMaterial;
+				scratchSurfaceMaterial.renderQueue = 3000;
+                Card.ScratchSurface = scratchSurfaceMaterial;
 			}
 
 			if (Card.Eraser == null)

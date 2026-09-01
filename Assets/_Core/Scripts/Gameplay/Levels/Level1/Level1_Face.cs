@@ -4,7 +4,7 @@ using DG.Tweening;
 using System.Collections;
 using ScratchCardAsset;
 
-public class Level1_Face : LevelData
+public class Level1_Face : LevelData, IEyeFace
 {
     [Space()]
     [Header("----------------------------------------------------------------------------------")]
@@ -757,6 +757,15 @@ public class Level1_Face : LevelData
         {
             return;
         }
+
+        wantOpen = true;
+
+        // One opener at a time. Every trigger exit / mouse-up used to start another, but
+        // EyesCo only ever held the newest, so CloseEye could not stop the older ones and
+        // one of them would force the eyes open ~2s after they were deliberately closed.
+        if (EyesCo != null)
+            StopCoroutine(EyesCo);
+
         EyesCo = StartCoroutine(OpeningEyes());
     }
 
@@ -764,6 +773,7 @@ public class Level1_Face : LevelData
 
     Coroutine EyesCo;
     bool isOpen = false;
+    bool wantOpen = false;
 
     IEnumerator OpeningEyes()
     {
@@ -773,6 +783,10 @@ public class Level1_Face : LevelData
         else
         {
             yield return new WaitForSeconds(2f);
+
+            // A CloseEye during the wait wins - the tool is back on the eye.
+            if (!wantOpen)
+                yield break;
 
             isOpen = true;
 
@@ -801,9 +815,13 @@ public class Level1_Face : LevelData
     public void CloseEye()
     {
         isOpen = false;
+        wantOpen = false;
 
         if (EyesCo != null)
+        {
             StopCoroutine(EyesCo);
+            EyesCo = null;
+        }
 
         for (int i = 0; i < EyeAnims.Length; i++)
         {

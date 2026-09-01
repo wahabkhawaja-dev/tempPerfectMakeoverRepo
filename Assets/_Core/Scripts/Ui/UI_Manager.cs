@@ -601,10 +601,17 @@ public class UI_Manager : MonoBehaviour
 
     public void SetProgressBar(float progress, float duration = .25f)
     {
+        // A finished step stays finished. Drivers (scratch cards, tap-and-hold, drag targets)
+        // keep pushing their own value for a few frames after the step ends; without this the
+        // bar gets dragged back down from 100% to a partial fill and sticks there.
+        if (showTick && progress < 1f)
+            return;
+
         if (progressBar != null)
         {
             float clamped = Mathf.Clamp01(progress);
 
+            progressBar.DOKill();
             progressBar.DOFillAmount(clamped, duration);
 
             int prog = (int)(clamped * 100);

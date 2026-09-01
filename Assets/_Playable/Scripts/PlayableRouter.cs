@@ -149,14 +149,17 @@ public class PlayableRouter : MonoBehaviour
 
         slot.lockedTaps++;
 
-        // Once only. While the menu is up the level (and its PlayableCTA) is inactive, so
-        // FireNow() falls back to its static open-store path, which has no once-guard of its
-        // own — without this every further tap would re-open the store.
+        // Once only. OpenStoreOnly() has no once-guard of its own, so without this every
+        // further tap would re-open the store.
         if (lockedCtaFired || lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
             return;
 
         lockedCtaFired = true;
-        PlayableCTA.FireNow();
+
+        // Store only. A locked-button tap is not the end of the playable: no end card, no
+        // input block, no disable-list, and HasFired stays false so the real ending still
+        // works normally later. FireNow() is for genuine completion.
+        PlayableCTA.OpenStoreOnly();
     }
 
     /// <summary>The locked message filled in with the unlocked level's number.</summary>

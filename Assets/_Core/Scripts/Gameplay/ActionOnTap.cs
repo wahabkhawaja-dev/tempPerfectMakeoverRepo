@@ -14,8 +14,23 @@ public class ActionOnTap : MonoBehaviour
     bool isDone;
     bool extraCalled = false;
 
+    Collider2D thisCollider;
 
-    public void OnMouseDown()
+    void Start()
+    {
+        thisCollider = GetComponent<Collider2D>();
+    }
+
+    // Luna/Bridge.NET only routes OnMouseDown through 3D physics, so it never fires on a
+    // Collider2D in a playable build. Poll the button and hit-test the collider instead
+    // (same pattern as BasicDrag / Level1_SurfController).
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(thisCollider))
+            Tap();
+    }
+
+    public void Tap()
     {
         if (GameManager.instance.isOverUI())
             return;
