@@ -204,6 +204,24 @@ public class PlayableCTA : MonoBehaviour
                 }
             }
 
+            // The playable never runs UI_Manager.Complete() (GameManagerPlayable overrides
+            // Complete()), so honour its disable-list here — this IS the end of the playable.
+            try
+            {
+                if (UI_Manager.instance != null && UI_Manager.instance.thingsToDisableWhenCompletePanel != null)
+                {
+                    foreach (GameObject obj in UI_Manager.instance.thingsToDisableWhenCompletePanel)
+                    {
+                        if (obj != null)
+                            obj.SetActive(false);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log("[PlayableCTA] Disable-list skipped (no UI_Manager, ok standalone): " + e.Message);
+            }
+
             if (showCardThisFire && showEndCard && endCard != null)
                 endCard.SetActive(true);
 
@@ -217,6 +235,13 @@ public class PlayableCTA : MonoBehaviour
     /// <summary>Fires the CTA from anywhere, without needing a reference to this component.</summary>
     public static void FireNow()
     {
+        // active is whichever CTA enabled last. PlayableRouter destroys the sub-levels that
+        // were not picked (DropUnplayedLevels), so that reference can be a dead object by the
+        // time the level ends — fall back to the live one in the scene, otherwise HasFired
+        // never gets set and tap-to-refire/end-card/disable-list all silently do nothing.
+        if (active == null)
+            active = FindObjectOfType<PlayableCTA>();
+
         if (active != null)
             active.FireCTA();
         else
