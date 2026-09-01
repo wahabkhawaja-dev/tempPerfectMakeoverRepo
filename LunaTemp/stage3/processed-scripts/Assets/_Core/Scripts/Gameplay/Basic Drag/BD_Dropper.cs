@@ -36,7 +36,7 @@ public class BD_Dropper : MonoBehaviour
     void Start()
     {
         if (animator != null)
-            animator.enabled = false;
+            animator.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
 
         if (toolRend != null && toolDef_sp != null)
             toolRend.sprite = toolDef_sp;
@@ -86,7 +86,7 @@ public class BD_Dropper : MonoBehaviour
             particleEffect.Play();
 
         if (animator != null)
-            animator.enabled = true;
+            animator.speed = 1f;
 
         if (FadeIn)
         {
@@ -108,7 +108,7 @@ public class BD_Dropper : MonoBehaviour
             particleEffect.Stop();
 
         if (animator != null)
-            animator.enabled = false;
+            animator.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
 
         if (FadeIn)
         {
@@ -152,7 +152,7 @@ public class BD_Dropper : MonoBehaviour
             }
 
             if (particleEffect != null) particleEffect.Stop();
-            if (animator != null) animator.enabled = false;
+            if (animator != null) animator.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
 
             OnComplete.Invoke();
         }

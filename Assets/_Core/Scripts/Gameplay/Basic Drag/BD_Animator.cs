@@ -18,7 +18,7 @@ public class BD_Animator : MonoBehaviour
         BD.OnMouseDownEvent += PlayAnim;
         BD.OnMouseUpEvent += ReverseAnim;
 
-        if (anim != null)
+        if (anim != null && anim.gameObject.activeInHierarchy)
         {
             anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
             anim.Update(0f);
@@ -38,7 +38,7 @@ public class BD_Animator : MonoBehaviour
 
     void Update()
     {
-        if (anim == null) return;
+        if (anim == null || !anim.gameObject.activeInHierarchy) return;
 
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
         float currentTime = state.normalizedTime;

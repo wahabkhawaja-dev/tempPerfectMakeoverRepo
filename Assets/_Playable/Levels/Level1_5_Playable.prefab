@@ -25051,8 +25051,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3658249643697437277}
   - component: {fileID: 4476583809319839233}
-  - component: {fileID: 1174356199920161443}
-  - component: {fileID: 9023665123694846053}
+  - component: {fileID: 2104599179856901579}
+  - component: {fileID: 2472999201840295812}
   m_Layer: 0
   m_Name: Level1_5_Playable
   m_TagString: Untagged
@@ -25168,7 +25168,7 @@ MonoBehaviour:
   ToolStep4: {fileID: 6333865777802920981}
   camFollowStep4: {fileID: 7983054851395235480}
   starsParticles: {fileID: 5597004939165014589}
---- !u!114 &1174356199920161443
+--- !u!114 &2104599179856901579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25198,7 +25198,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   logWhenFired: 1
---- !u!114 &9023665123694846053
+--- !u!114 &2472999201840295812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

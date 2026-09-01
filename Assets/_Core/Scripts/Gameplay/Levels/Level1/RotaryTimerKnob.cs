@@ -1,10 +1,14 @@
-﻿using UnityEngine.UI;
+﻿
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class RotaryTimerKnob : MonoBehaviour
 {
+    [Space()]
+    public bool canDrag = false;
+
     [Header("=== Rotary Timer Settings ===")]
     public int numSteps = 5;
     public bool onlyClockwise = true;
@@ -28,87 +32,99 @@ public class RotaryTimerKnob : MonoBehaviour
 
     public GameObject handIndication;
 
-   
     void Start()
     {
         stepAngle = 360f / numSteps;
+
         ResetKnob();
     }
 
-    private void OnMouseDown()
+    void Update()
     {
-        if(isOverUI())
+        if (!canDrag)
             return;
 
-
-        if (isCompleted) return;
-        lastMouseAngle = GetMouseAngle();
-
-
-        handIndication.SetActive(false);
-    }
-
-    private void OnMouseUp()
-    {
-        if (isOverUI())
-            return;
-
-        if (isCompleted) return;
-
-        handIndication.SetActive(true);
-    }
-
-   
-
-    private void OnMouseDrag()
-    {
-        if (isOverUI())
-            return;
-
-        if (isCompleted) return;
-
-        float currentMouseAngle = GetMouseAngle();
-        float delta = Mathf.DeltaAngle(currentMouseAngle, lastMouseAngle);
-
-        // Sirf clockwise movement allow karein
-        if (onlyClockwise && delta < 0)
+        // =========================
+        // MOUSE DOWN
+        // =========================
+        if (Input.GetMouseButtonDown(0))
         {
-            lastMouseAngle = currentMouseAngle;
-            return;
+            if (isOverUI())
+                return;
+
+            if (isCompleted)
+                return;
+
+            lastMouseAngle = GetMouseAngle();
+
+            handIndication.SetActive(false);
         }
 
-        // Mouse kitna ghuma usko track karein
-        accumulatedRotation += delta;
-
-        // Rotation ko 0 se 360 ke darmiyan rakhen
-        accumulatedRotation = Mathf.Clamp(accumulatedRotation, 0, 360);
-
-        // === SNAP LOGIC ===
-        // Check karein ke kya mouse ne itna travel kar liya hai ke agla step ho jaye
-        int calculatedStep = Mathf.FloorToInt(accumulatedRotation / stepAngle);
-
-        // Agar step change hua hai to knob ko rotate karein
-        if (calculatedStep != currentStep && calculatedStep < numSteps)
+        // =========================
+        // MOUSE DRAG
+        // =========================
+        if (Input.GetMouseButton(0))
         {
-            currentStep = calculatedStep;
+            if (isOverUI())
+                return;
 
-            // Visual Jump: Knob ko sirf step angle par snap karein
-            float snapAngle = currentStep * stepAngle;
-            transform.localRotation = Quaternion.Euler(0, 0, -snapAngle);
+            if (isCompleted)
+                return;
 
-            TriggerStepFeedback();
-            UpdateUI();
+            float currentMouseAngle = GetMouseAngle();
+            float delta = Mathf.DeltaAngle(currentMouseAngle, lastMouseAngle);
 
-            // Completion check
-            if (currentStep == numSteps - 1)
+            // Sirf clockwise movement allow karein
+            if (onlyClockwise && delta < 0)
             {
-                isCompleted = true;
-                OnComplete?.Invoke();
-                Debug.Log("✅ Timer Finished!");
+                lastMouseAngle = currentMouseAngle;
+                return;
             }
+
+            // Mouse kitna ghuma usko track karein
+            accumulatedRotation += delta;
+
+            // Rotation ko 0 se 360 ke darmiyan rakhen
+            accumulatedRotation = Mathf.Clamp(accumulatedRotation, 0, 360);
+
+            // === SNAP LOGIC ===
+            // Check karein ke kya mouse ne itna travel kar liya hai ke agla step ho jaye
+            int calculatedStep = Mathf.FloorToInt(accumulatedRotation / stepAngle);
+
+            // Agar step change hua hai to knob ko rotate karein
+            if (calculatedStep != currentStep && calculatedStep < numSteps)
+            {
+                currentStep = calculatedStep;
+
+                // Visual Jump: Knob ko sirf step angle par snap karein
+                float snapAngle = currentStep * stepAngle;
+                transform.localRotation = Quaternion.Euler(0, 0, -snapAngle);
+
+                TriggerStepFeedback();
+                UpdateUI();
+
+                // Completion check
+                if (currentStep == numSteps - 1)
+                {
+                    isCompleted = true;
+                    OnComplete?.Invoke();
+                    Debug.Log("✅ Timer Finished!");
+                }
+            }
+
+            lastMouseAngle = currentMouseAngle;
         }
 
-        lastMouseAngle = currentMouseAngle;
+        // =========================
+        // MOUSE UP
+        // =========================
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (isCompleted)
+                return;
+
+            handIndication.SetActive(true);
+        }
     }
 
     private float GetMouseAngle()
@@ -123,7 +139,6 @@ public class RotaryTimerKnob : MonoBehaviour
     {
         if (stepText != null)
             stepText.text = (currentStep).ToString("00");
-
     }
 
     private void TriggerStepFeedback()
@@ -131,8 +146,7 @@ public class RotaryTimerKnob : MonoBehaviour
         if (clickSound != null)
             AudioController.instance.PlayAnySfx(0, clickSound, 0);
 
-        // if (enableVibration)
-        //     VibrationManager.instance.MediumImpact();
+
     }
 
     public void ResetKnob()

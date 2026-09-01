@@ -507,6 +507,13 @@ public class PlayableStepWizard : EditorWindow
                     ? string.Empty
                     : "\nFix-It inner level: " + built.InnerPrefabPath;
 
+                // Empty in the SOURCE level, and the kept code dereferences them — this would be a
+                // NullReferenceException mid-step in play mode otherwise.
+                if (built.UnassignedFields != null && built.UnassignedFields.Count > 0)
+                    innerLine += "\n\nWARNING — ye fields source level mein assign nahi hain, " +
+                                 "inke step pe NullReference aayega:\n  " +
+                                 string.Join("\n  ", built.UnassignedFields.ToArray());
+
                 _status = "Ready: " + built.PrefabPath + "\nSteps " + string.Join(",", keep) +
                           innerLine + "\n" + built.Log;
                 EditorUtility.DisplayDialog(

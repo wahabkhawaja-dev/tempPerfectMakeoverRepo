@@ -106,7 +106,7 @@ public class BD_AnimControl : MonoBehaviour
 
     void UpdateAnimationPosition()
     {
-        if (animator == null) return;
+        if (animator == null || !animator.gameObject.activeInHierarchy) return;
         animator.Play(animationName, 0, _currentProgress);
         animator.Update(0f);
     }

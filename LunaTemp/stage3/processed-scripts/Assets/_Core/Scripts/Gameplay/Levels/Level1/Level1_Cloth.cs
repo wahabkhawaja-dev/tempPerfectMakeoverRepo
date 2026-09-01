@@ -1,7 +1,8 @@
-﻿using UnityEngine.UI;
+
 using DG.Tweening;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Level1_Cloth : LevelData
 {
@@ -90,6 +91,7 @@ public class Level1_Cloth : LevelData
 
     [Space()]
     public Collider2D machineTimer;
+    public RotaryTimerKnob machineTimerRotater;
     public GameObject machineTimerIndication;
 
     [Space()]
@@ -252,6 +254,8 @@ public class Level1_Cloth : LevelData
         ToolStep1.transform.DOKill();
         ToolStep1.transform.DOLocalMoveX(0, .5f).SetDelay(1f).OnComplete(() =>
         {
+            ToolStep1.startPos = ToolStep1.transform.position;
+
             ToolStep1.OnMouseDownEvent += OnClothPicked;
             ToolStep1.OnMouseUpEvent += OnClothReleased;
 
@@ -433,7 +437,7 @@ public class Level1_Cloth : LevelData
 
         ToolStep2CamFollow.enabled = false;
 
-        ToolStep2.anim.enabled = false;
+        ToolStep2.anim.speed = 0.001f; // Luna: never disable the Animator; ~0 speed freezes it
 
         ToolStep2.transform.DOKill();
 
@@ -450,6 +454,11 @@ public class Level1_Cloth : LevelData
              surfObj.SetActive(false);
 
              machineTimer.enabled = true;
+
+             machineTimerRotater.enabled = true;
+
+             machineTimerRotater.canDrag = true;
+
              machineTimerIndication.SetActive(true);
 
              CameraController.Instance.MoveCamera(new Vector3(0, 0.6f, -10f), 3.2f);
@@ -477,6 +486,11 @@ public class Level1_Cloth : LevelData
         machineTimerIndication.SetActive(false);
 
         machineTimer.enabled = false;
+
+        machineTimerRotater.enabled = false;
+
+        machineTimerRotater.canDrag = false;
+
         wetCloths.gameObject.SetActive(true);
 
         wetCloths.DOKill();
@@ -571,11 +585,19 @@ public class Level1_Cloth : LevelData
         machineTimer.enabled = true;
         machineTimerIndication.SetActive(true);
 
+        machineTimerRotater.enabled = true;
+
+        machineTimerRotater.canDrag = true;
+
         CameraController.Instance.MoveCamera(new Vector3(0, 0.6f, -10f), 3.2f);
     }
 
     void ForceCompleteStep3()
     {
+        machineTimerRotater.enabled = false;
+
+        machineTimerRotater.canDrag = false;
+
         ToolStep2.gameObject.SetActive(false);
 
         machineDoor.SetActive(false);

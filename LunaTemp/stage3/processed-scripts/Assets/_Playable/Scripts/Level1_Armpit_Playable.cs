@@ -71,6 +71,102 @@ public class Level1_Armpit_Playable : LevelData
     public AudioClip machineBtnSfx;
     public AudioSource boilingSfx;
 
+    [Header("----------------- STEP 4 ----------------------")]
+    [Space()]
+    public ZoomPos ZoomStep4;
+    public Transform ToolStep4;
+    public GameObject spatulaFull;
+    public GameObject spatulaFaded;
+
+    [Space()]
+    public GameObject waxMixControler;
+    public SpriteRenderer waxOnSpatula;
+    public GameObject waxMixIndication;
+    public GameObject waxDrippinfParticle;
+    public BD_Clamp spatulaClamp;
+    public GameObject spatulaPickIndication;
+    public Transform spatulaParent;
+
+    [Space()]
+    //public BasicDrag waxStickyBD;
+   // public GameObject fadedAnim;
+   // public GameObject fullAnim;
+    public GameObject finalSpatula;
+
+    [Space()]
+    public AudioClip DropClip;
+
+    [Header("----------------- STEP 5 ----------------------")]
+    [Space()]
+    public ZoomPos ZoomStep5;
+
+    [Space()]
+    public BasicDrag ToolStep5;
+
+    [Space()]
+    public BD_CameraFollow ToolStep5CameraFollow;
+
+    [Space()]
+    public SpriteRenderer hairSmall;
+    public SpriteRenderer skinBumpy;
+    public GameObject waxRestore;
+    public GameObject waxErase;
+    public GameObject waxEraseIndication;
+
+    [Header("----------------- STEP 6 ----------------------")]
+    [Space()]
+    public ZoomPos ZoomStep6;
+
+    [Space()]
+    public Transform ToolStep6Parent;
+    public Transform ToolStep6;
+    public Animator ToolStep6Anim;
+    public Transform BottleStep6;
+    public SpriteRenderer ToolsStep6transparent;
+    public SpriteRenderer ToolsStep6Liquid;
+    public SpriteRenderer ToolsStep6Rend;
+    public GameObject dropperTapobj;
+    public GameObject dropperTarget;
+    public Sprite droperPressed;
+    public GameObject dropletAnim;
+    public GameObject droperPlaceIndication;
+    public BasicDrag ToolStep6Actual;
+
+    [Header("SFX")]
+    public AudioClip serumCapSfx;
+
+    [Header("----------------- STEP 7 ----------------------")]
+    [Space()]
+    public ZoomPos ZoomStep7;
+
+    [Space()]
+    public BasicDrag ToolStep7;
+
+    [Space()]
+    public BD_CameraFollow ToolStep7CameraFollow;
+
+    [Space()]
+    public GameObject serumDropped;
+    public SpriteRenderer SerumRubbed;
+
+    [Header("----------------- STEP 8 ----------------------")]
+    [Space()]
+    [Space()]
+    public ZoomPos ZoomStep8;
+    public Transform ToolStep8;
+    public GameObject perfumeCap;
+    public GameObject perfumeBtnTriger;
+    public Animator perfumeCapAnim;
+    public GameObject perfumeButton;
+    public ParticleSystem perfumeParticles;
+    public GameObject starsParticles;
+    public GameObject bodyStright;
+    public GameObject bodyTilt;
+
+    [Header("SFX")]
+    public AudioClip PerfumeCapOpen;
+    public AudioClip PerfumeSfx;
+
     [Header("----------------- Machine FIX GATE ----------------------")]
     [Space()]
     public GameObject fixItPrompt;
@@ -85,20 +181,13 @@ public class Level1_Armpit_Playable : LevelData
 
         yield return new WaitForSeconds(0.1f);
 
-        machineDamage.SetActive(!IsMachineFixed());
+        if (machineDamage != null) machineDamage.SetActive(false);
+
+        serumDropped.SetActive(false);
+
+        waxRestore.SetActive(false);
 
         
-
-        // PLAYABLE: back from the inner Fix-It level — boot straight into that step.
-        if (PlayableInnerLevel.Resuming)
-        {
-            PlayableInnerLevel.Resuming = false;
-            PlayableFadeCover.Cover();
-            ForceCompleteStep2();
-            StartStep3();
-            PlayableFadeCover.Reveal();
-            yield break;
-        }
 
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
         StartStep1();
@@ -251,92 +340,16 @@ public class Level1_Armpit_Playable : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
-        if (IsMachineFixed())
-        {
-            GreenBtnCol_Fixed.gameObject.SetActive(true);
-            GreenBtnCol_Damaged.gameObject.SetActive(false);
-        }
-
-        else
-        {
-            GreenBtnCol_Fixed.gameObject.SetActive(false);
-            GreenBtnCol_Damaged.gameObject.SetActive(true);
-        }
+                    GreenBtnCol_Fixed.gameObject.SetActive(true);
+            if (GreenBtnCol_Damaged != null) GreenBtnCol_Damaged.gameObject.SetActive(false);
+        
 
         GreenBtnIndication.SetActive(true);
     }
 
     bool IsMachineFixed()
     {
-        bool remoteStatus = true;
-        bool isCompleted = SaveSystem.Instance.DataFields.AllLevels[0].subLevels[5].isCompleted;
-
-        if (!remoteStatus)
-        {
-            SaveSystem.Instance.DataFields.AllLevels[0].subLevels[5].isCompleted = true;
-
-            return true;
-        }
-
-        return isCompleted;
-    }
-
-    public void GreenBtnPressedDmg()
-    {
-
-        HandTap1_3.OnTapExtra += () =>
-        {
-            blackSmokeVfx.Play();
-
-            AudioController.instance.PlayAnySfx(0, fixItErrorSfx, 0);
-
-            machineDamage.transform.parent.DOKill();
-
-            // Little shake for 2D object
-            machineDamage.transform.parent.DOShakePosition(
-                duration: 0.35f,
-                strength: new Vector3(0.025f, 0.025f, 0f),  // only X/Y
-                vibrato: 8,
-                randomness: 70,
-                snapping: false,
-                fadeOut: true
-            );
-        };
-
-        GreenBtnIndication.SetActive(false);
-        fixItPrompt.SetActive(true);
-        fixItPromptHand.SetActive(true);
-
-        blackSmokeVfx.Play();
-
-        AudioController.instance.PlayAnySfx(0, fixItErrorSfx, 0);
-
-        machineDamage.transform.parent.DOKill();
-
-        // Little shake for 2D object
-        machineDamage.transform.parent.DOShakePosition(
-               duration: 0.35f,
-               strength: new Vector3(0.025f, 0.025f, 0f),  // only X/Y
-               vibrato: 8,
-               randomness: 70,
-               snapping: false,
-               fadeOut: true
-           );
-    }
-
-    public void OnFixitPressed()
-    {
-        fixItPromptHand.SetActive(false);
-
-        PlayableInnerLevel.Enter();
-
-        fixItPrompt.GetComponent<DOTweenAnimation>().DOPlayBackwards();
-        DOVirtual.DelayedCall(0.51f, () =>
-        {
-            fixItPrompt.SetActive(false);
-        });
-
-        AudioController.instance.PlayUiClickSfx();
+        return true;
     }
 
     public void GreenBtnPressed()
@@ -400,7 +413,7 @@ public class Level1_Armpit_Playable : LevelData
 
         isStep3Done = true;
 
-        Invoke(nameof(LevelComplete), 1f);
+        Invoke(nameof(StartStep4), 1f);
 
         SetProgressBar();
 
@@ -434,5 +447,478 @@ public class Level1_Armpit_Playable : LevelData
 
     #endregion
 
-    
+    #region STEP 4
+
+    bool isStep4Done = false;
+
+    void StartStep4()
+    {
+        CameraController.Instance.MoveCamera(ZoomStep4.CameraPos, ZoomStep4.CameraFOV);
+
+        ToolStep4.DOKill();
+        ToolStep4.DOLocalMoveX(0f, .5f).OnComplete(() =>
+        {
+            ToolStep4.DOLocalMoveY(1.24f, 0.5f);
+
+            DOVirtual.DelayedCall(0.3f, () =>
+            {
+                spatulaFull.SetActive(false);
+                spatulaFaded.SetActive(true);
+                waxMixControler.SetActive(true);
+                waxMixIndication.SetActive(true);
+
+            });
+        });
+    }
+
+    public void Step4Complete()
+    {
+        if (isStep4Done)
+            return;
+
+        waxMixIndication.SetActive(false);
+
+        isStep4Done = true;
+
+        ToolInputToggle(waxMixControler, false);
+
+        waxMixControler.SetActive(false);
+
+        spatulaParent.DOLocalMoveY(-1.86f, 0.1f);
+        spatulaParent.DOLocalMoveX(0f, 0.1f).OnComplete(() =>
+        {
+            spatulaPickIndication.transform.position = spatulaParent.position;
+            spatulaPickIndication.SetActive(true);
+
+            spatulaFaded.transform.parent = null;
+            spatulaFull.transform.parent = null;
+         //   spatulaFadedAnim.transform.position = spatulaFaded.transform.position;
+            spatulaFaded.SetActive(false);
+          //  spatulaFadedAnim.SetActive(true);
+
+            SpatulaPicked();
+
+          
+           // waxStickyBD.gameObject.SetActive(true);
+        });
+    }
+
+    public void SpatulaPicked()
+    {
+        // ToolInputToggle(waxStickyBD.gameObject, false);
+
+        spatulaFull.SetActive(false);
+        finalSpatula.gameObject.SetActive(true);
+
+       // spatulaFadedAnim.GetComponent<Animator>().enabled = false;
+
+        spatulaPickIndication.SetActive(false);
+
+        Invoke(nameof(SpatulaReleased), 1.5f);
+
+        AudioController.instance.PlayAnySfx(0, DropClip, 1.5f);
+
+        AudioController.instance.PlayAnySfx(1, DropClip, 2f);
+
+        AudioController.instance.PlayAnySfx(2, DropClip, 2.5f);
+
+        AudioController.instance.PlayAnySfx(0, DropClip, 3f);
+    }
+
+    void SpatulaReleased()
+    {
+        DOVirtual.DelayedCall(0.25f, () =>
+        {
+            UI_Manager.instance.FadeAnim(1, 1);
+
+            if (boilingSfx != null)
+            {
+                boilingSfx.DOFade(0, 2f).OnComplete(() =>
+                {
+                    boilingSfx.gameObject.SetActive(false);
+
+                    finalSpatula.gameObject.SetActive(false);
+                });
+
+                spatulaFull.SetActive(false);
+
+             //   waxStickyBD.gameObject.SetActive(false);
+
+            }
+
+            Invoke(nameof(StartStep5), 1f);
+
+            SetProgressBar();
+        });
+
+        try
+        {
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step4_Comp");
+        }
+        catch { }
+    }
+
+    void ForceCompleteStep4()
+    {
+        view1.SetActive(true);
+        view2.SetActive(false);
+
+        hairArmpit.SetActive(false);
+    }
+
+    #endregion
+
+    #region STEP 5
+
+    bool isStep5Done = false;
+
+    void StartStep5()
+    {
+        ToolStep4.gameObject.SetActive(false);
+
+        view1.SetActive(true);
+        view2.SetActive(false);
+
+        waxRestore.SetActive(true);
+
+        CameraController.Instance.MoveCamera(ZoomStep5.CameraPos, ZoomStep5.CameraFOV);
+
+        ToolStep5.transform.DOKill();
+        ToolStep5.transform.DOLocalMoveX(-1.5f, .5f).SetDelay(1f).OnComplete(() =>
+        {
+            ToolInputToggle(ToolStep5.gameObject, true);
+
+            ToolStep5CameraFollow.enabled = true;
+        });
+    }
+
+    public void Step5Complete()
+    {
+        if (isStep5Done)
+            return;
+
+        hairSmall.DOFade(0, 2f);
+
+        isStep5Done = true;
+
+        ToolInputToggle(ToolStep5.gameObject, false);
+
+        ToolStep5.transform.DOLocalMoveX(-15f, .5f).OnComplete(() =>
+        {
+            ToolStep5.gameObject.SetActive(false);
+
+            ToolStep5CameraFollow.enabled = false;
+        });
+
+        DOVirtual.DelayedCall(0.2f, () =>
+        {
+            waxRestore.SetActive(false);
+            waxErase.SetActive(true);
+
+            waxEraseIndication.SetActive(true);
+        });
+
+        SetProgressBar();
+
+        try
+        {
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step5_Comp");
+        }
+        catch { }
+    }
+
+    public void WaxRemoved()
+    {
+        waxEraseIndication.SetActive(false);
+
+        skinBumpy.gameObject.SetActive(true);
+
+        skinBumpy.DOKill();
+        skinBumpy.DOFade(1, 3f);
+
+        waxErase.transform.DOKill();
+        waxErase.transform.DOLocalMoveX(-15f, 1);
+
+        Invoke(nameof(StartStep6), 0.5f);
+
+        SetProgressBar();
+
+        try
+        {
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step6_Comp");
+        }
+        catch { }
+    }
+
+    void ForceCompleteStep5()
+    {
+        view1.SetActive(true);
+        view2.SetActive(false);
+
+        hairArmpit.SetActive(false);
+        hairSmall.gameObject.SetActive(false);
+
+        skinBumpy.gameObject.SetActive(true);
+        skinBumpy.DOKill();
+        skinBumpy.DOFade(1, 0.01f);
+    }
+
+    #endregion
+
+    #region STEP 6
+
+    bool isStep6Done = false;
+
+    void StartStep6()
+    {
+        CameraController.Instance.MoveCamera(ZoomStep6.CameraPos, ZoomStep6.CameraFOV);
+
+        ToolStep6Parent.DOKill();
+        ToolStep6Parent.DOLocalMoveX(-1.35f, .5f).SetDelay(0.5f).OnComplete(() =>
+        {
+            ToolStep6Anim.enabled = true;
+
+            if (serumCapSfx != null)
+                AudioController.instance.PlayAnySfx(0, serumCapSfx, 0.25f);
+
+            ToolStep6.DOKill();
+            ToolStep6.DOLocalMoveY(ToolStep6.localPosition.y + 0.6f, 0.5f).SetDelay(0.5f);
+
+            ToolsStep6transparent.DOKill();
+            ToolsStep6transparent.DOFade(0, 0.5f).SetDelay(0.5f);
+
+            ToolsStep6Rend.gameObject.SetActive(true);
+            ToolsStep6Rend.DOKill();
+            ToolsStep6Rend.DOFade(1, 0.5f).SetDelay(0.5f);
+
+            ToolsStep6Liquid.DOKill();
+            ToolsStep6Liquid.DOFade(1, 0.5f).SetDelay(0.5f).OnComplete(() =>
+            {
+                ToolStep6Actual.gameObject.SetActive(true);
+                ToolStep6.gameObject.SetActive(false);
+            });
+
+            DOVirtual.DelayedCall(0.5f, () =>
+            {
+                droperPlaceIndication.SetActive(true);
+
+                BottleStep6.DOKill();
+                BottleStep6.DOMoveX(-15f, 0.5f).SetDelay(1f).OnComplete(() =>
+                {
+                    BottleStep6.gameObject.SetActive(false);
+                });
+            });
+
+            dropletAnim.SetActive(true);
+
+        });
+    }
+
+    public void Step6Complete()
+    {
+        if (isStep6Done)
+            return;
+
+        droperPlaceIndication.SetActive(false);
+
+        ToolInputToggle(ToolStep6Actual.gameObject, false);
+
+        ToolStep6Actual.transform.DOKill();
+        ToolStep6Actual.transform.DOLocalMoveX(-15f, 1f);
+
+        Invoke(nameof(StartStep7), 0.5f);
+
+        SetProgressBar();
+
+        try
+        {
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step7_Comp");
+        }
+        catch { }
+    }
+
+    void ForceCompleteStep6()
+    {
+        view1.SetActive(true);
+        view2.SetActive(false);
+
+        hairArmpit.SetActive(false);
+        hairSmall.gameObject.SetActive(false);
+
+        /* dropletAnim.GetComponent<Animator>().enabled = false;
+         dropletAnim.SetActive(true);*/
+        dropletAnim.SetActive(false);
+        serumDropped.SetActive(true);
+
+        skinBumpy.gameObject.SetActive(true);
+        skinBumpy.DOKill();
+        skinBumpy.DOFade(1, 0.01f);
+
+    }
+
+    #endregion
+
+    #region STEP 7
+
+    bool isStep7Done = false;
+
+    void StartStep7()
+    {
+        CameraController.Instance.MoveCamera(ZoomStep7.CameraPos, ZoomStep7.CameraFOV);
+
+        dropletAnim.SetActive(false);
+        serumDropped.SetActive(true);
+
+        ToolStep7.transform.DOKill();
+        ToolStep7.transform.DOLocalMoveY(-2.5f, .5f).SetDelay(0.5f).OnComplete(() =>
+        {
+            ToolInputToggle(ToolStep7.gameObject, true);
+
+            ToolStep7CameraFollow.enabled = true;
+        });
+    }
+
+    public void Step7Complete()
+    {
+        if (isStep7Done)
+            return;
+
+        ToolStep7CameraFollow.enabled = false;
+
+        ToolInputToggle(ToolStep7.gameObject, false);
+
+        ToolStep7.transform.DOKill();
+        ToolStep7.transform.DOLocalMoveY(-15f, 1f);
+
+        SerumRubbed.DOKill();
+        SerumRubbed.DOFade(0f, 2f);
+
+        skinBumpy.DOKill();
+        skinBumpy.DOFade(0f, 2f);
+
+        serumDropped.GetComponent<SpriteRenderer>().DOKill();
+        serumDropped.GetComponent<SpriteRenderer>().DOFade(0, 1f);
+
+        Invoke(nameof(StartStep8), 0.5f);
+
+        SetProgressBar();
+
+        try
+        {
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step8_Comp");
+        }
+        catch { }
+    }
+
+    void ForceCompleteStep7()
+    {
+        view1.SetActive(true);
+        view2.SetActive(false);
+
+        hairArmpit.SetActive(false);
+        hairSmall.gameObject.SetActive(false);
+    }
+
+    #endregion
+
+    #region STEP 8
+
+    bool isStep8Done = false;
+
+    void StartStep8()
+    {
+        CameraController.Instance.MoveCamera(ZoomStep8.CameraPos, ZoomStep8.CameraFOV);
+
+        ToolStep8.transform.DOKill();
+        ToolStep8.transform.DOLocalMoveX(-0.8f, .5f).SetDelay(0.5f).OnComplete(() =>
+        {
+            PerfumeCapRemoved();
+
+            if (PerfumeCapOpen != null)
+                AudioController.instance.PlayAnySfx(0, PerfumeCapOpen, 0.15f);
+        });
+    }
+
+    public void PerfumeCapRemoved()
+    {
+        perfumeCapAnim.enabled = true;
+
+        DOVirtual.DelayedCall(0.25f, () =>
+        {
+            perfumeCapAnim.enabled = false;
+            perfumeCap.transform.DOKill();
+            perfumeCap.transform.DOLocalMoveX(-15, 1f);
+
+            perfumeBtnTriger.SetActive(true);
+        });
+    }
+
+    public void PerfumePressed()
+    {
+        // if (VibrationManager.instance)
+            // VibrationManager.instance.MediumImpact();
+
+        bodyStright.SetActive(false);
+
+        bodyTilt.SetActive(true);
+
+        perfumeBtnTriger.SetActive(false);
+
+        DOVirtual.DelayedCall(0.01f, () =>
+        {
+            perfumeParticles.gameObject.SetActive(true);
+
+            if (PerfumeSfx != null)
+                AudioController.instance.PlayAnySfx(0, PerfumeSfx, 0);
+        });
+
+        DOVirtual.DelayedCall(0.7f, () =>
+        {
+            perfumeParticles.gameObject.SetActive(false);
+            perfumeParticles.gameObject.SetActive(true);
+            perfumeParticles.DORestart();
+
+            if (PerfumeSfx != null)
+                AudioController.instance.PlayAnySfx(0, PerfumeSfx, 0);
+        });
+
+        perfumeButton.transform.DOKill();
+        perfumeButton.transform.DOLocalMoveY(perfumeButton.transform.localPosition.y - 0.12f, 0.2f).SetLoops(4, LoopType.Yoyo).OnComplete(() =>
+        {
+            starsParticles.SetActive(true);
+
+            Invoke(nameof(Step8Complete), 1f);
+        });
+    }
+
+    public void Step8Complete()
+    {
+        if (isStep8Done)
+            return;
+
+        ToolInputToggle(ToolStep8.gameObject, false);
+
+        ToolStep8.transform.DOKill();
+        ToolStep8.transform.DOLocalMoveX(-15f, 1f);
+
+        CameraController.Instance.MoveCamera(MainZoom.CameraPos, MainZoom.CameraFOV, 1.25f);
+
+        UI_Manager.instance.SetProgressBar(1f);
+
+        Invoke(nameof(LevelComplete), 2f);
+
+        try
+        {
+            Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo
+                + "_" + levelName + "_Step9_Comp");
+        }
+        catch { }
+    }
+
+    #endregion
 }

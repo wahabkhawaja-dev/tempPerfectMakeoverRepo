@@ -468,10 +468,7 @@ public class Level1_Shower_Playable : LevelData
 
     void LoadHairLevelAgian()
     {
-
-        UI_Manager.instance.TopBarAnim.DOPlayBackwards();
-
-        PlayableInnerLevel.Return();
+            LevelComplete();
     }
 
     #endregion

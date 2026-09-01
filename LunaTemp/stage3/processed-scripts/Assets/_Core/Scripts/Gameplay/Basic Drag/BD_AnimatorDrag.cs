@@ -28,7 +28,7 @@ public class BD_AnimatorDrag : MonoBehaviour
     {
         if (anim != null)
         {
-            anim.enabled = false;
+            anim.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
         }
     }
 
@@ -42,7 +42,7 @@ public class BD_AnimatorDrag : MonoBehaviour
 
         if (anim != null)
         {
-            anim.enabled = true;
+            anim.speed = 1f;
         }
 
         if (Source != null)
@@ -61,7 +61,7 @@ public class BD_AnimatorDrag : MonoBehaviour
 
         if (anim != null)
         {
-            anim.enabled = false;
+            anim.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
         }
 
         if (Source != null)

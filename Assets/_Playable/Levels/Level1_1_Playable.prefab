@@ -274472,8 +274472,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3658249643697437277}
   - component: {fileID: 5499122828158317451}
-  - component: {fileID: 948159398514284196}
-  - component: {fileID: 2729519209231191113}
+  - component: {fileID: 5034694440157213841}
+  - component: {fileID: 5224092648812855678}
   m_Layer: 0
   m_Name: Level1_1_Playable
   m_TagString: Untagged
@@ -274697,9 +274697,7 @@ MonoBehaviour:
   dryCombed_BG: {fileID: 6538044476516781163}
   brushController: {fileID: 4970404207300166316}
   handIndicationBrush: {fileID: 3824530361045321132}
-  fixItPrompt: {fileID: 1338568259188574059}
-  fixItPromptHand: {fileID: 0}
---- !u!114 &948159398514284196
+--- !u!114 &5034694440157213841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274729,7 +274727,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   logWhenFired: 1
---- !u!114 &2729519209231191113
+--- !u!114 &5224092648812855678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

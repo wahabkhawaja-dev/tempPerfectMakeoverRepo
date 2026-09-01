@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -48,8 +48,12 @@ public class Level1_SurfController : MonoBehaviour
     float m_LastPressTime;
     float m_PressDelay = 0.25f;
 
+    private Collider2D thisCollider;
+
     private void Start()
     {
+        thisCollider = GetComponent<Collider2D>();
+
         defaultRotation = transform.localEulerAngles;
         if (maskItem != null)
             defaultMaskY = maskItem.localPosition.y;
@@ -60,22 +64,25 @@ public class Level1_SurfController : MonoBehaviour
         DOTween.Init();
     }
 
-    private void OnMouseDown()
+    private void Update()
     {
         if (isCompleted) return;
-        isHolding = true;
-        StartSurfAnimation();
-    }
 
-    private void OnMouseUp()
-    {
-        if (isCompleted) return;
-        isHolding = false;
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(thisCollider))
+        {
+            isHolding = true;
+            StartSurfAnimation();
+        }
 
-        if (currentHoldProgress >= 1f)
-            CompleteLevel();
-        else
-            StopRotationAndParticlesOnly();
+        else if (Input.GetMouseButtonUp(0) && isHolding)
+        {
+            isHolding = false;
+
+            if (currentHoldProgress >= 1f)
+                CompleteLevel();
+            else
+                StopRotationAndParticlesOnly();
+        }
     }
 
     private void StartSurfAnimation()

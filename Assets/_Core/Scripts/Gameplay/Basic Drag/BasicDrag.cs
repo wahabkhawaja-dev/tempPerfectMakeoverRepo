@@ -130,13 +130,13 @@ public class BasicDrag : MonoBehaviour
 
         startRot = transform.eulerAngles;
 
-        if (anim != null)
+        if (anim != null && anim.gameObject.activeInHierarchy)
         {
             anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
 
             // Force animator to update this frame
             anim.Update(0f);
-            anim.enabled = false;
+            anim.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
         }
     }
 
@@ -213,20 +213,20 @@ public class BasicDrag : MonoBehaviour
             HandleDragging();
 
             if (anim != null)
-                anim.enabled = true;
+                anim.speed = 1f;
         }
 
         else
         {
             isObjectMovingWhileDragging = false;
 
-            if (anim != null)
+            if (anim != null && anim.gameObject.activeInHierarchy)
             {
                 anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
 
                 // Force animator to update this frame
                 anim.Update(0f);
-                anim.enabled = false;
+                anim.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
             }
         }
 

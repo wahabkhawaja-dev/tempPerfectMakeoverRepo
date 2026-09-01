@@ -108,6 +108,9 @@ public static class PlayableLevelFactory
 
         /// <summary>Built inner Fix-It playable prefab, when the build included one.</summary>
         public string InnerPrefabPath;
+
+        /// <summary>Inspector fields the playable will dereference but nothing is assigned to.</summary>
+        public List<string> UnassignedFields = new List<string>();
     }
 
     public static string[] ListSourcePrefabs()
@@ -308,6 +311,14 @@ public static class PlayableLevelFactory
             AssetDatabase.SaveAssets();
 
             AttachCtaComponent(destPrefab, log);
+
+            result.UnassignedFields = FindUnassignedFields(destPrefab, playableText);
+            if (result.UnassignedFields.Count > 0)
+            {
+                log.Add("UNASSIGNED (will NullReference when their step runs): " +
+                        string.Join(", ", result.UnassignedFields.ToArray()) +
+                        " — assign these on " + Path.GetFileName(sourcePrefabPath) + ", they are empty in the source level.");
+            }
 
             EditorPrefs.SetString(LastPrefabPref, destPrefab);
 
@@ -1310,6 +1321,76 @@ public static class PlayableLevelFactory
             PrefabUtility.UnloadPrefabContents(root);
         }
     }
+
+    /// <summary>
+    /// Inspector fields the built playable will dereference but that nothing is assigned to.
+    ///
+    /// These are almost always missing in the SOURCE level (the wizard copies references, it does
+    /// not invent them), so they blow up as a NullReferenceException the moment that step runs —
+    /// deep inside a DOTween callback, with a stack trace pointing at generated code. Far cheaper
+    /// to name them at build time. Only fields the kept script actually touches are reported, and
+    /// only where the code does not already null-check them, so an unused leftover stays quiet.
+    /// </summary>
+    static List<string> FindUnassignedFields(string prefabPath, string scriptText)
+    {
+        var missing = new List<string>();
+        var root = PrefabUtility.LoadPrefabContents(prefabPath);
+        try
+        {
+            var level = root.GetComponent<LevelData>();
+            if (level == null)
+                level = root.GetComponentInChildren<LevelData>(true);
+            if (level == null)
+                return missing;
+
+            var so = new SerializedObject(level);
+            var it = so.GetIterator();
+            while (it.NextVisible(true))
+            {
+                if (it.propertyType != SerializedPropertyType.ObjectReference)
+                    continue;
+
+                // Top-level fields only — array elements are reported by their parent field.
+                string field = it.propertyPath;
+                if (field.IndexOf('.') >= 0)
+                    continue;
+
+                if (it.objectReferenceValue != null)
+                    continue;
+
+                // A non-zero instance id with a null value is a BROKEN reference: it was wired
+                // once and the target has since been deleted. That is worse than empty — it
+                // throws MissingReferenceException instead of NullReference, and a null-check in
+                // the level code does NOT save it, because Unity's fake-null only covers the
+                // destroyed-object case at the property, not the dangling fileID.
+                bool broken = it.objectReferenceInstanceIDValue != 0;
+
+                string escaped = Regex.Escape(field);
+
+                // Not touched by the code that survived the trim: harmless, stay quiet.
+                if (!Regex.IsMatch(scriptText, @"(?<![\w.])" + escaped + @"\s*\."))
+                    continue;
+
+                // Already guarded somewhere: the level expects it to be optional. A broken
+                // reference is still reported — the guard will not catch it.
+                if (!broken &&
+                    (Regex.IsMatch(scriptText, @"(?<![\w.])" + escaped + @"\s*(?:!=|==)\s*null") ||
+                     Regex.IsMatch(scriptText, @"(?<![\w.])" + escaped + @"\s*\?\.")))
+                    continue;
+
+                missing.Add(broken
+                    ? field + " (BROKEN reference — its object was deleted from the level)"
+                    : field + " (empty)");
+            }
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+
+        return missing;
+    }
+
 
     // Every generated playable gets a PlayableCTA on its root so CTA behaviour stays
     // editable in the Inspector instead of being baked in at build time. The component

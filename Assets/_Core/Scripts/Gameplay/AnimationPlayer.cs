@@ -14,11 +14,11 @@ public class AnimationPlayer : MonoBehaviour
 
     void Start()
     {
-        if (anim != null)
+        if (anim != null && anim.gameObject.activeInHierarchy)
         {
             anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
             anim.Update(0f);
-            anim.speed = 0f; // initially paused
+            anim.speed = 0.001f; // Luna doesn't tick Update() at speed 0; kept ~frozen, manually scrubbed via Play()
         }
     }
 
@@ -42,7 +42,7 @@ public class AnimationPlayer : MonoBehaviour
 
     void Update()
     {
-        if (anim == null)
+        if (anim == null || !anim.gameObject.activeInHierarchy)
             return;
 
         if (!canPlay)

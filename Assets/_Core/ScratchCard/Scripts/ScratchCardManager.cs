@@ -47,11 +47,14 @@ namespace ScratchCardAsset
 			}
 
 			Material scratchSurfaceMaterial = null;
+
 			if (Card.ScratchSurface == null)
 			{
 				scratchSurfaceMaterial = new Material(MaskShader) {mainTexture = ScratchSurfaceSprite.texture};
-				Card.ScratchSurface = scratchSurfaceMaterial;
+				
 				scratchSurfaceMaterial.renderQueue = 3000; // Set render queue to Transparent
+
+				Card.ScratchSurface = scratchSurfaceMaterial;
             }
 
 			if (Card.Eraser == null)
@@ -69,6 +72,7 @@ namespace ScratchCardAsset
 				var progressMaterial = new Material(shader);
 				Card.Progress = progressMaterial;
 			}
+
 
 			if (RenderType == ScratchCardRenderType.MeshRenderer)
 			{
@@ -95,6 +99,7 @@ namespace ScratchCardAsset
 					Debug.LogError("Can't find Renderer component on " + MeshCard.name + " GameObject!");
 				}
 			}
+
 			else if (RenderType == ScratchCardRenderType.SpriteRenderer)
 			{
 				if (MeshCard != null)
@@ -120,6 +125,7 @@ namespace ScratchCardAsset
 					Debug.LogError("Can't find SpriteRenderer component on " + SpriteCard.name + " GameObject!");
 				}
 			}
+
 			else if (RenderType == ScratchCardRenderType.CanvasRenderer)
 			{
 				if (MeshCard != null)

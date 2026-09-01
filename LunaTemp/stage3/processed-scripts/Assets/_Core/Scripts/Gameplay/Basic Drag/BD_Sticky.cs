@@ -71,11 +71,11 @@ public class BD_Sticky : MonoBehaviour
 
     void Start()
     {
-        if (anim != null)
+        if (anim != null && anim.gameObject.activeInHierarchy)
         {
             anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
             anim.Update(0f);
-            anim.enabled = false;
+            anim.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
         }
     }
 
@@ -132,7 +132,7 @@ public class BD_Sticky : MonoBehaviour
 
                     // Trigger "Start Drag" effects once
                     
-                    if (anim != null) anim.enabled = true;
+                    if (anim != null) anim.speed = 1f;
                     if (pickSfx != null) AudioController.instance.PlayAnySfx(2, pickSfx, 0);
                 }
             }
@@ -225,11 +225,11 @@ public class BD_Sticky : MonoBehaviour
             StartBones[i].transform.DOMove(others_Spos[i], 0.2f);
         }
 
-        if (anim != null && !isFreed)
+        if (anim != null && !isFreed && anim.gameObject.activeInHierarchy)
         {
             anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
             anim.Update(0f);
-            anim.enabled = false;
+            anim.speed = 0.001f; // Luna: never disable the Animator (it stops ticking); ~0 speed freezes it
         }
     }
 
