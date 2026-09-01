@@ -55,6 +55,7 @@ public class UI_Manager : MonoBehaviour
     public DOTweenAnimation[] RemoveAdsAnims;
 
     [Space()]
+    public List<GameObject> thingsToDisableWhenCompletePanel;
     public GameObject CompletePanel;
     public Image LevelIcon;
     public GameObject CompleteParticles;
@@ -981,6 +982,14 @@ public class UI_Manager : MonoBehaviour
         {
             if (CompletePanel != null)
                 CompletePanel.SetActive(true);
+
+            foreach (GameObject obj in thingsToDisableWhenCompletePanel)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                }
+            }
         });
 
         if (LevelIcon != null && GameManager.instance != null && GameManager.instance.currentLevel != null)

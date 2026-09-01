@@ -4,7 +4,8 @@ using UnityEngine;
 public class StaticFixedPipe : MonoBehaviour
 {
     [Header("Attachments")]
-    public LineRenderer lineRenderer;
+    // Luna: rope is drawn as a generated quad-strip mesh instead of a LineRenderer.
+    public MeshRenderer meshRenderer;
     public Transform toolTransform;
     public Transform toolDirectionPoint;
     public Transform fixedEndPoint;
@@ -19,12 +20,12 @@ public class StaticFixedPipe : MonoBehaviour
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
     private float segmentLength;
 
+    private Mesh mesh;
+    private Transform meshTransform;
+    private Vector3[] vertices;
+
     void Start()
     {
-        lineRenderer.startWidth = pipeWidth;
-        lineRenderer.endWidth = pipeWidth;
-        lineRenderer.positionCount = segmentCount;
-
         segmentLength = totalLength / segmentCount;
 
         Vector3 startPos = toolTransform.position;
@@ -32,6 +33,53 @@ public class StaticFixedPipe : MonoBehaviour
         {
             ropeSegments.Add(new RopeSegment(startPos));
         }
+
+        BuildMesh();
+    }
+
+    void BuildMesh()
+    {
+        if (meshRenderer == null)
+            return;
+
+        meshTransform = meshRenderer.transform;
+
+        var filter = meshRenderer.GetComponent<MeshFilter>();
+        if (filter == null)
+            filter = meshRenderer.gameObject.AddComponent<MeshFilter>();
+
+        mesh = new Mesh();
+        mesh.MarkDynamic();
+
+        vertices = new Vector3[segmentCount * 2];
+        Vector2[] uvs = new Vector2[segmentCount * 2];
+        int[] triangles = new int[(segmentCount - 1) * 6];
+
+        for (int i = 0; i < segmentCount - 1; i++)
+        {
+            int v = i * 2;
+            int t = i * 6;
+            triangles[t] = v;
+            triangles[t + 1] = v + 2;
+            triangles[t + 2] = v + 1;
+            triangles[t + 3] = v + 1;
+            triangles[t + 4] = v + 2;
+            triangles[t + 5] = v + 3;
+        }
+
+        for (int i = 0; i < segmentCount; i++)
+        {
+            float u = (float)i / (segmentCount - 1);
+            uvs[i * 2] = new Vector2(u, 0f);
+            uvs[i * 2 + 1] = new Vector2(u, 1f);
+        }
+
+        mesh.vertices = vertices;
+        mesh.uv = uvs;
+        mesh.triangles = triangles;
+
+        // Luna exposes MeshFilter.sharedMesh / instancedMesh, not .mesh
+        filter.sharedMesh = mesh;
     }
 
     // Smooth movement k liye LateUpdate behtar hai taake tool move ho chuka ho
@@ -113,16 +161,37 @@ public class StaticFixedPipe : MonoBehaviour
         }
     }
 
+    // Quad strip: two verts per rope point, offset perpendicular to the rope in the XY plane.
     private void DrawRope()
     {
-        Vector3[] ropePositions = new Vector3[segmentCount];
+        if (mesh == null)
+            return;
+
+        float half = pipeWidth * 0.5f;
+
         for (int i = 0; i < segmentCount; i++)
         {
-            ropePositions[i] = ropeSegments[i].posNow;
+            Vector3 dir;
+            if (i == 0)
+                dir = ropeSegments[1].posNow - ropeSegments[0].posNow;
+            else if (i == segmentCount - 1)
+                dir = ropeSegments[i].posNow - ropeSegments[i - 1].posNow;
+            else
+                dir = ropeSegments[i + 1].posNow - ropeSegments[i - 1].posNow;
+
+            Vector3 normal = new Vector3(-dir.y, dir.x, 0f);
+            if (normal.sqrMagnitude < 0.0000001f)
+                normal = Vector3.up;
+            else
+                normal = normal.normalized;
+
+            Vector3 pos = ropeSegments[i].posNow;
+            vertices[i * 2] = meshTransform.InverseTransformPoint(pos - normal * half);
+            vertices[i * 2 + 1] = meshTransform.InverseTransformPoint(pos + normal * half);
         }
 
-        // Ye line end pr honi chaye taake latest calculation display ho
-        lineRenderer.SetPositions(ropePositions);
+        mesh.vertices = vertices;
+        mesh.RecalculateBounds();
     }
 
     public struct RopeSegment

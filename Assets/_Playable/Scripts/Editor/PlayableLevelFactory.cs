@@ -2290,7 +2290,7 @@ public static class PlayableLevelFactory
             var pipe = pipes[i];
             if (pipe == null)
                 continue;
-            if (pipe.toolTransform != null && pipe.lineRenderer != null)
+            if (pipe.toolTransform != null && pipe.meshRenderer != null)
                 continue;
             log.Add("  - deleted broken pipe '" + pipe.gameObject.name + "'");
             UnityEngine.Object.DestroyImmediate(pipe.gameObject);

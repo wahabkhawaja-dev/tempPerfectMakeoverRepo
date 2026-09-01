@@ -1,8 +1,8 @@
 {
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
-    "applicationID": 23908,
-    "creativeName": "",
+    "applicationID": 42211,
+    "creativeName": "1Sept2026_CompleteLevel_1_2_v1_Final",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -80,7 +80,7 @@
             "externalSources": [],
             "externalJSLibraries": [],
             "scriptingDefines": [],
-            "msbuildVersion": "4.8",
+            "msbuildVersion": "18.9",
             "monoVersion": "10.0.11",
             "dotnetVersion": ""
         },
@@ -3990,7 +3990,7 @@
             },
             {
                 "name": "UnityEngine.HideFlags",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.HideInInspector",
@@ -6518,7 +6518,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutController",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.UI.ContentSizeFitter.FitMode",
@@ -6530,11 +6530,11 @@
             },
             {
                 "name": "UnityEngine.UI.CoroutineTween.ColorTween.ColorTweenCallback",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.UI.CoroutineTween.ColorTween.ColorTweenMode",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.UI.CoroutineTween.FloatTween.FloatTweenCallback",
@@ -6674,11 +6674,11 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IUpdateSelectedHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IScrollHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDropHandler",
@@ -6686,7 +6686,7 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IEndDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDragHandler",
@@ -6694,11 +6694,11 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IBeginDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IInitializePotentialDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IPointerClickHandler",
@@ -6710,7 +6710,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutGroup",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.EventTrigger.TriggerEvent",
@@ -6834,10 +6834,6 @@
             },
             {
                 "name": "DG.Tweening.Core.Easing.EaseCurve",
-                "excluded": true
-            },
-            {
-                "name": "DG.Tweening.Core.Easing.Flash",
                 "excluded": true
             },
             {
@@ -7249,10 +7245,6 @@
                 "excluded": true
             },
             {
-                "name": "DoubleScratch_Controller",
-                "excluded": true
-            },
-            {
                 "name": "DraggableBrush",
                 "excluded": true
             },
@@ -7446,10 +7438,6 @@
             },
             {
                 "name": "RemoteManager",
-                "excluded": true
-            },
-            {
-                "name": "ScratchCardAsset.Demo.ScratchDemoUI",
                 "excluded": true
             },
             {
@@ -15336,7 +15324,7 @@
                     },
                     {
                         "name": "LerpUnclamped",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Approximately",
@@ -16568,11 +16556,11 @@
                 "instanceMethods": [
                     {
                         "name": "Invoke",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "AddListener",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RemoveListener",
@@ -18816,7 +18804,7 @@
                     },
                     {
                         "name": "highlightedColor#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "highlightedColor#set",
@@ -18856,7 +18844,7 @@
                     },
                     {
                         "name": "fadeDuration#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "fadeDuration#set",
@@ -19028,7 +19016,7 @@
                     },
                     {
                         "name": "highlightedSprite#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "highlightedSprite#set",
@@ -19082,7 +19070,7 @@
                 "instanceMethods": [
                     {
                         "name": "Start",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Init",
@@ -19090,7 +19078,7 @@
                     },
                     {
                         "name": "StartTween",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "StopTween",
@@ -22750,7 +22738,7 @@
                     },
                     {
                         "name": "MarkDynamic",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "UploadMeshData",
@@ -22766,7 +22754,7 @@
                     },
                     {
                         "name": "RecalculateBounds",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RecalculateNormals",
@@ -23284,7 +23272,7 @@
                     },
                     {
                         "name": "SetColor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DisableRectClipping",
@@ -25552,7 +25540,7 @@
                     },
                     {
                         "name": "highlightedTrigger#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "highlightedTrigger#set",
@@ -26052,7 +26040,7 @@
                     },
                     {
                         "name": "startColor#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "targetColor#get",
@@ -26060,7 +26048,7 @@
                     },
                     {
                         "name": "targetColor#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "tweenMode#get",
@@ -26068,39 +26056,39 @@
                     },
                     {
                         "name": "tweenMode#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "duration#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "duration#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ignoreTimeScale#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ignoreTimeScale#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "init",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "TweenValue",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "AddOnChangedCallback",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetIgnoreTimescale",
@@ -26112,7 +26100,7 @@
                     },
                     {
                         "name": "ValidTarget",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "getHashCode",
@@ -26124,7 +26112,7 @@
                     },
                     {
                         "name": "$clone",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -33124,15 +33112,15 @@
                     },
                     {
                         "name": "sharedMesh#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "UpdateMeshInHandle",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -33722,11 +33710,11 @@
                 "instanceMethods": [
                     {
                         "name": "init",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDidApplyAnimationProperties",
@@ -33996,6 +33984,122 @@
                     },
                     {
                         "name": "InitState",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.Core.Easing.Flash",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Ease",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EaseIn",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EaseOut",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EaseInOut",
+                        "excluded": true
+                    },
+                    {
+                        "name": "WeightedEase",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "_2dxFX_Wave",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CallUpdate",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDestroy",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DoubleScratch_Controller",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Start",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "ScratchCardAsset.Demo.ScratchDemoUI",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDropdown",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnSlider",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnChange",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnEraseProgress",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnCheck",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Restart",
                         "excluded": true
                     }
                 ]

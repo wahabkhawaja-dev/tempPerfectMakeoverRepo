@@ -204,6 +204,24 @@ public class PlayableCTA : MonoBehaviour
                 }
             }
 
+            // The playable never runs UI_Manager.Complete() (GameManagerPlayable overrides
+            // Complete()), so honour its disable-list here — this IS the end of the playable.
+            try
+            {
+                if (UI_Manager.instance != null && UI_Manager.instance.thingsToDisableWhenCompletePanel != null)
+                {
+                    foreach (GameObject obj in UI_Manager.instance.thingsToDisableWhenCompletePanel)
+                    {
+                        if (obj != null)
+                            obj.SetActive(false);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log("[PlayableCTA] Disable-list skipped (no UI_Manager, ok standalone): " + e.Message);
+            }
+
             if (showCardThisFire && showEndCard && endCard != null)
                 endCard.SetActive(true);
 
