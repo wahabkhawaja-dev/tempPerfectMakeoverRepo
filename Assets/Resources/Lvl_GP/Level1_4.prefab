@@ -13614,7 +13614,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225884300910652152}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 45675f57bf0235b4aaf551ca047ba7a0, type: 2}
   m_CullingMode: 0
@@ -35771,19 +35771,7 @@ MonoBehaviour:
   newScaleOnPlace: {x: 1, y: 1, z: 1}
   OnPlaced:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8830776779706141490}
-        m_TargetAssemblyTypeName: Level1_Armpit, Assembly-CSharp
-        m_MethodName: DropperPlaced
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2538115634384910653
 GameObject:
   m_ObjectHideFlags: 0
@@ -72236,6 +72224,7 @@ MonoBehaviour:
   spatulaFull: {fileID: 4405665110149003370}
   spatulaFaded: {fileID: 985781242472267210}
   waxMixControler: {fileID: 9048749669149415708}
+  toolStep4: {fileID: 3607756943642876657}
   waxOnSpatula: {fileID: 1458388993125336520}
   waxMixIndication: {fileID: 3193790272205946318}
   waxDrippinfParticle: {fileID: 6257274249332042126}
@@ -72815,19 +72804,7 @@ MonoBehaviour:
     isComplete: 0
   OnScratchComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8830776779706141490}
-        m_TargetAssemblyTypeName: Level1_Armpit, Assembly-CSharp
-        m_MethodName: Step5Complete
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   isProgDone: 0
   canCallComplete: 0
   CollectiveAppear: 1
@@ -106068,11 +106045,23 @@ MonoBehaviour:
   anim: {fileID: 3302605469018796818}
   Source: {fileID: 4903110778056979475}
   Vibration: 0
-  isCompletable: 0
-  completionThreshold: 0.98
+  isCompletable: 1
+  completionThreshold: 0.9
   OnComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8830776779706141490}
+        m_TargetAssemblyTypeName: Level1_Armpit, Assembly-CSharp
+        m_MethodName: Step5Complete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &4903110778056979475
 AudioSource:
   m_ObjectHideFlags: 0

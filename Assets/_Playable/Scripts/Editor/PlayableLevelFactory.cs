@@ -113,9 +113,14 @@ public static class PlayableLevelFactory
         public List<string> UnassignedFields = new List<string>();
     }
 
+    /// <summary>
+    /// Original Resources levels, plus every playable already built into Assets/_Playable/Levels
+    /// — so a full-step playable can itself be picked as the source for a further, smaller
+    /// variation (Scan() only needs a LevelData + its script, which a built playable still has).
+    /// </summary>
     public static string[] ListSourcePrefabs()
     {
-        var guids = AssetDatabase.FindAssets("t:Prefab", new[] { LevelsRoot });
+        var guids = AssetDatabase.FindAssets("t:Prefab", new[] { LevelsRoot, PlayableLevels });
         var paths = new List<string>();
         for (int i = 0; i < guids.Length; i++)
         {
@@ -244,6 +249,23 @@ public static class PlayableLevelFactory
         InnerMode mode,
         string innerBuiltPrefab)
     {
+        return Build(sourcePrefabPath, keepSteps, placeInScene, mode, innerBuiltPrefab, null);
+    }
+
+    /// <summary>
+    /// Same as above, but <paramref name="variant"/> (when non-empty) is appended to the
+    /// generated script class and prefab name, so multiple step-range builds off the same
+    /// source level land as separate files instead of overwriting each other's
+    /// "{Level}_Playable" prefab/script.
+    /// </summary>
+    public static BuildResult Build(
+        string sourcePrefabPath,
+        IList<int> keepSteps,
+        bool placeInScene,
+        InnerMode mode,
+        string innerBuiltPrefab,
+        string variant)
+    {
         var log = new List<string>();
         var result = new BuildResult();
         string destPrefab = null;
@@ -262,14 +284,34 @@ public static class PlayableLevelFactory
             if (!string.IsNullOrEmpty(scan.Error))
                 throw new Exception(scan.Error);
 
+            string variantSuffix = string.IsNullOrEmpty(variant) ? "" : "_" + Regex.Replace(variant, "[^A-Za-z0-9]", "");
+
             string playableClass = scan.ClassName.EndsWith("_Playable", StringComparison.Ordinal)
                 ? scan.ClassName
                 : scan.ClassName + "_Playable";
+            playableClass += variantSuffix;
+
+            string prefabName = Path.GetFileNameWithoutExtension(sourcePrefabPath);
+            if (prefabName.EndsWith("_Playable", StringComparison.OrdinalIgnoreCase))
+                prefabName = prefabName.Substring(0, prefabName.Length - "_Playable".Length);
+            string plannedDestPrefab = PlayableLevels + "/" + prefabName + "_Playable" + variantSuffix + ".prefab";
+            string plannedDestScript = PlayableScripts + "/" + playableClass + ".cs";
+
+            // Sourcing from an already-built playable (re-slicing it into a further variation)
+            // can land on the exact same class/prefab name as the source itself when no variant
+            // is given — that would overwrite the very file being read from. A blank variant is
+            // fine when sourcing from Resources/Lvl_GP (destination there always differs from
+            // Resources), so only block the case that actually collides.
+            if (string.Equals(plannedDestScript, scan.ScriptPath, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(plannedDestPrefab, sourcePrefabPath, StringComparison.OrdinalIgnoreCase))
+                throw new Exception(
+                    "Build would overwrite its own source (" + sourcePrefabPath + "). " +
+                    "Set a Variant name to build a distinct output.");
 
             Directory.CreateDirectory(ToFull(PlayableScripts));
             Directory.CreateDirectory(ToFull(PlayableLevels));
 
-            string destScript = PlayableScripts + "/" + playableClass + ".cs";
+            string destScript = plannedDestScript;
             string sourceText = File.ReadAllText(ToFull(scan.ScriptPath));
             string playableText = RewriteScript(sourceText, scan.ClassName, playableClass, keep, first, last, mode, scan.FixStep, log);
 
@@ -286,10 +328,7 @@ public static class PlayableLevelFactory
             if (string.IsNullOrEmpty(destGuid))
                 throw new Exception("Playable script GUID nahi mila after import.");
 
-            string prefabName = Path.GetFileNameWithoutExtension(sourcePrefabPath);
-            if (prefabName.EndsWith("_Playable", StringComparison.OrdinalIgnoreCase))
-                prefabName = prefabName.Substring(0, prefabName.Length - "_Playable".Length);
-            destPrefab = PlayableLevels + "/" + prefabName + "_Playable.prefab";
+            destPrefab = plannedDestPrefab;
 
             File.Copy(ToFull(sourcePrefabPath), ToFull(destPrefab), true);
             string yaml = File.ReadAllText(ToFull(destPrefab));

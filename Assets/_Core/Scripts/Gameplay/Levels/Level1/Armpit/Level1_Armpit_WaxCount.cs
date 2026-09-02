@@ -50,13 +50,12 @@ public class Level1_Armpit_WaxCount : MonoBehaviour
                 UI_Manager.instance.SetProgressBar(progress);
 
                 // if (VibrationManager.instance && vibration)
-                {
-                    DOVirtual.DelayedCall(delayInVibration, () =>
-                    {
-                        // VibrationManager.instance.MediumImpact();
-
-                    });
-                }
+                // {
+                //     DOVirtual.DelayedCall(delayInVibration, () =>
+                //     {
+                //         VibrationManager.instance.MediumImpact();
+                //     });
+                // }
 
                 try
                 {

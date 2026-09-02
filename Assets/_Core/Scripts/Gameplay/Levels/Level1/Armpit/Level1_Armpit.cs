@@ -80,6 +80,7 @@ public class Level1_Armpit : LevelData
 
     [Space()]
     public GameObject waxMixControler;
+    public BasicDrag toolStep4;
     public SpriteRenderer waxOnSpatula;
     public GameObject waxMixIndication;
     public GameObject waxDrippinfParticle;
@@ -89,8 +90,8 @@ public class Level1_Armpit : LevelData
 
     [Space()]
     //public BasicDrag waxStickyBD;
-   // public GameObject fadedAnim;
-   // public GameObject fullAnim;
+    // public GameObject fadedAnim;
+    // public GameObject fullAnim;
     public GameObject finalSpatula;
 
     [Space()]
@@ -104,7 +105,7 @@ public class Level1_Armpit : LevelData
     public BasicDrag ToolStep5;
 
     [Space()]
-    public BD_CameraFollow ToolStep5CameraFollow;
+    //public BD_CameraFollow ToolStep5CameraFollow;
 
     [Space()]
     public SpriteRenderer hairSmall;
@@ -112,6 +113,7 @@ public class Level1_Armpit : LevelData
     public GameObject waxRestore;
     public GameObject waxErase;
     public GameObject waxEraseIndication;
+    public GameObject handIndication5;
 
 
     [Header("----------------- STEP 6 ----------------------")]
@@ -281,7 +283,7 @@ public class Level1_Armpit : LevelData
             AudioController.instance.PlayAnySfx(0, eraserSfx, 0);
 
         // if (VibrationManager.instance)
-            // VibrationManager.instance.MediumImpact();
+        //     VibrationManager.instance.MediumImpact();
     }
 
     public void Step1Complete()
@@ -504,7 +506,7 @@ public class Level1_Armpit : LevelData
     public void GreenBtnPressed()
     {
         // if (VibrationManager.instance)
-            // VibrationManager.instance.MediumImpact();
+        //     VibrationManager.instance.MediumImpact();
 
         if (AudioController.instance)
             AudioController.instance.PlayAnySfx(0, machineBtnSfx, 0);
@@ -616,10 +618,29 @@ public class Level1_Armpit : LevelData
             {
                 spatulaFull.SetActive(false);
                 spatulaFaded.SetActive(true);
+
+                toolStep4.OnMouseDownEvent += Step4IndHide;
+                toolStep4.OnMouseUpEvent += Step4IndShow;
+
                 waxMixControler.SetActive(true);
                 waxMixIndication.SetActive(true);
 
             });
+        });
+    }
+
+    void Step4IndHide()
+    {
+        waxMixIndication.SetActive(false);
+    }
+    void Step4IndShow()
+    {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            if (isStep4Done)
+                return;
+
+            waxMixIndication.SetActive(true);
         });
     }
 
@@ -644,14 +665,14 @@ public class Level1_Armpit : LevelData
 
             spatulaFaded.transform.parent = null;
             spatulaFull.transform.parent = null;
-         //   spatulaFadedAnim.transform.position = spatulaFaded.transform.position;
+            //   spatulaFadedAnim.transform.position = spatulaFaded.transform.position;
             spatulaFaded.SetActive(false);
-          //  spatulaFadedAnim.SetActive(true);
+            //  spatulaFadedAnim.SetActive(true);
 
             SpatulaPicked();
 
-          
-           // waxStickyBD.gameObject.SetActive(true);
+
+            // waxStickyBD.gameObject.SetActive(true);
         });
     }
 
@@ -663,7 +684,7 @@ public class Level1_Armpit : LevelData
         finalSpatula.gameObject.SetActive(true);
 
 
-       // spatulaFadedAnim.GetComponent<Animator>().enabled = false;
+        // spatulaFadedAnim.GetComponent<Animator>().enabled = false;
 
         spatulaPickIndication.SetActive(false);
 
@@ -695,7 +716,7 @@ public class Level1_Armpit : LevelData
 
                 spatulaFull.SetActive(false);
 
-             //   waxStickyBD.gameObject.SetActive(false);
+                //   waxStickyBD.gameObject.SetActive(false);
 
             }
 
@@ -739,13 +760,35 @@ public class Level1_Armpit : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep5.CameraPos, ZoomStep5.CameraFOV);
 
-        ToolStep5.transform.DOKill();
-        ToolStep5.transform.DOLocalMoveX(-1.5f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep5.transform.parent.DOKill();
+        ToolStep5.transform.parent.DOLocalMoveX(-1.45f, .5f).SetDelay(1f).OnComplete(() =>
         {
+
+            ToolStep5.OnMouseDownEvent += Step5IndHide;
+            ToolStep5.OnMouseUpEvent += Step5IndShow;
+
             ToolInputToggle(ToolStep5.gameObject, true);
 
-            ToolStep5CameraFollow.enabled = true;
+            handIndication5.SetActive(true);
+            //  ToolStep5CameraFollow.enabled = true;
         });
+    }
+
+    void Step5IndShow()
+    {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            if (isStep5Done)
+                return;
+
+            handIndication5.SetActive(true);
+        });
+
+
+    }
+    void Step5IndHide()
+    {
+        handIndication5.SetActive(false);
     }
 
     public void Step5Complete()
@@ -753,17 +796,19 @@ public class Level1_Armpit : LevelData
         if (isStep5Done)
             return;
 
+        handIndication5.SetActive(false);
+
         hairSmall.DOFade(0, 2f);
 
         isStep5Done = true;
 
         ToolInputToggle(ToolStep5.gameObject, false);
 
-        ToolStep5.transform.DOLocalMoveX(-15f, .5f).OnComplete(() =>
+        ToolStep5.transform.parent.DOLocalMoveX(-15f, .5f).OnComplete(() =>
         {
             ToolStep5.gameObject.SetActive(false);
 
-            ToolStep5CameraFollow.enabled = false;
+            //  ToolStep5CameraFollow.enabled = false;
         });
 
         DOVirtual.DelayedCall(0.2f, () =>
@@ -1026,7 +1071,7 @@ public class Level1_Armpit : LevelData
     public void PerfumePressed()
     {
         // if (VibrationManager.instance)
-            // VibrationManager.instance.MediumImpact();
+        //     VibrationManager.instance.MediumImpact();
 
         bodyStright.SetActive(false);
 
@@ -1077,6 +1122,10 @@ public class Level1_Armpit : LevelData
         SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 0;
 
         UI_Manager.instance.SetProgressBar(1f);
+
+        SaveSystem.Instance.DataFields.AllLevels[0].subLevels[5].stepsDone = 0;
+
+        SaveSystem.Instance.DataFields.AllLevels[0].subLevels[5].isCompleted = false;
 
         Invoke(nameof(LevelComplete), 2f);
 
