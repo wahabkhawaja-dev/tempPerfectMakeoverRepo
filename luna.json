@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "1Sept2026_CompleteLevel_1_2_v1_Final_v1",
+    "creativeName": "2Sept2026_CompleteLevel_1_2_v4_Final",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -1745,15 +1745,7 @@
                 "excluded": true
             },
             {
-                "name": "UnityEngine.Resolution",
-                "excluded": true
-            },
-            {
                 "name": "UnityEngine.RootMotionData",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.Screen",
                 "excluded": true
             },
             {
@@ -2014,10 +2006,6 @@
             },
             {
                 "name": "UnityEngine.Timeline.TimeFieldAttribute",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.TooltipAttribute",
                 "excluded": true
             },
             {
@@ -5190,7 +5178,7 @@
             },
             {
                 "name": "UnityEngine.SpriteTileMode",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.StackTraceLogType",
@@ -6518,7 +6506,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutController",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.UI.ContentSizeFitter.FitMode",
@@ -6678,7 +6666,7 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IScrollHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDropHandler",
@@ -6686,7 +6674,7 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IEndDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDragHandler",
@@ -6694,11 +6682,11 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IBeginDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IInitializePotentialDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IPointerClickHandler",
@@ -6710,7 +6698,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutGroup",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.EventTrigger.TriggerEvent",
@@ -6866,10 +6854,6 @@
             },
             {
                 "name": "DG.Tweening.TweenParams",
-                "excluded": true
-            },
-            {
-                "name": "DG.Tweening.Core.SequenceCallback",
                 "excluded": true
             },
             {
@@ -7261,10 +7245,6 @@
                 "excluded": true
             },
             {
-                "name": "DressChangeIntro",
-                "excluded": true
-            },
-            {
                 "name": "Drop",
                 "excluded": true
             },
@@ -7414,10 +7394,6 @@
             },
             {
                 "name": "MapPinScaleCompensator",
-                "excluded": true
-            },
-            {
-                "name": "MenuDraggable",
                 "excluded": true
             },
             {
@@ -8603,6 +8579,14 @@
             {
                 "name": "DG.Tweening.Plugins.Core.ITPlugin$4",
                 "excluded": false
+            },
+            {
+                "name": "Level1_StartAnimation",
+                "excluded": true
+            },
+            {
+                "name": "Level1_ShampooController",
+                "excluded": true
             }
         ],
         "unusedMethods": [
@@ -17046,7 +17030,7 @@
                     },
                     {
                         "name": "parent#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "worldToLocalMatrix#get",
@@ -18640,7 +18624,7 @@
                     },
                     {
                         "name": "size#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "size#set",
@@ -18648,7 +18632,7 @@
                     },
                     {
                         "name": "tileMode#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "tileMode#set",
@@ -18656,7 +18640,7 @@
                     },
                     {
                         "name": "adaptiveModeThreshold#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "adaptiveModeThreshold#set",
@@ -23080,7 +23064,7 @@
                     },
                     {
                         "name": "Get9TiledMesh",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -25404,7 +25388,7 @@
                     },
                     {
                         "name": "targetDisplay#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "targetDisplay#set",
@@ -26792,7 +26776,7 @@
                     },
                     {
                         "name": "PlayBackwards",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayForward",
@@ -27696,7 +27680,7 @@
                     },
                     {
                         "name": "Goto",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GotoWithCallbacks",
@@ -27704,7 +27688,7 @@
                     },
                     {
                         "name": "DoGoto",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Kill",
@@ -27724,7 +27708,7 @@
                     },
                     {
                         "name": "PlayBackwards",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayForward",
@@ -28002,7 +27986,7 @@
                     },
                     {
                         "name": "AppendCallback",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PrependCallback",
@@ -28337,7 +28321,15 @@
                         "excluded": false
                     },
                     {
-                        "name": "OnMouseDown",
+                        "name": "Awake",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tap",
                         "excluded": true
                     }
                 ]
@@ -29454,7 +29446,7 @@
                     },
                     {
                         "name": "ReverseBtnAnim",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DisableBtnAnim",
@@ -29798,6 +29790,10 @@
                     },
                     {
                         "name": "DropUnplayedLevels",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IntroFinished",
                         "excluded": false
                     }
                 ]
@@ -30193,14 +30189,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "PointerDown",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PointerUp",
-                        "excluded": false
-                    },
-                    {
                         "name": "ResetButtonState",
                         "excluded": false
                     },
@@ -30214,6 +30202,14 @@
                     },
                     {
                         "name": "OnDisable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PressDown",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PressUp",
                         "excluded": false
                     }
                 ]
@@ -30368,7 +30364,7 @@
                     },
                     {
                         "name": "SetProgressIconIndex",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetProgressBarPos",
@@ -30457,6 +30453,10 @@
                     {
                         "name": "HideClockProgress",
                         "excluded": true
+                    },
+                    {
+                        "name": "KillPendingTick",
+                        "excluded": false
                     }
                 ]
             },
@@ -30750,7 +30750,7 @@
                     },
                     {
                         "name": "DoInsertCallback",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "init",
@@ -34009,6 +34009,210 @@
                         "excluded": true
                     }
                 ]
+            },
+            {
+                "className": "DressChangeIntro",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartHandPeek",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartArmCloth",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartBasketSlide",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ClothUpdate",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnClothPicked",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnClothReleased",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlaceClothInBasket",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "MenuDraggable",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Pick",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Release",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.TooltipAttribute",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.Core.SequenceCallback",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.Resolution",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "getDefaultValue",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "getHashCode",
+                        "excluded": true
+                    },
+                    {
+                        "name": "equals",
+                        "excluded": true
+                    },
+                    {
+                        "name": "$clone",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.Screen",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "width#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "height#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "safeArea#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "currentResolution#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fullScreen#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fullScreen#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "dpi#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "dpi#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "orientation#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "orientation#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sleepTimeout#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sleepTimeout#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeLeft#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeLeft#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeRight#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeRight#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortrait#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortrait#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortraitUpsideDown#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortraitUpsideDown#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    }
+                ]
             }
         ],
         "stubberDataList": [],
@@ -34028,8 +34232,8 @@
         "rules": {
             "texture": {
                 "default": {
-                    "maxWidth": 512,
-                    "maxHeight": 512,
+                    "maxWidth": 1024,
+                    "maxHeight": 1024,
                     "format": "png32",
                     "compression": "quantSize",
                     "quality": 65,

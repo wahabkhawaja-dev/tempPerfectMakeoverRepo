@@ -1,5 +1,5 @@
-using DG.Tweening;
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
@@ -24,9 +24,6 @@ public class SpriteButton : MonoBehaviour
 
     [Space()]
     public UnityEvent onClick;
-
-    [Tooltip("Fired when this button is tapped while isLocked. PlayableRouter listens to this " +
-             "to count locked taps and fire the store CTA after N of them.")]
     public UnityEvent onLockedClick;
 
     // Scale of the SpriteRenderer only
@@ -54,14 +51,14 @@ public class SpriteButton : MonoBehaviour
 
     bool scaleSaved = false;
 
-    private Collider2D myCollider;
+    Collider2D thisCollider;
 
     void Awake()
     {
+        thisCollider = GetComponent<Collider2D>();
+
         if (pivot != null)
             originalSpriteScale = pivot.transform.localScale;
-
-        myCollider = GetComponent<Collider2D>();
 
         lastMousePosition = Input.mousePosition;
 
@@ -120,25 +117,23 @@ public class SpriteButton : MonoBehaviour
             lastMousePosition = currentMousePosition;
         }
 
-        // Luna/Bridge.NET never delivers OnMouseDown/OnMouseUp for a Collider2D, so the press
-        // is polled here instead — same pattern BasicDrag already uses. See PointerInput.
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!isOverUI() && PointerInput.IsOverCollider(myCollider))
-                PointerDown();
-        }
-        else if (Input.GetMouseButtonUp(0) && isPressed)
-        {
-            PointerUp();
-        }
+        // Luna never dispatches OnMouseDown/OnMouseUp for a Collider2D (it registers them
+        // but only ever fires them off the physics contact path), so the press is polled
+        // here instead. There was no hover behaviour to port — OnMouseEnter/Exit were both
+        // empty on purpose, the button only reacts to press and release.
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(thisCollider))
+            PressDown();
+
+        if (Input.GetMouseButtonUp(0))
+            PressUp();
     }
 
 
     // =========================================================
-    // POINTER DOWN  (polled from Update, see note there)
+    // MOUSE DOWN
     // =========================================================
 
-    void PointerDown()
+    void PressDown()
     {
         if (isOverUI())
             return;
@@ -185,15 +180,15 @@ public class SpriteButton : MonoBehaviour
 
         // Haptics
         // if (VibrationManager.instance)
-            // VibrationManager.instance.MediumImpact();
+        //     VibrationManager.instance.MediumImpact();
     }
 
 
     // =========================================================
-    // POINTER UP  (polled from Update, see note there)
+    // MOUSE UP
     // =========================================================
 
-    void PointerUp()
+    void PressUp()
     {
         if (!isPressed)
             return;
@@ -244,7 +239,7 @@ public class SpriteButton : MonoBehaviour
         {
             if (isLocked)
             {
-                if (ToastManager.instance != null && !string.IsNullOrEmpty(lockMsg))
+                if (ToastManager.instance != null)
                     ToastManager.instance.SendToast(lockMsg);
 
                 if (isLevelBtnSfx)
@@ -260,6 +255,7 @@ public class SpriteButton : MonoBehaviour
 
                 onLockedClick?.Invoke();
             }
+
             else
             {
                 onClick?.Invoke();
@@ -283,7 +279,7 @@ public class SpriteButton : MonoBehaviour
     // RESET
     // =========================================================
 
-    private void ResetButtonState()
+    void ResetButtonState()
     {
         currentTween?.Kill();
         currentTween = null;
@@ -312,8 +308,9 @@ public class SpriteButton : MonoBehaviour
 
     bool IsPointerOverThisObject()
     {
-        // Same 2D-safe check the press uses, so press and release can't disagree.
-        return PointerInput.IsOverCollider(myCollider);
+        // ScreenPointToRay + a directional raycast is a 3D-physics shape that Luna does not
+        // resolve against a Collider2D. PointerInput does the flat overlap test instead.
+        return PointerInput.IsOverCollider(thisCollider);
     }
 
 

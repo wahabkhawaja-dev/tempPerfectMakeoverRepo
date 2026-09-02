@@ -269,12 +269,9 @@ public class Level1_Cloth_Playable : LevelData
 
         Invoke(nameof(SkipSurfStep), 2f);
 
+        // Fill and tick this step's tool, but leave the carousel where it is. SkipSurfStep
+        // moves it on past the detergent behind the fade, so neither hop is ever seen.
         UI_Manager.instance.SetProgressBar(1f);
-
-        DOVirtual.DelayedCall(1f, () =>
-        {
-            UI_Manager.instance.SetProgressBarPos();
-        });
 
         try
         {
@@ -348,10 +345,15 @@ public class Level1_Cloth_Playable : LevelData
 
             ForceCompleteStep2();
 
-            UI_Manager.instance.SetProgressBar(1f);
-            UI_Manager.instance.SetProgressBarPos();
+            // The screen is black here, so snap the tool bar straight from step 1's tool past
+            // the detergent onto the timer's. SetProgressIconIndex places the icons instantly
+            // rather than sliding them, so both hops happen out of sight instead of shuffling
+            // in front of the player once the fade lifts.
+            UI_Manager.instance.SetProgressIconIndex(UI_Manager.instance.currentIndex + 2);
 
-            PlayableFadeCover.Reveal();
+            // Stay covered until that snap and the bar's reset have settled, or the tail of
+            // them would show through the fade-out.
+            DOVirtual.DelayedCall(0.4f, () => PlayableFadeCover.Reveal());
         });
     }
 
@@ -537,7 +539,7 @@ public class Level1_Cloth_Playable : LevelData
 
         machineTimerRotater.canDrag = true;
 
-        CameraController.Instance.MoveCamera(new Vector3(0, 0.6f, -10f), 3.2f);
+        CameraController.Instance.MoveCamera(new Vector3(0f, 0.9f, -10f), 3.5f);
     }
 
     void ForceCompleteStep3()
@@ -583,7 +585,7 @@ public class Level1_Cloth_Playable : LevelData
         clothCleanInside.gameObject.SetActive(false);
         clothCleanInside2.gameObject.SetActive(true);
 
-        CameraController.Instance.MoveCamera(new Vector3(0, 0f, -10f), 4.3f);
+        CameraController.Instance.MoveCamera(new Vector3(-0.15f, -0.9f, -10f), 3.8f);
 
         Basket_Cloth.SetActive(true);
 
@@ -695,10 +697,10 @@ public class Level1_Cloth_Playable : LevelData
         CameraController.Instance.MoveCamera(ZoomStep3a.CameraPos, ZoomStep3a.CameraFOV);
 
         dressingBasket.transform.DOKill();
-        dressingBasket.transform.DOLocalMoveX(0f, .5f).SetDelay(1f);
+        dressingBasket.transform.DOLocalMoveX(0.22f, .5f).SetDelay(1f);
 
         ToolStep3a.transform.DOKill();
-        ToolStep3a.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep3a.transform.DOLocalMoveX(0.22f, .5f).SetDelay(1f).OnComplete(() =>
         {
 
             ToolStep3a.OnMouseDownEvent += OnTool3aPicked;

@@ -539,7 +539,7 @@ public class Level1_Cloth_Playable : LevelData
 
         machineTimerRotater.canDrag = true;
 
-        CameraController.Instance.MoveCamera(new Vector3(0, 0.6f, -10f), 3.2f);
+        CameraController.Instance.MoveCamera(new Vector3(0f, 0.9f, -10f), 3.5f);
     }
 
     void ForceCompleteStep3()
@@ -585,7 +585,7 @@ public class Level1_Cloth_Playable : LevelData
         clothCleanInside.gameObject.SetActive(false);
         clothCleanInside2.gameObject.SetActive(true);
 
-        CameraController.Instance.MoveCamera(new Vector3(0, 0f, -10f), 4.3f);
+        CameraController.Instance.MoveCamera(new Vector3(-0.15f, -0.9f, -10f), 3.8f);
 
         Basket_Cloth.SetActive(true);
 
@@ -697,10 +697,10 @@ public class Level1_Cloth_Playable : LevelData
         CameraController.Instance.MoveCamera(ZoomStep3a.CameraPos, ZoomStep3a.CameraFOV);
 
         dressingBasket.transform.DOKill();
-        dressingBasket.transform.DOLocalMoveX(0f, .5f).SetDelay(1f);
+        dressingBasket.transform.DOLocalMoveX(0.22f, .5f).SetDelay(1f);
 
         ToolStep3a.transform.DOKill();
-        ToolStep3a.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep3a.transform.DOLocalMoveX(0.22f, .5f).SetDelay(1f).OnComplete(() =>
         {
 
             ToolStep3a.OnMouseDownEvent += OnTool3aPicked;

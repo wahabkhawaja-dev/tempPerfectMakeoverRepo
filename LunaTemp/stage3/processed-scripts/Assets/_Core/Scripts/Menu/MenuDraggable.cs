@@ -37,12 +37,15 @@ public class MenuDraggable : MonoBehaviour
     public Action OnPicked;
     public Action OnReleased;
 
+    Collider2D thisCollider;
+
     void Start()
     {
         cam = Camera.main;
+        thisCollider = GetComponent<Collider2D>();
     }
 
-    void OnMouseDown()
+    void Pick()
     {
         if (!canDrag)
             return;
@@ -64,8 +67,16 @@ public class MenuDraggable : MonoBehaviour
             AudioController.instance.PlayAnySfx(0, ToolTapClip, 0f);
     }
 
+    // Luna registers OnMouseDown/OnMouseUp but only ever dispatches them off the physics
+    // contact path, so a Collider2D never receives them. Poll the button instead.
     void Update()
     {
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(thisCollider))
+            Pick();
+
+        if (Input.GetMouseButtonUp(0))
+            Release();
+
         if (!isDragging)
             return;
 
@@ -78,7 +89,7 @@ public class MenuDraggable : MonoBehaviour
         transform.position = targetPos;
     }
 
-    void OnMouseUp()
+    void Release()
     {
         if (!isDragging)
             return;

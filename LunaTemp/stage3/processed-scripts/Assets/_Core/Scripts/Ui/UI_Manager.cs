@@ -100,6 +100,11 @@ public class UI_Manager : MonoBehaviour
 
     bool showTick = false;
 
+    // The tick is shown a beat after the bar fills. The carousel reuses the three icon
+    // objects, so if it rotates before that lands, the tick would light up on whichever
+    // tool just slid into the left slot instead of the one that was completed.
+    Tween pendingTick;
+
     [Space()]
     public int currentIndex = 0;
 
@@ -311,6 +316,8 @@ public class UI_Manager : MonoBehaviour
     {
         showTick = false;
 
+        KillPendingTick();
+
         currentIndex = stepIndex;
 
         SetupToolIconReferences();
@@ -405,6 +412,10 @@ public class UI_Manager : MonoBehaviour
     public void SetProgressBarPos()
     {
         showTick = false;
+
+        // Rotating now would hand a still-pending tick to the wrong icon, so drop it rather
+        // than let it light up on the tool sliding into the left slot.
+        KillPendingTick();
 
         if (allTools == null || allTools.Count == 0)
             return;
@@ -619,8 +630,10 @@ public class UI_Manager : MonoBehaviour
 
             progressBar.DOFillAmount(1f, duration);
 
-            DOVirtual.DelayedCall(duration, () =>
+            pendingTick = DOVirtual.DelayedCall(duration, () =>
             {
+                pendingTick = null;
+
                 ShowToolTick(currentIndex);
 
                 AudioController.instance.PlaySfx(3, 3, 0f);
@@ -833,6 +846,15 @@ public class UI_Manager : MonoBehaviour
 
         if (tick != null)
             tick.SetActive(false);
+    }
+
+    void KillPendingTick()
+    {
+        if (pendingTick == null)
+            return;
+
+        pendingTick.Kill();
+        pendingTick = null;
     }
 
     void ShowToolTick(int index)

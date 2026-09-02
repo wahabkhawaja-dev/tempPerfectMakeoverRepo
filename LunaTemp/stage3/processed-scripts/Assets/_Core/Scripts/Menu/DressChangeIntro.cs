@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class DressChangeIntro : MonoBehaviour
@@ -8,6 +9,20 @@ public class DressChangeIntro : MonoBehaviour
 
     public GameObject curtainMoveable;
     public GameObject curtainStatic;
+
+    [Tooltip("Luna does not deform SpriteSkin, so the bone-animated curtain renders in its " +
+             "undeformed rest pose. Swapping to the static one at the end of CurtainAnim then " +
+             "reads as a jump: same sprite, but the two sit at a different Y and scale.\n\n" +
+             "ON  = show only the static curtain, so there is no swap to see (Luna).\n" +
+             "OFF = original behaviour, animated curtain swapped for the static one (full game, " +
+             "where the bones actually deform).")]
+    public bool staticCurtainOnly = true;
+
+    [Tooltip("Seconds the static curtain takes to fade up, so it arrives with the rod instead " +
+             "of being there from the first frame. CurtainAnim lands the rod at 0.93s and faded " +
+             "its own curtain in by 0.77s, which is where these defaults come from.")]
+    public float curtainFadeInDuration = 0.77f;
+    public float curtainFadeInDelay = 0f;
 
 
     [Header("----------------- CURTAIN SLIDE IN ----------------------")]
@@ -68,6 +83,12 @@ public class DressChangeIntro : MonoBehaviour
     [Space()]
     public AudioClip ToolPlaceClip;
 
+    [Space()]
+    [Tooltip("Fired once the cloth lands in the basket. Playable builds wire this to\n" +
+             "PlayableRouter.IntroFinished(); the full game leaves it empty and uses the\n" +
+             "scene-load path below instead.")]
+    public UnityEvent OnIntroComplete;
+
     Vector3 curtainRestPos;
     Vector3 bone3RestPos;
     Vector3 handSmallRestPos;
@@ -89,6 +110,30 @@ public class DressChangeIntro : MonoBehaviour
         handSmall.SetActive(false);
         armCloth.SetActive(false);
 
+        // Take the swap out of the intro rather than letting it land mid-animation: the
+        // static curtain is up from the start, so StartHandPeek's swap below becomes a no-op
+        // and there is no moment where one curtain replaces the other. It fades up on the
+        // clip's own timing so it still arrives with the rod rather than simply being there.
+        if (staticCurtainOnly)
+        {
+            curtainMoveable.SetActive(false);
+            curtainStatic.SetActive(true);
+
+            SpriteRenderer curtainSr = curtainStatic.GetComponent<SpriteRenderer>();
+
+            if (curtainSr != null)
+            {
+                Color c = curtainSr.color;
+                c.a = 0f;
+                curtainSr.color = c;
+
+                curtainSr.DOKill();
+                curtainSr.DOFade(1f, curtainFadeInDuration)
+                    .SetDelay(curtainFadeInDelay)
+                    .SetEase(Ease.Linear);
+            }
+        }
+
         cloth.canDrag = false;
         cloth.OnPicked += OnClothPicked;
         cloth.OnReleased += OnClothReleased;
@@ -102,6 +147,7 @@ public class DressChangeIntro : MonoBehaviour
 
     }
 
+    // Called by the Animation Event at the end of the CurtainAnim clip (Animator on this object).
     public void StartHandPeek()
     {
         curtainMoveable.SetActive(false);
@@ -239,6 +285,14 @@ public class DressChangeIntro : MonoBehaviour
             handIndication.SetActive(false);
             cloth.canDrag = false;
             cloth.enabled = false;
+
+            OnIntroComplete?.Invoke();
+
+            // Full-game tail only. A playable is a single scene with no MenuManager,
+            // LoadingManager or SaveSystem and nothing to load, so bail out instead of
+            // throwing on the way into the sub-level — the event above already handed off.
+            if (MenuManager.instance == null || SaveSystem.Instance == null)
+                return;
 
             MenuManager.instance.msgController.HideMessage();
 

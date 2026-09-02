@@ -60,9 +60,14 @@ public class PlayableRouter : MonoBehaviour
     [Tooltip("Seconds to fade to black before the menu is swapped for the level.")]
     [SerializeField] float fadeDuration = 0.35f;
 
+    [Tooltip("Raised when a slot's intro starts, for closing the menu down. Wire it to\n" +
+             "MenuLevel.ReverseBtnAnim() so the buttons play their tween backwards and turn\n" +
+             "their colliders off, rather than being switched off underneath the player.")]
+    [SerializeField] UnityEngine.Events.UnityEvent onIntroStart;
+
     [Tooltip("Switched OFF when a slot's intro starts, and left off — the flow is one-way, so\n" +
-             "there is nothing to come back to. The menu buttons go here so they cannot be\n" +
-             "tapped over the intro.")]
+             "there is nothing to come back to. Only for things with no close animation of\n" +
+             "their own; anything that should animate out belongs on the event above.")]
     [SerializeField] GameObject[] hideDuringIntro;
 
     [Tooltip("Toast shown when a LOCKED button is tapped.\n" +
@@ -270,6 +275,11 @@ public class PlayableRouter : MonoBehaviour
         {
             slot.introPlayed = true;
             pendingIntro = index;
+
+            // Let the menu close itself (ReverseBtnAnim plays the buttons' tween backwards and
+            // disables their colliders) instead of switching it off mid-tap.
+            if (onIntroStart != null)
+                onIntroStart.Invoke();
 
             SetAll(hideDuringIntro, false);
             slot.intro.SetActive(true);

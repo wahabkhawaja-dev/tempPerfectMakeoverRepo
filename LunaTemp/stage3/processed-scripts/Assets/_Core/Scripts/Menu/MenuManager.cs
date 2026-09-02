@@ -1,4 +1,3 @@
-using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -748,7 +747,7 @@ public class MenuManager : MonoBehaviour
 
         if (!SaveSystem.Instance.DataFields.mapUnlocked)
         {
-            // ToastManager.instance.SendToast("Complete Level 1 To Unlock");
+            ToastManager.instance.SendToast("Complete Level 1 To Unlock");
 
             return;
         }
@@ -839,7 +838,7 @@ public class MenuManager : MonoBehaviour
 
         m_LastPressTime = Time.unscaledTime;
 
-        // ToastManager.instance.SendToast("Complete Miss Makeover To Unlock");
+        ToastManager.instance.SendToast("Complete Miss Makeover To Unlock");
 
         DOVirtual.DelayedCall(.25f, () =>
         {
@@ -1041,14 +1040,14 @@ public class MenuManager : MonoBehaviour
 
         else
         {
-            // if (infoIndex == 3)
-            //     ToastManager.instance.SendToast(MapToastStr_Extra[0]);
+            if (infoIndex == 3)
+                ToastManager.instance.SendToast(MapToastStr_Extra[0]);
 
-            // else if (infoIndex == 4)
-            //     ToastManager.instance.SendToast(MapToastStr_Extra[1]);
+            else if (infoIndex == 4)
+                ToastManager.instance.SendToast(MapToastStr_Extra[1]);
 
-            // else if (infoIndex == 5)
-            //     ToastManager.instance.SendToast(MapToastStr_Extra[2]);
+            else if (infoIndex == 5)
+                ToastManager.instance.SendToast(MapToastStr_Extra[2]);
 
             int lvlNo = SaveSystem.Instance.DataFields.levelToPlay - 1;
 
@@ -1094,14 +1093,14 @@ public class MenuManager : MonoBehaviour
         // Panel Close Sfx
         AudioController.instance.PlaySfx(1, 6, 0);
 
-        // if (infoIndex == 3)
-        //     ToastManager.instance.SendToast(MapComingsoonToastStr_Extra[0]);
+        if (infoIndex == 3)
+            ToastManager.instance.SendToast(MapComingsoonToastStr_Extra[0]);
 
-        // else if (infoIndex == 4)
-        //     ToastManager.instance.SendToast(MapComingsoonToastStr_Extra[1]);
+        else if (infoIndex == 4)
+            ToastManager.instance.SendToast(MapComingsoonToastStr_Extra[1]);
 
-        // else if (infoIndex == 5)
-        //     ToastManager.instance.SendToast(MapComingsoonToastStr_Extra[2]);
+        else if (infoIndex == 5)
+            ToastManager.instance.SendToast(MapComingsoonToastStr_Extra[2]);
 
     }
 
