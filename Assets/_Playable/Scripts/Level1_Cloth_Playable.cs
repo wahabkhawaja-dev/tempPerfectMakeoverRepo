@@ -348,8 +348,15 @@ public class Level1_Cloth_Playable : LevelData
 
             ForceCompleteStep2();
 
+            // Same beat as a hand-played step: the tick lands a moment after the bar fills,
+            // so the carousel has to wait for it. Rotating straight away would put the tick
+            // on the tool that replaces the detergent instead of the detergent itself.
             UI_Manager.instance.SetProgressBar(1f);
-            UI_Manager.instance.SetProgressBarPos();
+
+            DOVirtual.DelayedCall(1f, () =>
+            {
+                UI_Manager.instance.SetProgressBarPos();
+            });
 
             PlayableFadeCover.Reveal();
         });

@@ -5329,7 +5329,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 12
+  m_Text: 
 --- !u!1 &302629565
 GameObject:
   m_ObjectHideFlags: 0
@@ -5556,7 +5556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2234198905049103494, guid: 274cfc3154513e54bb7cf96b25b0881e, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: 'Canvas '
       objectReference: {fileID: 0}
     - target: {fileID: 4009593648885570256, guid: 274cfc3154513e54bb7cf96b25b0881e, type: 3}
       propertyPath: m_Camera
@@ -6000,6 +6000,10 @@ PrefabInstance:
       propertyPath: countDownTimerText
       value: 
       objectReference: {fileID: 958235655}
+    - target: {fileID: 3947724274857986467, guid: a4960058eb8f1414b8e2d9c739d16bc3, type: 3}
+      propertyPath: ToolIcons.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 38d68c8efec7f6d4b8e2625f2625575e, type: 3}
     - target: {fileID: 4701483168733802743, guid: a4960058eb8f1414b8e2d9c739d16bc3, type: 3}
       propertyPath: m_IsActive
       value: 1
