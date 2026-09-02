@@ -63,14 +63,25 @@ public class Level1_ShampooController : MonoBehaviour
         DOTween.Init();
     }
 
-    private void OnMouseDown()
+    // Luna registers OnMouseDown/OnMouseUp but only ever dispatches them off the physics
+    // contact path, so a Collider2D never receives them. Poll the button instead.
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(tipCollider))
+            Pick();
+
+        if (Input.GetMouseButtonUp(0))
+            Release();
+    }
+
+    private void Pick()
     {
         if (isCompleted) return;
         isHolding = true;
         StartFadeAnimation();
     }
 
-    private void OnMouseUp()
+    private void Release()
     {
         if (isCompleted) return;
         isHolding = false;

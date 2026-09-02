@@ -51,8 +51,12 @@ public class SpriteButton : MonoBehaviour
 
     bool scaleSaved = false;
 
+    Collider2D thisCollider;
+
     void Awake()
     {
+        thisCollider = GetComponent<Collider2D>();
+
         if (pivot != null)
             originalSpriteScale = pivot.transform.localScale;
 
@@ -100,54 +104,28 @@ public class SpriteButton : MonoBehaviour
 
     void Update()
     {
-        if (!ignoreInitialHover)
-            return;
-
-        Vector3 currentMousePosition = Input.mousePosition;
-
-        if (hasMousePosition &&
-            (currentMousePosition - lastMousePosition).sqrMagnitude > 0.01f)
+        if (ignoreInitialHover)
         {
-            ignoreInitialHover = false;
+            Vector3 currentMousePosition = Input.mousePosition;
+
+            if (hasMousePosition &&
+                (currentMousePosition - lastMousePosition).sqrMagnitude > 0.01f)
+            {
+                ignoreInitialHover = false;
+            }
+
+            lastMousePosition = currentMousePosition;
         }
 
-        lastMousePosition = currentMousePosition;
-    }
+        // Luna never dispatches OnMouseDown/OnMouseUp for a Collider2D (it registers them
+        // but only ever fires them off the physics contact path), so the press is polled
+        // here instead. There was no hover behaviour to port — OnMouseEnter/Exit were both
+        // empty on purpose, the button only reacts to press and release.
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(thisCollider))
+            PressDown();
 
-
-    // =========================================================
-    // MOUSE ENTER
-    // =========================================================
-
-    void OnMouseEnter()
-    {
-        if (isOverUI())
-            return;
-
-        if (isFinished)
-            return;
-
-        if (ignoreInitialHover)
-            return;
-
-        // No hover animation.
-    }
-
-
-    // =========================================================
-    // MOUSE EXIT
-    // =========================================================
-
-    void OnMouseExit()
-    {
-        if (isOverUI())
-            return;
-
-        if (isFinished)
-            return;
-
-        // Do nothing.
-        // While holding, the button stays reduced until release.
+        if (Input.GetMouseButtonUp(0))
+            PressUp();
     }
 
 
@@ -155,7 +133,7 @@ public class SpriteButton : MonoBehaviour
     // MOUSE DOWN
     // =========================================================
 
-    void OnMouseDown()
+    void PressDown()
     {
         if (isOverUI())
             return;
@@ -210,7 +188,7 @@ public class SpriteButton : MonoBehaviour
     // MOUSE UP
     // =========================================================
 
-    void OnMouseUp()
+    void PressUp()
     {
         if (!isPressed)
             return;
@@ -330,18 +308,9 @@ public class SpriteButton : MonoBehaviour
 
     bool IsPointerOverThisObject()
     {
-        if (Camera.main == null)
-            return false;
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit2D hit = Physics2D.Raycast(
-            ray.origin,
-            ray.direction
-        );
-
-        return hit.collider != null &&
-               hit.collider.gameObject == gameObject;
+        // ScreenPointToRay + a directional raycast is a 3D-physics shape that Luna does not
+        // resolve against a Collider2D. PointerInput does the flat overlap test instead.
+        return PointerInput.IsOverCollider(thisCollider);
     }
 
 

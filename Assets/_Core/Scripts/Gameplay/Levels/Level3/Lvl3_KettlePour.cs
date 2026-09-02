@@ -75,8 +75,12 @@ public class Lvl3_KettlePour : MonoBehaviour
 
     SpriteRenderer waterfallSR;
 
+    Collider2D thisCollider;
+
     void Awake()
     {
+        thisCollider = GetComponent<Collider2D>();
+
         if (Body != null)
             startRotZ = SignedZ(Body.localEulerAngles.z);
 
@@ -102,6 +106,11 @@ public class Lvl3_KettlePour : MonoBehaviour
 
     void Update()
     {
+        // Luna registers OnMouseDown/OnMouseUp but only ever dispatches them off the physics
+        // contact path, so a Collider2D never receives them. Poll the button instead.
+        if (Input.GetMouseButtonDown(0) && PointerInput.IsOverCollider(thisCollider))
+            Press();
+
         // safety: finger lifted outside the collider
         if (isHolding && !Input.GetMouseButton(0))
         {
@@ -136,7 +145,7 @@ public class Lvl3_KettlePour : MonoBehaviour
 
     #region INPUT
 
-    void OnMouseDown()
+    void Press()
     {
         if (isDone)
             return;
@@ -150,16 +159,6 @@ public class Lvl3_KettlePour : MonoBehaviour
         isHolding = true;
 
         StartPour();
-    }
-
-    void OnMouseUp()
-    {
-        if (!isHolding)
-            return;
-
-        isHolding = false;
-
-        StopPour();
     }
 
     #endregion
