@@ -180,7 +180,7 @@ public class Lvl3_PourFill : MonoBehaviour
     }
 
     /// <summary>Shrinks a transform towards drainAnchor, keeping that point fixed.</summary>
-    void ShrinkTowardsAnchor(Transform t, [Bridge.Ref] Vector3 startScale, [Bridge.Ref] Vector3 startLocalPos, float k)
+    void ShrinkTowardsAnchor(Transform t, Vector3 startScale, Vector3 startLocalPos, float k)
     {
         if (t == null)
             return;

@@ -427,6 +427,7 @@ public class UI_Manager : MonoBehaviour
             SetGreyInstant(tool2BgGrey, 1f);
             SetGreyInstant(tool3BgGrey, 1f);
 
+            progressBar.DOKill();
             progressBar.DOFillAmount(0, toolMoveDuration);
             progressText.text = "0%";
 
@@ -595,6 +596,7 @@ public class UI_Manager : MonoBehaviour
 
         nextToolIndex = currentIndex + 2;
 
+        progressBar.DOKill();
         progressBar.DOFillAmount(0, toolMoveDuration + .05f).SetEase(Ease.InOutQuad);
         progressText.text = "0%";
     }

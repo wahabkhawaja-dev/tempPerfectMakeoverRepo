@@ -15,15 +15,21 @@ public class Lvl3_EyeOpenClose : MonoBehaviour
 
     void Start()
     {
+        // Playable builds leave ThisLevel / ThisDrag unassigned (the level script is
+        // dropped there), so every use has to survive a null. In the full game they are
+        // assigned and these checks never trigger.
+        if (ThisDrag == null)
+            return;
+
         ThisDrag.OnMouseDownEvent += () =>
         {
-            if (isInArea)
+            if (isInArea && ThisLevel != null)
                 ThisLevel.CloseEye();
         };
 
         ThisDrag.OnMouseUpEvent += () =>
         {
-            if (!isInArea)
+            if (!isInArea && ThisLevel != null)
                 ThisLevel.StartBlinking();
         };
     }
@@ -34,7 +40,8 @@ public class Lvl3_EyeOpenClose : MonoBehaviour
         {
             if (collision.gameObject == Tip)
             {
-                ThisLevel.CloseEye();
+                if (ThisLevel != null)
+                    ThisLevel.CloseEye();
 
                 isInArea = true;
             }
@@ -47,7 +54,8 @@ public class Lvl3_EyeOpenClose : MonoBehaviour
         {
             if (collision.gameObject == Tip)
             {
-                ThisLevel.StartBlinking();
+                if (ThisLevel != null)
+                    ThisLevel.StartBlinking();
 
                 isInArea = false;
             }
@@ -58,6 +66,7 @@ public class Lvl3_EyeOpenClose : MonoBehaviour
     {
         isInArea = false;
 
-        ThisLevel.StartBlinking();
+        if (ThisLevel != null)
+            ThisLevel.StartBlinking();
     }
 }

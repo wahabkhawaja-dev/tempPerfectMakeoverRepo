@@ -6,7 +6,7 @@ public class Drop : MonoBehaviour
     private bool isMoving = false;
     private float speed = 8f;
 
-    public void MoveToTarget([Bridge.Ref] Vector2 target, float force)
+    public void MoveToTarget(Vector2 target, float force)
     {
         targetPos = target;
         isMoving = true;

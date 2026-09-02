@@ -15,15 +15,21 @@ public class Lvl2_EyeOpenClose_Shampoo : MonoBehaviour
 
     void Start()
     {
+        // Playable builds leave ThisLevel / ThisDrag unassigned (the level script is
+        // dropped there), so every use has to survive a null. In the full game they are
+        // assigned and these checks never trigger.
+        if (ThisDrag == null)
+            return;
+
         ThisDrag.OnMouseDownEvent += () =>
         {
-            if (isInArea)
+            if (isInArea && ThisLevel != null)
                 ThisLevel.CloseEye();
         };
 
         ThisDrag.OnMouseUpEvent += () =>
         {
-            if (!isInArea)
+            if (!isInArea && ThisLevel != null)
                 ThisLevel.OpenEye();
         };
     }
@@ -34,7 +40,8 @@ public class Lvl2_EyeOpenClose_Shampoo : MonoBehaviour
         {
             if (collision.gameObject == Tip)
             {
-                ThisLevel.CloseEye();
+                if (ThisLevel != null)
+                    ThisLevel.CloseEye();
 
                 isInArea = true;
             }
@@ -47,7 +54,8 @@ public class Lvl2_EyeOpenClose_Shampoo : MonoBehaviour
         {
             if (collision.gameObject == Tip)
             {
-                ThisLevel.OpenEye();
+                if (ThisLevel != null)
+                    ThisLevel.OpenEye();
 
                 isInArea = false;
             }
@@ -58,6 +66,7 @@ public class Lvl2_EyeOpenClose_Shampoo : MonoBehaviour
     {
         isInArea = false;
 
-        ThisLevel.OpenEye();
+        if (ThisLevel != null)
+            ThisLevel.OpenEye();
     }
 }

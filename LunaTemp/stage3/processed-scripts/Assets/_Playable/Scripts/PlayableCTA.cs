@@ -248,6 +248,17 @@ public class PlayableCTA : MonoBehaviour
             OpenStoreStatic(true);
     }
 
+    /// <summary>
+    /// Opens the store and nothing else — no end card, no input block, no disable-list, and
+    /// HasFired is untouched so tap-to-refire never turns on. For CTA taps that are not the
+    /// end of the playable: locked sub-level buttons, teases, banners. Use FireCTA()/FireNow()
+    /// when the playable is actually finishing.
+    /// </summary>
+    public static void OpenStoreOnly()
+    {
+        OpenStoreStatic(true);
+    }
+
     void OpenStore()
     {
         lastFireTime = Time.unscaledTime;

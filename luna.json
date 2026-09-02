@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "1Sept2026_CompleteLevel_1_2_v1_Final_v1",
+    "creativeName": "1Sept2026_CompleteLevel_1_3_v1",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -2302,10 +2302,6 @@
             },
             {
                 "name": "UnityEngine.MeshCollider",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.PolygonCollider2D",
                 "excluded": true
             },
             {
@@ -6518,7 +6514,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutController",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.UI.ContentSizeFitter.FitMode",
@@ -6678,7 +6674,7 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IScrollHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDropHandler",
@@ -6686,7 +6682,7 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IEndDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDragHandler",
@@ -6694,11 +6690,11 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IBeginDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IInitializePotentialDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IPointerClickHandler",
@@ -6710,7 +6706,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutGroup",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.EventTrigger.TriggerEvent",
@@ -7109,10 +7105,6 @@
                 "excluded": true
             },
             {
-                "name": "BD_AnimatorDrag",
-                "excluded": true
-            },
-            {
                 "name": "BD_AnimControl",
                 "excluded": true
             },
@@ -7141,10 +7133,6 @@
                 "excluded": true
             },
             {
-                "name": "BD_ProgressHelper",
-                "excluded": true
-            },
-            {
                 "name": "BD_SpriteAnim",
                 "excluded": true
             },
@@ -7154,10 +7142,6 @@
             },
             {
                 "name": "BD_TapandHold",
-                "excluded": true
-            },
-            {
-                "name": "BD_ToolRotate",
                 "excluded": true
             },
             {
@@ -7225,10 +7209,6 @@
                 "excluded": true
             },
             {
-                "name": "DG.Tweening.DOTweenModuleAudio",
-                "excluded": true
-            },
-            {
                 "name": "DG.Tweening.DOTweenModulePhysics2D",
                 "excluded": true
             },
@@ -7245,10 +7225,6 @@
                 "excluded": true
             },
             {
-                "name": "DO_CameraFollow",
-                "excluded": true
-            },
-            {
                 "name": "DoubleScratch_Controller",
                 "excluded": true
             },
@@ -7257,15 +7233,7 @@
                 "excluded": true
             },
             {
-                "name": "DraggableObject",
-                "excluded": true
-            },
-            {
                 "name": "DressChangeIntro",
-                "excluded": true
-            },
-            {
-                "name": "Drop",
                 "excluded": true
             },
             {
@@ -7285,10 +7253,6 @@
                 "excluded": true
             },
             {
-                "name": "InteractableBones",
-                "excluded": true
-            },
-            {
                 "name": "JarRotator",
                 "excluded": true
             },
@@ -7302,18 +7266,6 @@
             },
             {
                 "name": "level3PlacePoster",
-                "excluded": true
-            },
-            {
-                "name": "Lvl1_EyeOpenClose",
-                "excluded": true
-            },
-            {
-                "name": "Lvl1_EyeOpenClose_Shampoo",
-                "excluded": true
-            },
-            {
-                "name": "Lvl1_Face_AddPrimer",
                 "excluded": true
             },
             {
@@ -8603,6 +8555,474 @@
             {
                 "name": "DG.Tweening.Plugins.Core.ITPlugin$4",
                 "excluded": false
+            },
+            {
+                "name": "_2dxFX_4Gradients",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Additive",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_BlackHole",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Blood",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Blur",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_BurningFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Cartoon",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_CircleFade",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Clipping",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Color",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_ColorChange",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_ColorRGB",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_CompressionFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_DesintegrationFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_DestroyedFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_EdgeColor",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_EnergyBar",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Fire",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_FireAdditive",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Ghost",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_GoldenFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_GoldFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_GrassFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_GrassMultiFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_GrayScale",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Heat",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Hologram",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Hologram2",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Hologram3",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_HSV",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Ice",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_IcedFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Jelly",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_JellyAutoMove",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Lightning",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_LightningBolt",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Liquid",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Liquify",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_MetalFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Negative",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Noise",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_NoiseAnimated",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Outline",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Pattern",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_PatternAdditive",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Pixel",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Pixel8bitsBW",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Pixel8bitsC64",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Pixel8bitsGB",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_PlasmaRainbow",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_PlasmaShield",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Posterize",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_SandFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Sepia",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Sharpen",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Shiny_Reflect",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_SkyCloud",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Slim",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Smoke",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_StoneFX",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Teleportation",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Threshold",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Twist",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_WaterAndBackground",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_WaterAndBackgroundDeluxe",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Waterfall",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_Wave",
+                "excluded": true
+            },
+            {
+                "name": "_2dxFX_WoodFX",
+                "excluded": true
+            },
+            {
+                "name": "ActionOnTriggerStay",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.All1CreateUnifiedOutline",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.All1ShaderDemoController",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.All1TextureOffsetOverTime",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.AllIn1ScrollProperty",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.AllIn1Shader",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.Demo.Scripts.AllIn1AutoRotate",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.Demo2AutoScroll",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.DemoCamera",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.DemoCircleExpositor",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.DemoItem",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.DemoRandomColorSwap",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.DemoRepositionExpositor",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.RandomSeed",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.SetAtlasUvs",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.SetGlobalTimeNew",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.SetGlobalTimeUnity2018",
+                "excluded": true
+            },
+            {
+                "name": "AnimationPlayer",
+                "excluded": true
+            },
+            {
+                "name": "ApplicationConfig",
+                "excluded": true
+            },
+            {
+                "name": "ArrayRotationByMovement",
+                "excluded": true
+            },
+            {
+                "name": "BD_Flip",
+                "excluded": true
+            },
+            {
+                "name": "BoneSwing",
+                "excluded": true
+            },
+            {
+                "name": "ChatBubbleUI",
+                "excluded": true
+            },
+            {
+                "name": "DialogueManager",
+                "excluded": true
+            },
+            {
+                "name": "EpicToonFX.ETFXLightFade",
+                "excluded": true
+            },
+            {
+                "name": "EpicToonFX.ETFXPitchRandomizer",
+                "excluded": true
+            },
+            {
+                "name": "EpicToonFX.ETFXRotation",
+                "excluded": true
+            },
+            {
+                "name": "InteractableBonesHitOnly",
+                "excluded": true
+            },
+            {
+                "name": "JarDropTrigger",
+                "excluded": true
+            },
+            {
+                "name": "Level1_SewingController",
+                "excluded": true
+            },
+            {
+                "name": "Level1_ShampooController",
+                "excluded": true
+            },
+            {
+                "name": "MatchTargetXPosition",
+                "excluded": true
+            },
+            {
+                "name": "PageFoldController",
+                "excluded": true
+            },
+            {
+                "name": "PlayableHudLayout",
+                "excluded": true
+            },
+            {
+                "name": "PlayableLogoEntry",
+                "excluded": true
+            },
+            {
+                "name": "ProceduralRope",
+                "excluded": true
+            },
+            {
+                "name": "ProceduralRope.RopeSegment",
+                "excluded": true
+            },
+            {
+                "name": "RadialCircleFill",
+                "excluded": true
+            },
+            {
+                "name": "RopeController",
+                "excluded": true
+            },
+            {
+                "name": "SmoothFollow",
+                "excluded": true
+            },
+            {
+                "name": "WaterFoamWaveAnim",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.AllIn1Shader.AfterSetAction",
+                "excluded": true
+            },
+            {
+                "name": "AllIn1SpriteShader.AllIn1Shader.ShaderTypes",
+                "excluded": true
+            },
+            {
+                "name": "ArrayRotationByMovement.RotationAxis",
+                "excluded": true
+            },
+            {
+                "name": "ChatSide",
+                "excluded": true
+            },
+            {
+                "name": "DialogueEntry",
+                "excluded": true
+            },
+            {
+                "name": "EpicToonFX.ETFXRotation.spaceEnum",
+                "excluded": true
+            },
+            {
+                "name": "IEyeFace",
+                "excluded": false
+            },
+            {
+                "name": "PlayButtonCorner",
+                "excluded": true
             }
         ],
         "unusedMethods": [
@@ -12180,7 +12600,7 @@
                 "instanceMethods": [
                     {
                         "name": "init",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "HashSetEquals",
@@ -12192,7 +12612,7 @@
                     },
                     {
                         "name": "Count#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "IsReadOnly#get",
@@ -12204,11 +12624,11 @@
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "$ctor3",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "$ctor1",
@@ -12224,7 +12644,7 @@
                     },
                     {
                         "name": "add",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "clear",
@@ -12236,7 +12656,7 @@
                     },
                     {
                         "name": "contains",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "copyTo",
@@ -12316,19 +12736,19 @@
                     },
                     {
                         "name": "Initialize",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "IncreaseCapacity",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetCapacity",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "AddIfNotPresent",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ContainsAllElements",
@@ -12372,7 +12792,7 @@
                     },
                     {
                         "name": "InternalGetHashCode",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -12466,11 +12886,11 @@
                     },
                     {
                         "name": "init",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "getHashCode",
@@ -12482,7 +12902,7 @@
                     },
                     {
                         "name": "$clone",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -17090,7 +17510,7 @@
                     },
                     {
                         "name": "localEulerAngles#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "eulerAngles#get",
@@ -23884,7 +24304,7 @@
                     },
                     {
                         "name": "StringToHash",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "HashToString",
@@ -24268,7 +24688,7 @@
                     },
                     {
                         "name": "Play$4",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Play$1",
@@ -27458,7 +27878,7 @@
                     },
                     {
                         "name": "DOLocalRotateQuaternion",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DOScale$1",
@@ -28337,8 +28757,16 @@
                         "excluded": false
                     },
                     {
-                        "name": "OnMouseDown",
-                        "excluded": true
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Tap",
+                        "excluded": false
                     }
                 ]
             },
@@ -29212,7 +29640,7 @@
                     },
                     {
                         "name": "isOverUI",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RecordLevelStartEvent",
@@ -29286,11 +29714,11 @@
                     },
                     {
                         "name": "SetProgressBar",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetProgressDelay",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetAudioAndDrag",
@@ -29731,6 +30159,10 @@
                     {
                         "name": "OpenStore",
                         "excluded": false
+                    },
+                    {
+                        "name": "OpenStoreOnly",
+                        "excluded": true
                     }
                 ]
             },
@@ -29836,39 +30268,39 @@
                     },
                     {
                         "name": "Awake",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnTriggerEnter2D",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnTriggerExit2D",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Update",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "HandlePlay",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "HandleStop",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayAudio",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "StopAudio",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnFadeOutComplete",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DisableSfx",
@@ -34006,6 +34438,718 @@
                     },
                     {
                         "name": "InitState",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "BD_AnimatorDrag",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlayAnim",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StopAnim",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "BD_ProgressHelper",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EnableProgress",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DisableProgress",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ProgressChecking",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "BD_ToolRotate",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DO_CameraFollow",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DisableFollow",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "DraggableObject",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartDragging",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DragWithDelta",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RotateToTargetAngle",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RotateToDefault",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnTriggerEnter2D",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ActivateCorrespondingItem",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CheckAllTargetsCompleted",
+                        "excluded": false
+                    },
+                    {
+                        "name": "AutoDispenseSequence",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DispenseDrop",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RestartLevel",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ResetProgress",
+                        "excluded": true
+                    },
+                    {
+                        "name": "isOverUI",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "InteractableBones",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerStay2D",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerExit2D",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpdateTip",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SingleShake",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SingleLite",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "Lvl1_EyeOpenClose",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Face#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerEnter2D",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerExit2D",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "Lvl1_EyeOpenClose_Shampoo",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Face#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerEnter2D",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerExit2D",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "Lvl1_Face_AddPrimer",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnTriggerEnter2D",
+                        "excluded": true
+                    },
+                    {
+                        "name": "AddPrimer",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ToolInputToggle",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "Level1_Face_Playable",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "MoveInTray",
+                        "excluded": false
+                    },
+                    {
+                        "name": "MoveOutTray",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ResetEyes",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetEyeBlink",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EnableEyeBlink",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DisableEyeBlink",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OpenEye",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OpeningEyes",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CloseEye",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartStep1",
+                        "excluded": false
+                    },
+                    {
+                        "name": "BottleTap",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Drop1Done",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Step1Done",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ForceCompleteStep1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep2",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CapRemoved_2",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Step2Done",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ForceCompleteStep2",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep3",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Step3Done",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ForceCompleteStep3",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep4",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CapRemoved_4",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Step4Done",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ForceCompleteStep4",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep5",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Step5Done",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ForceCompleteStep5",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep6",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EyeShadeOpen_6",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Step6Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep6",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep7",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EyeLinerOpen_7",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool7_OnMouseDown",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool7_OnMouseUp",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ShiftSideToLeft7",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Step7Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep7",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep8",
+                        "excluded": true
+                    },
+                    {
+                        "name": "MascaraOpen_8",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool8_OnMouseDown",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool8_OnMouseUp",
+                        "excluded": true
+                    },
+                    {
+                        "name": "CheckMascaraProgress",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ShiftSideToLeft_8",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Step8Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep8",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep9",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EyeBrowOpen_9",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool9_OnMouseDown",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool9_OnMouseUp",
+                        "excluded": true
+                    },
+                    {
+                        "name": "CheckEyebrowProgress",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ShiftSideToLeft_9",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Step9Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep9",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep10",
+                        "excluded": true
+                    },
+                    {
+                        "name": "BlushOpen_10",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Step10Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep10",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep11",
+                        "excluded": true
+                    },
+                    {
+                        "name": "LipstickOpen_11",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool11_OnMouseDown",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Tool11_OnMouseUp",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Step11Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EnableBreathAnim",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DisableBreathAnim",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.PolygonCollider2D",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "m_Points#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "m_Points#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "points#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "points#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "pathCount#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "pathCount#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetPath",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetPath$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetPath",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetTotalPointCount",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.DOTweenModuleAudio",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "DOFade",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DOPitch",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOSetFloat",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOComplete",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOKill",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOFlip",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOGoto",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOPause",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOPlay",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOPlayBackwards",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOPlayForward",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DORestart",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DORewind",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOSmoothRewind",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOTogglePause",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "DestroyObj",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "Drop",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": true
+                    },
+                    {
+                        "name": "MoveToTarget",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Update",
                         "excluded": true
                     }
                 ]

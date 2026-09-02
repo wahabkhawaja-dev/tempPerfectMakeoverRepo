@@ -122,7 +122,7 @@ public class Lvl1_Face_AddPrimer : MonoBehaviour
                 {
                 }
 
-                // VibrationManager.instance.MediumImpact();
+                //VibrationManager.instance.MediumImpact();
 
                 BonesToShake[index].SingleShake();
 
@@ -152,7 +152,7 @@ public class Lvl1_Face_AddPrimer : MonoBehaviour
                 {
                     drag.isDragging = false;
 
-                    // VibrationManager.instance.StopVibration();
+                    //VibrationManager.instance.StopVibration();
 
                     if (drag.ToolLoopClip != null)
                     {

@@ -264,7 +264,7 @@ public class MenuLevel : MonoBehaviour
 
     // Shows the old dirty item first, then bursts its particle and fades the clean item in
     // over the top - only ever runs the one time an item transitions to completed.
-    void PlayFirstCompleteReveal([Bridge.Ref] MenuLevelData step)
+    void PlayFirstCompleteReveal(MenuLevelData step)
     {
         foreach (GameObject obj in step.Item_Dirty) obj.SetActive(true);
         foreach (GameObject obj in step.Item_Clean) obj.SetActive(false);

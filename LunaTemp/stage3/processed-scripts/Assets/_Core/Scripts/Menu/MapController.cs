@@ -505,13 +505,13 @@ public class MapController : MonoBehaviour
 
     #region PUBLIC
 
-    public void FocusOnLocal([Bridge.Ref] Vector3 mapLocal, float scale = -1f, float duration = .5f)
+    public void FocusOnLocal(Vector3 mapLocal, float scale = -1f, float duration = .5f)
     {
         FocusOnLocal(mapLocal, scale, duration, duration);
     }
 
     public void FocusOnLocal(
-[Bridge.Ref]         Vector3 mapLocal,
+        Vector3 mapLocal,
         float scale = -1f,
         float zoomDuration = .5f,
         float moveDuration = .8f)

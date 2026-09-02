@@ -200,23 +200,37 @@ public class DraggableObject : MonoBehaviour
         }
     }
 
+    private bool allTargetsDone;
+
     private void CheckAllTargetsCompleted()
     {
-
         float progress = (float)completedTargets.Count / dropTargets.Count;
-        DOVirtual.DelayedCall(1f, () =>
-        {
-            UI_Manager.instance.SetProgressBar(progress);
-        });
-           
 
         if (completedTargets.Count >= dropTargets.Count)
         {
+            allTargetsDone = true;
+
+            // Straight to 100%, no delay: OnComplete below ends the step, and the level then
+            // advances the tool icons. A delayed push would land after that and repaint this
+            // tool's fraction (40% / 60% / ...) onto the next tool's fresh bar.
+            UI_Manager.instance.SetProgressBar(1f);
+
             OnComplete?.Invoke();
             this.enabled = false;
             isLocked = true;
             Debug.Log("🎉 All targets completed! OnComplete event fired.");
+
+            return;
         }
+
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            // Drop it if the step finished while this was queued.
+            if (allTargetsDone)
+                return;
+
+            UI_Manager.instance.SetProgressBar(progress);
+        });
     }
 
     private IEnumerator AutoDispenseSequence(Vector2 targetPos)
@@ -267,7 +281,7 @@ public class DraggableObject : MonoBehaviour
         }
     }
 
-    private void DispenseDrop([Bridge.Ref] Vector2 targetPosition)
+    private void DispenseDrop(Vector2 targetPosition)
     {
         if (dropPrefab == null || headPoint == null) return;
 

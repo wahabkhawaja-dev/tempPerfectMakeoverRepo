@@ -380,7 +380,7 @@ public class ScrewdriverOpener : MonoBehaviour
         isZoomedIn = false;
     }
 
-    bool HasPendingScrewNear([Bridge.Ref] Vector3 point)
+    bool HasPendingScrewNear(Vector3 point)
     {
         if (Targets == null || screwRemoved == null)
             return false;
