@@ -269,12 +269,9 @@ public class Level1_Cloth_Playable : LevelData
 
         Invoke(nameof(SkipSurfStep), 2f);
 
+        // Fill and tick this step's tool, but leave the carousel where it is. SkipSurfStep
+        // moves it on past the detergent behind the fade, so neither hop is ever seen.
         UI_Manager.instance.SetProgressBar(1f);
-
-        DOVirtual.DelayedCall(1f, () =>
-        {
-            UI_Manager.instance.SetProgressBarPos();
-        });
 
         try
         {
@@ -348,17 +345,15 @@ public class Level1_Cloth_Playable : LevelData
 
             ForceCompleteStep2();
 
-            // Same beat as a hand-played step: the tick lands a moment after the bar fills,
-            // so the carousel has to wait for it. Rotating straight away would put the tick
-            // on the tool that replaces the detergent instead of the detergent itself.
-            UI_Manager.instance.SetProgressBar(1f);
+            // The screen is black here, so snap the tool bar straight from step 1's tool past
+            // the detergent onto the timer's. SetProgressIconIndex places the icons instantly
+            // rather than sliding them, so both hops happen out of sight instead of shuffling
+            // in front of the player once the fade lifts.
+            UI_Manager.instance.SetProgressIconIndex(UI_Manager.instance.currentIndex + 2);
 
-            DOVirtual.DelayedCall(1f, () =>
-            {
-                UI_Manager.instance.SetProgressBarPos();
-            });
-
-            PlayableFadeCover.Reveal();
+            // Stay covered until that snap and the bar's reset have settled, or the tail of
+            // them would show through the fade-out.
+            DOVirtual.DelayedCall(0.4f, () => PlayableFadeCover.Reveal());
         });
     }
 

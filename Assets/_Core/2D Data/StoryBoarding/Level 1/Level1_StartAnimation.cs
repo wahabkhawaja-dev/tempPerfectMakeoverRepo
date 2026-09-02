@@ -308,14 +308,11 @@ public class Level1_StartAnimation : MonoBehaviour
         currentTypingText = text;
         currentFullMessage = message;
 
-        // Resolve the auto-size font size against the FULL message first, then lock it,
-        // so the size doesn't keep changing as characters are revealed one by one.
-        text.resizeTextForBestFit = true;
-        text.text = message;
-        text.cachedTextGenerator.Invalidate();
-        text.cachedTextGenerator.Populate(message, text.GetGenerationSettings(text.rectTransform.rect.size));
+        // Best Fit sizes to whatever is in the box right now, so with it on the text would
+        // resize on every revealed character. Resolving the full message's size up front
+        // needs TextGenerator, which Luna's uGUI does not implement, so type at the
+        // authored font size instead — set it so the longest message fits the box.
         text.resizeTextForBestFit = false;
-        text.fontSize = text.cachedTextGenerator.fontSizeUsedForBestFit;
 
         text.text = "";
 
