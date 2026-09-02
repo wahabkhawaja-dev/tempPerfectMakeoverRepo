@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +9,9 @@ public class BD_AnimationHelper : MonoBehaviour
     [Space]
     public AudioClip sfxClip;
 
-    // Is function ko aap Animation Window mein last frame par call karenge
+    [Space]
+    public bool progBar = true;
+
     public void TriggerOnComplete()
     {
         if (OnAnimationComplete != null)
@@ -21,14 +21,18 @@ public class BD_AnimationHelper : MonoBehaviour
         }
     }
     float progress = 0;
-    public void PlaySfx() 
-    {
-            
 
-        if(sfxClip && AudioController.instance)
+    public void PlaySfx()
+    {
+        // if (VibrationManager.instance)
+            // VibrationManager.instance.MediumImpact();
+
+        if (sfxClip && AudioController.instance)
             AudioController.instance.PlayAnySfx(0, sfxClip, 0f);
 
         progress += 0.2f;
-        UI_Manager.instance.SetProgressBar(progress);
+
+        if (progBar)
+            UI_Manager.instance.SetProgressBar(progress);
     }
 }

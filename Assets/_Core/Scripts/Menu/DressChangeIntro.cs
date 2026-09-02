@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class DressChangeIntro : MonoBehaviour
@@ -68,6 +69,12 @@ public class DressChangeIntro : MonoBehaviour
     [Space()]
     public AudioClip ToolPlaceClip;
 
+    [Space()]
+    [Tooltip("Fired once the cloth lands in the basket. Playable builds wire this to\n" +
+             "PlayableRouter.IntroFinished(); the full game leaves it empty and uses the\n" +
+             "scene-load path below instead.")]
+    public UnityEvent OnIntroComplete;
+
     Vector3 curtainRestPos;
     Vector3 bone3RestPos;
     Vector3 handSmallRestPos;
@@ -102,6 +109,7 @@ public class DressChangeIntro : MonoBehaviour
 
     }
 
+    // Called by the Animation Event at the end of the CurtainAnim clip (Animator on this object).
     public void StartHandPeek()
     {
         curtainMoveable.SetActive(false);
@@ -239,6 +247,14 @@ public class DressChangeIntro : MonoBehaviour
             handIndication.SetActive(false);
             cloth.canDrag = false;
             cloth.enabled = false;
+
+            OnIntroComplete?.Invoke();
+
+            // Full-game tail only. A playable is a single scene with no MenuManager,
+            // LoadingManager or SaveSystem and nothing to load, so bail out instead of
+            // throwing on the way into the sub-level — the event above already handed off.
+            if (MenuManager.instance == null || SaveSystem.Instance == null)
+                return;
 
             MenuManager.instance.msgController.HideMessage();
 

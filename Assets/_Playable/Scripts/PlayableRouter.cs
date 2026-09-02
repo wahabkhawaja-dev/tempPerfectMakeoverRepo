@@ -30,10 +30,19 @@ public class PlayableRouter : MonoBehaviour
                  "Leave EMPTY to keep this button locked.")]
         public LevelData level;
 
+        [Tooltip("Optional intro that must be played before this sub-level starts (e.g. the\n" +
+                 "dress-change curtain). Left INACTIVE like the level; it is switched on when\n" +
+                 "the button is tapped. Wire its finish event to PlayableRouter.IntroFinished().\n" +
+                 "Leave EMPTY to go straight into the level.")]
+        public GameObject intro;
+
         public bool Unlocked { get { return level != null; } }
 
         /// <summary>Runtime only: how many times this locked button has been tapped.</summary>
         [NonSerialized] public int lockedTaps;
+
+        /// <summary>Runtime only: the intro has already run, so the button now plays the level.</summary>
+        [NonSerialized] public bool introPlayed;
     }
 
     [Tooltip("MENU SIDE — active while the menu is up, switched OFF when a sub-level starts.\n" +
@@ -51,6 +60,11 @@ public class PlayableRouter : MonoBehaviour
     [Tooltip("Seconds to fade to black before the menu is swapped for the level.")]
     [SerializeField] float fadeDuration = 0.35f;
 
+    [Tooltip("Switched OFF when a slot's intro starts, and left off — the flow is one-way, so\n" +
+             "there is nothing to come back to. The menu buttons go here so they cannot be\n" +
+             "tapped over the intro.")]
+    [SerializeField] GameObject[] hideDuringIntro;
+
     [Tooltip("Toast shown when a LOCKED button is tapped.\n" +
              "{0} is replaced with the NUMBER of the level that IS unlocked (its slot position).\n" +
              "Leave empty for no toast.")]
@@ -66,6 +80,7 @@ public class PlayableRouter : MonoBehaviour
 
     LevelData playing;
     bool lockedCtaFired;
+    int pendingIntro = -1;
 
     void Awake()
     {
@@ -77,6 +92,10 @@ public class PlayableRouter : MonoBehaviour
 
             if (slot.level != null)
                 slot.level.gameObject.SetActive(false);
+
+            // Same reasoning as the level: an intro must not be running behind the menu.
+            if (slot.intro != null)
+                slot.intro.SetActive(false);
 
             ApplyLockState(slot);
 
@@ -244,11 +263,39 @@ public class PlayableRouter : MonoBehaviour
             return;
         }
 
+        // This slot is gated by an intro (e.g. the dress-change curtain): play that first and
+        // come back through IntroFinished(). The menu stays up behind it — the intro is part
+        // of the menu set dressing, it just takes over the screen and the input.
+        if (slot.intro != null && !slot.introPlayed)
+        {
+            slot.introPlayed = true;
+            pendingIntro = index;
+
+            SetAll(hideDuringIntro, false);
+            slot.intro.SetActive(true);
+            return;
+        }
+
         playing = slot.level;
 
         // Fade to black first, swap underneath, then fade back in — so the level never
         // appears out of nowhere. If there is no fade image the swap still runs.
         PlayableFadeCover.Cover(fadeDuration, SwapToLevel);
+    }
+
+    /// <summary>
+    /// Wire a gating intro's finish event here. Continues into the sub-level that intro was
+    /// holding — the slot's introPlayed is already set, so this second Play() goes straight in.
+    /// </summary>
+    public void IntroFinished()
+    {
+        if (pendingIntro < 0)
+            return;
+
+        int index = pendingIntro;
+        pendingIntro = -1;
+
+        Play(index);
     }
 
     void SwapToLevel()
