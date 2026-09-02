@@ -53037,8 +53037,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c8e4645fa080c7469378b42d236d613, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   canDrag: 1
   canFoldBottomLeft: 1
   canFoldBottomRight: 1

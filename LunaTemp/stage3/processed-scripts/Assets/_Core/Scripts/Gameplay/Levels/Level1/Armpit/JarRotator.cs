@@ -86,7 +86,7 @@ public class JarRotator : MonoBehaviour
         }
     }
 
-    private void RotateJar(Vector3 currentPos)
+    private void RotateJar([Bridge.Ref] Vector3 currentPos)
     {
         Vector3 delta = currentPos - lastMousePos;
         lastMousePos = currentPos;

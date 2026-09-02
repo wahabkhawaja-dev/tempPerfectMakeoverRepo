@@ -550,7 +550,7 @@ public class ScrewCloser : MonoBehaviour
         isZoomedIn = false;
     }
 
-    bool HasPendingScrewNear(Vector3 point)
+    bool HasPendingScrewNear([Bridge.Ref] Vector3 point)
     {
         if (Targets == null || screwDone == null)
             return false;

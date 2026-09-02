@@ -654,13 +654,11 @@ public class Level1_Armpit_Playable : LevelData
             //  ToolStep5CameraFollow.enabled = false;
         });
 
-        DOVirtual.DelayedCall(0.2f, () =>
-        {
-            waxRestore.SetActive(false);
-            waxErase.SetActive(true);
-
-            waxEraseIndication.SetActive(true);
-        });
+        // PLAYABLE: the wax-peel step is skipped. Let the spatula finish leaving and the
+        // applied wax read for a beat, then take the peel behind the fade instead of asking
+        // the player for it. waxErase is never switched on, so its BD_Fold — whose shader
+        // does not render in the Luna build — never comes into play.
+        Invoke(nameof(SkipWaxEraseStep), 1.2f);
 
         SetProgressBar();
 
@@ -670,6 +668,33 @@ public class Level1_Armpit_Playable : LevelData
                 + "_" + levelName + "_Step5_Comp");
         }
         catch { }
+    }
+
+    // PLAYABLE: the wax comes off behind the cover. Everything here is snapped rather than
+    // tweened — none of it is visible while the screen is black, so the fade lifts on the
+    // finished skin with step 6 already on its way in.
+    void SkipWaxEraseStep()
+    {
+        PlayableFadeCover.Cover(0.35f, () =>
+        {
+            waxEraseIndication.SetActive(false);
+            waxErase.SetActive(false);
+            waxRestore.SetActive(false);
+
+            hairSmall.DOKill();
+            hairSmall.gameObject.SetActive(false);
+
+            skinBumpy.gameObject.SetActive(true);
+            skinBumpy.DOKill();
+            skinBumpy.DOFade(1f, 0.01f);
+
+            // The peel was its own step, so it still counts on the bar.
+            SetProgressBar();
+
+            StartStep6();
+
+            PlayableFadeCover.Reveal();
+        });
     }
 
     public void WaxRemoved()

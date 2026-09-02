@@ -80,6 +80,7 @@ public class Level1_Armpit_Playable : LevelData
 
     [Space()]
     public GameObject waxMixControler;
+    public BasicDrag toolStep4;
     public SpriteRenderer waxOnSpatula;
     public GameObject waxMixIndication;
     public GameObject waxDrippinfParticle;
@@ -89,8 +90,8 @@ public class Level1_Armpit_Playable : LevelData
 
     [Space()]
     //public BasicDrag waxStickyBD;
-   // public GameObject fadedAnim;
-   // public GameObject fullAnim;
+    // public GameObject fadedAnim;
+    // public GameObject fullAnim;
     public GameObject finalSpatula;
 
     [Space()]
@@ -104,7 +105,7 @@ public class Level1_Armpit_Playable : LevelData
     public BasicDrag ToolStep5;
 
     [Space()]
-    public BD_CameraFollow ToolStep5CameraFollow;
+    //public BD_CameraFollow ToolStep5CameraFollow;
 
     [Space()]
     public SpriteRenderer hairSmall;
@@ -112,6 +113,7 @@ public class Level1_Armpit_Playable : LevelData
     public GameObject waxRestore;
     public GameObject waxErase;
     public GameObject waxEraseIndication;
+    public GameObject handIndication5;
 
     [Header("----------------- STEP 6 ----------------------")]
     [Space()]
@@ -224,7 +226,7 @@ public class Level1_Armpit_Playable : LevelData
             AudioController.instance.PlayAnySfx(0, eraserSfx, 0);
 
         // if (VibrationManager.instance)
-            // VibrationManager.instance.MediumImpact();
+        //     VibrationManager.instance.MediumImpact();
     }
 
     public void Step1Complete()
@@ -355,7 +357,7 @@ public class Level1_Armpit_Playable : LevelData
     public void GreenBtnPressed()
     {
         // if (VibrationManager.instance)
-            // VibrationManager.instance.MediumImpact();
+        //     VibrationManager.instance.MediumImpact();
 
         if (AudioController.instance)
             AudioController.instance.PlayAnySfx(0, machineBtnSfx, 0);
@@ -464,10 +466,29 @@ public class Level1_Armpit_Playable : LevelData
             {
                 spatulaFull.SetActive(false);
                 spatulaFaded.SetActive(true);
+
+                toolStep4.OnMouseDownEvent += Step4IndHide;
+                toolStep4.OnMouseUpEvent += Step4IndShow;
+
                 waxMixControler.SetActive(true);
                 waxMixIndication.SetActive(true);
 
             });
+        });
+    }
+
+    void Step4IndHide()
+    {
+        waxMixIndication.SetActive(false);
+    }
+    void Step4IndShow()
+    {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            if (isStep4Done)
+                return;
+
+            waxMixIndication.SetActive(true);
         });
     }
 
@@ -492,14 +513,13 @@ public class Level1_Armpit_Playable : LevelData
 
             spatulaFaded.transform.parent = null;
             spatulaFull.transform.parent = null;
-         //   spatulaFadedAnim.transform.position = spatulaFaded.transform.position;
+            //   spatulaFadedAnim.transform.position = spatulaFaded.transform.position;
             spatulaFaded.SetActive(false);
-          //  spatulaFadedAnim.SetActive(true);
+            //  spatulaFadedAnim.SetActive(true);
 
             SpatulaPicked();
 
-          
-           // waxStickyBD.gameObject.SetActive(true);
+            // waxStickyBD.gameObject.SetActive(true);
         });
     }
 
@@ -510,7 +530,7 @@ public class Level1_Armpit_Playable : LevelData
         spatulaFull.SetActive(false);
         finalSpatula.gameObject.SetActive(true);
 
-       // spatulaFadedAnim.GetComponent<Animator>().enabled = false;
+        // spatulaFadedAnim.GetComponent<Animator>().enabled = false;
 
         spatulaPickIndication.SetActive(false);
 
@@ -542,7 +562,7 @@ public class Level1_Armpit_Playable : LevelData
 
                 spatulaFull.SetActive(false);
 
-             //   waxStickyBD.gameObject.SetActive(false);
+                //   waxStickyBD.gameObject.SetActive(false);
 
             }
 
@@ -584,13 +604,34 @@ public class Level1_Armpit_Playable : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep5.CameraPos, ZoomStep5.CameraFOV);
 
-        ToolStep5.transform.DOKill();
-        ToolStep5.transform.DOLocalMoveX(-1.5f, .5f).SetDelay(1f).OnComplete(() =>
+        ToolStep5.transform.parent.DOKill();
+        ToolStep5.transform.parent.DOLocalMoveX(-1.45f, .5f).SetDelay(1f).OnComplete(() =>
         {
+
+            ToolStep5.OnMouseDownEvent += Step5IndHide;
+            ToolStep5.OnMouseUpEvent += Step5IndShow;
+
             ToolInputToggle(ToolStep5.gameObject, true);
 
-            ToolStep5CameraFollow.enabled = true;
+            handIndication5.SetActive(true);
+            //  ToolStep5CameraFollow.enabled = true;
         });
+    }
+
+    void Step5IndShow()
+    {
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            if (isStep5Done)
+                return;
+
+            handIndication5.SetActive(true);
+        });
+
+    }
+    void Step5IndHide()
+    {
+        handIndication5.SetActive(false);
     }
 
     public void Step5Complete()
@@ -598,26 +639,26 @@ public class Level1_Armpit_Playable : LevelData
         if (isStep5Done)
             return;
 
+        handIndication5.SetActive(false);
+
         hairSmall.DOFade(0, 2f);
 
         isStep5Done = true;
 
         ToolInputToggle(ToolStep5.gameObject, false);
 
-        ToolStep5.transform.DOLocalMoveX(-15f, .5f).OnComplete(() =>
+        ToolStep5.transform.parent.DOLocalMoveX(-15f, .5f).OnComplete(() =>
         {
             ToolStep5.gameObject.SetActive(false);
 
-            ToolStep5CameraFollow.enabled = false;
+            //  ToolStep5CameraFollow.enabled = false;
         });
 
-        DOVirtual.DelayedCall(0.2f, () =>
-        {
-            waxRestore.SetActive(false);
-            waxErase.SetActive(true);
-
-            waxEraseIndication.SetActive(true);
-        });
+        // PLAYABLE: the wax-peel step is skipped. Let the spatula finish leaving and the
+        // applied wax read for a beat, then take the peel behind the fade instead of asking
+        // the player for it. waxErase is never switched on, so its BD_Fold — whose shader
+        // does not render in the Luna build — never comes into play.
+        Invoke(nameof(SkipWaxEraseStep), 1.2f);
 
         SetProgressBar();
 
@@ -627,6 +668,33 @@ public class Level1_Armpit_Playable : LevelData
                 + "_" + levelName + "_Step5_Comp");
         }
         catch { }
+    }
+
+    // PLAYABLE: the wax comes off behind the cover. Everything here is snapped rather than
+    // tweened — none of it is visible while the screen is black, so the fade lifts on the
+    // finished skin with step 6 already on its way in.
+    void SkipWaxEraseStep()
+    {
+        PlayableFadeCover.Cover(0.35f, () =>
+        {
+            waxEraseIndication.SetActive(false);
+            waxErase.SetActive(false);
+            waxRestore.SetActive(false);
+
+            hairSmall.DOKill();
+            hairSmall.gameObject.SetActive(false);
+
+            skinBumpy.gameObject.SetActive(true);
+            skinBumpy.DOKill();
+            skinBumpy.DOFade(1f, 0.01f);
+
+            // The peel was its own step, so it still counts on the bar.
+            SetProgressBar();
+
+            StartStep6();
+
+            PlayableFadeCover.Reveal();
+        });
     }
 
     public void WaxRemoved()
@@ -861,7 +929,7 @@ public class Level1_Armpit_Playable : LevelData
     public void PerfumePressed()
     {
         // if (VibrationManager.instance)
-            // VibrationManager.instance.MediumImpact();
+        //     VibrationManager.instance.MediumImpact();
 
         bodyStright.SetActive(false);
 
@@ -909,6 +977,10 @@ public class Level1_Armpit_Playable : LevelData
         CameraController.Instance.MoveCamera(MainZoom.CameraPos, MainZoom.CameraFOV, 1.25f);
 
         UI_Manager.instance.SetProgressBar(1f);
+
+        SaveSystem.Instance.DataFields.AllLevels[0].subLevels[5].stepsDone = 0;
+
+        SaveSystem.Instance.DataFields.AllLevels[0].subLevels[5].isCompleted = false;
 
         Invoke(nameof(LevelComplete), 2f);
 
