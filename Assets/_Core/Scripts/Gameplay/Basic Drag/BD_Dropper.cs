@@ -24,7 +24,19 @@ public class BD_Dropper : MonoBehaviour
     [SerializeField] SpriteRenderer[] itemsToFade;
 
     [Space()]
+    [Tooltip("Speed the dropper animation runs at while it is held on target. The clip is what " +
+             "gates completion, so 2 finishes the step in half the time. 1 = original speed.")]
+    [SerializeField] float progressSpeed = 1f;
+
+    [Tooltip("Seconds the dropper keeps going after the tip slips off the target or the finger " +
+             "lifts. Without it the smallest wobble stalls progress, which reads as the dropper " +
+             "being broken. 0 restores the original all-or-nothing behaviour.")]
+    [SerializeField] float holdGrace = 0.35f;
+
+    [Space()]
     public UnityEvent OnComplete;
+
+    float graceLeft;
 
     bool isInsideCol = false;
     bool isPressing = false; // User tap hold kar raha hai ya nahi
@@ -69,7 +81,14 @@ public class BD_Dropper : MonoBehaviour
         // Logic: Agar trigger ke andar ho AUR user tap hold kar raha ho
         if (isInsideCol && isPressing)
         {
+            graceLeft = holdGrace;
+
             StartProgress();
+        }
+        else if (graceLeft > 0f)
+        {
+            // Ride out a wobble instead of stalling the moment the tip clips the edge.
+            graceLeft -= Time.deltaTime;
         }
         else
         {
@@ -86,7 +105,7 @@ public class BD_Dropper : MonoBehaviour
             particleEffect.Play();
 
         if (animator != null)
-            animator.speed = 1f;
+            animator.speed = progressSpeed;
 
         if (FadeIn)
         {
@@ -140,7 +159,14 @@ public class BD_Dropper : MonoBehaviour
     // Isko Animator ke event se call karein ya logic complete hone par
     public void AnimationFinishedTrigger()
     {
-        if (isInsideCol && isPressing)
+        if (isFinished)
+            return;
+
+        // The clip only advances while the dropper is held on target, so reaching this event
+        // already means the work was done. Re-testing the exact frame it lands threw away
+        // finished attempts over a pixel of wobble. Still guarded, because the animator idles
+        // at 0.001 speed rather than stopped (Luna), so it does creep on its own.
+        if (isActive || graceLeft > 0f)
         {
             Debug.Log("All Actions Completed!");
             isFinished = true;
