@@ -767,6 +767,8 @@ public class Level1_Armpit_Playable : LevelData
             {
                 ToolStep6Actual.gameObject.SetActive(true);
                 ToolStep6.gameObject.SetActive(false);
+
+                ToolStep6Actual.OnMouseUpEvent += Tool6_OnMouseUp;
             });
 
             DOVirtual.DelayedCall(0.5f, () =>
@@ -790,16 +792,54 @@ public class Level1_Armpit_Playable : LevelData
         if (isStep6Done)
             return;
 
+        isStep6Done = true;
+
         droperPlaceIndication.SetActive(false);
+
+        // The serum is in, so the bar reads a full 100% and ticks this tool right away.
+        // Deliberately NOT LevelData.SetProgressBar(), which also queues SetProgressBarPos()
+        // a second later — that is the part that slides the next tool in, and doing it here
+        // would bring the next tool up while the dropper is still in the player's hand.
+        // SendDropperOff does it on release instead.
+        UI_Manager.instance.SetProgressBar(1f);
+
+        // Unless they have already let go: the fill can finish inside BD_Dropper's grace
+        // window, and then no mouse-up is coming.
+        if (!Input.GetMouseButton(0))
+            SendDropperOff();
+    }
+
+    void Tool6_OnMouseUp()
+    {
+        // Releases before the serum is in are just normal drags — the dropper only leaves once
+        // the step has actually completed.
+        if (!isStep6Done)
+            return;
+
+        SendDropperOff();
+    }
+
+    bool dropperSentOff;
+
+    void SendDropperOff()
+    {
+        if (dropperSentOff)
+            return;
+
+        dropperSentOff = true;
+
+        ToolStep6Actual.OnMouseUpEvent -= Tool6_OnMouseUp;
 
         ToolInputToggle(ToolStep6Actual.gameObject, false);
 
         ToolStep6Actual.transform.DOKill();
         ToolStep6Actual.transform.DOLocalMoveX(-15f, 1f);
 
-        Invoke(nameof(StartStep7), 0.5f);
+        // The bar already read 100% and ticked when the serum went in; this is just the next
+        // tool sliding into the bar, timed to the dropper actually leaving.
+        UI_Manager.instance.SetProgressBarPos();
 
-        SetProgressBar();
+        Invoke(nameof(StartStep7), 0.5f);
 
         try
         {

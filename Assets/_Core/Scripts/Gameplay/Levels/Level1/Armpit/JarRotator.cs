@@ -11,7 +11,13 @@ public class JarRotator : MonoBehaviour
     [Range(0f, 140f)]
     public float maxRotation = 140f;
 
-    public float rotationSpeed = 2.5f;
+    [Tooltip("Full swings per screen of drag: 3 means dragging across a third of the screen " +
+             "tips the jar all the way. Higher = easier.\n\nThis used to multiply raw pixel " +
+             "deltas, so the same swipe turned the jar far less on a small browser canvas than " +
+             "in the editor — which is what made it feel stuck in Luna. It is measured against " +
+             "screen size now, so it behaves the same at any resolution.")]
+    public float rotationSpeed = 3f;
+
     public bool invertRotation = false;
 
     [Header("Drag Audio")]
@@ -45,6 +51,8 @@ public class JarRotator : MonoBehaviour
 
     private void HandleInput()
     {
+        bool held = Input.GetMouseButton(0);
+
         if (Input.GetMouseButtonDown(0))
         {
             isDragging = true;
@@ -66,7 +74,10 @@ public class JarRotator : MonoBehaviour
             if (tapClip != null)
                 AudioController.instance.PlayAnySfx(0, tapClip, 0f);
         }
-        else if (Input.GetMouseButtonUp(0))
+        // Driven off the button's actual state rather than waiting for the Up event: a browser
+        // can swallow mouse-up when the pointer leaves the canvas, which left the jar stuck in
+        // a permanent drag with its audio still running.
+        else if (isDragging && !held)
         {
             isDragging = false;
 
@@ -80,7 +91,7 @@ public class JarRotator : MonoBehaviour
             }
         }
 
-        if (isDragging)
+        if (isDragging && held)
         {
             RotateJar(Input.mousePosition);
         }
@@ -92,15 +103,30 @@ public class JarRotator : MonoBehaviour
         lastMousePos = currentPos;
 
         float inputValue;
+        float screenReference;
 
         if (rotationMode == RotationMode.Horizontal)
+        {
             inputValue = delta.x;
+            screenReference = Screen.width;
+        }
         else
+        {
             inputValue = delta.y;
+            screenReference = Screen.height;
+        }
+
+        if (screenReference <= 0f)
+            screenReference = 1f;
+
+        // Measured against the screen rather than in raw pixels. A swipe covers far fewer
+        // pixels on a small browser canvas than in the editor, so the old pixel maths made the
+        // jar feel seized up in Luna while turning fine here.
+        float dragFraction = Mathf.Abs(inputValue) / screenReference;
 
         // Any drag direction pushes rotation toward the target extreme -
         // only the amount of movement matters, not which way it went.
-        float rotationAmount = Mathf.Abs(inputValue) * rotationSpeed * 0.1f;
+        float rotationAmount = dragFraction * rotationSpeed * maxRotation;
 
         if (invertRotation)
             currentAngle += rotationAmount;

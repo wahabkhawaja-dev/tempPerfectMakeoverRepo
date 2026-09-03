@@ -937,6 +937,9 @@ Deserializers["BD_AnimationHelper"] = function (request, data, root) {
   var i903 = data
   i902.OnAnimationComplete = request.d('UnityEngine.Events.UnityEvent', i903[0], i902.OnAnimationComplete)
   request.r(i903[1], i903[2], 0, i902, 'sfxClip')
+  i902.progressPerStep = i903[3]
+  i902.progressCap = i903[4]
+  request.r(i903[5], i903[6], 0, i902, 'progressGate')
   return i902
 }
 
@@ -1832,23 +1835,24 @@ Deserializers["UI_Manager"] = function (request, data, root) {
   request.r(i1049[41], i1049[42], 0, i1048, 'toolIcon1')
   request.r(i1049[43], i1049[44], 0, i1048, 'toolIcon2')
   request.r(i1049[45], i1049[46], 0, i1048, 'toolIcon3')
-  request.r(i1049[47], i1049[48], 0, i1048, 'target1')
-  request.r(i1049[49], i1049[50], 0, i1048, 'target2')
-  i1048.toolMoveDuration = i1049[51]
-  i1048.currentIndex = i1049[52]
-  var i1055 = i1049[53]
+  request.r(i1049[47], i1049[48], 0, i1048, 'toolIcon4')
+  request.r(i1049[49], i1049[50], 0, i1048, 'target1')
+  request.r(i1049[51], i1049[52], 0, i1048, 'target2')
+  i1048.toolMoveDuration = i1049[53]
+  i1048.currentIndex = i1049[54]
+  var i1055 = i1049[55]
   var i1054 = new (System.Collections.Generic.List$1(Bridge.ns('UnityEngine.Sprite')))
   for(var i = 0; i < i1055.length; i += 2) {
   request.r(i1055[i + 0], i1055[i + 1], 1, i1054, '')
   }
   i1048.allTools = i1054
-  request.r(i1049[54], i1049[55], 0, i1048, 'clockProgress')
-  request.r(i1049[56], i1049[57], 0, i1048, 'clockProgressFill')
-  request.r(i1049[58], i1049[59], 0, i1048, 'clockAudio')
-  i1048.moveDistance = i1049[60]
-  i1048.animationDuration = i1049[61]
-  i1048.greyBgChildName = i1049[62]
-  i1048.pushOffset = i1049[63]
+  request.r(i1049[56], i1049[57], 0, i1048, 'clockProgress')
+  request.r(i1049[58], i1049[59], 0, i1048, 'clockProgressFill')
+  request.r(i1049[60], i1049[61], 0, i1048, 'clockAudio')
+  i1048.moveDistance = i1049[62]
+  i1048.animationDuration = i1049[63]
+  i1048.greyBgChildName = i1049[64]
+  i1048.pushOffset = i1049[65]
   return i1048
 }
 
@@ -3107,13 +3111,13 @@ Deserializers.productName = "Perfect Makeover Fashion ASMR";
 
 Deserializers.lunaInitializationTime = "08/20/2026 07:41:52";
 
-Deserializers.lunaDaysRunning = "13.3";
+Deserializers.lunaDaysRunning = "13.9";
 
 Deserializers.lunaVersion = "7.2.0";
 
 Deserializers.lunaSHA = "ea08d29afe2968efcb8d91d5624f033c6485cc68";
 
-Deserializers.creativeName = "2Sept2026_CompleteLevel_1_4_v2";
+Deserializers.creativeName = "3Sept2026_CompleteLevel_1_4_v3";
 
 Deserializers.lunaAppID = "42211";
 
@@ -3161,7 +3165,7 @@ Deserializers.graphicsConstraint = 24;
 
 Deserializers.linearColorSpace = false;
 
-Deserializers.buildID = "4862eebf-8c69-45ca-91d9-b884adbcfc49";
+Deserializers.buildID = "94547cf8-8b06-46c0-9ac8-766ef7f44c53";
 
 Deserializers.runtimeInitializeOnLoadInfos = [[["UnityEngine","Experimental","Rendering","ScriptableRuntimeReflectionSystemSettings","ScriptingDirtyReflectionSystemInstance"]],[],[["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"]],[],[]];
 

@@ -38,6 +38,13 @@ public class BD_Dropper : MonoBehaviour
 
     float graceLeft;
 
+    /// <summary>
+    /// True only while the dropper is actually being held on target (or inside its grace
+    /// window). BD_AnimationHelper checks this before counting an animation event towards the
+    /// progress bar, so the clip's first-frame event cannot fill the bar on activation.
+    /// </summary>
+    public bool IsProgressing { get { return isActive || graceLeft > 0f; } }
+
     bool isInsideCol = false;
     bool isPressing = false; // User tap hold kar raha hai ya nahi
     bool isFinished = false;
