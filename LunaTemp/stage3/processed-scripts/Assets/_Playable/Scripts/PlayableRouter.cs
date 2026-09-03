@@ -51,6 +51,12 @@ public class PlayableRouter : MonoBehaviour
     [Tooltip("Seconds to fade to black before the menu is swapped for the level.")]
     [SerializeField] float fadeDuration = 0.35f;
 
+    [Tooltip("Raised the moment an unlocked button is tapped, before the fade starts. Wire it\n" +
+             "to MenuLevel.ReverseBtnAnim() so the buttons play their tween backwards and drop\n" +
+             "their colliders, instead of just being switched off by the swap with no close of\n" +
+             "their own.")]
+    [SerializeField] UnityEngine.Events.UnityEvent onMenuClosing;
+
     [Tooltip("Toast shown when a LOCKED button is tapped.\n" +
              "{0} is replaced with the NUMBER of the level that IS unlocked (its slot position).\n" +
              "Leave empty for no toast.")]
@@ -65,7 +71,6 @@ public class PlayableRouter : MonoBehaviour
     const string IconChildPrefix = "Icon";
 
     LevelData playing;
-    bool lockedCtaFired;
 
     void Awake()
     {
@@ -132,7 +137,11 @@ public class PlayableRouter : MonoBehaviour
     /// <summary>
     /// A locked button was tapped (SpriteButton refuses the tap and raises onLockedClick).
     /// Count it per button; once that button has been tapped lockedTapsToCTA times, read it as
-    /// "they really want this level" and send them to the store.
+    /// "they really want this level" and send them to the store — and keep sending them on
+    /// EVERY further tap of that button, not just the first time the threshold is crossed.
+    /// This is a separate concern from the in-level end-card CTA (PlayableCTA's own
+    /// HasFired/refireOnEveryTap gating) — locked-button taps never touch that component's
+    /// state, so playing the level afterwards starts with a clean, un-limited CTA.
     /// </summary>
     void OnLockedTap(int index)
     {
@@ -149,13 +158,9 @@ public class PlayableRouter : MonoBehaviour
 
         slot.lockedTaps++;
 
-        // Once only. While the menu is up the level (and its PlayableCTA) is inactive, so
-        // FireNow() falls back to its static open-store path, which has no once-guard of its
-        // own — without this every further tap would re-open the store.
-        if (lockedCtaFired || lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
+        if (lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
             return;
 
-        lockedCtaFired = true;
         PlayableCTA.FireNow();
     }
 
@@ -245,6 +250,12 @@ public class PlayableRouter : MonoBehaviour
         }
 
         playing = slot.level;
+
+        // Let the menu close itself on the way out — ReverseBtnAnim plays each button's tween
+        // backwards and disables its collider, so they animate away under the fade instead of
+        // being switched off mid-tap by SwapToLevel.
+        if (onMenuClosing != null)
+            onMenuClosing.Invoke();
 
         // Fade to black first, swap underneath, then fade back in — so the level never
         // appears out of nowhere. If there is no fade image the swap still runs.

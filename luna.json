@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "31Aug2026_Level1_1_CompleteLevel_BiggerIcons_v1",
+    "creativeName": "3Sept2026_Level1_1_CompleteLevel_v2",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -1745,15 +1745,7 @@
                 "excluded": true
             },
             {
-                "name": "UnityEngine.Resolution",
-                "excluded": true
-            },
-            {
                 "name": "UnityEngine.RootMotionData",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.Screen",
                 "excluded": true
             },
             {
@@ -25066,7 +25058,7 @@
                     },
                     {
                         "name": "targetDisplay#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "targetDisplay#set",
@@ -25090,7 +25082,7 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDestroy",
@@ -25194,7 +25186,7 @@
                     },
                     {
                         "name": "RemoveRaycasters",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -25658,7 +25650,7 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnCanvasHierarchyChanged",
@@ -26438,11 +26430,11 @@
                     },
                     {
                         "name": "ForceInit",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Goto",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Pause",
@@ -26454,7 +26446,7 @@
                     },
                     {
                         "name": "PlayBackwards",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayForward",
@@ -26538,7 +26530,7 @@
                     },
                     {
                         "name": "ManageOnRewindCallbackWhenAlreadyRewinded",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -27358,7 +27350,7 @@
                     },
                     {
                         "name": "Goto",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GotoWithCallbacks",
@@ -27366,7 +27358,7 @@
                     },
                     {
                         "name": "DoGoto",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Kill",
@@ -27386,7 +27378,7 @@
                     },
                     {
                         "name": "PlayBackwards",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayForward",
@@ -29410,7 +29402,7 @@
                     },
                     {
                         "name": "ReverseBtnAnim",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DisableBtnAnim",
@@ -29704,7 +29696,7 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -30256,7 +30248,7 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "StartHolding",
@@ -30433,6 +30425,18 @@
                     {
                         "name": "HideClockProgress",
                         "excluded": true
+                    },
+                    {
+                        "name": "ShowTool4Instant",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ShowTool4Animated",
+                        "excluded": false
+                    },
+                    {
+                        "name": "HideTool4",
+                        "excluded": false
                     }
                 ]
             },
@@ -33943,6 +33947,122 @@
                         "excluded": true
                     }
                 ]
+            },
+            {
+                "className": "UnityEngine.Resolution",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "getDefaultValue",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "getHashCode",
+                        "excluded": true
+                    },
+                    {
+                        "name": "equals",
+                        "excluded": true
+                    },
+                    {
+                        "name": "$clone",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.Screen",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "width#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "height#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "safeArea#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "currentResolution#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fullScreen#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fullScreen#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "dpi#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "dpi#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "orientation#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "orientation#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sleepTimeout#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sleepTimeout#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeLeft#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeLeft#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeRight#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeRight#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortrait#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortrait#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortraitUpsideDown#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortraitUpsideDown#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    }
+                ]
             }
         ],
         "stubberDataList": [],
@@ -33962,8 +34082,8 @@
         "rules": {
             "texture": {
                 "default": {
-                    "maxWidth": 512,
-                    "maxHeight": 512,
+                    "maxWidth": 1024,
+                    "maxHeight": 1024,
                     "format": "png32",
                     "compression": "quantSize",
                     "quality": 65,

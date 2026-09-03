@@ -633,7 +633,6 @@ public class Level1_Hair_Playable : LevelData
 
         if (PlayerPrefs.GetInt("showerFixedBack", 0) == 0)
         {
-            showerRender.DOFade(0, 0.001f);
             showerRender.transform.DOMoveY(showerRender.transform.position.y - 0.25f, 0.01f);
         }
 
@@ -641,8 +640,6 @@ public class Level1_Hair_Playable : LevelData
         ToolStep5.transform.DOLocalMoveX(0f, .5f).SetDelay(.5f).OnComplete(() =>
         {
             camFollowStep5.enabled = true;
-
-            showerRender.DOFade(1, 0.25f);
 
             if (PlayerPrefs.GetInt("showerFixedBack", 0) == 0)
             {
