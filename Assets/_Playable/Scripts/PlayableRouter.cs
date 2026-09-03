@@ -51,6 +51,12 @@ public class PlayableRouter : MonoBehaviour
     [Tooltip("Seconds to fade to black before the menu is swapped for the level.")]
     [SerializeField] float fadeDuration = 0.35f;
 
+    [Tooltip("Raised the moment an unlocked button is tapped, before the fade starts. Wire it\n" +
+             "to MenuLevel.ReverseBtnAnim() so the buttons play their tween backwards and drop\n" +
+             "their colliders, instead of just being switched off by the swap with no close of\n" +
+             "their own.")]
+    [SerializeField] UnityEngine.Events.UnityEvent onMenuClosing;
+
     [Tooltip("Toast shown when a LOCKED button is tapped.\n" +
              "{0} is replaced with the NUMBER of the level that IS unlocked (its slot position).\n" +
              "Leave empty for no toast.")]
@@ -245,6 +251,12 @@ public class PlayableRouter : MonoBehaviour
         }
 
         playing = slot.level;
+
+        // Let the menu close itself on the way out — ReverseBtnAnim plays each button's tween
+        // backwards and disables its collider, so they animate away under the fade instead of
+        // being switched off mid-tap by SwapToLevel.
+        if (onMenuClosing != null)
+            onMenuClosing.Invoke();
 
         // Fade to black first, swap underneath, then fade back in — so the level never
         // appears out of nowhere. If there is no fade image the swap still runs.

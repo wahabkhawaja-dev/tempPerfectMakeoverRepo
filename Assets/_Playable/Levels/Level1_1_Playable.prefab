@@ -106310,8 +106310,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.6, y: -0.7900001, z: 0}
-  m_LocalScale: {x: 0.8813539, y: 0.8813539, z: 0.44}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.44067696, y: 0.44067696, z: 0.22}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1290926081925303311}
   - {fileID: 2712718801879019078}
@@ -128015,7 +128015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: 8a624a71e69316241a5d81cffa3d0a69, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: 9d39eda5a23164d40bd3e542320dbedd, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -155276,7 +155276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: ce3ea2de7d426994a8aab28718416730, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: f6ec608c71b413f4db6b56dfeb789c1b, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -182121,7 +182121,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1213954519435190558}
   - {fileID: 8116218832784441288}
@@ -192190,9 +192190,9 @@ Transform:
   m_GameObject: {fileID: 3395755748128849261}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2480798, y: 1.7473117, z: 0}
-  m_LocalScale: {x: 0.49923193, y: 0.49923193, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -2.32, y: 3.47, z: 0}
+  m_LocalScale: {x: 0.9984638, y: 0.9984638, z: 1.9999999}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3210392344704936340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -202440,8 +202440,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6, y: -0.79, z: 0}
-  m_LocalScale: {x: 0.8813539, y: 0.8813539, z: 0.44}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.44067696, y: 0.44067696, z: 0.22}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 98485518319939106}
   - {fileID: 318826968419391558}
@@ -202556,7 +202556,7 @@ Transform:
   m_GameObject: {fileID: 3561047652261201315}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.051, y: 1.52, z: 0}
+  m_LocalPosition: {x: -0.051, y: 2.066, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -207698,7 +207698,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8059210448105260073}
   - component: {fileID: 6056526428328518170}
-  - component: {fileID: 7793616473069367372}
   m_Layer: 0
   m_Name: ShampooInner
   m_TagString: Untagged
@@ -207773,34 +207772,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!114 &7793616473069367372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3707526519732002630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f8abe6aab9f91f49828555e2eeaa5b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ForceMaterial: {fileID: 0}
-  ActiveChange: 1
-  _Alpha: 1
-  _OffsetX: 10
-  _OffsetY: 5.3
-  _DistanceX: 0.016
-  _DistanceY: 0.007
-  _WaveTimeX: 2.9390333
-  _WaveTimeY: 5.8780665
-  AutoPlayWaveX: 1
-  AutoPlaySpeedX: 5
-  AutoPlayWaveY: 1
-  AutoPlaySpeedY: 10
-  AutoRandom: 0
-  AutoRandomRange: 10
-  ShaderChange: 0
 --- !u!1 &3757998066288298751
 GameObject:
   m_ObjectHideFlags: 0
@@ -214024,7 +213995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: 267f2d3cdc25bcb458b45052cde2555a, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: 5de211501235f9f4fa7d5a4420339055, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -220364,7 +220335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: dc98ec522523a3745bfb86e1cb06c068, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: 864443d0fa487934487fe49248ea4eca, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 4a963231c22225f408d7fa81a13e0867, type: 3}
@@ -236792,7 +236763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2980849344444008552
 Transform:
   m_ObjectHideFlags: 0
@@ -257201,7 +257172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: 267f2d3cdc25bcb458b45052cde2555a, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: 5de211501235f9f4fa7d5a4420339055, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 4a963231c22225f408d7fa81a13e0867, type: 3}
@@ -274480,7 +274451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3658249643697437277
 Transform:
   m_ObjectHideFlags: 0
@@ -274536,6 +274507,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ebab78a565070a348824afb5a284adcb, type: 3}
   - {fileID: 21300000, guid: 2c65559df7bb0074386de08b3bb3cc7b, type: 3}
   - {fileID: 21300000, guid: 4fba910496539ac4ebd51a7fa9c0cbdd, type: 3}
+  - {fileID: 21300000, guid: 15a707474bf403a4ab36a7cdadfdeae8, type: 3}
   AllDrags:
   - {fileID: 4303963094581499760}
   - {fileID: 3793683733091865022}
@@ -274697,8 +274669,6 @@ MonoBehaviour:
   dryCombed_BG: {fileID: 6538044476516781163}
   brushController: {fileID: 4970404207300166316}
   handIndicationBrush: {fileID: 3824530361045321132}
-  fixItPrompt: {fileID: 1338568259188574059}
-  fixItPromptHand: {fileID: 0}
 --- !u!114 &948159398514284196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310818,7 +310788,7 @@ Transform:
   m_GameObject: {fileID: 5879059724066702301}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.4174148, w: 0.9087161}
-  m_LocalPosition: {x: 0.03382927, y: -1.3104019, z: 0}
+  m_LocalPosition: {x: 5.09, y: -1.65, z: 0}
   m_LocalScale: {x: 2.2727268, y: 2.2727268, z: 2.2727273}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -321052,8 +321022,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.58, y: 0.02, z: 0}
-  m_LocalScale: {x: 0.8813456, y: 0.8813456, z: 0.44}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4406728, y: 0.4406728, z: 0.22}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3836121725470952638}
   m_Father: {fileID: 9096681241732159591}
@@ -332109,7 +332079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: 95ee40f8d71dab644a25a3bb5b82d50a, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: f526266787f071444a277efb3752c565, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -332871,7 +332841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
   RenderType: 1
-  ScratchSurfaceSprite: {fileID: 21300000, guid: 01239a6c609dca6468bc4293b9f3a9f4, type: 3}
+  ScratchSurfaceSprite: {fileID: 21300000, guid: dd52c415300ecad488209d45a952c63a, type: 3}
   ScratchSurfaceSpriteHasAlpha: 1
   MaskProgressCutOffValue: 0.33
   EraseTexture: {fileID: 2800000, guid: 3098b0e33ebda844fb85ada887d8fedc, type: 3}
@@ -338423,8 +338393,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.352, y: 0.176, z: 0}
-  m_LocalScale: {x: 0.88149154, y: 0.88149154, z: 0.44}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.44074574, y: 0.44074574, z: 0.21999998}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7997811891268193981}
   m_Father: {fileID: 9096681241732159591}
@@ -359882,7 +359852,7 @@ GameObject:
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1803745467974019916
 Transform:
   m_ObjectHideFlags: 0
@@ -360319,9 +360289,9 @@ Transform:
   m_GameObject: {fileID: 7752505758009541293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2121351, y: 1.7597926, z: 0}
-  m_LocalScale: {x: 0.49923193, y: 0.49923193, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 2.53, y: 3.35, z: 0}
+  m_LocalScale: {x: 0.9984638, y: 0.9984638, z: 1.9999999}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 276508336160884706}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -360393,7 +360363,7 @@ GameObject:
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4614869655846707638
 Transform:
   m_ObjectHideFlags: 0
@@ -361221,7 +361191,7 @@ Transform:
   m_GameObject: {fileID: 8010433346209443757}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: -0.86, z: 0}
+  m_LocalPosition: {x: 0, y: -1.814, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -361261,7 +361231,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.40949854
+  m_Radius: 0.6
 --- !u!50 &3661752124481105331
 Rigidbody2D:
   serializedVersion: 4
@@ -388514,7 +388484,7 @@ GameObject:
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5953034003872179142
 Transform:
   m_ObjectHideFlags: 0
@@ -388524,7 +388494,7 @@ Transform:
   m_GameObject: {fileID: 8896191240750586525}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: -0.86, z: 0}
+  m_LocalPosition: {x: 0, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -388537,7 +388507,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8896191240750586525}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -388564,7 +388534,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.40949854
+  m_Radius: 0.3
 --- !u!50 &1301840206549991442
 Rigidbody2D:
   serializedVersion: 4

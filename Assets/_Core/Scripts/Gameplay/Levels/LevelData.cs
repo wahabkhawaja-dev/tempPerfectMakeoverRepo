@@ -36,6 +36,13 @@ public class LevelData : MonoBehaviour
     public int levelNo;
     public int partNo;
 
+    [Space()]
+    [Tooltip("Switched OFF once the end card is shown: HUD, tool bar, gameplay overlays — " +
+             "anything that should not sit on top of or behind it.\n\n" +
+             "Do NOT list a parent of CompletePanel itself — the panel is switched on first, but " +
+             "disabling something above it in the hierarchy would hide it again.")]
+    public GameObject[] disableOnLevelComplete;
+
     WaitForSeconds wait1sec = new WaitForSeconds(1f);
     IEnumerator Setup()
     {
@@ -103,6 +110,16 @@ public class LevelData : MonoBehaviour
 
         GameManager.instance.Complete();
         UI_Manager.instance.CompletePanel.SetActive(true);
+
+        // After the panel is up, so nothing here can be an ancestor that hides it.
+        if (disableOnLevelComplete != null)
+        {
+            for (int i = 0; i < disableOnLevelComplete.Length; i++)
+            {
+                if (disableOnLevelComplete[i] != null)
+                    disableOnLevelComplete[i].SetActive(false);
+            }
+        }
     }
 
     public void ToolInputToggle(GameObject tool, bool toggle)
