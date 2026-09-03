@@ -84,7 +84,6 @@ public class PlayableRouter : MonoBehaviour
     const string IconChildPrefix = "Icon";
 
     LevelData playing;
-    bool lockedCtaFired;
     int pendingIntro = -1;
 
     void Awake()
@@ -156,7 +155,11 @@ public class PlayableRouter : MonoBehaviour
     /// <summary>
     /// A locked button was tapped (SpriteButton refuses the tap and raises onLockedClick).
     /// Count it per button; once that button has been tapped lockedTapsToCTA times, read it as
-    /// "they really want this level" and send them to the store.
+    /// "they really want this level" and send them to the store — and keep sending them on
+    /// EVERY further tap of that button, not just the first time the threshold is crossed.
+    /// This is a separate concern from the in-level end-card CTA (PlayableCTA's own
+    /// HasFired/refireOnEveryTap gating) — locked-button taps never touch that component's
+    /// state, so playing the level afterwards starts with a clean, un-limited CTA.
     /// </summary>
     void OnLockedTap(int index)
     {
@@ -173,13 +176,9 @@ public class PlayableRouter : MonoBehaviour
 
         slot.lockedTaps++;
 
-        // Once only. While the menu is up the level (and its PlayableCTA) is inactive, so
-        // FireNow() falls back to its static open-store path, which has no once-guard of its
-        // own — without this every further tap would re-open the store.
-        if (lockedCtaFired || lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
+        if (lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
             return;
 
-        lockedCtaFired = true;
         PlayableCTA.FireNow();
     }
 

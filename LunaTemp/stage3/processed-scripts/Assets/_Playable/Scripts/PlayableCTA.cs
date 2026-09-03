@@ -114,6 +114,16 @@ public class PlayableCTA : MonoBehaviour
             FireFromTrigger();
     }
 
+    void OnDisable()
+    {
+        // Without this, a level's CTA that was ever briefly active keeps `active` pointing at
+        // it even while hidden — so a locked-button tap (PlayableCTA.FireNow() while no level
+        // is playing) would wrongly fire THIS component instead of falling back to the
+        // open-store path, setting HasFired early and making every later gameplay tap re-fire.
+        if (active == this)
+            active = null;
+    }
+
     void Update()
     {
         bool tapped = Input.GetMouseButtonDown(0);

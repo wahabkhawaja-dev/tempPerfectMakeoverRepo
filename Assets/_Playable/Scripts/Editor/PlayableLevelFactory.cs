@@ -113,9 +113,14 @@ public static class PlayableLevelFactory
         public List<string> UnassignedFields = new List<string>();
     }
 
+    /// <summary>
+    /// Original Resources levels, plus every playable already built into Assets/_Playable/Levels
+    /// — so a full-step playable can itself be picked as the source for a further, smaller
+    /// variation (Scan() only needs a LevelData + its script, which a built playable still has).
+    /// </summary>
     public static string[] ListSourcePrefabs()
     {
-        var guids = AssetDatabase.FindAssets("t:Prefab", new[] { LevelsRoot });
+        var guids = AssetDatabase.FindAssets("t:Prefab", new[] { LevelsRoot, PlayableLevels });
         var paths = new List<string>();
         for (int i = 0; i < guids.Length; i++)
         {
@@ -244,6 +249,23 @@ public static class PlayableLevelFactory
         InnerMode mode,
         string innerBuiltPrefab)
     {
+        return Build(sourcePrefabPath, keepSteps, placeInScene, mode, innerBuiltPrefab, null);
+    }
+
+    /// <summary>
+    /// Same as above, but <paramref name="variant"/> (when non-empty) is appended to the
+    /// generated script class and prefab name, so multiple step-range builds off the same
+    /// source level land as separate files instead of overwriting each other's
+    /// "{Level}_Playable" prefab/script.
+    /// </summary>
+    public static BuildResult Build(
+        string sourcePrefabPath,
+        IList<int> keepSteps,
+        bool placeInScene,
+        InnerMode mode,
+        string innerBuiltPrefab,
+        string variant)
+    {
         var log = new List<string>();
         var result = new BuildResult();
         string destPrefab = null;
@@ -262,14 +284,34 @@ public static class PlayableLevelFactory
             if (!string.IsNullOrEmpty(scan.Error))
                 throw new Exception(scan.Error);
 
+            string variantSuffix = string.IsNullOrEmpty(variant) ? "" : "_" + Regex.Replace(variant, "[^A-Za-z0-9]", "");
+
             string playableClass = scan.ClassName.EndsWith("_Playable", StringComparison.Ordinal)
                 ? scan.ClassName
                 : scan.ClassName + "_Playable";
+            playableClass += variantSuffix;
+
+            string prefabName = Path.GetFileNameWithoutExtension(sourcePrefabPath);
+            if (prefabName.EndsWith("_Playable", StringComparison.OrdinalIgnoreCase))
+                prefabName = prefabName.Substring(0, prefabName.Length - "_Playable".Length);
+            string plannedDestPrefab = PlayableLevels + "/" + prefabName + "_Playable" + variantSuffix + ".prefab";
+            string plannedDestScript = PlayableScripts + "/" + playableClass + ".cs";
+
+            // Sourcing from an already-built playable (re-slicing it into a further variation)
+            // can land on the exact same class/prefab name as the source itself when no variant
+            // is given — that would overwrite the very file being read from. A blank variant is
+            // fine when sourcing from Resources/Lvl_GP (destination there always differs from
+            // Resources), so only block the case that actually collides.
+            if (string.Equals(plannedDestScript, scan.ScriptPath, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(plannedDestPrefab, sourcePrefabPath, StringComparison.OrdinalIgnoreCase))
+                throw new Exception(
+                    "Build would overwrite its own source (" + sourcePrefabPath + "). " +
+                    "Set a Variant name to build a distinct output.");
 
             Directory.CreateDirectory(ToFull(PlayableScripts));
             Directory.CreateDirectory(ToFull(PlayableLevels));
 
-            string destScript = PlayableScripts + "/" + playableClass + ".cs";
+            string destScript = plannedDestScript;
             string sourceText = File.ReadAllText(ToFull(scan.ScriptPath));
             string playableText = RewriteScript(sourceText, scan.ClassName, playableClass, keep, first, last, mode, scan.FixStep, log);
 
@@ -286,10 +328,7 @@ public static class PlayableLevelFactory
             if (string.IsNullOrEmpty(destGuid))
                 throw new Exception("Playable script GUID nahi mila after import.");
 
-            string prefabName = Path.GetFileNameWithoutExtension(sourcePrefabPath);
-            if (prefabName.EndsWith("_Playable", StringComparison.OrdinalIgnoreCase))
-                prefabName = prefabName.Substring(0, prefabName.Length - "_Playable".Length);
-            destPrefab = PlayableLevels + "/" + prefabName + "_Playable.prefab";
+            destPrefab = plannedDestPrefab;
 
             File.Copy(ToFull(sourcePrefabPath), ToFull(destPrefab), true);
             string yaml = File.ReadAllText(ToFull(destPrefab));
@@ -1034,60 +1073,74 @@ public static class PlayableLevelFactory
             @"(?<!void\s)(?<!nameof\s*\(\s*)StartStep(\d+)(?!\w)\s*\(\s*\)",
             m => RewriteNextCall(int.Parse(m.Groups[1].Value), keep, lastKept, null, false, source, log));
 
-        text = RewriteHairShowerBridge(text, keep, lastKept, log);
+        // Some levels splice a lettered sub-step between two numbered ones — Level1_Hair/Shower
+        // names it "2b" (between bugs=2 and shampoo=3), Level1_Cloth names the same slot "3a"
+        // (between the wash machine=2 and dressing=3). Either way the plain-digit regexes above
+        // never match it (StartStep(\d+)(?!\w) deliberately excludes a trailing letter), so
+        // without this pass a build that cuts before step 3 leaves the call dangling — the
+        // content just ends without ever reaching LevelComplete, so the CTA never fires.
+        text = RewriteBridgeSubStep(text, "StartStep2b", keep, lastKept, log);
+        text = RewriteBridgeSubStep(text, "StartStep3a", keep, lastKept, log);
         text = RewriteLastStepComplete(text, lastKept, log);
         text = StripUnkeptTransitions(text, keep, log);
         log.Add("Last kept step " + lastKept + " complete → LevelComplete (next StartStep nahi).");
         return text;
     }
 
-    static string RewriteHairShowerBridge(string text, HashSet<int> keep, int lastKept, List<string> log)
+    /// <summary>
+    /// <paramref name="subStep"/> is a lettered sub-step known to sit between numbered step 2 and
+    /// step 3 (e.g. "StartStep2b", "StartStep3a"). Rewires it the same way regardless of which
+    /// level it belongs to: skipped entirely (→ LevelComplete) if step 3 isn't kept, left as
+    /// 2 → subStep → 3 if both 2 and 3 are kept, or redirected straight to StartStep3 if only 3
+    /// (not 2) survived the cut.
+    /// </summary>
+    static string RewriteBridgeSubStep(string text, string subStep, HashSet<int> keep, int lastKept, List<string> log)
     {
-        if (!Regex.IsMatch(text, @"\bStartStep2b\s*\("))
+        if (!Regex.IsMatch(text, @"\b" + subStep + @"\s*\("))
             return text;
 
-        // Last kept is before shampoo: completing step 2 must not enter 2b.
+        // Last kept is before step 3: completing step 2 must not enter the bridge.
         if (lastKept < 3)
         {
             text = Regex.Replace(
                 text,
-                @"Invoke\s*\(\s*nameof\s*\(\s*StartStep2b\s*\)\s*(,\s*[^)]+)?\)\s*;",
+                @"Invoke\s*\(\s*nameof\s*\(\s*" + subStep + @"\s*\)\s*(,\s*[^)]+)?\)\s*;",
                 m => "Invoke(nameof(LevelComplete)" + (m.Groups[1].Success ? m.Groups[1].Value : ", 1f") + ");");
             text = Regex.Replace(
                 text,
-                @"(?<!void\s)(?<!nameof\s*\(\s*)StartStep2b\s*\(\s*\)\s*;",
+                @"(?<!void\s)(?<!nameof\s*\(\s*)" + subStep + @"\s*\(\s*\)\s*;",
                 "LevelComplete();");
-            log.Add("StartStep2b skipped — last step complete → LevelComplete().");
+            log.Add(subStep + " skipped — last step complete → LevelComplete().");
             return text;
         }
 
-        // Step 2b is the shower between bugs (2) and shampoo (3).
-        // If step 2 is kept and 3 is in the playable, leave 2 → 2b → 3.
+        // If step 2 is kept and 3 is in the playable, leave 2 → subStep → 3.
         if (keep.Contains(2))
             return text;
 
+        string forceMethod = "ForceComplete" + subStep.Substring("Start".Length);
         string replacement;
         if (keep.Contains(3))
         {
-            bool hasForce = Regex.IsMatch(text, @"\bvoid\s+ForceCompleteStep2b\s*\(");
+            bool hasForce = Regex.IsMatch(text, @"\bvoid\s+" + forceMethod + @"\s*\(");
             replacement = hasForce
-                ? "{ PlayableFadeCover.Cover(); ForceCompleteStep2b(); Invoke(nameof(StartStep3), .5f); PlayableFadeCover.Reveal(); }"
+                ? "{ PlayableFadeCover.Cover(); " + forceMethod + "(); Invoke(nameof(StartStep3), .5f); PlayableFadeCover.Reveal(); }"
                 : "Invoke(nameof(StartStep3), .5f);";
-            log.Add("StartStep2b skipped → shampoo StartStep3" + (hasForce ? " (fade-covered)." : "."));
+            log.Add(subStep + " skipped → StartStep3" + (hasForce ? " (fade-covered)." : "."));
         }
         else
         {
             replacement = "Invoke(nameof(LevelComplete), 1f);";
-            log.Add("StartStep2b skipped → LevelComplete().");
+            log.Add(subStep + " skipped → LevelComplete().");
         }
 
         text = Regex.Replace(
             text,
-            @"Invoke\s*\(\s*nameof\s*\(\s*StartStep2b\s*\)\s*(,\s*[^)]+)?\)\s*;",
+            @"Invoke\s*\(\s*nameof\s*\(\s*" + subStep + @"\s*\)\s*(,\s*[^)]+)?\)\s*;",
             replacement);
         text = Regex.Replace(
             text,
-            @"(?<!void\s)(?<!nameof\s*\(\s*)StartStep2b\s*\(\s*\)\s*;",
+            @"(?<!void\s)(?<!nameof\s*\(\s*)" + subStep + @"\s*\(\s*\)\s*;",
             replacement);
         return text;
     }

@@ -55,6 +55,10 @@ public class UI_Manager : MonoBehaviour
     public DOTweenAnimation[] RemoveAdsAnims;
 
     [Space()]
+    [Tooltip("Off when something else owns the end-of-level UI (e.g. PlayableCTA) — Complete() " +
+             "then skips CompletePanel and the disable-list entirely instead of relying on them " +
+             "being left unassigned.")]
+    public bool showCompletePanel = true;
     public List<GameObject> thingsToDisableWhenCompletePanel;
     public GameObject CompletePanel;
     public Image LevelIcon;
@@ -70,6 +74,17 @@ public class UI_Manager : MonoBehaviour
     public GameObject toolIcon1;
     public GameObject toolIcon2;
     public GameObject toolIcon3;
+
+    [Tooltip("Last-tool placeholder (e.g. a star). Fills the empty \"next\" slot at target2 " +
+             "when there is no real next tool. Optional — leave empty to skip it.")]
+    public GameObject toolIcon4;
+
+    [Tooltip("Parent of the tool icons (and progress bar, if it lives under the same parent). " +
+             "When the level's last tool finishes, this eases up to toolHolderRaisedY as one " +
+             "piece instead of any of its icons being hidden out from under it.")]
+    public RectTransform toolHolder;
+    public float toolHolderRaisedY = 10f;
+    public float toolHolderRaiseDuration = 0.6f;
 
     [Header("Tool Bar Targets")]
     public RectTransform target1;
@@ -296,10 +311,16 @@ public class UI_Manager : MonoBehaviour
             SetGreyInstant(tool2BgGrey, 1f);
 
             nextToolIndex = 2;
+
+            // There is a real next tool, so the last-tool placeholder stays hidden
+            HideTool4();
         }
         else
         {
             HideToolIcon(toolIcon2, tool2Bg, tool2Tick);
+
+            // Only tool in the level: it's already the last one, fill the empty slot
+            ShowTool4Instant();
         }
 
         // Third icon is the future/reusable slot
@@ -363,10 +384,16 @@ public class UI_Manager : MonoBehaviour
 
             // Next tool -> grey
             SetGreyInstant(tool2BgGrey, 1f);
+
+            // There is a real next tool, so the last-tool placeholder stays hidden
+            HideTool4();
         }
         else
         {
             HideToolIcon(toolIcon2, tool2Bg, tool2Tick);
+
+            // Current tool is the last one: fill the empty slot
+            ShowTool4Instant();
         }
 
         // Tool 3 starts hidden
@@ -424,22 +451,20 @@ public class UI_Manager : MonoBehaviour
 
         currentIndex++;
 
-        // No more tools available
+        // No more tools available — this IS the level's finished state (last tool ticked,
+        // toolIcon4/star showing as "next"), so tool1 and toolIcon4 stay put and visible;
+        // only the genuinely unused tool2/tool3 slots clear, and the whole bar eases up.
         if (currentIndex >= allTools.Count)
         {
             currentIndex = allTools.Count - 1;
 
-            HideToolIcon(toolIcon1, tool1Bg, tool1Tick);
             HideToolIcon(toolIcon2, tool2Bg, tool2Tick);
             HideToolIcon(toolIcon3, tool3Bg, tool3Tick);
 
-            // All slots free again -> prime every grey for the next level
-            SetGreyInstant(tool1BgGrey, 1f);
             SetGreyInstant(tool2BgGrey, 1f);
             SetGreyInstant(tool3BgGrey, 1f);
 
-            progressBar.DOFillAmount(0, toolMoveDuration);
-            progressText.text = "0%";
+            RaiseToolHolder();
 
             return;
         }
@@ -539,10 +564,17 @@ public class UI_Manager : MonoBehaviour
             oldCanvas3.DOKill();
             oldCanvas3.alpha = 0f;
             oldCanvas3.DOFade(1f, toolMoveDuration).SetEase(Ease.OutCubic);
+
+            // There is a real next tool, so the last-tool placeholder stays hidden
+            HideTool4();
         }
         else
         {
             HideToolIcon(oldTool3, oldBg3, oldTick3);
+
+            // The tool sliding into "current" is the last one: bring in the
+            // placeholder the same way a real next tool would arrive
+            ShowTool4Animated();
         }
 
         // =========================================================
@@ -637,6 +669,12 @@ public class UI_Manager : MonoBehaviour
                 ShowToolTick(currentIndex);
 
                 AudioController.instance.PlaySfx(3, 3, 0f);
+
+                // Last tool ticked (toolIcon4 was showing as "next"). Some levels' final step
+                // fills the bar directly and never call SetProgressBarPos() afterwards (there's
+                // no next tool to rotate to), so this is the one trigger guaranteed to run.
+                if (allTools != null && currentIndex == allTools.Count - 1)
+                    RaiseToolHolder();
             });
         }
     }
@@ -868,6 +906,85 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    // Last-tool placeholder (Tool Icon 4): fills the empty "next" slot
+    // when there is no real next tool. It always lives at target2 and
+    // never gets reused as tool1/2/3, so only its position/alpha animate.
+
+    void ShowTool4Instant()
+    {
+        if (toolIcon4 == null)
+            return;
+
+        RectTransform rect = toolIcon4.GetComponent<RectTransform>();
+
+        if (rect != null)
+        {
+            rect.DOKill();
+            rect.anchoredPosition = target2.anchoredPosition;
+        }
+
+        CanvasGroup canvas = toolIcon4.GetComponent<CanvasGroup>();
+        if (canvas == null) canvas = toolIcon4.AddComponent<CanvasGroup>();
+
+        canvas.DOKill();
+        canvas.alpha = 1f;
+
+        toolIcon4.SetActive(true);
+    }
+
+    void ShowTool4Animated()
+    {
+        if (toolIcon4 == null)
+            return;
+
+        toolIcon4.SetActive(true);
+
+        RectTransform rect = toolIcon4.GetComponent<RectTransform>();
+
+        if (rect != null)
+        {
+            rect.DOKill();
+
+            // Same slide-in approach as a real incoming next tool
+            Vector2 slideInStartPos = target2.anchoredPosition + new Vector2(pushOffset, 0f);
+            rect.anchoredPosition = slideInStartPos;
+
+            rect.DOAnchorPos(target2.anchoredPosition, toolMoveDuration).SetEase(Ease.OutCubic);
+        }
+
+        CanvasGroup canvas = toolIcon4.GetComponent<CanvasGroup>();
+        if (canvas == null) canvas = toolIcon4.AddComponent<CanvasGroup>();
+
+        canvas.DOKill();
+        canvas.alpha = 0f;
+        canvas.DOFade(1f, toolMoveDuration).SetEase(Ease.OutCubic);
+    }
+
+    void HideTool4()
+    {
+        if (toolIcon4 == null)
+            return;
+
+        RectTransform rect = toolIcon4.GetComponent<RectTransform>();
+        if (rect != null)
+            rect.DOKill();
+
+        CanvasGroup canvas = toolIcon4.GetComponent<CanvasGroup>();
+        if (canvas != null)
+            canvas.DOKill();
+
+        toolIcon4.SetActive(false);
+    }
+
+    void RaiseToolHolder()
+    {
+        if (toolHolder == null)
+            return;
+
+        toolHolder.DOKill();
+        toolHolder.DOAnchorPosY(toolHolderRaisedY, toolHolderRaiseDuration).SetEase(Ease.OutBack);
+    }
+
     // =============================================================
     // END TOOL ICON HELPERS
     // =============================================================
@@ -1000,19 +1117,25 @@ public class UI_Manager : MonoBehaviour
         if (CompleteParticles != null)
             CompleteParticles.SetActive(true);
 
-        DOVirtual.DelayedCall(duration, () =>
+        if (showCompletePanel)
         {
-            if (CompletePanel != null)
-                CompletePanel.SetActive(true);
-
-            foreach (GameObject obj in thingsToDisableWhenCompletePanel)
+            DOVirtual.DelayedCall(duration, () =>
             {
-                if (obj != null)
+                if (CompletePanel != null)
+                    CompletePanel.SetActive(true);
+
+                if (thingsToDisableWhenCompletePanel != null)
                 {
-                    obj.SetActive(false);
+                    foreach (GameObject obj in thingsToDisableWhenCompletePanel)
+                    {
+                        if (obj != null)
+                        {
+                            obj.SetActive(false);
+                        }
+                    }
                 }
-            }
-        });
+            });
+        }
 
         if (LevelIcon != null && GameManager.instance != null && GameManager.instance.currentLevel != null)
             LevelIcon.sprite = GameManager.instance.currentLevel.LevelIcon;
