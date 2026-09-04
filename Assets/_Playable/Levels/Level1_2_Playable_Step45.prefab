@@ -11812,8 +11812,9 @@ MonoBehaviour:
   blockInputOnFire: 1
   refireOnEveryTap: 1
   refireDelay: 0.015
-  showEndCard: 0
+  showEndCard: 1
   endCard: {fileID: 0}
+  endCardDelay: 0.5
   showEndCardOnProgressTrigger: 0
   showEndCardOnToolAppearTrigger: 0
   onCtaFired:
