@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -82,6 +83,12 @@ public class PlayableCTA : MonoBehaviour
 
     [Tooltip("End-card canvas/root, activated when the CTA fires.")]
     public GameObject endCard;
+
+    [Tooltip("Seconds between the CTA firing and the end card actually appearing — gives " +
+        "GameManagerPlayable's endParticles a moment to play before the card covers them. " +
+        "0 = instant (old behaviour). Everything else (input block, onCtaFired, the store call) " +
+        "still happens immediately; only the end card's own appearance is delayed.")]
+    public float endCardDelay = 0f;
 
     [Tooltip("If trigger = AfterProgress, show the end card too (normally reserved for genuine level completion, not mid-scratch progress).")]
     public bool showEndCardOnProgressTrigger;
@@ -233,7 +240,21 @@ public class PlayableCTA : MonoBehaviour
             }
 
             if (showCardThisFire && showEndCard && endCard != null)
-                endCard.SetActive(true);
+            {
+                if (endCardDelay > 0f)
+                {
+                    var card = endCard;
+                    DOVirtual.DelayedCall(endCardDelay, () =>
+                    {
+                        if (card != null)
+                            card.SetActive(true);
+                    });
+                }
+                else
+                {
+                    endCard.SetActive(true);
+                }
+            }
 
             if (onCtaFired != null)
                 onCtaFired.Invoke();
@@ -262,6 +283,17 @@ public class PlayableCTA : MonoBehaviour
     {
         lastFireTime = Time.unscaledTime;
         OpenStoreStatic(logWhenFired);
+    }
+
+    /// <summary>
+    /// Opens the store and nothing else — no end card, no input block, no HasFired change, no
+    /// re-fire cooldown. For CTA taps that are NOT the end of the playable: a tease tool that
+    /// should redirect to store on every tap while gameplay continues normally afterwards. Use
+    /// FireCTA()/FireNow() when the playable is actually finishing.
+    /// </summary>
+    public static void OpenStoreOnly()
+    {
+        OpenStoreStatic(true);
     }
 
     // Literal Luna calls live here so this component is self-sufficient — Playworks'
