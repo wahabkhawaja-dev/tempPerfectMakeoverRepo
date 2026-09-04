@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using ScratchCardAsset;
@@ -313,6 +314,20 @@ public static class PlayableLevelFactory
 
             string destScript = plannedDestScript;
             string sourceText = File.ReadAllText(ToFull(scan.ScriptPath));
+
+            // Fields declared in step headers before `first` stay in the generated script (steps
+            // there aren't played, but ForceCompleteStepN() for them still runs at boot and still
+            // dereferences their objects) — only fields from steps genuinely beyond `last` are
+            // truly unreachable. Resolved to object PATHS against the SOURCE prefab now, while its
+            // script still declares those fields — RewriteScript strips them from the generated
+            // class entirely, so reflecting on the destination prefab's (already rebound) component
+            // later could never find them by field name again.
+            var keepScript = new HashSet<int>(keep);
+            for (int s = 1; s < first; s++)
+                keepScript.Add(s);
+            var unusedFields = CollectUnkeptFieldNames(sourceText, keepScript);
+            var unusedObjectPaths = ResolveFieldPathsOnSource(sourcePrefabPath, unusedFields);
+
             string playableText = RewriteScript(sourceText, scan.ClassName, playableClass, keep, first, last, mode, scan.FixStep, log);
 
             File.WriteAllText(ToFull(destScript), playableText);
@@ -346,7 +361,7 @@ public static class PlayableLevelFactory
 
             AssetDatabase.ImportAsset(destPrefab, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
 
-            TrimPrefab(destPrefab, ordered, mode, log);
+            TrimPrefab(destPrefab, ordered, mode, unusedObjectPaths, log);
             AssetDatabase.SaveAssets();
 
             AttachCtaComponent(destPrefab, log);
@@ -949,9 +964,28 @@ public static class PlayableLevelFactory
             return;
         }
 
+        // No stepsDone switch to read the real boot from — either this level never had one, or
+        // (building from an already-built playable) an earlier build already stripped it via
+        // StripSaveSystem. ForceCompleteStep{first-1} alone is not always enough: on some levels
+        // it doesn't cascade back through every earlier step (each ForceCompleteStepN only calls
+        // ForceCompleteStepN-1 where the ORIGINAL author wired that chain), and a lettered bridge
+        // step spliced between numbered 2 and 3 (ForceCompleteStep2b, ForceCompleteStep3a) often
+        // carries the ONLY call that hides the whole earlier-phase view/parent (e.g.
+        // WashingView.SetActive(false)) — without it those objects stay in their raw default
+        // state and everything before the target step remains visible.
         string prev = "ForceCompleteStep" + (first - 1);
+        var forceCalls = new List<string>();
         if (Regex.IsMatch(fullText, @"\bvoid\s+" + prev + @"\s*\("))
-            forceCall = prev + "();";
+            forceCalls.Add(prev + "();");
+
+        if (first > 3)
+        {
+            foreach (var bridge in new[] { "ForceCompleteStep2b", "ForceCompleteStep3a" })
+                if (Regex.IsMatch(fullText, @"\bvoid\s+" + bridge + @"\s*\("))
+                    forceCalls.Add(bridge + "();");
+        }
+
+        forceCall = forceCalls.Count > 0 ? string.Join(" ", forceCalls) : null;
         startInvoke = "Invoke(nameof(StartStep" + first + "), .5f);";
     }
 
@@ -1306,7 +1340,7 @@ public static class PlayableLevelFactory
         return next;
     }
 
-    static void TrimPrefab(string prefabPath, List<int> orderedKeep, InnerMode mode, List<string> log)
+    static void TrimPrefab(string prefabPath, List<int> orderedKeep, InnerMode mode, List<string> unusedObjectPaths, List<string> log)
     {
         var keep = new HashSet<int>(orderedKeep);
         var root = PrefabUtility.LoadPrefabContents(prefabPath);
@@ -1341,6 +1375,7 @@ public static class PlayableLevelFactory
 
             int removed = DestroyUnusedStepObjects(root, keepObjects, lastKept, log);
             removed += DestroyExtraLayerObjects(root, lastKept, log);
+            removed += DestroyFieldReferencedObjects(root, level, unusedObjectPaths, log);
             // Only Exclude cuts the Fix-It art. Outer/CtaOnFix need the button itself, and the
             // inner level's own objects match the same markers — deleting there guts the level.
             if (mode == InnerMode.Exclude)
@@ -2188,6 +2223,112 @@ public static class PlayableLevelFactory
         }
 
         return removed;
+    }
+
+    /// <summary>
+    /// DestroyUnusedStepObjects/DestroyExtraLayerObjects only catch objects whose GameObject NAME
+    /// follows a recognized numbered convention (ToolN, ViewN, Indication_N, ...) — several levels
+    /// (Level1_Cloth among them: ToolStep5, ribbonFinal, handIndication5, ...) don't use any such
+    /// convention at all, so those objects silently survive every build regardless of step range.
+    /// This is a second, naming-independent pass: <paramref name="unusedObjectPaths"/> are
+    /// transform paths (root-relative, "/"-joined) for objects whose OWN field was resolved on the
+    /// SOURCE prefab back in Build() — see ResolveFieldPathsOnSource — before RewriteScript
+    /// stripped those fields (and the ability to find them by name) out of the generated class.
+    /// Each is destroyed here provided nothing still-referenced (a field whose step IS kept, read
+    /// live off the destination's own — already trimmed — component) points at that same object or
+    /// lives inside it.
+    /// </summary>
+    static int DestroyFieldReferencedObjects(GameObject root, LevelData level, List<string> unusedObjectPaths, List<string> log)
+    {
+        if (level == null || unusedObjectPaths == null || unusedObjectPaths.Count == 0)
+            return 0;
+
+        var protectedGOs = new List<GameObject>();
+        foreach (var f in level.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+        {
+            GameObject go = ResolveFieldGameObject(f, level);
+            if (go != null && go != root)
+                protectedGOs.Add(go);
+        }
+
+        int removed = 0;
+        var destroyed = new HashSet<int>();
+        foreach (var path in unusedObjectPaths)
+        {
+            var t = root.transform.Find(path);
+            if (t == null)
+                continue;
+
+            GameObject go = t.gameObject;
+            if (!destroyed.Add(go.GetInstanceID()))
+                continue;
+
+            bool protect = protectedGOs.Any(p => p == go || (p != null && p.transform.IsChildOf(go.transform)));
+            if (protect)
+                continue;
+
+            log.Add("  - deleted '" + go.name + "' (beyond kept step range)");
+            UnityEngine.Object.DestroyImmediate(go);
+            removed++;
+        }
+
+        return removed;
+    }
+
+    /// <summary>
+    /// Resolves each field named in <paramref name="unusedFields"/> to its serialized
+    /// GameObject/Component value on the SOURCE prefab's own LevelData component — called from
+    /// Build() before RewriteScript runs, while the script still declares those fields — and
+    /// returns each as a root-relative transform path so DestroyFieldReferencedObjects can find
+    /// the equivalent object on the (separately copied) destination prefab by hierarchy position
+    /// instead of by field name.
+    /// </summary>
+    static List<string> ResolveFieldPathsOnSource(string sourcePrefabPath, HashSet<string> unusedFields)
+    {
+        var paths = new List<string>();
+        if (unusedFields == null || unusedFields.Count == 0)
+            return paths;
+
+        var root = PrefabUtility.LoadPrefabContents(sourcePrefabPath);
+        try
+        {
+            var level = root.GetComponent<LevelData>();
+            if (level == null)
+                level = root.GetComponentInChildren<LevelData>(true);
+            if (level == null)
+                return paths;
+
+            foreach (var f in level.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                if (!unusedFields.Contains(f.Name))
+                    continue;
+                GameObject go = ResolveFieldGameObject(f, level);
+                if (go == null || go == root)
+                    continue;
+                string path = AnimationUtility.CalculateTransformPath(go.transform, root.transform);
+                if (!string.IsNullOrEmpty(path))
+                    paths.Add(path);
+            }
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+
+        return paths;
+    }
+
+    static GameObject ResolveFieldGameObject(FieldInfo f, object instance)
+    {
+        object value;
+        try { value = f.GetValue(instance); }
+        catch { return null; }
+
+        if (value is GameObject go)
+            return go;
+        if (value is Component c && c != null)
+            return c.gameObject;
+        return null;
     }
 
     static int DestroyInnerLevelObjects(GameObject root, List<string> log)

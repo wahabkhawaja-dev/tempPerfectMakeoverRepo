@@ -152,11 +152,21 @@ public class SpriteButton : MonoBehaviour
                 originalSpriteScale = pivot.transform.localScale;
         }
 
-        // Reset previously active button
-        // without triggering its click event.
+        // Reset previously active button without triggering its click event. Guarded: on
+        // Luna, activeButton can end up a stale cross-instance reference whose own methods
+        // throw ("ResetButtonState is not a function") — left unguarded, that exception
+        // aborts the rest of THIS PointerDown(), so activeButton/isPressed below never get
+        // set and the tap (including a locked button's CTA tap) silently does nothing.
         if (activeButton != null && activeButton != this)
         {
-            activeButton.ResetButtonState();
+            try
+            {
+                activeButton.ResetButtonState();
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("[SpriteButton] Previous button reset skipped: " + e.Message);
+            }
         }
 
         activeButton = this;

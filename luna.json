@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "3Sept2026_Lvl1_2_Step_1to2",
+    "creativeName": "4Sept2026_Lvl1_2_Step_4",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -198,8 +198,8 @@
                 "forceIncluded": true
             }
         ],
-        "disableRuntimeAnalysisForCode": false,
-        "disableRuntimeAnalysisForShaders": false,
+        "disableRuntimeAnalysisForCode": true,
+        "disableRuntimeAnalysisForShaders": true,
         "useShadersCache": true,
         "usePreservativeDynamicBatching": true,
         "preventUpdatingRAListWhenRAIsDisabled": false,
@@ -6542,7 +6542,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutController",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.UI.ContentSizeFitter.FitMode",
@@ -6698,11 +6698,11 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IUpdateSelectedHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IScrollHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDropHandler",
@@ -6710,7 +6710,7 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IEndDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IDragHandler",
@@ -6718,11 +6718,11 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IBeginDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IInitializePotentialDragHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.IPointerClickHandler",
@@ -6734,7 +6734,7 @@
             },
             {
                 "name": "UnityEngine.UI.ILayoutGroup",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.EventTrigger.TriggerEvent",
@@ -15930,7 +15930,7 @@
                     },
                     {
                         "name": "GetLayerIDFromValue",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "GetLayerValueFromName",
@@ -19208,7 +19208,7 @@
                     },
                     {
                         "name": "depth#get",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "material#get",
@@ -19352,7 +19352,7 @@
                     },
                     {
                         "name": "Raycast",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "LayoutComplete",
@@ -25172,7 +25172,7 @@
                     },
                     {
                         "name": "sortingLayerID#get",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "sortingLayerID#set",
@@ -25232,7 +25232,7 @@
                     },
                     {
                         "name": "sortingOrder#get",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "sortingOrder#set",
@@ -26240,7 +26240,7 @@
                     },
                     {
                         "name": "m_IgnoreReversedGraphics#get",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "m_IgnoreReversedGraphics#set",
@@ -27938,7 +27938,7 @@
                     },
                     {
                         "name": "SetOptions$8",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetOptions$13",
@@ -28896,7 +28896,7 @@
                     },
                     {
                         "name": "DOAnchorPosY",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DOAnchorPos3D",
@@ -30095,6 +30095,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "RaiseToolHolder",
+                        "excluded": false
+                    },
+                    {
                         "name": "PauseState",
                         "excluded": true
                     },
@@ -31172,7 +31176,7 @@
                     },
                     {
                         "name": "direction#get",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "direction#set",
@@ -31180,7 +31184,7 @@
                     },
                     {
                         "name": "origin#get",
-                        "excluded": false
+                        "excluded": true
                     },
                     {
                         "name": "origin#set",
