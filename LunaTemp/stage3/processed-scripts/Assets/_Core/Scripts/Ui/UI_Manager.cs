@@ -429,24 +429,18 @@ public class UI_Manager : MonoBehaviour
 
         currentIndex++;
 
-        // No more tools available
+        // No more tools available — this IS the level's finished state (last tool ticked,
+        // toolIcon4/star showing as "next"), so tool1 and toolIcon4 stay put and visible;
+        // only the genuinely unused tool2/tool3 slots clear.
         if (currentIndex >= allTools.Count)
         {
             currentIndex = allTools.Count - 1;
 
-            HideToolIcon(toolIcon1, tool1Bg, tool1Tick);
             HideToolIcon(toolIcon2, tool2Bg, tool2Tick);
             HideToolIcon(toolIcon3, tool3Bg, tool3Tick);
 
-            // All slots free again -> prime every grey for the next level
-            SetGreyInstant(tool1BgGrey, 1f);
             SetGreyInstant(tool2BgGrey, 1f);
             SetGreyInstant(tool3BgGrey, 1f);
-
-            HideTool4();
-
-            progressBar.DOFillAmount(0, toolMoveDuration);
-            progressText.text = "0%";
 
             return;
         }

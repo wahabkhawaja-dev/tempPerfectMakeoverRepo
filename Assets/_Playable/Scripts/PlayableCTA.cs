@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -83,6 +84,16 @@ public class PlayableCTA : MonoBehaviour
     [Tooltip("End-card canvas/root, activated when the CTA fires.")]
     public GameObject endCard;
 
+    [Tooltip("Switched OFF at the same moment the end card appears (HUD, tool bar, ...) — " +
+             "the playable never runs UI_Manager.Complete(), so nothing else does this.")]
+    public GameObject[] thingsToDisableOnEndCard;
+
+    [Tooltip("Seconds between the CTA firing and the end card actually appearing — gives " +
+        "GameManagerPlayable's endParticles a moment to play before the card covers them. " +
+        "0 = instant (old behaviour). Everything else (input block, onCtaFired, the store call) " +
+        "still happens immediately; only the end card's own appearance is delayed.")]
+    public float endCardDelay = 0f;
+
     [Tooltip("If trigger = AfterProgress, show the end card too (normally reserved for genuine level completion, not mid-scratch progress).")]
     public bool showEndCardOnProgressTrigger;
 
@@ -143,7 +154,7 @@ public class PlayableCTA : MonoBehaviour
                     FireFromTrigger();
             }
 
-            if (trigger == Trigger.AfterProgress && scratchProgress != null)
+            if (trigger == Trigger.AfterProgress && scratchProgress != null && HasScratchStarted(scratchProgress, scratchIndex))
             {
                 float progressIs = scratchIndex >= 0
                     ? scratchProgress.giveProgressForScratch(scratchIndex)
@@ -162,6 +173,42 @@ public class PlayableCTA : MonoBehaviour
 
         if (refireOnEveryTap && tapped && Time.unscaledTime - lastFireTime >= refireDelay)
             OpenStore();
+    }
+
+    /// <summary>
+    /// Trigger = AfterProgress reads BD_Progress.giveProgressForScratch/giveCollectiveProgress,
+    /// which for a Restore-mode card computes Math.Abs(1 - GiveProgress()) — and an untouched
+    /// card's progress texture reads back as its "complete" value (0 for Restore, per
+    /// EraseProgress.CalcProgress) before a single stroke has been drawn, since nothing has ever
+    /// rendered to it yet. That makes a fresh scene load read as 100% progress and fire the CTA
+    /// before the player can touch anything. ScratchCard.IsScratched only flips true once real
+    /// scratching begins, so gate on it — collective progress needs every counted card started,
+    /// a single index just needs that one.
+    /// </summary>
+    static bool HasScratchStarted(BD_Progress progress, int index)
+    {
+        if (progress.AllScratches == null || progress.AllScratches.Length == 0)
+            return false;
+
+        if (index >= 0)
+        {
+            if (index >= progress.AllScratches.Length)
+                return false;
+            return IsCardScratched(progress.AllScratches[index]);
+        }
+
+        for (int i = 0; i < progress.AllScratches.Length; i++)
+        {
+            if (!IsCardScratched(progress.AllScratches[i]))
+                return false;
+        }
+
+        return true;
+    }
+
+    static bool IsCardScratched(ScratchData sd)
+    {
+        return sd != null && sd.ScratchManager != null && sd.ScratchManager.Card != null && sd.ScratchManager.Card.IsScratched;
     }
 
     /// <summary>
@@ -214,14 +261,40 @@ public class PlayableCTA : MonoBehaviour
                 }
             }
 
-            if (showCardThisFire && showEndCard && endCard != null)
-                endCard.SetActive(true);
+            if (showCardThisFire && showEndCard)
+            {
+                if (endCardDelay > 0f)
+                {
+                    DOVirtual.DelayedCall(endCardDelay, ShowEndCard);
+                }
+                else
+                {
+                    ShowEndCard();
+                }
+            }
 
             if (onCtaFired != null)
                 onCtaFired.Invoke();
         }
 
         OpenStore();
+    }
+
+    /// <summary>Activates endCard and switches off thingsToDisableOnEndCard together, so a
+    /// delayed card (endCardDelay) hides the HUD at the same moment it appears, not on fire.</summary>
+    void ShowEndCard()
+    {
+        if (endCard != null)
+            endCard.SetActive(true);
+
+        if (thingsToDisableOnEndCard != null)
+        {
+            for (int i = 0; i < thingsToDisableOnEndCard.Length; i++)
+            {
+                if (thingsToDisableOnEndCard[i] != null)
+                    thingsToDisableOnEndCard[i].SetActive(false);
+            }
+        }
     }
 
     /// <summary>Fires the CTA from anywhere, without needing a reference to this component.</summary>
@@ -237,6 +310,17 @@ public class PlayableCTA : MonoBehaviour
     {
         lastFireTime = Time.unscaledTime;
         OpenStoreStatic(logWhenFired);
+    }
+
+    /// <summary>
+    /// Opens the store and nothing else — no end card, no input block, no HasFired change, no
+    /// re-fire cooldown. For CTA taps that are NOT the end of the playable: a tease tool that
+    /// should redirect to store on every tap while gameplay continues normally afterwards. Use
+    /// FireCTA()/FireNow() when the playable is actually finishing.
+    /// </summary>
+    public static void OpenStoreOnly()
+    {
+        OpenStoreStatic(true);
     }
 
     // Literal Luna calls live here so this component is self-sufficient — Playworks'

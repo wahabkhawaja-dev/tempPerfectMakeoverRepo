@@ -109,7 +109,6 @@ public class LevelData : MonoBehaviour
         // CALL EVENT
 
         GameManager.instance.Complete();
-        UI_Manager.instance.CompletePanel.SetActive(true);
 
         // After the panel is up, so nothing here can be an ancestor that hides it.
         if (disableOnLevelComplete != null)

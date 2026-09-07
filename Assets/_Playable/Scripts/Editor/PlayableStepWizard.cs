@@ -9,6 +9,7 @@ public class PlayableStepWizard : EditorWindow
     const string PrefSource = "Playable.Wizard.Source";
     const string PrefSteps = "Playable.Wizard.Steps";
     const string PrefFixIt = "Playable.Wizard.FixIt";
+    const string PrefVariant = "Playable.Wizard.Variant";
 
     string[] _prefabPaths = Array.Empty<string>();
     string[] _prefabLabels = Array.Empty<string>();
@@ -37,6 +38,10 @@ public class PlayableStepWizard : EditorWindow
     CtaTiming _ctaTiming = CtaTiming.OnStepComplete;
     int _ctaStep = -1; // -1 = last selected step (default, matches original behavior)
 
+    /// <summary>Appended to the built prefab/script name so repeated builds of different step
+    /// ranges from the same source level don't overwrite each other's "{Level}_Playable" file.</summary>
+    string _variant = "";
+
     [MenuItem("Playable/Step Wizard")]
     public static void Open()
     {
@@ -49,6 +54,7 @@ public class PlayableStepWizard : EditorWindow
     {
         RefreshPrefabList();
         _fixIt = (FixItHandling)EditorPrefs.GetInt(PrefFixIt, (int)FixItHandling.PlayInnerLevel);
+        _variant = EditorPrefs.GetString(PrefVariant, "");
         string saved = EditorPrefs.GetString(PrefSource, "Assets/Resources/Lvl_GP/Level3_2.prefab");
         _sourceIndex = Mathf.Max(0, Array.IndexOf(_prefabPaths, saved));
         Rescan();
@@ -133,7 +139,10 @@ public class PlayableStepWizard : EditorWindow
             "Fix-It button (broken shower / stove / machine) ke 3 options hain — inner level khelo, " +
             "button pe CTA le jao, ya button hi hata do. " +
             "Baaki layers, extra scratches, extra tools DELETE. " +
-            "Akhri selected step complete → LevelComplete + CTA (agla StartStep nahi).",
+            "Akhri selected step complete → LevelComplete + CTA (agla StartStep nahi). " +
+            "Source list mein Resources/Lvl_GP ke original levels AND already-built _Playable " +
+            "prefabs dono aate hain — ek built full-step playable ko source bana ke usi se " +
+            "chhoti variations nikal sakte ho (Variant name zaroor do, warna wahi file overwrite hogi).",
             MessageType.Info);
 
         _scroll = EditorGUILayout.BeginScrollView(_scroll);
@@ -234,6 +243,17 @@ public class PlayableStepWizard : EditorWindow
 
             if (ordered.Count > 0)
                 DrawCtaSection(ordered);
+
+            EditorGUILayout.Space(8);
+            EditorGUI.BeginChangeCheck();
+            _variant = EditorGUILayout.TextField(
+                new GUIContent("Variant name", "Optional. Set this to build another step-range " +
+                    "from the same source level without overwriting the previous one — e.g. " +
+                    "'A' for steps 2-4, 'B' for steps 5-7. Leave blank to keep using the plain " +
+                    "'{Level}_Playable' name (each build then overwrites the last)."),
+                _variant);
+            if (EditorGUI.EndChangeCheck())
+                EditorPrefs.SetString(PrefVariant, _variant);
         }
 
         EditorGUILayout.Space(12);
@@ -492,7 +512,7 @@ public class PlayableStepWizard : EditorWindow
         try
         {
             var built = PlayableLevelFactory.Build(
-                _prefabPaths[_sourceIndex], keep, _placeInScene, outerMode, innerBuilt);
+                _prefabPaths[_sourceIndex], keep, _placeInScene, outerMode, innerBuilt, _variant);
 
             if (built.Ok && hasTease)
             {
