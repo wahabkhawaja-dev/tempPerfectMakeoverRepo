@@ -246,9 +246,24 @@ public class PlayableRouter : MonoBehaviour
 
         playing = slot.level;
 
+        // Let every button close itself (tween backwards, drop its collider) instead of just
+        // being switched off mid-tap when the menu swaps out from under them.
+        ReverseAllButtons();
+
         // Fade to black first, swap underneath, then fade back in — so the level never
         // appears out of nowhere. If there is no fade image the swap still runs.
         PlayableFadeCover.Cover(fadeDuration, SwapToLevel);
+    }
+
+    void ReverseAllButtons()
+    {
+        for (int i = 0; i < subLevels.Length; i++)
+        {
+            SpriteButton button = subLevels[i].button;
+
+            if (button != null)
+                button.PlayReverse();
+        }
     }
 
     void SwapToLevel()

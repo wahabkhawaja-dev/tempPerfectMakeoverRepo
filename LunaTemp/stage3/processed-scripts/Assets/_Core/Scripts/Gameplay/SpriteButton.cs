@@ -29,6 +29,11 @@ public class SpriteButton : MonoBehaviour
              "to count locked taps and fire the store CTA after N of them.")]
     public UnityEvent onLockedClick;
 
+    [Space()]
+    [Tooltip("Optional pop-in/idle animation on this button. PlayReverse() plays it backwards " +
+             "(same trick MenuLevel.ReverseBtnAnim uses) — leave empty to just drop the collider.")]
+    [SerializeField] private DOTweenAnimation entryAnim;
+
     // Scale of the SpriteRenderer only
     private Vector3 originalSpriteScale;
 
@@ -303,6 +308,32 @@ public class SpriteButton : MonoBehaviour
 
         if (activeButton == this)
             activeButton = null;
+    }
+
+
+    // =========================================================
+    // REVERSE (menu closing)
+    // =========================================================
+
+    /// <summary>
+    /// Plays entryAnim backwards (accelerated, same trick MenuLevel.ReverseBtnAnim uses) and
+    /// drops this button's collider — call when the menu holding this button is closing, so it
+    /// animates out instead of just disappearing when the menu gets switched off underneath it.
+    /// </summary>
+    public void PlayReverse()
+    {
+        if (myCollider != null)
+            myCollider.enabled = false;
+
+        if (entryAnim == null || entryAnim.tween == null)
+            return;
+
+        Tween tween = entryAnim.tween;
+        float reverseDuration = tween.position * 0.5f;
+
+        tween.PlayBackwards();
+
+        DOTween.To(() => tween.position, x => tween.Goto(x, false), 0f, reverseDuration);
     }
 
 

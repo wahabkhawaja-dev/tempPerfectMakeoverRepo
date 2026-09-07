@@ -83,6 +83,10 @@ public class PlayableCTA : MonoBehaviour
     [Tooltip("End-card canvas/root, activated when the CTA fires.")]
     public GameObject endCard;
 
+    [Tooltip("Switched OFF at the same moment the end card appears (HUD, tool bar, ...) — " +
+             "the playable never runs UI_Manager.Complete(), so nothing else does this.")]
+    public GameObject[] thingsToDisableOnEndCard;
+
     [Tooltip("If trigger = AfterProgress, show the end card too (normally reserved for genuine level completion, not mid-scratch progress).")]
     public bool showEndCardOnProgressTrigger;
 
@@ -145,7 +149,16 @@ public class PlayableCTA : MonoBehaviour
 
             if (trigger == Trigger.OnToolAppear && tapped && watchedTool != null && watchedTool.activeInHierarchy
                 && PointerInput.IsOverCollider(watchedTool.GetComponent<Collider2D>()))
-                FireFromTrigger();
+            {
+                // A pure tease (showEndCardOnToolAppearTrigger off) must NOT consume HasFired —
+                // it isn't the real ending, so it can't be allowed to block the genuine
+                // level-complete FireCTA() call (GameManagerPlayable.Complete()) from ever
+                // showing the end card / running thingsToDisableOnEndCard later.
+                if (showEndCardOnToolAppearTrigger)
+                    FireFromTrigger();
+                else
+                    OpenStoreOnly();
+            }
 
             return;
         }
@@ -204,8 +217,20 @@ public class PlayableCTA : MonoBehaviour
                 }
             }
 
-            if (showCardThisFire && showEndCard && endCard != null)
-                endCard.SetActive(true);
+            if (showCardThisFire && showEndCard)
+            {
+                if (endCard != null)
+                    endCard.SetActive(true);
+
+                if (thingsToDisableOnEndCard != null)
+                {
+                    for (int i = 0; i < thingsToDisableOnEndCard.Length; i++)
+                    {
+                        if (thingsToDisableOnEndCard[i] != null)
+                            thingsToDisableOnEndCard[i].SetActive(false);
+                    }
+                }
+            }
 
             if (onCtaFired != null)
                 onCtaFired.Invoke();
@@ -227,6 +252,16 @@ public class PlayableCTA : MonoBehaviour
     {
         lastFireTime = Time.unscaledTime;
         OpenStoreStatic(logWhenFired);
+    }
+
+    /// <summary>
+    /// Opens the store and nothing else — no end card, no HasFired change, no input block. For
+    /// a tease that should redirect to store on every tap while gameplay/HasFired stay
+    /// untouched, so the real level-complete FireCTA() can still fire normally later.
+    /// </summary>
+    static void OpenStoreOnly()
+    {
+        OpenStoreStatic(true);
     }
 
     // Literal Luna calls live here so this component is self-sufficient — Playworks'
