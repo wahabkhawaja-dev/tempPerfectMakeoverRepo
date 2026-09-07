@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "1Sept2026_CompleteLevel_1_3_v1",
+    "creativeName": "7Sept2026_CompleteLevel_1_3_v1",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -1717,10 +1717,6 @@
                 "excluded": true
             },
             {
-                "name": "UnityEngine.RangeAttribute",
-                "excluded": true
-            },
-            {
                 "name": "UnityEngine.RangeInt",
                 "excluded": true
             },
@@ -1745,15 +1741,7 @@
                 "excluded": true
             },
             {
-                "name": "UnityEngine.Resolution",
-                "excluded": true
-            },
-            {
                 "name": "UnityEngine.RootMotionData",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.Screen",
                 "excluded": true
             },
             {
@@ -8557,472 +8545,8 @@
                 "excluded": false
             },
             {
-                "name": "_2dxFX_4Gradients",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Additive",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_BlackHole",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Blood",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Blur",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_BurningFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Cartoon",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_CircleFade",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Clipping",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Color",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_ColorChange",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_ColorRGB",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_CompressionFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_DesintegrationFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_DestroyedFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_EdgeColor",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_EnergyBar",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Fire",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_FireAdditive",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Ghost",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_GoldenFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_GoldFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_GrassFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_GrassMultiFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_GrayScale",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Heat",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Hologram",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Hologram2",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Hologram3",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_HSV",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Ice",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_IcedFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Jelly",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_JellyAutoMove",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Lightning",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_LightningBolt",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Liquid",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Liquify",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_MetalFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Negative",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Noise",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_NoiseAnimated",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Outline",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Pattern",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_PatternAdditive",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Pixel",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Pixel8bitsBW",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Pixel8bitsC64",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Pixel8bitsGB",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_PlasmaRainbow",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_PlasmaShield",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Posterize",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_SandFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Sepia",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Sharpen",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Shiny_Reflect",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_SkyCloud",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Slim",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Smoke",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_StoneFX",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Teleportation",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Threshold",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Twist",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_WaterAndBackground",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_WaterAndBackgroundDeluxe",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Waterfall",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_Wave",
-                "excluded": true
-            },
-            {
-                "name": "_2dxFX_WoodFX",
-                "excluded": true
-            },
-            {
-                "name": "ActionOnTriggerStay",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.All1CreateUnifiedOutline",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.All1ShaderDemoController",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.All1TextureOffsetOverTime",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.AllIn1ScrollProperty",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.AllIn1Shader",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.Demo.Scripts.AllIn1AutoRotate",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.Demo2AutoScroll",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.DemoCamera",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.DemoCircleExpositor",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.DemoItem",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.DemoRandomColorSwap",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.DemoRepositionExpositor",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.RandomSeed",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.SetAtlasUvs",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.SetGlobalTimeNew",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.SetGlobalTimeUnity2018",
-                "excluded": true
-            },
-            {
-                "name": "AnimationPlayer",
-                "excluded": true
-            },
-            {
-                "name": "ApplicationConfig",
-                "excluded": true
-            },
-            {
-                "name": "ArrayRotationByMovement",
-                "excluded": true
-            },
-            {
-                "name": "BD_Flip",
-                "excluded": true
-            },
-            {
-                "name": "BoneSwing",
-                "excluded": true
-            },
-            {
-                "name": "ChatBubbleUI",
-                "excluded": true
-            },
-            {
-                "name": "DialogueManager",
-                "excluded": true
-            },
-            {
-                "name": "EpicToonFX.ETFXLightFade",
-                "excluded": true
-            },
-            {
-                "name": "EpicToonFX.ETFXPitchRandomizer",
-                "excluded": true
-            },
-            {
-                "name": "EpicToonFX.ETFXRotation",
-                "excluded": true
-            },
-            {
-                "name": "InteractableBonesHitOnly",
-                "excluded": true
-            },
-            {
-                "name": "JarDropTrigger",
-                "excluded": true
-            },
-            {
-                "name": "Level1_SewingController",
-                "excluded": true
-            },
-            {
-                "name": "Level1_ShampooController",
-                "excluded": true
-            },
-            {
-                "name": "MatchTargetXPosition",
-                "excluded": true
-            },
-            {
-                "name": "PageFoldController",
-                "excluded": true
-            },
-            {
-                "name": "PlayableHudLayout",
-                "excluded": true
-            },
-            {
-                "name": "PlayableLogoEntry",
-                "excluded": true
-            },
-            {
-                "name": "ProceduralRope",
-                "excluded": true
-            },
-            {
-                "name": "ProceduralRope.RopeSegment",
-                "excluded": true
-            },
-            {
-                "name": "RadialCircleFill",
-                "excluded": true
-            },
-            {
-                "name": "RopeController",
-                "excluded": true
-            },
-            {
-                "name": "SmoothFollow",
-                "excluded": true
-            },
-            {
-                "name": "WaterFoamWaveAnim",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.AllIn1Shader.AfterSetAction",
-                "excluded": true
-            },
-            {
-                "name": "AllIn1SpriteShader.AllIn1Shader.ShaderTypes",
-                "excluded": true
-            },
-            {
-                "name": "ArrayRotationByMovement.RotationAxis",
-                "excluded": true
-            },
-            {
-                "name": "ChatSide",
-                "excluded": true
-            },
-            {
-                "name": "DialogueEntry",
-                "excluded": true
-            },
-            {
-                "name": "EpicToonFX.ETFXRotation.spaceEnum",
-                "excluded": true
-            },
-            {
                 "name": "IEyeFace",
                 "excluded": false
-            },
-            {
-                "name": "PlayButtonCorner",
-                "excluded": true
             }
         ],
         "unusedMethods": [
@@ -19716,7 +19240,7 @@
                     },
                     {
                         "name": "OnRectTransformDimensionsChange",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDidApplyAnimationProperties",
@@ -21868,11 +21392,11 @@
                     },
                     {
                         "name": "CalculateCap",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "VectorsToArc",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -21910,7 +21434,7 @@
                     },
                     {
                         "name": "GetAlignment",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetCornerAngle",
@@ -21972,7 +21496,7 @@
                     },
                     {
                         "name": "GetNormalizedProgress",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetProgress",
@@ -25824,7 +25348,7 @@
                     },
                     {
                         "name": "targetDisplay#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "targetDisplay#set",
@@ -26070,7 +25594,7 @@
                     },
                     {
                         "name": "IsRebuildingLayout",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "IsRebuildingGraphics",
@@ -27212,7 +26736,7 @@
                     },
                     {
                         "name": "PlayBackwards",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayForward",
@@ -27220,11 +26744,11 @@
                     },
                     {
                         "name": "Restart",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Rewind",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SmoothRewind",
@@ -27542,7 +27066,7 @@
                     },
                     {
                         "name": "Pause",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayAll",
@@ -27586,7 +27110,7 @@
                     },
                     {
                         "name": "Restart",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Restart$1",
@@ -27838,7 +27362,7 @@
                     },
                     {
                         "name": "DOMoveX",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DOMoveY",
@@ -28116,7 +27640,7 @@
                     },
                     {
                         "name": "Goto",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GotoWithCallbacks",
@@ -28124,7 +27648,7 @@
                     },
                     {
                         "name": "DoGoto",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Kill",
@@ -28144,7 +27668,7 @@
                     },
                     {
                         "name": "PlayBackwards",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PlayForward",
@@ -29244,7 +28768,7 @@
                     },
                     {
                         "name": "DOPause",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DOTogglePause",
@@ -29256,11 +28780,11 @@
                     },
                     {
                         "name": "DORestart",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DORestart$1",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DOComplete",
@@ -29882,7 +29406,7 @@
                     },
                     {
                         "name": "ReverseBtnAnim",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DisableBtnAnim",
@@ -30162,7 +29686,7 @@
                     },
                     {
                         "name": "OpenStoreOnly",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -30240,20 +29764,6 @@
                 "instanceMethods": [
                     {
                         "name": "Unlocked#get",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "PlayParticlesOnCollision",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnTriggerEnter2D",
                         "excluded": false
                     }
                 ]
@@ -30651,74 +30161,6 @@
                 ]
             },
             {
-                "className": "StaticFixedPipe",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BuildMesh",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LateUpdate",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Simulate",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ApplyConstraints",
-                        "excluded": false
-                    },
-                    {
-                        "name": "DrawRope",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "StaticFixedPipe.RopeSegment",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "$ctor1",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "TextureOffsetScroller",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -30889,6 +30331,18 @@
                     {
                         "name": "HideClockProgress",
                         "excluded": true
+                    },
+                    {
+                        "name": "ShowTool4Instant",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ShowTool4Animated",
+                        "excluded": false
+                    },
+                    {
+                        "name": "HideTool4",
+                        "excluded": false
                     }
                 ]
             },
@@ -34664,7 +34118,7 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -34694,7 +34148,7 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -34858,7 +34312,7 @@
                     },
                     {
                         "name": "Step6Done",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ForceCompleteStep6",
@@ -34866,27 +34320,27 @@
                     },
                     {
                         "name": "StartStep7",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "EyeLinerOpen_7",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool7_OnMouseDown",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool7_OnMouseUp",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ShiftSideToLeft7",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Step7Done",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ForceCompleteStep7",
@@ -34894,31 +34348,31 @@
                     },
                     {
                         "name": "StartStep8",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "MascaraOpen_8",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool8_OnMouseDown",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool8_OnMouseUp",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CheckMascaraProgress",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ShiftSideToLeft_8",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Step8Done",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ForceCompleteStep8",
@@ -34926,31 +34380,31 @@
                     },
                     {
                         "name": "StartStep9",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "EyeBrowOpen_9",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool9_OnMouseDown",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool9_OnMouseUp",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CheckEyebrowProgress",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ShiftSideToLeft_9",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Step9Done",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ForceCompleteStep9",
@@ -34958,15 +34412,15 @@
                     },
                     {
                         "name": "StartStep10",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "BlushOpen_10",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Step10Done",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ForceCompleteStep10",
@@ -34974,35 +34428,35 @@
                     },
                     {
                         "name": "StartStep11",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "LipstickOpen_11",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool11_OnMouseDown",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Tool11_OnMouseUp",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Step11Done",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "EnableBreathAnim",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DisableBreathAnim",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -35153,6 +34607,132 @@
                         "excluded": true
                     }
                 ]
+            },
+            {
+                "className": "UnityEngine.RangeAttribute",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.Resolution",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "getDefaultValue",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "getHashCode",
+                        "excluded": true
+                    },
+                    {
+                        "name": "equals",
+                        "excluded": true
+                    },
+                    {
+                        "name": "$clone",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.Screen",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "width#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "height#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "safeArea#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "currentResolution#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fullScreen#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fullScreen#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "dpi#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "dpi#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "orientation#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "orientation#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sleepTimeout#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sleepTimeout#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeLeft#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeLeft#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeRight#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToLandscapeRight#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortrait#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortrait#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortraitUpsideDown#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autorotateToPortraitUpsideDown#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    }
+                ]
             }
         ],
         "stubberDataList": [],
@@ -35190,6 +34770,46 @@
                         "script": "",
                         "ext": "",
                         "name": "Resources/unity_builtin_extra/Default-Particle"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Playable/HalvedTextures/1_3 steps 1 to 11/Face Clean.png"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/2D Data/Levels/Level 1/FACE/Slicing/Character/Face Clean.png"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Playable/HalvedTextures/1_3 steps 1 to 11/face pigmentation.png"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/2D Data/Levels/Level 1/FACE/Slicing/Character/face pigmentation.png"
                     }
                 ]
             },
@@ -35199,7 +34819,7 @@
                     "startTime": "00:00.000",
                     "endTime": "00:00.000",
                     "lengthInSeconds": 0.0,
-                    "bitrate": 128,
+                    "bitrate": 64,
                     "script": "",
                     "ext": ""
                 },

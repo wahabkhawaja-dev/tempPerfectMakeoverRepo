@@ -281,7 +281,7 @@ public class DraggableObject : MonoBehaviour
         }
     }
 
-    private void DispenseDrop(Vector2 targetPosition)
+    private void DispenseDrop([Bridge.Ref] Vector2 targetPosition)
     {
         if (dropPrefab == null || headPoint == null) return;
 

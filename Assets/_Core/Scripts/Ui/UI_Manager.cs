@@ -71,6 +71,10 @@ public class UI_Manager : MonoBehaviour
     public GameObject toolIcon2;
     public GameObject toolIcon3;
 
+    [Tooltip("Last-tool placeholder (e.g. a star). Fills the empty \"next\" slot at target2 " +
+             "when there is no real next tool. Optional — leave empty to skip it.")]
+    public GameObject toolIcon4;
+
     [Header("Tool Bar Targets")]
     public RectTransform target1;
     public RectTransform target2;
@@ -291,10 +295,16 @@ public class UI_Manager : MonoBehaviour
             SetGreyInstant(tool2BgGrey, 1f);
 
             nextToolIndex = 2;
+
+            // There is a real next tool, so the last-tool placeholder stays hidden
+            HideTool4();
         }
         else
         {
             HideToolIcon(toolIcon2, tool2Bg, tool2Tick);
+
+            // Only tool in the level: it's already the last one, fill the empty slot
+            ShowTool4Instant();
         }
 
         // Third icon is the future/reusable slot
@@ -356,10 +366,16 @@ public class UI_Manager : MonoBehaviour
 
             // Next tool -> grey
             SetGreyInstant(tool2BgGrey, 1f);
+
+            // There is a real next tool, so the last-tool placeholder stays hidden
+            HideTool4();
         }
         else
         {
             HideToolIcon(toolIcon2, tool2Bg, tool2Tick);
+
+            // Current tool is the last one: fill the empty slot
+            ShowTool4Instant();
         }
 
         // Tool 3 starts hidden
@@ -426,6 +442,8 @@ public class UI_Manager : MonoBehaviour
             SetGreyInstant(tool1BgGrey, 1f);
             SetGreyInstant(tool2BgGrey, 1f);
             SetGreyInstant(tool3BgGrey, 1f);
+
+            HideTool4();
 
             progressBar.DOKill();
             progressBar.DOFillAmount(0, toolMoveDuration);
@@ -529,10 +547,17 @@ public class UI_Manager : MonoBehaviour
             oldCanvas3.DOKill();
             oldCanvas3.alpha = 0f;
             oldCanvas3.DOFade(1f, toolMoveDuration).SetEase(Ease.OutCubic);
+
+            // There is a real next tool, so the last-tool placeholder stays hidden
+            HideTool4();
         }
         else
         {
             HideToolIcon(oldTool3, oldBg3, oldTick3);
+
+            // The tool sliding into "current" is the last one: bring in the
+            // placeholder the same way a real next tool would arrive
+            ShowTool4Animated();
         }
 
         // =========================================================
@@ -853,6 +878,76 @@ public class UI_Manager : MonoBehaviour
         {
             tool1Tick.SetActive(true);
         }
+    }
+
+    // Last-tool placeholder (Tool Icon 4): fills the empty "next" slot
+    // when there is no real next tool. It always lives at target2 and
+    // never gets reused as tool1/2/3, so only its position/alpha animate.
+
+    void ShowTool4Instant()
+    {
+        if (toolIcon4 == null)
+            return;
+
+        RectTransform rect = toolIcon4.GetComponent<RectTransform>();
+
+        if (rect != null)
+        {
+            rect.DOKill();
+            rect.anchoredPosition = target2.anchoredPosition;
+        }
+
+        CanvasGroup canvas = toolIcon4.GetComponent<CanvasGroup>();
+        if (canvas == null) canvas = toolIcon4.AddComponent<CanvasGroup>();
+
+        canvas.DOKill();
+        canvas.alpha = 1f;
+
+        toolIcon4.SetActive(true);
+    }
+
+    void ShowTool4Animated()
+    {
+        if (toolIcon4 == null)
+            return;
+
+        toolIcon4.SetActive(true);
+
+        RectTransform rect = toolIcon4.GetComponent<RectTransform>();
+
+        if (rect != null)
+        {
+            rect.DOKill();
+
+            // Same slide-in approach as a real incoming next tool
+            Vector2 slideInStartPos = target2.anchoredPosition + new Vector2(pushOffset, 0f);
+            rect.anchoredPosition = slideInStartPos;
+
+            rect.DOAnchorPos(target2.anchoredPosition, toolMoveDuration).SetEase(Ease.OutCubic);
+        }
+
+        CanvasGroup canvas = toolIcon4.GetComponent<CanvasGroup>();
+        if (canvas == null) canvas = toolIcon4.AddComponent<CanvasGroup>();
+
+        canvas.DOKill();
+        canvas.alpha = 0f;
+        canvas.DOFade(1f, toolMoveDuration).SetEase(Ease.OutCubic);
+    }
+
+    void HideTool4()
+    {
+        if (toolIcon4 == null)
+            return;
+
+        RectTransform rect = toolIcon4.GetComponent<RectTransform>();
+        if (rect != null)
+            rect.DOKill();
+
+        CanvasGroup canvas = toolIcon4.GetComponent<CanvasGroup>();
+        if (canvas != null)
+            canvas.DOKill();
+
+        toolIcon4.SetActive(false);
     }
 
     // =============================================================

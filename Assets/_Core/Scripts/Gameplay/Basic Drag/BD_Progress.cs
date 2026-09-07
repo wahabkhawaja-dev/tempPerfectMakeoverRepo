@@ -32,6 +32,12 @@ public class BD_Progress : MonoBehaviour
     Coroutine Co;
     WaitForSeconds waitTemp = new WaitForSeconds(.2f);
 
+    // Scratch-texture readback can read back a frame late (worse on WebGL/Luna than in the
+    // editor), so giveCollectiveProgress() occasionally reports a value slightly lower than the
+    // one already shown — the progress bar visibly "dangles" backward. It can only ever go up
+    // while actually scratching, so clamp what reaches the UI to the highest value seen so far.
+    float maxProgressSeen = 0f;
+
     public Action CompleteEvent;
     public Action SubCompleteEvent;
 
@@ -112,6 +118,8 @@ public class BD_Progress : MonoBehaviour
             yield break;
         }
 
+        maxProgressSeen = 0f;
+
         while (true)
         {
             if (CheckAllScratchProgress() && !isProgDone)
@@ -177,7 +185,10 @@ public class BD_Progress : MonoBehaviour
             }
 
             if (progressControl)
-                UI_Manager.instance.SetProgressBar(giveCollectiveProgress());
+            {
+                maxProgressSeen = Mathf.Max(maxProgressSeen, giveCollectiveProgress());
+                UI_Manager.instance.SetProgressBar(maxProgressSeen);
+            }
 
             yield return waitTemp;
         }

@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -82,6 +83,12 @@ public class PlayableCTA : MonoBehaviour
 
     [Tooltip("End-card canvas/root, activated when the CTA fires.")]
     public GameObject endCard;
+
+    [Tooltip("Seconds between the CTA firing and the end card actually appearing — gives " +
+        "endParticles/other completion feedback a moment to play before the card covers them. " +
+        "0 = instant (old behaviour). Everything else (input block, disable-list, onCtaFired, " +
+        "the store call) still happens immediately; only the end card's own appearance is delayed.")]
+    public float endCardDelay = 0f;
 
     [Tooltip("If trigger = AfterProgress, show the end card too (normally reserved for genuine level completion, not mid-scratch progress).")]
     public bool showEndCardOnProgressTrigger;
@@ -223,7 +230,21 @@ public class PlayableCTA : MonoBehaviour
             }
 
             if (showCardThisFire && showEndCard && endCard != null)
-                endCard.SetActive(true);
+            {
+                if (endCardDelay > 0f)
+                {
+                    var card = endCard;
+                    DOVirtual.DelayedCall(endCardDelay, () =>
+                    {
+                        if (card != null)
+                            card.SetActive(true);
+                    });
+                }
+                else
+                {
+                    endCard.SetActive(true);
+                }
+            }
 
             if (onCtaFired != null)
                 onCtaFired.Invoke();
