@@ -1,0 +1,1613 @@
+{
+    "BuildID": "99d2ad83-b8f2-4964-9625-e676659b9859",
+    "Command": "project:deploy",
+    "ProjectID": "0ba141233dac4ae439f0736e4efac688",
+    "ProjectStateHash": "3cf9cda0a25c027450de500a575d026e943339d4c909f8dcbcc2b28a09e1208f",
+    "StageCompletedAt": 3,
+    "EarliestFatalError": 0,
+    "StartTime": 1788779974722,
+    "EndTime": 1788780025044,
+    "PlaygroundUserID": 17104,
+    "OperatingSystem": "win32",
+    "UnityPackageID": null,
+    "TargetPlatform": "playground",
+    "UnityVersion": "2022.3.62f2\r",
+    "LunaVersion": "7.2.0",
+    "LogCount": 62,
+    "Logs": [
+        {
+            "LogID": "ec2b7df2-f9da-4066-b3fb-3f5f88b696fb",
+            "Order": 3,
+            "Timestamp": 1788780026356,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: On",
+            "Details": [
+                "You are using a reserved keyword: On for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "On"
+            ],
+            "DetailsValues": [
+                "On"
+            ],
+            "LogCount": 1,
+            "LinePosition": 132,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Gameplay\\Levels\\Level3\\Lvl3_ShakeToMelt.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ef1f5637-a0e4-47da-b34c-207fcd83ad93",
+            "Order": 3,
+            "Timestamp": 1788780026414,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: On",
+            "Details": [
+                "You are using a reserved keyword: On for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "On"
+            ],
+            "DetailsValues": [
+                "On"
+            ],
+            "LogCount": 1,
+            "LinePosition": 257,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Scripts\\Gameplay\\Levels\\Level3\\Lvl3_WaxMelt.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1d8dc5f0-b226-4b5a-bdfd-5266492620df",
+            "Order": 3,
+            "Timestamp": 1788780027251,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: Destroyed",
+            "Details": [
+                "You are using a reserved keyword: Destroyed for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "Destroyed"
+            ],
+            "DetailsValues": [
+                "Destroyed"
+            ],
+            "LogCount": 1,
+            "LinePosition": 23,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_DestroyedFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "0826d219-a6ce-4c81-b6ec-0da2d44f7534",
+            "Order": 3,
+            "Timestamp": 1788780027416,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 50,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "6669bf31-d7b8-4c1f-9e78-c620a30ea51c",
+            "Order": 3,
+            "Timestamp": 1788780027417,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 54,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "32b9a4f3-0093-4e01-be4f-4659caf0095f",
+            "Order": 3,
+            "Timestamp": 1788780027418,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 58,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "da65a885-d745-442d-a9e5-1410ec38e073",
+            "Order": 3,
+            "Timestamp": 1788780027419,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 62,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "fde0dc17-b814-4e21-ab13-8cd664be6aaf",
+            "Order": 3,
+            "Timestamp": 1788780027420,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 66,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "746075fd-dfa4-4141-a825-2b6fcbe16f49",
+            "Order": 3,
+            "Timestamp": 1788780027421,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 70,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "3a024aa9-0d87-4cd8-bcad-0a527461fa69",
+            "Order": 3,
+            "Timestamp": 1788780027422,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 74,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ff765a45-0d8f-41ce-b2b4-1ec3ec2f036c",
+            "Order": 3,
+            "Timestamp": 1788780027423,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 78,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "f3efbbe4-7288-47db-ad72-a6b7cfc77980",
+            "Order": 3,
+            "Timestamp": 1788780027424,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 82,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "e9a1f1cd-d954-48c6-98bf-85326b56146b",
+            "Order": 3,
+            "Timestamp": 1788780027425,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 86,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "4ade7a93-9648-457b-b2e3-e331736505f2",
+            "Order": 3,
+            "Timestamp": 1788780027426,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 90,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "23e0e9e3-7f43-4bb3-8595-8b695bae5622",
+            "Order": 3,
+            "Timestamp": 1788780027427,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 94,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "a00c6f3e-54db-489e-9825-5df44c2ac988",
+            "Order": 3,
+            "Timestamp": 1788780027428,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 98,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1ef4e21a-e521-4c52-84eb-750c36248f00",
+            "Order": 3,
+            "Timestamp": 1788780027429,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 102,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "4d345bc2-7585-4656-b270-3f546fcf00a7",
+            "Order": 3,
+            "Timestamp": 1788780027430,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 106,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "fe24c89a-9f63-40db-a841-bc4518a93162",
+            "Order": 3,
+            "Timestamp": 1788780027432,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 110,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "4ef9b9c6-9b98-4932-844d-7782fa7cc556",
+            "Order": 3,
+            "Timestamp": 1788780027433,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 114,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "a39487e0-5414-438b-9a6b-ff3bd2ba2259",
+            "Order": 3,
+            "Timestamp": 1788780027434,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 118,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "5243282a-eb2e-42e1-828a-36c2df9e846f",
+            "Order": 3,
+            "Timestamp": 1788780027438,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 122,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1ee21db1-1e76-4ce8-aca6-a4fa690dd829",
+            "Order": 3,
+            "Timestamp": 1788780027439,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 126,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "4f82f3fb-996c-40e0-8ccf-09285972a6b7",
+            "Order": 3,
+            "Timestamp": 1788780027440,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 130,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "55e1cd2b-15dd-4270-9f95-66a221a0f3c0",
+            "Order": 3,
+            "Timestamp": 1788780027442,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 134,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ea2377eb-6c9d-4e81-9504-934323b11900",
+            "Order": 3,
+            "Timestamp": 1788780027443,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 138,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "78cde91c-277a-4f84-b7f4-76db8468d640",
+            "Order": 3,
+            "Timestamp": 1788780027444,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 142,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "5a59ae0a-bbb7-44ab-97fd-5df024c8415f",
+            "Order": 3,
+            "Timestamp": 1788780027483,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 55,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "8f2a4e4c-a9c2-41f2-bb9e-926c1893d6f0",
+            "Order": 3,
+            "Timestamp": 1788780027484,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 59,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "78951c4a-b2a3-4749-bea9-c5fbc53ef78b",
+            "Order": 3,
+            "Timestamp": 1788780027485,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 63,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "89c6bfcd-5f2e-4ba6-8235-fb3b53809cc9",
+            "Order": 3,
+            "Timestamp": 1788780027486,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 67,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "8f62dc46-a229-43ee-bc80-93ad869525c5",
+            "Order": 3,
+            "Timestamp": 1788780027487,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 71,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "cc68e74d-9ae8-4258-b6d9-3a8a374a9a30",
+            "Order": 3,
+            "Timestamp": 1788780027488,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 75,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ad6e902d-0e08-48bd-813c-96254fcc6062",
+            "Order": 3,
+            "Timestamp": 1788780027489,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 79,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "728ac88d-ae85-4b55-a3e1-2f3dd9467d5f",
+            "Order": 3,
+            "Timestamp": 1788780027490,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 83,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "5d9fc046-1fdd-45f8-bb7e-e52d38a2f164",
+            "Order": 3,
+            "Timestamp": 1788780027492,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 87,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "6b8d4789-c450-4047-838d-320d23364415",
+            "Order": 3,
+            "Timestamp": 1788780027493,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 91,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "5f427f3b-16f8-42c8-9a8a-01894accdc06",
+            "Order": 3,
+            "Timestamp": 1788780027494,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 95,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1fa6cdf6-de08-498b-a345-d0f7416590c2",
+            "Order": 3,
+            "Timestamp": 1788780027495,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 99,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "c4d258d8-e90f-459b-98ef-b343d8bf0b81",
+            "Order": 3,
+            "Timestamp": 1788780027496,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 103,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "10adf6f6-c267-4ad6-a447-f3a1c26da504",
+            "Order": 3,
+            "Timestamp": 1788780027498,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 107,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "93ef2b6a-d7e0-4cee-8c8c-60eee1d16c66",
+            "Order": 3,
+            "Timestamp": 1788780027499,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 111,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "604dcb52-56e1-4c87-9768-5a1c4b1ecbc3",
+            "Order": 3,
+            "Timestamp": 1788780027500,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 115,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "79649b4f-47a7-41da-8010-27ea06872afa",
+            "Order": 3,
+            "Timestamp": 1788780027501,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 119,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "8feeb0cd-b638-4282-99d9-ed85a3f5e659",
+            "Order": 3,
+            "Timestamp": 1788780027502,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 123,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "63695afa-da18-431a-9fbc-4e6697902716",
+            "Order": 3,
+            "Timestamp": 1788780027502,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 127,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "fdd3b2cc-02a5-4a20-8d15-487fdafeb250",
+            "Order": 3,
+            "Timestamp": 1788780027503,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 131,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "3c83f77e-2f88-4d5e-947c-15eac39275e0",
+            "Order": 3,
+            "Timestamp": 1788780027504,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 135,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "aca084f2-9d9d-4c5a-96e9-9759ec84fdc0",
+            "Order": 3,
+            "Timestamp": 1788780027506,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 139,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "cf9fac67-247c-4880-8a42-d865e28372f9",
+            "Order": 3,
+            "Timestamp": 1788780027507,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 143,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "005e4b96-d4a3-4c60-ad45-62c65ab11007",
+            "Order": 3,
+            "Timestamp": 1788780027508,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 147,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_GrassMultiFX.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "8b725b58-80cf-4422-99e8-9203a4eab69f",
+            "Order": 3,
+            "Timestamp": 1788780028082,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 69,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "ca04c6b4-f022-411f-9ec5-527e91525e3f",
+            "Order": 3,
+            "Timestamp": 1788780028084,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 73,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "3324bb00-430e-4a95-aecf-e181c9eb2580",
+            "Order": 3,
+            "Timestamp": 1788780028085,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 77,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "10bb991b-43f5-4561-a25e-f7c5fcdbeb6b",
+            "Order": 3,
+            "Timestamp": 1788780028089,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 81,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "3b839c3e-6a12-40e3-9ca4-b335b9787059",
+            "Order": 3,
+            "Timestamp": 1788780028090,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 85,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "71e23d65-8974-4634-a026-23ccdbab6b1b",
+            "Order": 3,
+            "Timestamp": 1788780028091,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3009",
+            "Description": "You are using an unsupported feature: AnimationCurve.AddKey",
+            "Details": [
+                "You are using a function/component which are currently not supported in Luna: AnimationCurve.AddKey. "
+            ],
+            "DescriptionValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "DetailsValues": [
+                "AnimationCurve.",
+                "AddKey"
+            ],
+            "LogCount": 1,
+            "LinePosition": 89,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\2DxFx\\Scripts\\_2dxFX_Shiny_Reflect.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1b92adbc-ad29-45a8-9dd7-5dec2a3895c6",
+            "Order": 3,
+            "Timestamp": 1788780028398,
+            "Stage": 3,
+            "ErrorType": 0,
+            "ErrorCode": "LP3005",
+            "Description": "You are using a Luna reserved keyword: Destroyed",
+            "Details": [
+                "You are using a reserved keyword: Destroyed for Luna. Please change the name of the field/class"
+            ],
+            "DescriptionValues": [
+                "Destroyed"
+            ],
+            "DetailsValues": [
+                "Destroyed"
+            ],
+            "LogCount": 1,
+            "LinePosition": 30,
+            "FilePath": "C:\\UNITY\\LUNA\\PerfecrMakeoverASMR_Playables\\Assets\\_Core\\Third Party\\AllIn1SpriteShader\\Scripts\\AllIn1Shader.cs",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "1e9f4bd3-6510-4d99-9bc0-a5f9ad38ae1b",
+            "Order": 3,
+            "Timestamp": 1788780028693,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3007",
+            "Description": "You are not using any custom events",
+            "Details": [
+                "You are not using any custom events. It is recommended to use custom events to have a better understanding of the playable."
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "df9f77d8-5bec-4a68-8bca-437c5ac8fe47",
+            "Order": 3,
+            "Timestamp": 1788780028693,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3011",
+            "Description": "You are not using any LunaPlaygroundFields attributes.",
+            "Details": [
+                "You are not using any LunaPlaygroundFields attributes, it allows you to configure your playable to different concepts to find the best variation, which can drastically improve playable performance on all ad networks."
+            ],
+            "DescriptionValues": null,
+            "DetailsValues": null,
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "7b311cf2-f2d8-4c16-901e-4d1f875e536c",
+            "Order": 0,
+            "Timestamp": 1788779982383,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1031",
+            "Description": "We recommend running Runtime Analysis to find and remove all unused shader variants",
+            "Details": [
+                "You have 18 shaders and 32 shader variants in your scene, this can be detrimental to the loading times and size of your playable.\n\nRuntime Analysis has only found 10 shader variants in use within your playable. Navigate to the Runtime Analysis > Shaders tab to enable shader stripping to help reduce the amount of shaders, and shader variants present in your playable"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "18",
+                "32",
+                "10"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "946165ca-817c-4bf3-827a-1d5580d9b777",
+            "Order": 1,
+            "Timestamp": 1788779982383,
+            "Stage": 1,
+            "ErrorType": 2,
+            "ErrorCode": "LP1016",
+            "Description": "Extensive usage of ParticleSystem Component",
+            "Details": [
+                "There is extensive usage of the ParticleSystem component.\nExcessive usage of any component can be detrimental to performance on lower and in some cases higher end devices, consider reducing the amount the component is used.\nRecommended count: 10, current count 27."
+            ],
+            "DescriptionValues": [
+                "ParticleSystem"
+            ],
+            "DetailsValues": [
+                "ParticleSystem",
+                "10",
+                "27"
+            ],
+            "LogCount": 1,
+            "LinePosition": 0,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        }
+    ]
+}
