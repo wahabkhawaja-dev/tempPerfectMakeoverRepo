@@ -102,9 +102,7 @@ public class LevelData : MonoBehaviour
         // CALL EVENT
 
         GameManager.instance.Complete();
-
-        //if (UI_Manager.instance != null && UI_Manager.instance.CompletePanel != null)
-        //    UI_Manager.instance.CompletePanel.SetActive(true);
+        
     }
 
     public void ToolInputToggle(GameObject tool, bool toggle)
