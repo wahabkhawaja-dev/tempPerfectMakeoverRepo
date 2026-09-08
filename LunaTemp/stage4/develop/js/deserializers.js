@@ -1648,46 +1648,47 @@ Deserializers["BasicDrag"] = function (request, data, root) {
   i1084.dragByDelta = !!i1085[1]
   i1084.isDragging = !!i1085[2]
   i1084.moveWithPointer = !!i1085[3]
-  i1084.canReturn = !!i1085[4]
-  i1084.jumpOnReturn = !!i1085[5]
-  i1084.returnTime = i1085[6]
-  i1084.Tool_Offset = new pc.Vec3( i1085[7], i1085[8], i1085[9] )
-  i1084.canScaleIncrease = !!i1085[10]
-  i1084.Self_ScaleNew = new pc.Vec3( i1085[11], i1085[12], i1085[13] )
-  i1084.canRotateOnPick = !!i1085[14]
-  i1084.startRot = new pc.Vec3( i1085[15], i1085[16], i1085[17] )
-  i1084.newRot = new pc.Vec3( i1085[18], i1085[19], i1085[20] )
-  var i1087 = i1085[21]
+  i1084.followSpeed = i1085[4]
+  i1084.canReturn = !!i1085[5]
+  i1084.jumpOnReturn = !!i1085[6]
+  i1084.returnTime = i1085[7]
+  i1084.Tool_Offset = new pc.Vec3( i1085[8], i1085[9], i1085[10] )
+  i1084.canScaleIncrease = !!i1085[11]
+  i1084.Self_ScaleNew = new pc.Vec3( i1085[12], i1085[13], i1085[14] )
+  i1084.canRotateOnPick = !!i1085[15]
+  i1084.startRot = new pc.Vec3( i1085[16], i1085[17], i1085[18] )
+  i1084.newRot = new pc.Vec3( i1085[19], i1085[20], i1085[21] )
+  var i1087 = i1085[22]
   var i1086 = []
   for(var i = 0; i < i1087.length; i += 2) {
   request.r(i1087[i + 0], i1087[i + 1], 2, i1086, '')
   }
   i1084.childSprite = i1086
-  request.r(i1085[22], i1085[23], 0, i1084, 'ToolSelectClip')
-  request.r(i1085[24], i1085[25], 0, i1084, 'ToolLoopClip')
-  request.r(i1085[26], i1085[27], 0, i1084, 'thisParticles')
-  i1084.onDragparticle = !!i1085[28]
-  request.r(i1085[29], i1085[30], 0, i1084, 'dragParticles')
-  request.r(i1085[31], i1085[32], 0, i1084, 'anim')
-  i1084.startPos = new pc.Vec3( i1085[33], i1085[34], i1085[35] )
-  i1084.startScale = new pc.Vec3( i1085[36], i1085[37], i1085[38] )
-  i1084.Vibration = !!i1085[39]
-  i1084.isPlacedCannotMove = !!i1085[40]
-  i1084.isObjectMovingWhileDragging = !!i1085[41]
-  i1084.OnMouseDownEvent = request.d('System.Action', i1085[42], i1084.OnMouseDownEvent)
-  i1084.OnMouseUpEvent = request.d('System.Action', i1085[43], i1084.OnMouseUpEvent)
-  i1084.ProgStartEvent = request.d('System.Action', i1085[44], i1084.ProgStartEvent)
-  i1084.ProgEndEvent = request.d('System.Action', i1085[45], i1084.ProgEndEvent)
-  i1084.canCallMouseUpWhenGamePaused = !!i1085[46]
-  i1084.ClampX_L = i1085[47]
-  i1084.ClampX_H = i1085[48]
-  i1084.ClampY_L = i1085[49]
-  i1084.ClampY_H = i1085[50]
-  i1084.startOrder = i1085[51]
-  i1084.dontResetItIsInCollider = !!i1085[52]
-  request.r(i1085[53], i1085[54], 0, i1084, 'thisCollider')
-  request.r(i1085[55], i1085[56], 0, i1084, 'thisSR')
-  i1084.OnMouseDownEventIndependentFromCanDrag = request.d('System.Action', i1085[57], i1084.OnMouseDownEventIndependentFromCanDrag)
+  request.r(i1085[23], i1085[24], 0, i1084, 'ToolSelectClip')
+  request.r(i1085[25], i1085[26], 0, i1084, 'ToolLoopClip')
+  request.r(i1085[27], i1085[28], 0, i1084, 'thisParticles')
+  i1084.onDragparticle = !!i1085[29]
+  request.r(i1085[30], i1085[31], 0, i1084, 'dragParticles')
+  request.r(i1085[32], i1085[33], 0, i1084, 'anim')
+  i1084.startPos = new pc.Vec3( i1085[34], i1085[35], i1085[36] )
+  i1084.startScale = new pc.Vec3( i1085[37], i1085[38], i1085[39] )
+  i1084.Vibration = !!i1085[40]
+  i1084.isPlacedCannotMove = !!i1085[41]
+  i1084.isObjectMovingWhileDragging = !!i1085[42]
+  i1084.OnMouseDownEvent = request.d('System.Action', i1085[43], i1084.OnMouseDownEvent)
+  i1084.OnMouseUpEvent = request.d('System.Action', i1085[44], i1084.OnMouseUpEvent)
+  i1084.ProgStartEvent = request.d('System.Action', i1085[45], i1084.ProgStartEvent)
+  i1084.ProgEndEvent = request.d('System.Action', i1085[46], i1084.ProgEndEvent)
+  i1084.canCallMouseUpWhenGamePaused = !!i1085[47]
+  i1084.ClampX_L = i1085[48]
+  i1084.ClampX_H = i1085[49]
+  i1084.ClampY_L = i1085[50]
+  i1084.ClampY_H = i1085[51]
+  i1084.startOrder = i1085[52]
+  i1084.dontResetItIsInCollider = !!i1085[53]
+  request.r(i1085[54], i1085[55], 0, i1084, 'thisCollider')
+  request.r(i1085[56], i1085[57], 0, i1084, 'thisSR')
+  i1084.OnMouseDownEventIndependentFromCanDrag = request.d('System.Action', i1085[58], i1084.OnMouseDownEventIndependentFromCanDrag)
   return i1084
 }
 
@@ -3256,15 +3257,15 @@ Deserializers.productName = "Perfect Makeover Fashion ASMR";
 
 Deserializers.lunaInitializationTime = "08/20/2026 07:41:52";
 
-Deserializers.lunaDaysRunning = "19.0";
+Deserializers.lunaDaysRunning = "19.1";
 
 Deserializers.lunaVersion = "7.2.0";
 
 Deserializers.lunaSHA = "ea08d29afe2968efcb8d91d5624f033c6485cc68";
 
-Deserializers.creativeName = "7Sept2026_CompleteLevel_1_3_v1";
+Deserializers.creativeName = "";
 
-Deserializers.lunaAppID = "42211";
+Deserializers.lunaAppID = "23908";
 
 Deserializers.projectId = "0ba141233dac4ae439f0736e4efac688";
 
@@ -3286,13 +3287,13 @@ Deserializers.isAntiAliasingEnabled = "False";
 
 Deserializers.isRuntimeAnalysisEnabledForCode = "False";
 
-Deserializers.runtimeAnalysisExcludedClassesCount = "1718";
+Deserializers.runtimeAnalysisExcludedClassesCount = "0";
 
-Deserializers.runtimeAnalysisExcludedMethodsCount = "4377";
+Deserializers.runtimeAnalysisExcludedMethodsCount = "0";
 
-Deserializers.runtimeAnalysisExcludedModules = "physics3d";
+Deserializers.runtimeAnalysisExcludedModules = "";
 
-Deserializers.isRuntimeAnalysisEnabledForShaders = "False";
+Deserializers.isRuntimeAnalysisEnabledForShaders = "True";
 
 Deserializers.isRealtimeShadowsEnabled = "False";
 
@@ -3310,7 +3311,7 @@ Deserializers.graphicsConstraint = 24;
 
 Deserializers.linearColorSpace = false;
 
-Deserializers.buildID = "65044c04-03a8-46a7-a8ac-79bb8b48b7e5";
+Deserializers.buildID = "3bc3689e-3cab-4e18-9421-d51405923c56";
 
 Deserializers.runtimeInitializeOnLoadInfos = [[["UnityEngine","Experimental","Rendering","ScriptableRuntimeReflectionSystemSettings","ScriptingDirtyReflectionSystemInstance"]],[],[["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"]],[],[]];
 

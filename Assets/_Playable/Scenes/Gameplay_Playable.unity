@@ -579,10 +579,10 @@ Canvas:
   m_GameObject: {fileID: 123022150}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -12511,7 +12511,7 @@ GameObject:
   m_Layer: 0
   m_Name: Step Complete Particle
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 9e084335219db1842945d63acca86bc3, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -23231,7 +23231,7 @@ PrefabInstance:
     - target: {fileID: 6429865459732744146, guid: 03fb4811bcd41b64287988351248e6bf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 85736785446ef8545998aa5093f67e63, type: 3}
+      objectReference: {fileID: 21300000, guid: 00d08d4d0e9e85342871147aec019b75, type: 3}
     - target: {fileID: 6925677726146794115, guid: 03fb4811bcd41b64287988351248e6bf, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -23845,6 +23845,14 @@ PrefabInstance:
     - {fileID: 6744954815399603380, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
     - {fileID: 8046536144227898990, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
     - {fileID: 7508341762965141691, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 8465160490293254242, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 7854594873112055364, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 6940531740174180829, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 4748787261481404131, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 1014902924920553380, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 7046022025523698528, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 6824856515574538330, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
+    - {fileID: 884065710724385869, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2456300314363611139, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
       insertIndex: 1
