@@ -1521,11 +1521,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!198 &332731335 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1387486671118987720, guid: f91330f5c13a37049a375b246f4d61ba, type: 3}
-  m_PrefabInstance: {fileID: 591718084}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &425053649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,7 +2210,7 @@ PrefabInstance:
       objectReference: {fileID: 11215280}
     - target: {fileID: 1739857752388508916, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: showEndCard
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1739857752388508916, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: thingsToDisableOnEndCard.Array.size
@@ -2367,7 +2362,7 @@ PrefabInstance:
       objectReference: {fileID: 2017705124}
     - target: {fileID: 8335989416859268484, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: _mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8335989416859268484, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: BrushScale.x
@@ -2379,7 +2374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535600290060562211, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: Mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8535600290060562211, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: EraseTextureScale.x
@@ -8409,7 +8404,7 @@ MonoBehaviour:
   currentLevel: {fileID: 662580432}
   startLevelOnPlay: 0
   currentLevelNo: 0
-  endParticles: {fileID: 332731335}
+  endParticles: {fileID: 2122572056}
   stepCompleteParticles: {fileID: 2122572056}
 --- !u!1 &1382184202
 GameObject:
