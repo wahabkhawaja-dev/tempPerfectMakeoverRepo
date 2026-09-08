@@ -8,45 +8,23 @@ public class OutlinePulse : MonoBehaviour
     [SerializeField] private float animationSpeed = 1f; // Speed of continuous animation (cycles per second)
     [SerializeField] private bool isThickOutline = false; // Toggle between thicknesses when not animating
     [SerializeField] private bool animate = false; // Toggle animation mode
-    [SerializeField] private bool hideSpriteOnly = false; // Hide sprite body, keep outline visible
 
     private Material spriteMaterial;
     private float targetThickness;
     private static readonly int DistanceID = Shader.PropertyToID("_Distance");
 
-    private bool isEnabled = false;
-
-    void Awake()
-    {
-        EnsureMaterial();
-    }
+    bool isEnabled = false;
 
     void Start()
     {
-        EnsureMaterial();
+        // Get the material from the SpriteRenderer
+        spriteMaterial = GetComponent<SpriteRenderer>().material;
 
         // Set initial thickness based on isThickOutline
         targetThickness = isThickOutline ? largeThickness : smallThickness;
         spriteMaterial.SetFloat(DistanceID, targetThickness);
-
-        // Apply initial outline and sprite states
+        
         DisableAnim();
-
-        if (hideSpriteOnly)
-            EnableHideSprite();
-
-        else
-            DisableHideSprite();
-    }
-
-    void EnsureMaterial()
-    {
-        if (spriteMaterial != null)
-            return;
-
-        var sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
-            spriteMaterial = sr.material;
     }
 
     void Update()
@@ -73,51 +51,31 @@ public class OutlinePulse : MonoBehaviour
         }
     }
 
-    // Public method to toggle thickness state
+    // Public method to toggle thickness state (can be called from other scripts or UI)
     public void ToggleThickness(bool setThick)
     {
         isThickOutline = setThick;
     }
 
-    // Public method to toggle animation state
+    // Public method to toggle animation state (can be called from other scripts or UI)
     public void ToggleAnimation(bool setAnimate)
     {
         animate = setAnimate;
     }
 
-    // Enable outline
+    // Call this to enable the outline
     public void EnableAnim()
     {
-        EnsureMaterial();
         isEnabled = true;
-        if (spriteMaterial != null)
-            spriteMaterial.SetFloat("_EnableOutline", 1f);
+
+        spriteMaterial.SetFloat("_EnableOutline", 1f);
     }
 
-    // Disable outline
+    // Call this to disable the outline
     public void DisableAnim()
     {
-        EnsureMaterial();
         isEnabled = false;
-        if (spriteMaterial != null)
-            spriteMaterial.SetFloat("_EnableOutline", 0f);
-    }
 
-    // Enable sprite hiding (only outline visible)
-    public void EnableHideSprite()
-    {
-        EnsureMaterial();
-        hideSpriteOnly = true;
-        if (spriteMaterial != null)
-            spriteMaterial.SetFloat("_HideSprite", 1f);
-    }
-
-    // Disable sprite hiding (normal sprite + outline visible)
-    public void DisableHideSprite()
-    {
-        EnsureMaterial();
-        hideSpriteOnly = false;
-        if (spriteMaterial != null)
-            spriteMaterial.SetFloat("_HideSprite", 0f);
+        spriteMaterial.SetFloat("_EnableOutline", 0f);
     }
 }

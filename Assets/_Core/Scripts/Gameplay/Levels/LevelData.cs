@@ -1,4 +1,3 @@
-using DG.Tweening;
 using ScratchCardAsset;
 using System.Collections;
 using System.Collections.Generic;
@@ -80,8 +79,12 @@ public class LevelData : MonoBehaviour
         {
             if (AllScratches[i].Card.Mode == ScratchCard.ScratchMode.Restore)
             {
-                AllScratches[i].SpriteCard.GetComponent<SpriteRenderer>().DOKill();
-                AllScratches[i].SpriteCard.GetComponent<SpriteRenderer>().DOFade(1, 0.001f);
+                // Was DOFade(1, 0.001f) - that duration is effectively instant already,
+                // so just set the alpha directly instead of going through DOTween.
+                SpriteRenderer sr = AllScratches[i].SpriteCard.GetComponent<SpriteRenderer>();
+                Color c = sr.color;
+                c.a = 1f;
+                sr.color = c;
             }
         }
 

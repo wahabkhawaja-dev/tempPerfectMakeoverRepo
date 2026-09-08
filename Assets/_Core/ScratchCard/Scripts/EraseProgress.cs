@@ -77,8 +77,8 @@ namespace ScratchCardAsset
 
             var prevRT = RenderTexture.active;
             RenderTexture.active = percentRenderTexture;
-            progressTexture.ReadPixels(readRect, 0, 0);
-            progressTexture.Apply();
+            progressTexture.ReadPixels(readRect, 0, 0, false);
+            progressTexture.Apply(false);
             RenderTexture.active = prevRT;
 
             float red = progressTexture.GetPixel(0, 0).r;
@@ -93,8 +93,8 @@ namespace ScratchCardAsset
             {
                 var prevRT = RenderTexture.active;
                 RenderTexture.active = percentRenderTexture;
-                progressTexture.ReadPixels(readRect, 0, 0);
-                progressTexture.Apply();
+                progressTexture.ReadPixels(readRect, 0, 0, false);
+                progressTexture.Apply(false);
                 RenderTexture.active = prevRT;
 
                 float red = progressTexture.GetPixel(0, 0).r;

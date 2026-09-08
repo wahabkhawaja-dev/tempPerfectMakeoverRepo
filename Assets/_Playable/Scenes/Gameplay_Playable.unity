@@ -2201,6 +2201,14 @@ PrefabInstance:
       propertyPath: ScratchSurfaceSprite
       value: 
       objectReference: {fileID: 21300000, guid: 7f190c56e3f676d46b26f6a5eb88db73, type: 3}
+    - target: {fileID: 1423928235596411311, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.0375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423928235596411311, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.0375
+      objectReference: {fileID: 0}
     - target: {fileID: 1739857752388508916, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: endCard
       value: 
@@ -2233,6 +2241,10 @@ PrefabInstance:
       propertyPath: onCtaFired.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2223964665743525037, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 75d16b0c8ec6d4246997026eea4f1af5, type: 3}
     - target: {fileID: 3658249643697437277, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2279,12 +2291,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5208916280903929933, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910597921553777737, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2225d83b58254a548acd57f140601d21, type: 3}
+    - target: {fileID: 6552027805588516686, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096519556506590822, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9850275
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096519556506590822, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.96932924
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096519556506590822, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.47849998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096519556506590822, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702951034497824512, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727621669974378846, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.0375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7727621669974378846, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.0375
       objectReference: {fileID: 0}
     - target: {fileID: 7727621669974378846, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: ScratchSurfaceSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 53b92cbae5b11ef44abfbeb502557b13, type: 3}
+      objectReference: {fileID: 21300000, guid: 75d16b0c8ec6d4246997026eea4f1af5, type: 3}
+    - target: {fileID: 7932795319830154593, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932795319830154593, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932795319830154593, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932795319830154593, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8091343114179555695, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: View2
       value: 
@@ -2301,10 +2365,38 @@ PrefabInstance:
       propertyPath: AllSources.Array.data[3]
       value: 
       objectReference: {fileID: 2017705124}
+    - target: {fileID: 8335989416859268484, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: _mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335989416859268484, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.0175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335989416859268484, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535600290060562211, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535600290060562211, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.0175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535600290060562211, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8535600290060562211, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
       propertyPath: ScratchSurfaceSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4bd1a5c34eb20df418bdd5f4922e4027, type: 3}
+      objectReference: {fileID: 21300000, guid: 2225d83b58254a548acd57f140601d21, type: 3}
+    - target: {fileID: 9152839414316146645, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 526593339065984480, guid: e907c1e8e433dfb49abb20c2fb9e4d99, type: 3}

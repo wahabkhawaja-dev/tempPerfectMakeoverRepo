@@ -101,16 +101,33 @@ namespace ScratchCardAsset
 
         void Start()
         {
-            Init();
-            FillInstantly();
-            firstScale = BrushScale;
+            // Init()/FillInstantly() touch the GPU (RenderTexture, command buffer) directly with no
+            // guard of their own; an allocation failure here must not throw uncaught out of Start(),
+            // since that can abort the rest of this object's setup and leave it permanently blank.
+            try
+            {
+                Init();
+                FillInstantly();
+                firstScale = BrushScale;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"ScratchCard on '{name}' failed to initialize: {e.Message}");
+            }
         }
 
         public void SetStart()
         {
-            Init();
-            FillInstantly();
-            firstScale = BrushScale;
+            try
+            {
+                Init();
+                FillInstantly();
+                firstScale = BrushScale;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"ScratchCard on '{name}' failed to initialize: {e.Message}");
+            }
         }
 
         void OnDestroy()

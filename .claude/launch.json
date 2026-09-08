@@ -1,0 +1,21 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "luna-build-preview",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8934", "--directory", "LunaTemp/stage4/develop"],
+      "port": 8934
+    },
+    {
+      "name": "user-video",
+      "port": 8935,
+      "url": "http://localhost:8935"
+    },
+    {
+      "name": "video-viewer",
+      "port": 8936,
+      "url": "http://localhost:8936"
+    }
+  ]
+}

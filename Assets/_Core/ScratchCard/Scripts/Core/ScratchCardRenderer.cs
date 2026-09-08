@@ -19,6 +19,11 @@ namespace ScratchCardAsset.Core
         private Bounds localBounds;
         private Vector2 imageSize;
 
+        // Guards every RT-touching method below: CreateRenderTexture can fail under GPU/memory
+        // pressure (seen in constrained WebGL ad sandboxes), and rti/commandBuffer must not be
+        // used against a RenderTexture that was never actually created.
+        private bool hasValidRenderTexture;
+
         private const string MaskTexProperty = "_MaskTex";
         private const string MainTexProperty = "_MainTex";
         private const string SourceTexProperty = "_SourceTex";
@@ -49,11 +54,34 @@ namespace ScratchCardAsset.Core
 
         public void CreateRenderTexture()
         {
+            hasValidRenderTexture = TryCreateRenderTexture(scratchCard.RenderTextureQuality)
+                // Fall back to a half-resolution texture once before giving up - the sprite still
+                // renders correctly, just softer, and this is far more likely to fit under a tight
+                // GPU memory budget than the full-quality request.
+                || TryCreateRenderTexture((ScratchCard.Quality)((int)scratchCard.RenderTextureQuality * 2));
+
+            if (!hasValidRenderTexture)
+            {
+                Debug.LogWarning($"ScratchCard: failed to allocate a RenderTexture for '{scratchCard.name}' even at reduced quality; this surface will stay unscratched instead of crashing.");
+            }
+        }
+
+        private bool TryCreateRenderTexture(ScratchCard.Quality quality)
+        {
             try
             {
+                var renderTextureSize = new Vector2(imageSize.x / (float)quality, imageSize.y / (float)quality);
+                var width = Mathf.Max(1, (int)renderTextureSize.x);
+                var height = Mathf.Max(1, (int)renderTextureSize.y);
 
-                var renderTextureSize = new Vector2(imageSize.x / (float)scratchCard.RenderTextureQuality, imageSize.y / (float)scratchCard.RenderTextureQuality);
-                scratchCard.RenderTexture = new RenderTexture((int)renderTextureSize.x, (int)renderTextureSize.y, 0, RenderTextureFormat.ARGB32);
+                var texture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32);
+                if (!texture.Create())
+                {
+                    Object.Destroy(texture);
+                    return false;
+                }
+
+                scratchCard.RenderTexture = texture;
                 scratchCard.ScratchSurface.SetTexture(MaskTexProperty, scratchCard.RenderTexture);
                 scratchCard.Progress.SetTexture(MainTexProperty, scratchCard.RenderTexture);
                 if (scratchCard.Progress.HasProperty(SourceTexProperty))
@@ -62,9 +90,11 @@ namespace ScratchCardAsset.Core
                 }
                 rti = new RenderTargetIdentifier(scratchCard.RenderTexture);
 
+                return true;
             }
             catch
             {
+                return false;
             }
         }
 
@@ -120,6 +150,9 @@ namespace ScratchCardAsset.Core
 
         public void ScratchHoleAddition(Vector2 position, float multiplier)
         {
+            if (!hasValidRenderTexture)
+                return;
+
             if (scratchCard.canRotateTip)
             {
                 ScratchHoleAddition(position, multiplier, scratchCard.ToolTip.transform.eulerAngles.z);
@@ -163,6 +196,9 @@ namespace ScratchCardAsset.Core
 
         void ScratchHoleAddition(Vector2 position, float multiplier, float rotation = 0f)
         {
+            if (!hasValidRenderTexture)
+                return;
+
             try
             {
                 var positionRect = new Rect(
@@ -232,6 +268,9 @@ namespace ScratchCardAsset.Core
 
         public void ScratchLineAddition(Vector2 startPosition, Vector2 endPosition, float multiplier)
         {
+            if (!hasValidRenderTexture)
+                return;
+
             if (scratchCard.canRotateTip)
             {
                 ScratchLineAddition(startPosition, endPosition, multiplier, scratchCard.ToolTip.transform.eulerAngles.z);
@@ -286,7 +325,7 @@ namespace ScratchCardAsset.Core
                     {
                         if (meshLine != null)
                         {
-                            meshLine.Clear(); // Luna/Bridge.NET does not implement Mesh.Clear(bool); the mesh is fully reassigned below anyway
+                            meshLine.Clear(false);
                         }
                         else
                         {
@@ -318,6 +357,9 @@ namespace ScratchCardAsset.Core
 
         public void ScratchLineAddition(Vector2 startPosition, Vector2 endPosition, float multiplier, float rotation = 0f)
         {
+            if (!hasValidRenderTexture)
+                return;
+
             try
             {
                 var holesCount = (int)(Vector2.Distance(startPosition, endPosition) / (int)scratchCard.RenderTextureQuality);
@@ -384,7 +426,7 @@ namespace ScratchCardAsset.Core
                 {
                     if (meshLine != null)
                     {
-                        meshLine.Clear(); // Luna/Bridge.NET does not implement Mesh.Clear(bool); the mesh is fully reassigned below anyway
+                        meshLine.Clear(false);
                     }
                     else
                     {
@@ -414,6 +456,9 @@ namespace ScratchCardAsset.Core
         }
         public void FillRenderTextureWithColor(Color color)
         {
+            if (!hasValidRenderTexture)
+                return;
+
             commandBuffer.SetRenderTarget(rti);
             commandBuffer.ClearRenderTarget(false, true, color);
             Graphics.ExecuteCommandBuffer(commandBuffer);

@@ -2791,13 +2791,13 @@ Deserializers.productName = "Perfect Makeover Fashion ASMR";
 
 Deserializers.lunaInitializationTime = "08/20/2026 07:41:52";
 
-Deserializers.lunaDaysRunning = "18.0";
+Deserializers.lunaDaysRunning = "18.9";
 
 Deserializers.lunaVersion = "7.2.0";
 
 Deserializers.lunaSHA = "ea08d29afe2968efcb8d91d5624f033c6485cc68";
 
-Deserializers.creativeName = "28Aug2026_Level_3_1_Step_1to3_v4";
+Deserializers.creativeName = "28Aug2026_Level_3_1_Step_1to3_v4_TEST";
 
 Deserializers.lunaAppID = "42211";
 
@@ -2819,11 +2819,11 @@ Deserializers.isForceUncompressed = "False";
 
 Deserializers.isAntiAliasingEnabled = "False";
 
-Deserializers.isRuntimeAnalysisEnabledForCode = "True";
+Deserializers.isRuntimeAnalysisEnabledForCode = "False";
 
-Deserializers.runtimeAnalysisExcludedClassesCount = "1665";
+Deserializers.runtimeAnalysisExcludedClassesCount = "1701";
 
-Deserializers.runtimeAnalysisExcludedMethodsCount = "4494";
+Deserializers.runtimeAnalysisExcludedMethodsCount = "4765";
 
 Deserializers.runtimeAnalysisExcludedModules = "physics3d";
 
@@ -2845,7 +2845,7 @@ Deserializers.graphicsConstraint = 24;
 
 Deserializers.linearColorSpace = false;
 
-Deserializers.buildID = "44f9de8a-f295-4c8c-88f4-2509103dd5c5";
+Deserializers.buildID = "9de1418b-56a1-4850-85cb-71df5aca0fab";
 
 Deserializers.runtimeInitializeOnLoadInfos = [[["UnityEngine","Experimental","Rendering","ScriptableRuntimeReflectionSystemSettings","ScriptingDirtyReflectionSystemInstance"]],[],[["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"]],[],[]];
 

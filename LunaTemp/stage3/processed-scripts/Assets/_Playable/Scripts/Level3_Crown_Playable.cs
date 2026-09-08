@@ -1,5 +1,5 @@
 using UnityEngine;
-using DG.Tweening;
+using System;
 using System.Collections;
 
 public class Level3_Crown_Playable : LevelData
@@ -88,12 +88,85 @@ public class Level3_Crown_Playable : LevelData
 
         ToolStep3CameraFollow.enabled = false;
 
-        
+
 
         // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
         StartStep1();
         yield break;
 }
+
+    #region TWEEN-FREE HELPERS
+
+    // Diagnostic replacement for DOTween on this script only: same visual behavior
+    // (slide-in/out with delay + OnComplete, delayed calls, sprite fade-out) via plain coroutines.
+
+    Coroutine toolStep1MoveCo, toolStep2MoveCo, toolStep3MoveCo;
+    Coroutine fadeOut2Co;
+
+    IEnumerator MoveLocalX(Transform t, float targetX, float duration, float delay, Action onComplete)
+    {
+        if (delay > 0f)
+            yield return new WaitForSeconds(delay);
+
+        float startX = t.localPosition.x;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            float x = Mathf.Lerp(startX, targetX, Mathf.Clamp01(elapsed / duration));
+
+            t.localPosition = new Vector3(x, t.localPosition.y, t.localPosition.z);
+
+            yield return null;
+        }
+
+        t.localPosition = new Vector3(targetX, t.localPosition.y, t.localPosition.z);
+
+        onComplete?.Invoke();
+    }
+
+    IEnumerator FadeOutSprites(SpriteRenderer[] srs, float duration)
+    {
+        float elapsed = 0f;
+        float[] startAlphas = new float[srs.Length];
+
+        for (int i = 0; i < srs.Length; i++)
+            startAlphas[i] = srs[i].color.a;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            for (int i = 0; i < srs.Length; i++)
+            {
+                Color c = srs[i].color;
+                c.a = Mathf.Lerp(startAlphas[i], 0f, t);
+                srs[i].color = c;
+            }
+
+            yield return null;
+        }
+
+        for (int i = 0; i < srs.Length; i++)
+        {
+            Color c = srs[i].color;
+            c.a = 0f;
+            srs[i].color = c;
+        }
+    }
+
+    IEnumerator DelayedAction(float delay, Action action)
+    {
+        yield return new WaitForSeconds(delay);
+
+        action?.Invoke();
+    }
+
+    #endregion
 
     #region HELPERS
 
@@ -123,15 +196,17 @@ public class Level3_Crown_Playable : LevelData
     {
         CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
 
-        ToolStep1.transform.DOKill();
-        ToolStep1.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
+        if (toolStep1MoveCo != null)
+            StopCoroutine(toolStep1MoveCo);
+
+        toolStep1MoveCo = StartCoroutine(MoveLocalX(ToolStep1.transform, 0f, .5f, 1f, () =>
         {
             ToolInputToggle(ToolStep1.gameObject, true);
 
             ToolStep1CameraFollow.enabled = true;
 
             Step1Col.SetActive(true);
-        });
+        }));
     }
 
     public void Step1Done()
@@ -149,11 +224,13 @@ public class Level3_Crown_Playable : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep1.CameraPos, ZoomStep1.CameraFOV);
 
-        ToolStep1.transform.DOKill();
-        ToolStep1.transform.DOLocalMoveX(-10f, 1f).SetDelay(.25f).OnComplete(() =>
+        if (toolStep1MoveCo != null)
+            StopCoroutine(toolStep1MoveCo);
+
+        toolStep1MoveCo = StartCoroutine(MoveLocalX(ToolStep1.transform, -10f, 1f, .25f, () =>
         {
             ToolStep1.gameObject.SetActive(false);
-        });
+        }));
 
         Invoke(nameof(StartStep2), 1f);
 
@@ -182,13 +259,15 @@ public class Level3_Crown_Playable : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
 
-        ToolStep2.transform.DOKill();
-        ToolStep2.transform.DOLocalMoveX(0.4f, .5f).SetDelay(1f).OnComplete(() =>
+        if (toolStep2MoveCo != null)
+            StopCoroutine(toolStep2MoveCo);
+
+        toolStep2MoveCo = StartCoroutine(MoveLocalX(ToolStep2.transform, 0.4f, .5f, 1f, () =>
         {
             ToolInputToggle(ToolStep2.gameObject, true);
 
             ToolStep2CameraFollow.enabled = true;
-        });
+        }));
     }
 
     public void Step2Done()
@@ -204,21 +283,21 @@ public class Level3_Crown_Playable : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
 
-        ToolStep2.transform.DOKill();
-        ToolStep2.transform.DOLocalMoveX(-10f, 1f).SetDelay(.25f).OnComplete(() =>
+        if (toolStep2MoveCo != null)
+            StopCoroutine(toolStep2MoveCo);
+
+        toolStep2MoveCo = StartCoroutine(MoveLocalX(ToolStep2.transform, -10f, 1f, .25f, () =>
         {
             ToolStep2.gameObject.SetActive(false);
-        });
+        }));
 
-        DOVirtual.DelayedCall(1f, () =>
+        if (fadeOut2Co != null)
+            StopCoroutine(fadeOut2Co);
+
+        fadeOut2Co = StartCoroutine(DelayedAction(1f, () =>
         {
-            for (int i = 0; i < SRsToFadeOut_2.Length; i++)
-            {
-                SRsToFadeOut_2[i].DOKill();
-                SRsToFadeOut_2[i].DOFade(0, 2f);
-            }
-
-        });
+            fadeOut2Co = StartCoroutine(FadeOutSprites(SRsToFadeOut_2, 2f));
+        }));
 
         Invoke(nameof(StartStep3), 1f);
 
@@ -254,15 +333,17 @@ public class Level3_Crown_Playable : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
-        ToolStep3.transform.DOKill();
-        ToolStep3.transform.DOLocalMoveX(0f, .5f).SetDelay(1f).OnComplete(() =>
+        if (toolStep3MoveCo != null)
+            StopCoroutine(toolStep3MoveCo);
+
+        toolStep3MoveCo = StartCoroutine(MoveLocalX(ToolStep3.transform, 0f, .5f, 1f, () =>
         {
             ToolInputToggle(ToolStep3.gameObject, true);
 
             ToolStep3CameraFollow.enabled = true;
 
             Step3Col.SetActive(true);
-        });
+        }));
     }
 
     public void Step3Done()
@@ -280,18 +361,19 @@ public class Level3_Crown_Playable : LevelData
 
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
-        ToolStep3.transform.DOKill();
-        ToolStep3.transform.DOLocalMoveX(-10f, 1f).SetDelay(.25f).OnComplete(() =>
+        if (toolStep3MoveCo != null)
+            StopCoroutine(toolStep3MoveCo);
+
+        toolStep3MoveCo = StartCoroutine(MoveLocalX(ToolStep3.transform, -10f, 1f, .25f, () =>
         {
             ToolStep3.gameObject.SetActive(false);
-        });
+        }));
 
-        DOVirtual.DelayedCall(1f, () =>
+        StartCoroutine(DelayedAction(1f, () =>
         {
             Mix.SetActive(false);
             MixE.SetActive(true);
-
-        });
+        }));
 
         CameraController.Instance.MoveCamera(MainZoom.CameraPos, MainZoom.CameraFOV);
 
@@ -316,5 +398,5 @@ public class Level3_Crown_Playable : LevelData
 
     #endregion
 
-    
+
 }
