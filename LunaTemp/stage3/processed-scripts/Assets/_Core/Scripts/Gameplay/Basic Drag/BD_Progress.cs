@@ -32,6 +32,24 @@ public class BD_Progress : MonoBehaviour
     Coroutine Co;
     WaitForSeconds waitTemp = new WaitForSeconds(.2f);
 
+    // The 0.1s delayed start below outlives a tap shorter than 0.1s: DisableProgress() runs
+    // first (stopping nothing), then the delayed call starts a coroutine no one will ever
+    // stop. Each leak keeps writing to the ONE shared progress bar every 0.2s forever, so
+    // several of them fight over it — the bar jitters, and a finished tool keeps overwriting
+    // the next tool's reset. Hold the tween so Disable can cancel a start that hasn't fired.
+    Tween pendingStart;
+
+    // Only the most recently started tracker may drive the shared bar. Belt-and-braces against
+    // any other leak path (e.g. ToolInputToggle(false) disables BasicDrag without ever firing
+    // ProgEndEvent, so DisableProgress never runs for that tool).
+    static BD_Progress barOwner;
+
+    // Scratch-texture readback can read back a frame late (worse on WebGL/Luna than in the
+    // editor), so giveCollectiveProgress() occasionally reports a value slightly lower than the
+    // one already shown — the progress bar visibly "dangles" backward. It can only ever go up
+    // while actually scratching, so clamp what reaches the UI to the highest value seen so far.
+    float maxProgressSeen = 0f;
+
     public Action CompleteEvent;
     public Action SubCompleteEvent;
 
@@ -52,14 +70,24 @@ public class BD_Progress : MonoBehaviour
 
     public void EnableProgress()
     {
-        DOVirtual.DelayedCall(0.1f, () =>
+        if (pendingStart != null)
+            pendingStart.Kill();
+
+        pendingStart = DOVirtual.DelayedCall(0.1f, () =>
         {
+            pendingStart = null;
+
             for (int i = 0; i < AllScratches.Length; i++)
             {
                 AllScratches[i].ScratchManager.InputEnabled = true;
                 AllScratches[i].ScratchManager.Card.InputEnabled = true;
                 AllScratches[i].ScratchManager.Card.IsScratching = true;
             }
+
+            if (Co != null)
+                StopCoroutine(Co);
+
+            barOwner = this;
 
             Co = StartCoroutine(ProgressChecking());
         });
@@ -72,6 +100,14 @@ public class BD_Progress : MonoBehaviour
 
     public void DisableProgress()
     {
+        // Cancel a start that is still waiting out its 0.1s delay, or it will fire after this
+        // and leave a tracker running that nothing stops.
+        if (pendingStart != null)
+        {
+            pendingStart.Kill();
+            pendingStart = null;
+        }
+
         for (int i = 0; i < AllScratches.Length; i++)
         {
             AllScratches[i].ScratchManager.InputEnabled = false;
@@ -81,7 +117,10 @@ public class BD_Progress : MonoBehaviour
         }
 
         if (Co != null)
+        {
             StopCoroutine(Co);
+            Co = null;
+        }
 
         if (tipControl)
         {
@@ -112,6 +151,8 @@ public class BD_Progress : MonoBehaviour
             yield break;
         }
 
+        maxProgressSeen = 0f;
+
         while (true)
         {
             if (CheckAllScratchProgress() && !isProgDone)
@@ -136,7 +177,9 @@ public class BD_Progress : MonoBehaviour
 
                     canCallComplete = true;
 
-                    if (progressControl)
+                    // Only the tool that currently owns the bar may slam it to 100%, or a stale
+                    // tracker completing late would do it over the next step's fresh bar.
+                    if (progressControl && barOwner == this)
                         UI_Manager.instance.SetProgressBar(1);
                 }
 
@@ -176,8 +219,17 @@ public class BD_Progress : MonoBehaviour
                 break;
             }
 
+            // Someone else took the bar, or this tool was switched off mid-step
+            // (ToolInputToggle disables BasicDrag without firing ProgEndEvent) — stop writing
+            // rather than keep overwriting whatever the current step put there.
+            if (barOwner != this || thisDrag == null || !thisDrag.enabled || !thisDrag.canDrag)
+                yield break;
+
             if (progressControl)
-                UI_Manager.instance.SetProgressBar(giveCollectiveProgress());
+            {
+                maxProgressSeen = Mathf.Max(maxProgressSeen, giveCollectiveProgress());
+                UI_Manager.instance.SetProgressBar(maxProgressSeen);
+            }
 
             yield return waitTemp;
         }

@@ -19,6 +19,13 @@ public class BasicDrag : MonoBehaviour
     public bool moveWithPointer;
 
     [Space()]
+    [Tooltip("How fast the tool closes the gap to the pointer, per second. The tool always " +
+             "trails the pointer a little while you are moving (gap ≈ pointer speed / this), so " +
+             "low values feel heavy and make you release and re-drag to finish a stroke. 0 = " +
+             "snap straight to the pointer, no lag at all.")]
+    public float followSpeed = 35f;
+
+    [Space()]
     public bool canReturn = true;
     public bool jumpOnReturn = false;
     public float returnTime = 0.2f;
@@ -477,7 +484,14 @@ public class BasicDrag : MonoBehaviour
 
             targetPosition = tempPos;
 
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 20f);
+            // Was Lerp(..., Time.deltaTime * 20f): framerate-dependent, and it only ever closes
+            // a fraction of the gap per frame, so the tool permanently trailed the pointer while
+            // moving and only caught up once you stopped — you had to release and drag again to
+            // finish a stroke. 1 - exp(-k*dt) is the same easing made framerate-independent, so
+            // browser framerates feel like the editor, and followSpeed tunes how tight it is.
+            transform.position = followSpeed <= 0f
+                ? targetPosition
+                : Vector3.Lerp(transform.position, targetPosition, 1f - Mathf.Exp(-followSpeed * Time.deltaTime));
         }
     }
 

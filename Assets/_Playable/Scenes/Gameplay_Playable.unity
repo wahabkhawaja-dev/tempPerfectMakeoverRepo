@@ -6378,17 +6378,69 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 245711878024758072, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 245711878024758072, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 377218028070299840, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 377218028070299840, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 547859894921874828, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 743699056002484148, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 743699056002484148, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 913734919391892349, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 913734919391892349, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 1419465152627930357, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1693731775988323504, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693731775988323504, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933538538745572027, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933538538745572027, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 2014851257700788686, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_LocalPosition.y
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368109347587542890, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2631593349359424106, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_Sprite
@@ -6398,9 +6450,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2693531578784661438, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693531578784661438, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 2727844772869262647, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773502364885038457, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773502364885038457, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899665543248442370, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899665543248442370, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2944089849566695861, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: ZoomStep2.CameraFOV
@@ -6486,6 +6562,10 @@ PrefabInstance:
       propertyPath: ZoomStep11B.CameraPos.y
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 3099336643002555071, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3307892601318875883, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_AutoRebind
       value: 0
@@ -6550,9 +6630,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3817053841508165788, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817053841508165788, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3978562629752305298, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_LocalPosition.y
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743369359050249867, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743369359050249867, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 5008783766818932544, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_IsActive
@@ -6578,6 +6674,30 @@ PrefabInstance:
       propertyPath: FOV
       value: 2.35
       objectReference: {fileID: 0}
+    - target: {fileID: 6237892322876087854, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237892322876087854, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422047207618722096, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422047207618722096, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261223634858828547, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261223634858828547, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 7291548723701312619, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: FOV
       value: 2.2
@@ -6590,9 +6710,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8928471670381401847, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928471670381401847, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 9110998653032861734, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119250107771258704, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119250107771258704, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
+      propertyPath: BrushScale.y
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
