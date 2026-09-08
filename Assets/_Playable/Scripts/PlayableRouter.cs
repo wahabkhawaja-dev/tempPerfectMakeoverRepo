@@ -65,7 +65,6 @@ public class PlayableRouter : MonoBehaviour
     const string IconChildPrefix = "Icon";
 
     LevelData playing;
-    bool lockedCtaFired;
 
     void Awake()
     {
@@ -132,7 +131,8 @@ public class PlayableRouter : MonoBehaviour
     /// <summary>
     /// A locked button was tapped (SpriteButton refuses the tap and raises onLockedClick).
     /// Count it per button; once that button has been tapped lockedTapsToCTA times, read it as
-    /// "they really want this level" and send them to the store.
+    /// "they really want this level" and send them to the store — and keep sending them on
+    /// EVERY further tap, not just the first time the threshold is crossed.
     /// </summary>
     void OnLockedTap(int index)
     {
@@ -149,12 +149,8 @@ public class PlayableRouter : MonoBehaviour
 
         slot.lockedTaps++;
 
-        // Once only. OpenStoreOnly() has no once-guard of its own, so without this every
-        // further tap would re-open the store.
-        if (lockedCtaFired || lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
+        if (lockedTapsToCTA <= 0 || slot.lockedTaps < lockedTapsToCTA)
             return;
-
-        lockedCtaFired = true;
 
         // Store only. A locked-button tap is not the end of the playable: no end card, no
         // input block, no disable-list, and HasFired stays false so the real ending still

@@ -6408,7 +6408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 913734919391892349, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: BrushScale.x
-      value: 0.08
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 913734919391892349, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: BrushScale.y
@@ -6452,7 +6452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2693531578784661438, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: EraseTextureScale.x
-      value: 0.08
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2693531578784661438, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: EraseTextureScale.y
@@ -6660,7 +6660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5208916280903929933, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5316276937471421704, guid: 1bf87de7230d0694888a8cd9a5f9de38, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7319,6 +7319,7 @@ MonoBehaviour:
   RemoveAdsAnims: []
   thingsToDisableWhenCompletePanel:
   - {fileID: 880011001}
+  - {fileID: 204199285}
   CompletePanel: {fileID: 11215280}
   LevelIcon: {fileID: 0}
   CompleteParticles: {fileID: 0}
@@ -23833,7 +23834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8940941410454822440, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3945236924510067174, guid: ce84a296b77e5614eadf98e97b84b0e1, type: 3}
