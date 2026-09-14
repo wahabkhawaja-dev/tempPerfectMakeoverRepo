@@ -252,7 +252,7 @@ MonoBehaviour:
   _DistanceX: 0.005
   _DistanceY: 0.0025
   _WaveTimeX: 0.11
-  _WaveTimeY: 0
+  _WaveTimeY: 5.89111
   AutoPlayWaveX: 0
   AutoPlaySpeedX: 0
   AutoPlayWaveY: 1
@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 171069008196254522}
   - component: {fileID: 8047110087486320119}
   - component: {fileID: 1174095732510890944}
+  - component: {fileID: 5067310534944301594}
   m_Layer: 0
   m_Name: Tool 1 ShowerHead
   m_TagString: Untagged
@@ -740,6 +741,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5067310534944301594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498504764624210273}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7887fe6bc1407bc4689e66d7dd711518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tool: {fileID: 4372190342694582790}
+  Pivot: {fileID: 7293372906546738667}
+  FOV: 4.1
+  Y_L: -0.1
+  Y_H: 0.1
+  X_L: -0.1
+  X_R: 0.1
+  startDelay: 0
+  duration: 1
 --- !u!1 &641620553817379071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2780,7 @@ MonoBehaviour:
   _DistanceX: 0.005
   _DistanceY: 0.014
   _WaveTimeX: 0.93016315
-  _WaveTimeY: 0
+  _WaveTimeY: 5.89111
   AutoPlayWaveX: 0
   AutoPlaySpeedX: 0
   AutoPlayWaveY: 1
@@ -13756,7 +13778,7 @@ MonoBehaviour:
   _DistanceX: 0.005
   _DistanceY: 0.0025
   _WaveTimeX: 0.11
-  _WaveTimeY: 0
+  _WaveTimeY: 5.89111
   AutoPlayWaveX: 0
   AutoPlaySpeedX: 0
   AutoPlayWaveY: 1
@@ -14126,7 +14148,7 @@ MonoBehaviour:
   acidPourParticles: {fileID: 1136812175713595970}
   showDelay: 0.25
   waterInJar: {fileID: 8048797291254268823}
-  pourDuration: 5
+  pourDuration: 3
   onPourComplete:
     m_PersistentCalls:
       m_Calls:
@@ -24739,7 +24761,7 @@ MonoBehaviour:
   _DistanceX: 0.005
   _DistanceY: 0.009
   _WaveTimeX: 0.93016315
-  _WaveTimeY: 0
+  _WaveTimeY: 5.89111
   AutoPlayWaveX: 0
   AutoPlaySpeedX: 0
   AutoPlayWaveY: 1
@@ -25096,15 +25118,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7c7ca18944f5248924ad20264d35e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Lvl1_Shower_
+  levelName: Shower
   levelReward: 5
   LevelIcon: {fileID: 0}
   Level_BG: {fileID: 8300000, guid: 290831f2ede5aa54fbd43c29ffe451f0, type: 3}
   ToolIcons:
-  - {fileID: 21300000, guid: 1795a0e1a7919d34488d5a268755346a, type: 3}
-  - {fileID: 21300000, guid: 09dc6292ad0e1f44496462cb657bb4e5, type: 3}
-  - {fileID: 21300000, guid: 7004240b9b51f4a40a9008363c4c2853, type: 3}
-  - {fileID: 21300000, guid: e054d15032ff6214e94eef37b6b94188, type: 3}
+  - {fileID: 21300000, guid: 52d2c156191fe9b469ab8be50bb31e75, type: 3}
+  - {fileID: 21300000, guid: 9226d40c7c79c794f9cbca83b127d410, type: 3}
+  - {fileID: 21300000, guid: 33145c6a6b30098449a1f3785db9a97d, type: 3}
+  - {fileID: 21300000, guid: b3f865bdbbc17b244a5458e5b8014c87, type: 3}
   AllDrags:
   - {fileID: 4372190342694582790}
   - {fileID: 2940123501408637828}
@@ -25131,6 +25153,7 @@ MonoBehaviour:
     CameraPos: {x: 0, y: 0, z: -10}
     CameraFOV: 4.2
   ToolStep1: {fileID: 4372190342694582790}
+  ToolStep1CameraFollow: {fileID: 5067310534944301594}
   jarRenderer: {fileID: 415931054559859754}
   insideJarPosition: {fileID: 5776322863507270254}
   jarJumpHeight: 1
@@ -40423,6 +40446,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   sfxClip: {fileID: 0}
+  progBar: 1
 --- !u!1 &6187691691929423630
 GameObject:
   m_ObjectHideFlags: 0
@@ -57414,6 +57438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239684367147077373}
   - component: {fileID: 3775614141820738272}
+  - component: {fileID: 3096517006564204331}
   m_Layer: 0
   m_Name: HandIndicationTap
   m_TagString: Untagged
@@ -57458,6 +57483,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3096517006564204331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094460002807611132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8feb398d1a65842b1ae2e64ddd6aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAnimationComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  sfxClip: {fileID: 0}
+  progBar: 1
 --- !u!1 &9095884964356260874
 GameObject:
   m_ObjectHideFlags: 0
