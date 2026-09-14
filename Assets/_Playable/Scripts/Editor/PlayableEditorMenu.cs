@@ -35,9 +35,9 @@ public static class PlayableEditorMenu
     }
 
     /// <summary>
-    /// <paramref name="innerPrefabPath"/> is the built inner Fix-It playable. When set, a
-    /// PlayableInnerLevel object is kept in the scene holding both prefabs — it outlives the
-    /// level instances, which is the whole point (it destroys and re-creates them).
+    /// <paramref name="innerPrefabPath"/> is the built inner Fix-It playable. When set, it is
+    /// placed in the scene too, INACTIVE, and a PlayableInnerLevel object holds both instances —
+    /// the Fix-It hop just switches them, so nothing is instantiated in the browser.
     /// </summary>
     public static void SwapSceneLevel(string prefabPath, string innerPrefabPath)
     {
@@ -58,7 +58,7 @@ public static class PlayableEditorMenu
         if (gm != null)
             gm.currentLevel = instance.GetComponent<LevelData>();
 
-        WireInnerLevel(prefab, innerPrefabPath);
+        WireInnerLevel(scene, instance, innerPrefabPath);
 
         EditorSceneManager.MarkSceneDirty(scene);
         EditorSceneManager.SaveScene(scene);
@@ -97,13 +97,13 @@ public static class PlayableEditorMenu
         }
     }
 
-    static void WireInnerLevel(GameObject outerPrefab, string innerPrefabPath)
+    static void WireInnerLevel(UnityEngine.SceneManagement.Scene scene, GameObject outer, string innerPrefabPath)
     {
         var existing = Object.FindObjectOfType<PlayableInnerLevel>(true);
 
         if (string.IsNullOrEmpty(innerPrefabPath))
         {
-            // No inner level in this build — a stale one would resurrect the wrong prefab.
+            // No inner level in this build — a stale one would point at levels that are gone.
             if (existing != null)
                 Object.DestroyImmediate(existing.gameObject);
             return;
@@ -116,15 +116,23 @@ public static class PlayableEditorMenu
             return;
         }
 
+        // Inactive from the start: none of its Awake/Start/Update runs until the Fix-It tap.
+        var inner = (GameObject)PrefabUtility.InstantiatePrefab(innerPrefab, scene);
+        inner.transform.position = outer.transform.position;
+        inner.SetActive(false);
+
         if (existing == null)
+        {
             existing = new GameObject("PlayableInnerLevel").AddComponent<PlayableInnerLevel>();
+            EditorSceneManager.MoveGameObjectToScene(existing.gameObject, scene);
+        }
 
         var so = new SerializedObject(existing);
-        so.FindProperty("outerPrefab").objectReferenceValue = outerPrefab;
-        so.FindProperty("innerPrefab").objectReferenceValue = innerPrefab;
+        so.FindProperty("outerLevel").objectReferenceValue = outer.GetComponentInChildren<LevelData>(true);
+        so.FindProperty("innerLevel").objectReferenceValue = inner.GetComponentInChildren<LevelData>(true);
         so.ApplyModifiedPropertiesWithoutUndo();
 
-        Debug.Log("PlayableInnerLevel wired: " + outerPrefab.name + " <-> " + innerPrefab.name);
+        Debug.Log("PlayableInnerLevel wired: " + outer.name + " <-> " + inner.name + " (inactive until Fix-It)");
     }
 }
 #endif
