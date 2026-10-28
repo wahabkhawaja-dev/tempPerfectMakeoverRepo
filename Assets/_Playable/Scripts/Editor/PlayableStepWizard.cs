@@ -89,6 +89,22 @@ public class PlayableStepWizard : EditorWindow
         win.Show();
     }
 
+    public static void OpenWithSource(string prefabPath)
+    {
+        EditorPrefs.SetString(PrefSource, prefabPath);
+        var win = GetWindow<PlayableStepWizard>("Playable Steps");
+        win.RefreshPrefabList();
+        win._sourceIndex = Array.IndexOf(win._prefabPaths, prefabPath);
+        if (win._sourceIndex < 0)
+        {
+            win._status = "Source is outside the level folders: " + prefabPath;
+            return;
+        }
+        win.Rescan();
+        win.RestoreSteps();
+        win.Show();
+    }
+
     void OnEnable()
     {
         RefreshPrefabList();
@@ -103,7 +119,13 @@ public class PlayableStepWizard : EditorWindow
 
     void RefreshPrefabList()
     {
-        _prefabPaths = PlayableLevelFactory.ListSourcePrefabs();
+        var paths = new List<string>(PlayableLevelFactory.ListSourcePrefabs());
+        string requestedSource = EditorPrefs.GetString(PrefSource, "");
+        if (requestedSource.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase) &&
+            requestedSource.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) &&
+            File.Exists(requestedSource) && !paths.Contains(requestedSource))
+            paths.Add(requestedSource);
+        _prefabPaths = paths.ToArray();
         _links = PlayableLevelFactory.ScanFixItLinks(_prefabPaths);
         _prefabLabels = new string[_prefabPaths.Length];
         for (int i = 0; i < _prefabPaths.Length; i++)
@@ -868,18 +890,7 @@ public class PlayableStepWizard : EditorWindow
             return;
         }
 
-        // Hand the editor a frame before building the outer level. Shrinking textures flips each
-        // source texture readable and back through SaveAndReimport; running the second build in
-        // this same call reads those textures while the reimport is still settling and throws
-        // "texture data is not readable", which kills that build. A tick is all it needs, and it
-        // keeps the texture pipeline itself untouched.
-        _status = "Inner level ready: " + innerBuild.PrefabPath + " — outer level agle frame pe…";
-        string innerPath = innerBuild.PrefabPath;
-        EditorApplication.delayCall += delegate
-        {
-            BuildOuter(plan, outerMode, innerPath);
-            Repaint();
-        };
+        BuildOuter(plan, outerMode, innerBuild.PrefabPath);
     }
 
     void BuildOuter(Plan plan, PlayableLevelFactory.InnerMode outerMode, string innerBuilt)
