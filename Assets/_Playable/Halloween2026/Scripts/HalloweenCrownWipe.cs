@@ -60,11 +60,18 @@ public sealed class HalloweenCrownWipe : MonoBehaviour
     {
         if(!ready||Finished||finishing)return;
         if(clothTool.isDragging)WipeAt(wipeTip.position);
-        if(Time.time<nextProgress)return;
-        nextProgress=Time.time+.12f;
-        WipeProgress=Mathf.Clamp01(foamSurface.Progress.GiveProgress());
-        UI_Manager.instance.SetProgressBar(WipeProgress);
-        if(WipeProgress>=finishThreshold)StartCoroutine(Finish());
+        // Refresh immediately on release so the final stroke is counted, even
+        // when mouse-up falls between the normal progress polling intervals.
+        if(Time.time>=nextProgress||Input.GetMouseButtonUp(0))
+        {
+            nextProgress=Time.time+.12f;
+            WipeProgress=Mathf.Clamp01(foamSurface.Progress.GiveProgress());
+            UI_Manager.instance.SetProgressBar(WipeProgress);
+        }
+        // Reaching the threshold arms completion; the player keeps control
+        // until BasicDrag has processed mouse-up and the button is released.
+        if(WipeProgress>=finishThreshold&&!clothTool.isDragging&&!Input.GetMouseButton(0))
+            StartCoroutine(Finish());
     }
 
     // The orthographic scratch card reads the cloth's actual contact tip.

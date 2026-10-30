@@ -17,7 +17,7 @@ The Luna SDK package uses the existing relative `../../7.2.0/scripts` dependency
 1. Dust off the heavily encrusted crown.
 2. Use the unchanged shampoo sprayer with `04_Foam.png` on Scratch 2.
 3. Use the unchanged mixing brush with `03_Spray.png` on Scratch 3. These two scratch artworks were swapped at the user's request. `03_Spray.png` depicts shampoo/foam, **not water**. The completed-layer image and wipe overlay match Scratch 3 so there is no artwork change at the handoff.
-4. Drag the Halloween cloth across the crown to wipe away the foam. At 94% coverage, the remaining foam fades, the cloth exits, the clean crown is showcased and the completion CTA fires. This replaces the previous water shower; the scene and prefab contain no water step or water effects.
+4. Drag the Halloween cloth across the crown to wipe away the foam. At 94% coverage, completion is armed but the cloth stays under the player's control. Only after mouse-up does the remaining foam fade, the cloth exit, the clean crown appear and the completion CTA fire. Releasing below the threshold lets the player continue wiping. This replaces the previous water shower; the scene and prefab contain no water step or water effects.
 
 The original `Level3_Crown_Playable.cs` is unchanged. `HalloweenCrownGameManager` intercepts its third-step completion to enter `HalloweenCrownWipe`; final completion delegates to `GameManagerPlayable`. The CTA is manual/step complete with no tease step. Script GUIDs were preserved when renaming the former rinse scripts; `FormerlySerializedAs` migrates their serialized manager/tool/tip fields.
 
@@ -45,5 +45,7 @@ Validation performed in the isolated Unity editor:
 - Portrait renders checked sprayer/brush proportions and the foam/rinse setup. Runtime console had no gameplay errors during the successful rinse test.
 
 The checks listed above document the earlier water implementation. After replacing it with the cloth, Unity compilation and prefab reference/rig validation were repeated, confirming four tool icons, three cloth bones and zero water objects/particles. The final cloth wipe was tested separately through its completion gate and GPU scratch surface: idle progress 0 with CTA false; a tool-tip sweep reached 100%, then `Finished=True` and `CTA=True` after the clean reveal. This was a simulated drag test, not a full manual playthrough.
+
+Release-to-complete regression check: releasing below the threshold kept the step active; at 100% with the drag held, the cloth stayed active/draggable and CTA stayed false; after releasing, `Finished=True` and `CTA=True`. This used simulated drag state and a filled GPU mask to isolate the completion gate. Progress is refreshed immediately on mouse-up, independently of the normal 0.12-second poll interval.
 
 No browser/Luna export has been certified. During repeated imports the SDK intermittently reported Windows IO 1224 locks on its worktree cache files; that editor/export issue is separate from the successful Unity gameplay test. Validate the exported creative in Luna before shipping.
