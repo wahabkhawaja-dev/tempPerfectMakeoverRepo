@@ -7134,10 +7134,6 @@
                 "excluded": true
             },
             {
-                "name": "PlayableRouter.SubLevelSlot",
-                "excluded": true
-            },
-            {
                 "name": "DG.Tweening.DOTweenAnimation.AnimationType",
                 "excluded": false
             },
@@ -8130,35 +8126,23 @@
                 "excluded": false
             },
             {
-                "name": "CG_ZipperBag",
+                "name": "ActionOnTap",
                 "excluded": true
             },
             {
-                "name": "LunaEmitParams",
+                "name": "BD_AnimationHelper",
                 "excluded": true
             },
             {
-                "name": "LunaParticles",
+                "name": "DestroyObj",
                 "excluded": true
             },
             {
-                "name": "CG_Level4_Dress",
+                "name": "Statics",
                 "excluded": true
             },
             {
-                "name": "CG_Lvl4_2_Loom.State",
-                "excluded": false
-            },
-            {
-                "name": "CG_ZipperBag.Goal",
-                "excluded": true
-            },
-            {
-                "name": "FloatEvent",
-                "excluded": false
-            },
-            {
-                "name": "MoreMountains.NiceVibrations.HapticTypes",
+                "name": "SfxPlayType",
                 "excluded": false
             }
         ],
@@ -22442,10 +22426,6 @@
                     {
                         "name": "Tick",
                         "excluded": false
-                    },
-                    {
-                        "name": "Tick\",this)}this.c$-=t;if(this.c$<=0){pc.Application.getApplication().events.off(\"update",
-                        "excluded": false
                     }
                 ]
             },
@@ -24031,7 +24011,7 @@
                     },
                     {
                         "name": "Get9SlicedMesh",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Get9TiledMesh",
@@ -30382,6 +30362,10 @@
                     {
                         "name": "TryStartStep",
                         "excluded": false
+                    },
+                    {
+                        "name": "RevealRestoreLayersAtStart#get",
+                        "excluded": true
                     }
                 ]
             },
@@ -30506,28 +30490,6 @@
                 ]
             },
             {
-                "className": "PlayableFadeCover",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Cover",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Cover$1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Reveal",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Reveal$1",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "PlayableFadeCoverSettings",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -30556,60 +30518,6 @@
                     {
                         "name": "OnPlayClicked",
                         "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "PlayableRouter",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetAll",
-                        "excluded": false
-                    },
-                    {
-                        "name": "FindChild",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ApplyLockState",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnLockedTap",
-                        "excluded": true
-                    },
-                    {
-                        "name": "BuildLockedMessage",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UnlockedLevelNumber",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetLevel",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Play",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SwapToLevel",
-                        "excluded": true
-                    },
-                    {
-                        "name": "DropUnplayedLevels",
-                        "excluded": true
                     }
                 ]
             },
@@ -30970,52 +30878,6 @@
                     {
                         "name": "init",
                         "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "SpriteButton",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PointerDown",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PointerUp",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ResetButtonState",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IsPointerOverThisObject",
-                        "excluded": true
-                    },
-                    {
-                        "name": "isOverUI",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": true
                     }
                 ]
             },
@@ -33586,1104 +33448,6 @@
                 ]
             },
             {
-                "className": "CG_ChalkTrace",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "IsPointerOverUI",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Drawn",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UsesSlices#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Play",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ValidSlices",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BuildSlicePositions",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateSliceInput",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BeginSliceIntro",
-                        "excluded": false
-                    },
-                    {
-                        "name": "HideSliceIntro",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AdvanceSlices",
-                        "excluded": false
-                    },
-                    {
-                        "name": "HideSlices",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnApplicationFocus",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnApplicationPause",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ResetSliceInput",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BuildSliceRevealOrder",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TraceAt",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OffscreenPoint",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Leave",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetDrawing",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShowAll",
-                        "excluded": true
-                    },
-                    {
-                        "name": "TipAt",
-                        "excluded": true
-                    },
-                    {
-                        "name": "NearestPoint",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetupMask",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BuildRevealOrder",
-                        "excluded": true
-                    },
-                    {
-                        "name": "RevealUpTo",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Mark",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Stamp",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDestroy",
-                        "excluded": true
-                    },
-                    {
-                        "name": "DrawnKey",
-                        "excluded": false
-                    },
-                    {
-                        "name": "DrawnMaskPixels",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "CG_ChalkTrace.SliceStroke",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "$ctor1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "CG_ClothSlicer",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Live",
-                        "excluded": true
-                    },
-                    {
-                        "name": "InsidePolygon",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Contains",
-                        "excluded": false
-                    },
-                    {
-                        "name": "DistanceToSegment",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SegmentsCross",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Area",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Centroid",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Progress#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Begin",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BeginSlashes",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CutSlash",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CompleteSlashes",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BuildFragments",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AddFragment",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ClearFragments",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TipPos",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LateUpdate",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CutAlong",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Touches",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OffStroke",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LocalOf",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Finish",
-                        "excluded": false
-                    },
-                    {
-                        "name": "WaitForRelease",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StartFacing",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PieceCutFeedback",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Face",
-                        "excluded": true
-                    },
-                    {
-                        "name": "KeepOutline",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Detach",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateSlash",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CreateSlash",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetColor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Rebuild",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDestroy",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "CG_ClothSlicer.Fragment",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "CG_DragAlongAxis",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "CurrentT#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LateUpdate",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CountStroke",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "CG_DragPlayAnimation",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "IsPointerOverUI",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Progress#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Begin",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ShowEnd",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Show",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Finish",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "CG_DressFabricMotion",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Attach",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OutfitWeight",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Build",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ResetMotion",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LateUpdate",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Advance",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDestroy",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "CG_LoopFeedback",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "IsOn#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Set",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "CG_Lvl4_2_Loom",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "SetWeft",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetWeftY",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetWeftAlpha",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IsPointerOverUI",
-                        "excluded": true
-                    },
-                    {
-                        "name": "FinalFill#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PlankHalf#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "BottomY#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "WeftHalf#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ThreadCount#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PlankTopStop#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Edge",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ShedY",
-                        "excluded": true
-                    },
-                    {
-                        "name": "FillAt",
-                        "excluded": true
-                    },
-                    {
-                        "name": "RowStep",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PackedStep",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PackedY",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Drop",
-                        "excluded": true
-                    },
-                    {
-                        "name": "LaidY",
-                        "excluded": true
-                    },
-                    {
-                        "name": "EnsureWefts",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Begin",
-                        "excluded": true
-                    },
-                    {
-                        "name": "CrossFromSide",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Cross",
-                        "excluded": true
-                    },
-                    {
-                        "name": "WeftEnd",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ArmBeat",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UpdatePlank",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UpdateHint",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UpdateBeat",
-                        "excluded": true
-                    },
-                    {
-                        "name": "FinishBeat",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "CG_PathCut",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "IsPointerOverUI",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Build",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PointAt",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Begin",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetUnderCloth",
-                        "excluded": true
-                    },
-                    {
-                        "name": "TipLocalOffset",
-                        "excluded": true
-                    },
-                    {
-                        "name": "RotationFor",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Finish",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UpdateParticles",
-                        "excluded": true
-                    },
-                    {
-                        "name": "FadeParticles",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UpdateSnip",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UpdateTrail",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "CG_ScissorCutFX",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OverSheet",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Snip",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Burst",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BurstAlong",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SheetBounds",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Throw",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "CG_SewPath",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Progress#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IsSewing#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Begin",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ComputeAngles",
-                        "excluded": true
-                    },
-                    {
-                        "name": "AngleAt",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Advance",
-                        "excluded": true
-                    },
-                    {
-                        "name": "GlideToNextSeam",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SegmentLength",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PlacedAt",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetupMask",
-                        "excluded": true
-                    },
-                    {
-                        "name": "EraseTo",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Stamp",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDestroy",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDrawGizmosSelected",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "Lvl3_PlaceItem",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnTriggerEnter2D",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnTriggerExit2D",
-                        "excluded": true
-                    },
-                    {
-                        "name": "PlaceItems",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "ProceduralRope",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": true
-                    },
-                    {
-                        "name": "LateUpdate",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Simulate",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ApplyConstraints",
-                        "excluded": true
-                    },
-                    {
-                        "name": "DrawRope",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "ProceduralRope.RopeSegment",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "$ctor1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "CG_Level4_Dress_Playable_PlayableStep2to6",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "FillMask",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateDragHint",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AdvanceProgressIcon",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SilenceStep",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SilenceCut",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SaveStep",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StepStartEvent",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StepCompleteEvent",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShowView",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ChangeView",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetAlpha",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Fade",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SeparatePiece",
-                        "excluded": true
-                    },
-                    {
-                        "name": "MoveToolIn",
-                        "excluded": true
-                    },
-                    {
-                        "name": "MoveToolOut",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Step1Done",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ForceCompleteStep1",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StartStep2",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UnrollProgress_2",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetRollFrame_2",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Step2Done",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ForceCompleteStep2",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep3",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Step3Done",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ForceCompleteStep3",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep4",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BeginFreeCut",
-                        "excluded": false
-                    },
-                    {
-                        "name": "EndFreeCut",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Step4Done",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ForceCompleteStep4",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep5",
-                        "excluded": false
-                    },
-                    {
-                        "name": "MoveCameraToChalk",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Step5Done",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ForceCompleteStep5",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartStep6",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BeginCut_6",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Step6Done",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ForceCompleteStep6",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "CG_VibrationManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SoftImpact",
-                        "excluded": true
-                    },
-                    {
-                        "name": "HeavyImpact",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Failure",
-                        "excluded": true
-                    },
-                    {
-                        "name": "LightImpact",
-                        "excluded": true
-                    },
-                    {
-                        "name": "MediumImpact",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Impact",
-                        "excluded": true
-                    },
-                    {
-                        "name": "RigidImpact",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Selection",
-                        "excluded": true
-                    },
-                    {
-                        "name": "None",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Success",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Warning",
-                        "excluded": true
-                    },
-                    {
-                        "name": "VibrationCore",
-                        "excluded": true
-                    },
-                    {
-                        "name": "VibrateIt",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StartVibration",
-                        "excluded": true
-                    },
-                    {
-                        "name": "StopVibration",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
                 "className": "System.Reflection.TargetSite",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -34693,16 +33457,6 @@
                     },
                     {
                         "name": "toString",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "LunaArray",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Sort",
                         "excluded": false
                     }
                 ]
@@ -34758,12 +33512,290 @@
                 ]
             },
             {
-                "className": "LunaMaterials",
+                "className": "BD_AnimatorDrag",
                 "staticMethods": [],
                 "instanceMethods": [
                     {
-                        "name": "SpriteDefault",
+                        "name": "init",
                         "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlayAnim",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StopAnim",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "BD_ProgressHelper",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EnableProgress",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DisableProgress",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ProgressChecking",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "BD_SpriteChange",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ToolPicked",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ToolReleased",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "BD_ToolRotate",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "HalloweenCrownWipe",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Begin",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Enter",
+                        "excluded": true
+                    },
+                    {
+                        "name": "LateUpdate",
+                        "excluded": false
+                    },
+                    {
+                        "name": "WipeAt",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Finish",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "HalloweenToolRigFit",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "LateUpdate",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ApplyFit",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "PlayParticlesOnCollision",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerEnter2D",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "PlaySfxOnCollision",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTriggerEnter2D",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnTriggerExit2D",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "HandlePlay",
+                        "excluded": true
+                    },
+                    {
+                        "name": "HandleStop",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlayAudio",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StopAudio",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnFadeOutComplete",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DisableSfx",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDestroy",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "Level3_Crown_Playable",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "FadeLayer",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RevealRestoreLayersAtStart#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "AdvanceProgressIcon",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep1",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Step1Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep2",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Step2Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep2",
+                        "excluded": true
+                    },
+                    {
+                        "name": "StartStep3",
+                        "excluded": true
+                    },
+                    {
+                        "name": "Step3Done",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceCompleteStep3",
+                        "excluded": true
+                    },
+                    {
+                        "name": "CompleteFoamLayer",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "HalloweenCrownGameManager",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Complete",
+                        "excluded": true
                     }
                 ]
             }
