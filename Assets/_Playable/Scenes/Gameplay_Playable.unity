@@ -9065,13 +9065,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1891970805}
     - target: {fileID: 1113493957371408583, guid: 3b453cab717ab094689b67b1e1313d77, type: 3}
-      propertyPath: thingsToDisableOnEndCard.Array.size
+      propertyPath: showEndCard
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1113493957371408583, guid: 3b453cab717ab094689b67b1e1313d77, type: 3}
+      propertyPath: thingsToDisableOnEndCard.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1113493957371408583, guid: 3b453cab717ab094689b67b1e1313d77, type: 3}
       propertyPath: thingsToDisableOnEndCard.Array.data[0]
       value: 
       objectReference: {fileID: 204199285}
+    - target: {fileID: 1113493957371408583, guid: 3b453cab717ab094689b67b1e1313d77, type: 3}
+      propertyPath: thingsToDisableOnEndCard.Array.data[1]
+      value: 
+      objectReference: {fileID: 880011001}
     - target: {fileID: 1859805426474317525, guid: 3b453cab717ab094689b67b1e1313d77, type: 3}
       propertyPath: m_Sprite
       value: 
