@@ -423,8 +423,50 @@ MonoBehaviour:
       "\L\u2025": []
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 1916
+  version: 1981
   _shaderParsedShaders:
+  - ParsedSubShaders:
+    - Index: 0
+      Passes:
+      - Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+        ShaderVariants: []
+        DefinedKeywords:
+          "\L\u2025": []
+        KeywordGroups: []
+        KeywordsMinimalCardinality: 0
+        ContainsInvalidVariant: 0
+        VariantStructures: []
+        CompilationErrors: []
+        HasDepthReader: 0
+        Id: 0
+        SubShaderIndex: 0
+        SerializedObjectId: 0
+        Tags:
+        - Key: IGNOREPROJECTOR
+          Value: true
+        - Key: QUEUE
+          Value: Transparent
+        - Key: RenderType
+          Value: Transparent
+        UsePass:
+          shader: 
+          pass: 
+        GrabPassTextureName: 
+        PlatformMask: -1
+      Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+      Tags:
+      - Key: IGNOREPROJECTOR
+        Value: true
+      - Key: QUEUE
+        Value: Transparent
+      - Key: RenderType
+        Value: Transparent
+    Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+    ShaderPath: Assets/_Core/Third Party/2DxFx/Resources/_2dxFX_Wave.shader
+    ShaderDefinedKeywords: []
+    fallbackShader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+    CompilationErrors: []
+    Variants: []
   - ParsedSubShaders:
     - Index: 0
       Passes:
@@ -1981,6 +2023,135 @@ MonoBehaviour:
       upToDate: 0
       keywords:
         "\L\u2025": []
+  - ParsedSubShaders:
+    - Index: 0
+      Passes:
+      - Shader: {fileID: 4800000, guid: efcd8dda2a6b7f9429d89ff2b5d7ebbe, type: 3}
+        ShaderVariants: []
+        DefinedKeywords:
+          "\L\u2025": []
+        KeywordGroups: []
+        KeywordsMinimalCardinality: 0
+        ContainsInvalidVariant: 0
+        VariantStructures: []
+        CompilationErrors: []
+        HasDepthReader: 0
+        Id: 0
+        SubShaderIndex: 0
+        SerializedObjectId: 0
+        Tags:
+        - Key: IGNOREPROJECTOR
+          Value: true
+        - Key: QUEUE
+          Value: Transparent
+        - Key: RenderType
+          Value: Transparent
+        UsePass:
+          shader: 
+          pass: 
+        GrabPassTextureName: 
+        PlatformMask: -1
+      Shader: {fileID: 4800000, guid: efcd8dda2a6b7f9429d89ff2b5d7ebbe, type: 3}
+      Tags:
+      - Key: IGNOREPROJECTOR
+        Value: true
+      - Key: QUEUE
+        Value: Transparent
+      - Key: RenderType
+        Value: Transparent
+    Shader: {fileID: 4800000, guid: efcd8dda2a6b7f9429d89ff2b5d7ebbe, type: 3}
+    ShaderPath: Assets/_Core/ScratchCard/Demo/Shaders/Brush.shader
+    ShaderDefinedKeywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    fallbackShader: {fileID: 0}
+    CompilationErrors: []
+    Variants: []
+  - ParsedSubShaders:
+    - Index: 0
+      Passes:
+      - Shader: {fileID: 4800000, guid: ddabbd44f8d49d54ebb54dd25059d87b, type: 3}
+        ShaderVariants: []
+        DefinedKeywords:
+          "\L\u2025": []
+        KeywordGroups: []
+        KeywordsMinimalCardinality: 0
+        ContainsInvalidVariant: 0
+        VariantStructures: []
+        CompilationErrors: []
+        HasDepthReader: 0
+        Id: 0
+        SubShaderIndex: 0
+        SerializedObjectId: 0
+        Tags:
+        - Key: IGNOREPROJECTOR
+          Value: true
+        - Key: QUEUE
+          Value: Transparent
+        - Key: RenderType
+          Value: Transparent
+        UsePass:
+          shader: 
+          pass: 
+        GrabPassTextureName: 
+        PlatformMask: -1
+      Shader: {fileID: 4800000, guid: ddabbd44f8d49d54ebb54dd25059d87b, type: 3}
+      Tags:
+      - Key: IGNOREPROJECTOR
+        Value: true
+      - Key: QUEUE
+        Value: Transparent
+      - Key: RenderType
+        Value: Transparent
+    Shader: {fileID: 4800000, guid: ddabbd44f8d49d54ebb54dd25059d87b, type: 3}
+    ShaderPath: Assets/_Core/ScratchCard/Shaders/Mask.shader
+    ShaderDefinedKeywords: []
+    fallbackShader: {fileID: 0}
+    CompilationErrors: []
+    Variants: []
+  - ParsedSubShaders:
+    - Index: 0
+      Passes:
+      - Shader: {fileID: 4800000, guid: 77521b41b2fb846cdb39d5d9d0b5ad12, type: 3}
+        ShaderVariants: []
+        DefinedKeywords:
+          "\L\u2025": []
+        KeywordGroups: []
+        KeywordsMinimalCardinality: 0
+        ContainsInvalidVariant: 0
+        VariantStructures: []
+        CompilationErrors: []
+        HasDepthReader: 0
+        Id: 0
+        SubShaderIndex: 0
+        SerializedObjectId: 0
+        Tags:
+        - Key: IGNOREPROJECTOR
+          Value: true
+        - Key: QUEUE
+          Value: Transparent
+        - Key: RenderType
+          Value: Transparent
+        UsePass:
+          shader: 
+          pass: 
+        GrabPassTextureName: 
+        PlatformMask: -1
+      Shader: {fileID: 4800000, guid: 77521b41b2fb846cdb39d5d9d0b5ad12, type: 3}
+      Tags:
+      - Key: IGNOREPROJECTOR
+        Value: true
+      - Key: QUEUE
+        Value: Transparent
+      - Key: RenderType
+        Value: Transparent
+    Shader: {fileID: 4800000, guid: 77521b41b2fb846cdb39d5d9d0b5ad12, type: 3}
+    ShaderPath: Assets/_Core/ScratchCard/Demo/Shaders/MaskProgressCutOff.shader
+    ShaderDefinedKeywords: []
+    fallbackShader: {fileID: 0}
+    CompilationErrors: []
+    Variants: []
   - ParsedSubShaders:
     - Index: 0
       Passes:
@@ -3837,4 +4008,4 @@ MonoBehaviour:
         - UNITY_UI_ALPHACLIP
         - UNITY_UI_CLIP_RECT
   _modifiedShaders: []
-  invalidShaders: 1
+  invalidShaders: 0

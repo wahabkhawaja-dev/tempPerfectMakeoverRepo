@@ -2,7 +2,7 @@
     "version": "7.2.0",
     "projectId": "0ba141233dac4ae439f0736e4efac688",
     "applicationID": 42211,
-    "creativeName": "16Sept2026_Level_3_1_Step_1to3_v5",
+    "creativeName": "MakeoverFashionASMRThemes_003_GL_ClothLayer_ClothSteps_CTAComplete_30Oct2026",
     "pgServer": "EU",
     "window": {
         "‐⁘": true
@@ -33741,11 +33741,15 @@
                         "excluded": true
                     },
                     {
-                        "name": "DrawnKey",
+                        "name": "DrawnMaskPixels",
                         "excluded": false
                     },
                     {
-                        "name": "DrawnMaskPixels",
+                        "name": "HasBake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "MaskGrid",
                         "excluded": false
                     }
                 ]
@@ -34790,6 +34794,16 @@
                 "instanceMethods": [
                     {
                         "name": "SpriteDefault",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "LunaSprites",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "UvRect",
                         "excluded": false
                     }
                 ]
