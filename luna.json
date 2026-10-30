@@ -78,6 +78,7 @@
                 "**/_Core/Scenes/",
                 "**/_Core/ScratchCard/Demo/",
                 "**/_Core/Scripts/ApplicationConfig/",
+                "**/_Core/Scripts/Gameplay/ActionOnTap.cs",
                 "**/_Core/Scripts/Gameplay/ActionOnTriggerStay.cs",
                 "**/_Core/Scripts/Gameplay/AnimationPlayer.cs",
                 "**/_Core/Scripts/Gameplay/Basic Drag/BD_Animator.cs",
