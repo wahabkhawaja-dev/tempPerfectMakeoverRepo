@@ -864,13 +864,28 @@ public class CG_ChalkTrace : MonoBehaviour
     // The bake's mask grid is kept with it: Luna rebuilds sprite.rect from the downscaled texture (568 x 1372 came back
     // as 570.6 x 1382.8), so a grid worked out from it there didn't line up with the bake - which was then ignored and
     // every mask pixel searched instead (the freeze before each chalk step).
-    [SerializeField, HideInInspector] int[] drawnPixels;
+    // Stored as runs - (first index, length) pairs, 28-38% of the numbers - because the playable's bundle holds every
+    // serialized array as JSON text (twice: scene instance and prefab), and the raw list added 630 KB to it.
+    [SerializeField, HideInInspector] int[] drawnRuns;
     [SerializeField, HideInInspector] int drawnW, drawnH, drawnDs;
+    [System.NonSerialized] int[] drawnPixels; // drawnRuns expanded, once
 
     /// <summary>The bake fits this outline: same downsample and, allowing Luna's rounding (under 1% seen), the same grid.</summary>
     bool HasBake(Sprite os, int ds) =>
-        os != null && drawnPixels != null && drawnPixels.Length > 0 && drawnDs == ds && drawnW > 0 && drawnH > 0 &&
+        os != null && drawnRuns != null && drawnRuns.Length > 0 && drawnDs == ds && drawnW > 0 && drawnH > 0 &&
         Mathf.Abs(os.rect.width / ds / drawnW - 1f) < .03f && Mathf.Abs(os.rect.height / ds / drawnH - 1f) < .03f;
+
+    int[] BakedPixels()
+    {
+        if (drawnPixels != null)
+            return drawnPixels;
+        var list = new List<int>();
+        for (int r = 0; r + 1 < drawnRuns.Length; r += 2)
+            for (int i = 0; i < drawnRuns[r + 1]; i++)
+                list.Add(drawnRuns[r] + i);
+        drawnPixels = list.ToArray();
+        return drawnPixels;
+    }
 
     /// <summary>The mask grid: the bake's when there is one, else the outline's size over the downsample.</summary>
     void MaskGrid(Sprite os, int ds, out int w, out int h)
@@ -884,7 +899,7 @@ public class CG_ChalkTrace : MonoBehaviour
     int[] DrawnMaskPixels(Sprite os, int w, int h, int ds)
     {
         if (HasBake(os, ds) && w == drawnW && h == drawnH)
-            return drawnPixels;
+            return BakedPixels();
 
         Color32[] src = null;
 #if !UNITY_LUNA
@@ -900,13 +915,17 @@ public class CG_ChalkTrace : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    /// <summary>Stores which mask pixels the outline inks, for Luna builds. Returns true when it changed anything.</summary>
+    /// <summary>
+    /// Stores which mask pixels the outline inks, for Luna builds. Returns true when it changed anything. A chalk
+    /// that drives a SliceCutter (scissors) never builds a mask, so it keeps no bake.
+    /// </summary>
     public bool BakeDrawnPixels()
     {
         Sprite os = Outline != null ? Outline.sprite : null;
-        if (os == null || !os.texture.isReadable)
+        if (os == null || !os.texture.isReadable || SliceCutter != null)
         {
-            bool had = drawnPixels != null && drawnPixels.Length > 0;
+            bool had = drawnRuns != null && drawnRuns.Length > 0;
+            drawnRuns = null;
             drawnPixels = null;
             drawnW = drawnH = drawnDs = 0;
             return had;
@@ -919,10 +938,18 @@ public class CG_ChalkTrace : MonoBehaviour
             for (int x = 0; x < w; x++)
                 if (Drawn(src, os.texture.width, os.rect, x * ds, y * ds, ds))
                     list.Add(y * w + x);
-        int[] baked = list.ToArray();
-        if (drawnW == w && drawnH == h && drawnDs == ds && drawnPixels != null && System.Linq.Enumerable.SequenceEqual(baked, drawnPixels))
+        var runs = new List<int>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (i > 0 && list[i] == list[i - 1] + 1) { runs[runs.Count - 1]++; continue; }
+            runs.Add(list[i]);
+            runs.Add(1);
+        }
+        int[] baked = runs.ToArray();
+        if (drawnW == w && drawnH == h && drawnDs == ds && drawnRuns != null && System.Linq.Enumerable.SequenceEqual(baked, drawnRuns))
             return false;
-        drawnPixels = baked;
+        drawnRuns = baked;
+        drawnPixels = null;
         drawnW = w;
         drawnH = h;
         drawnDs = ds;
