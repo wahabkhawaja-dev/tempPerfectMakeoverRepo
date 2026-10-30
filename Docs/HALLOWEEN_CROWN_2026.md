@@ -15,8 +15,8 @@ The Luna SDK package uses the existing relative `../../7.2.0/scripts` dependency
 ## Intended sequence
 
 1. Dust off the heavily encrusted crown.
-2. Spray concentrated shampoo/foam onto the remaining dirt. `03_Spray.png` is a patchy shampoo application, **not a wet-water layer**.
-3. Mix and spread the shampoo into the approved continuous foam layer, `04_Foam.png`.
+2. Use the unchanged shampoo sprayer with `04_Foam.png` on Scratch 2.
+3. Use the unchanged mixing brush with `03_Spray.png` on Scratch 3. These two scratch artworks were swapped at the user's request. `03_Spray.png` depicts shampoo/foam, **not water**. The completed-layer image and rinse overlay match Scratch 3 so there is no artwork change at the rinse handoff.
 4. Drag the water shower across the crown. Only the water impact removes the spread foam. At 94% coverage, the remaining foam fades, the shower exits, the clean crown is showcased and the completion CTA fires.
 
 The original `Level3_Crown_Playable.cs` is unchanged. `HalloweenCrownGameManager` intercepts its third-step completion to enter the rinse; final completion delegates to `GameManagerPlayable`. The CTA is manual/step complete with no tease step.
@@ -43,5 +43,7 @@ Validation performed in the isolated Unity editor:
 - Rinse remained at 0%, foam visible, CTA false while idle.
 - A 40 x 30 world-space tool-tip sweep exercised GPU mask erasure, reaching 97.25%; the clean reveal finished and CTA fired afterward.
 - Portrait renders checked sprayer/brush proportions and the foam/rinse setup. Runtime console had no gameplay errors during the successful rinse test.
+
+After swapping Scratch 2/3 artwork, Unity compilation and prefab reference validation were repeated. Tools, interactions and progress settings were preserved. The GPU rinse test above was performed before this artwork-only swap.
 
 No browser/Luna export has been certified. During repeated imports the SDK intermittently reported Windows IO 1224 locks on its worktree cache files; that editor/export issue is separate from the successful Unity gameplay test. Validate the exported creative in Luna before shipping.

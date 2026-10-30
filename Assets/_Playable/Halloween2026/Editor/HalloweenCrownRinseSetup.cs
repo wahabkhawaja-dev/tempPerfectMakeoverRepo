@@ -13,6 +13,7 @@ public static class HalloweenCrownRinseSetup
         const string waterName="Tool 4 Water Rinse", scratchName="Scratch 4 Water Rinse";
         var level=root.GetComponent<Level3_Crown_Playable>();
         if(level==null)throw new InvalidOperationException("Original crown level is required.");
+        ApplyScratchLayers(root);
         foreach(var t in root.GetComponentsInChildren<Transform>(true).Where(t=>t.name==waterName||t.name==scratchName).ToArray())
             if(t!=null)UnityEngine.Object.DestroyImmediate(t.gameObject);
         var controller=root.GetComponent<HalloweenCrownRinse>();
@@ -70,7 +71,7 @@ public static class HalloweenCrownRinseSetup
         foam.Card.Surface=foam.SpriteCard.transform;
         foam.Card.ScratchSurface=null;
         foam.Mode=ScratchCard.ScratchMode.Erase;
-        foam.ScratchSurfaceSprite=AssetDatabase.LoadAssetAtPath<Sprite>(HalloweenCrownSetup.Root+"Sprites/Crown/04_Foam.png");
+        foam.ScratchSurfaceSprite=level.AllScratches.First(s=>s.name=="Scratch 3").ScratchSurfaceSprite;
         foam.ScratchSurfaceSpriteHasAlpha=true;
         foam.Card.Mode=ScratchCard.ScratchMode.Erase;
         foam.Card.ToolTip=tip.gameObject;
@@ -99,6 +100,36 @@ public static class HalloweenCrownRinseSetup
         controller.priorLayers=level.GetComponentsInChildren<Transform>(true)
             .Where(t=>new[]{"Dust","Dirty","Spray","Mix","Mix E"}.Contains(t.name)).Select(t=>t.gameObject).ToArray();
         water.SetActive(false);
+    }
+
+    // Explicit assignments keep the requested swap stable across repeated rebuilds.
+    public static void ApplyScratchLayers(GameObject root)
+    {
+        var level=root.GetComponent<Level3_Crown_Playable>();
+        var second=level.AllScratches.First(s=>s.name=="Scratch 2");
+        var third=level.AllScratches.First(s=>s.name=="Scratch 3");
+        second.ScratchSurfaceSprite=AssetDatabase.LoadAssetAtPath<Sprite>(HalloweenCrownSetup.Root+"Sprites/Crown/04_Foam.png");
+        third.ScratchSurfaceSprite=AssetDatabase.LoadAssetAtPath<Sprite>(HalloweenCrownSetup.Root+"Sprites/Crown/03_Spray.png");
+        FitLayer(second.SpriteCard.GetComponent<SpriteRenderer>(),second.ScratchSurfaceSprite);
+        FitLayer(third.SpriteCard.GetComponent<SpriteRenderer>(),third.ScratchSurfaceSprite);
+        FitLayer(level.MixE.GetComponent<SpriteRenderer>(),third.ScratchSurfaceSprite);
+        var rinse=root.GetComponent<HalloweenCrownRinse>();
+        if(rinse!=null&&rinse.foamSurface!=null)
+        {
+            rinse.foamSurface.ScratchSurfaceSprite=third.ScratchSurfaceSprite;
+            FitLayer(rinse.foamSurface.SpriteCard.GetComponent<SpriteRenderer>(),third.ScratchSurfaceSprite);
+        }
+    }
+
+    static void FitLayer(SpriteRenderer renderer,Sprite sprite)
+    {
+        if(renderer.sprite==sprite)return;
+        var oldBounds=renderer.sprite.bounds;
+        renderer.sprite=sprite;
+        if(renderer.drawMode!=SpriteDrawMode.Simple)return;
+        var scale=renderer.transform.localScale;
+        renderer.transform.localScale=new Vector3(scale.x*oldBounds.size.x/sprite.bounds.size.x,
+            scale.y*oldBounds.size.y/sprite.bounds.size.y,scale.z);
     }
 }
 #endif

@@ -2112,6 +2112,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2732261719108859235, guid: 45b4090448db56144a2b0ae8357a64f2, type: 3}
+      propertyPath: AllScratches.Array.data[0].ScratchManager
+      value: 
+      objectReference: {fileID: 761033612}
     - target: {fileID: 3452393430767478522, guid: 45b4090448db56144a2b0ae8357a64f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2156,6 +2160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Halloween_Crown_Playable
       objectReference: {fileID: 0}
+    - target: {fileID: 6988229930715731126, guid: 45b4090448db56144a2b0ae8357a64f2, type: 3}
+      propertyPath: AllScratches.Array.data[0].ScratchManager
+      value: 
+      objectReference: {fileID: 761033613}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2181,6 +2189,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cdb48ff672128943bc7f221f3cd4f2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &761033612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8318882158809923263, guid: 45b4090448db56144a2b0ae8357a64f2, type: 3}
+  m_PrefabInstance: {fileID: 761033609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1091e69478f334e5c995b30d9b122da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &761033613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4680663808580981770, guid: 45b4090448db56144a2b0ae8357a64f2, type: 3}
+  m_PrefabInstance: {fileID: 761033609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1091e69478f334e5c995b30d9b122da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &804469285
@@ -9283,7 +9313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -299.99997}
+  m_AnchoredPosition: {x: 0, y: -299.99994}
   m_SizeDelta: {x: 820, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1727609922
