@@ -133,7 +133,13 @@ public static class AllIn1ShaderImporter
 				var currentFileGUID = AssetDatabase.FindAssets($"t:Script {nameof(AllIn1ShaderImporter)}")[0];
 				string currentFolder = Path.GetDirectoryName(AssetDatabase.GUIDToAssetPath(currentFileGUID));
 
-				string newShaderStr = File.ReadAllText(Path.Combine(currentFolder, shaderPath));
+				string templatePath = Path.GetFullPath(Path.Combine(currentFolder, shaderPath));
+				if (!File.Exists(templatePath))
+				{
+					Debug.LogWarning("AllIn1 shader template is not installed for " + renderPipeline + ". Keeping the existing shader. Template: " + templatePath);
+					return;
+				}
+				string newShaderStr = File.ReadAllText(templatePath);
 				newShaderStr = newShaderStr.Replace("Shader \"AllIn1SpriteShader/AllIn1SpriteShaderLit_BetterShader\"", "Shader \"AllIn1SpriteShader/AllIn1SpriteShaderLit\"");
 
 				File.WriteAllText(Path.Combine(currentFolder, LIT_SHADER_PATH), newShaderStr);

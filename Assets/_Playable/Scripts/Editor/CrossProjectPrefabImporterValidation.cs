@@ -49,6 +49,9 @@ public partial class CrossProjectPrefabImporter
                 "stripped haptic lambdas keep valid void callbacks and preserve audio/gameplay calls");
             Check(LunaScriptSanitizer.Sanitize(sanitizedHaptics, hapticOptions).Text == sanitizedHaptics,
                 "repairing already imported haptic calls is idempotent");
+            var skin = LunaScriptSanitizer.Sanitize("using UnityEngine.U2D.Animation;\nvoid F() { bones = Tool.GetComponent<UnityEngine.U2D.Animation.SpriteSkin>().boneTransforms; }", hapticOptions);
+            Check(!skin.Text.Contains("SpriteSkin") && !skin.Text.Contains("U2D.Animation") && skin.Text.Contains("Skip(Tool.GetComponentsInChildren<Transform>(true), 1)") && skin.Warnings.Count == 0,
+                "SpriteSkin bone lookups become Luna-safe child transforms");
             Check(AdaptMakeoverTypes("CG_SaveSystem.Instance.GetLevel(levelNo).subLevels[partNo].stepsDone = 2;", new ReflectionCatalog())
                 == "SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 2;", "parent event save accessor adapts to local in-memory data");
             string identity = "guid: " + id + "\n  bones:\n  - guid: " + id + "\n  ref: {fileID: 7, guid: " + id + ", type: 3}";
@@ -90,6 +93,7 @@ public partial class CrossProjectPrefabImporter
             DestroyImmediate(child);
             var root = new GameObject("ImportedLevel");
             root.AddComponent<PlayableCTA>();
+            root.AddComponent<LevelData>();
             var nested = (GameObject)PrefabUtility.InstantiatePrefab(childPrefab);
             nested.transform.SetParent(root.transform, false);
             PrefabUtility.SaveAsPrefabAsset(root, fixture + "/LevelFixture.prefab");
@@ -143,6 +147,26 @@ public partial class CrossProjectPrefabImporter
                 && !ShaderUtil.ShaderHasError(AssetDatabase.LoadAssetAtPath<Shader>(shaderItem.Dest)), "copied shader include resolves in local destination");
             string importedPath = candidate.Items.Single(i => i.IsLevelSeed).Dest;
             var imported = AssetDatabase.LoadAssetAtPath<GameObject>(importedPath);
+            string spPath = fixture + "/Special/SP_99.prefab";
+            string eventPath = fixture + "/Events/Bonus.prefab";
+            Directory.CreateDirectory(Path.Combine(ProjectRoot, fixture, "Special"));
+            Directory.CreateDirectory(Path.Combine(ProjectRoot, fixture, "Events"));
+            AssetDatabase.Refresh();
+            Check(AssetDatabase.CopyAsset(importedPath, spPath) && AssetDatabase.CopyAsset(importedPath, eventPath),
+                "discovery fixtures created in custom SP/event folders");
+            string variantPath = fixture + "/Events/Variant.prefab";
+            var previewScene = UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var instance = (GameObject)PrefabUtility.InstantiatePrefab(imported, previewScene);
+                PrefabUtility.SaveAsPrefabAsset(instance, variantPath);
+            }
+            finally { UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(previewScene); }
+            var discoveredSources = PlayableLevelFactory.ListSourcePrefabs();
+            Check(discoveredSources.Contains(importedPath) && discoveredSources.Contains(spPath) && discoveredSources.Contains(eventPath),
+                "wizard discovers imported levels, SP names and arbitrary event names outside default folders");
+            Check(discoveredSources.Contains(variantPath) && !discoveredSources.Contains(candidate.Items.Single(i => i.SourceRel == "Assets/Fixture/Nested.prefab").Dest),
+                "wizard discovers inherited level variants and excludes non-level dependency prefabs");
             var renderer = imported.GetComponentInChildren<SpriteRenderer>(true);
             var nativeInstance = AssetDatabase.LoadAllAssetsAtPath(importedPath).First(a => a != null && a.GetType() == typeof(UnityEngine.Object));
             Check(PrefabImportTransaction.IsPrefabOverrideHistory(nativeInstance, "m_Modification.m_Modifications.Array.data[19].target")
@@ -158,7 +182,7 @@ public partial class CrossProjectPrefabImporter
                 .All(p => File.Exists(Path.Combine(ProjectRoot, p))), "all imported dependencies exist locally");
             string spriteGuid = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(renderer.sprite));
             typeof(PlayableLevelFactory).GetMethod("TrimPrefab", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null,
-                new object[] { importedPath, new List<int> { 1 }, PlayableLevelFactory.InnerMode.Exclude, new List<string>(), new List<string>() });
+                new object[] { importedPath, new List<int> { 1 }, PlayableLevelFactory.InnerMode.Exclude, new List<string>(), new List<string>(), "" });
             renderer = AssetDatabase.LoadAssetAtPath<GameObject>(importedPath).GetComponentInChildren<SpriteRenderer>(true);
             Check(AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(renderer.sprite)) == spriteGuid
                 && renderer.sprite.texture.width == 1024 && renderer.transform.localScale == new Vector3(1.25f, 2.5f, 1f),

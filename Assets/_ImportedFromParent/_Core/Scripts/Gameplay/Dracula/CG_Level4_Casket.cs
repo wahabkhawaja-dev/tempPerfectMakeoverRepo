@@ -974,7 +974,7 @@ public class CG_Level4_Casket : LevelData
         ZoomTo(ZoomStep6);
 
         // The pillow's rest pose (before any squish), to ease back to as it settles into place.
-        pillowBones_6 = ToolStep6.GetComponent<UnityEngine.U2D.Animation.SpriteSkin>().boneTransforms;
+        pillowBones_6 = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Skip(ToolStep6.GetComponentsInChildren<Transform>(true), 1));
         pillowRest_6 = new Vector3[pillowBones_6.Length];
 
         for (int i = 0; i < pillowBones_6.Length; i++)

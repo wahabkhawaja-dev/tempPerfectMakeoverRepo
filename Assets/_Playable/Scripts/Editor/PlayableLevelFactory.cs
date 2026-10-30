@@ -99,11 +99,6 @@ public static class PlayableLevelFactory
         /// <summary>This IS the inner level and the playable ends inside it: its last kept step fires LevelComplete + CTA.</summary>
         InnerEndsPlayable,
 
-        /// <summary>
-        /// Keep the Fix-It button exactly as the level ships it, but tapping it fires the store
-        /// CTA instead of entering the inner level — so the inner level itself is never built.
-        /// </summary>
-        CtaOnFix
     }
 
     /// <summary>The [Header] a level puts above its Fix-It gate fields ("... FIX GATE ...").</summary>
@@ -112,7 +107,7 @@ public static class PlayableLevelFactory
     /// <summary>Modes where the Fix-It button and its damaged art stay in the playable.</summary>
     static bool KeepsFixItButton(InnerMode mode)
     {
-        return mode == InnerMode.Outer || mode == InnerMode.CtaOnFix;
+        return mode == InnerMode.Outer;
     }
 
     public class BuildResult
@@ -128,25 +123,56 @@ public static class PlayableLevelFactory
     }
 
     /// <summary>
-    /// Original Resources levels, plus every playable already built into Assets/_Playable/Levels
-    /// — so a full-step playable can itself be picked as the source for a further, smaller
-    /// variation (Scan() only needs a LevelData + its script, which a built playable still has).
+    /// Every local level prefab, including SP/event levels, custom importer destinations,
+    /// generated playables and variants. Identify levels by their component type rather
+    /// than their folder/name. Read YAML so listing levels does not load all their art.
     /// </summary>
     public static string[] ListSourcePrefabs()
     {
-        var roots = new[] { LevelsRoot, PlayableLevels, ImportedLevels }
-            .Where(AssetDatabase.IsValidFolder).ToArray();
-        var guids = AssetDatabase.FindAssets("t:Prefab", roots);
+        var levelScripts = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (string guid in AssetDatabase.FindAssets("t:MonoScript", new[] { "Assets" }))
+        {
+            var script = AssetDatabase.LoadAssetAtPath<MonoScript>(AssetDatabase.GUIDToAssetPath(guid));
+            Type type = script != null ? script.GetClass() : null;
+            if (type != null && typeof(LevelData).IsAssignableFrom(type)) levelScripts.Add(guid);
+        }
+        var guids = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets" });
         var paths = new List<string>();
+        var cache = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         for (int i = 0; i < guids.Length; i++)
         {
             string p = AssetDatabase.GUIDToAssetPath(guids[i]);
-            if (p.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase))
+            if (p.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) &&
+                ContainsLevelScript(p, levelScripts, cache, new HashSet<string>(StringComparer.OrdinalIgnoreCase)))
                 paths.Add(p);
         }
 
         paths.Sort(StringComparer.OrdinalIgnoreCase);
         return paths.ToArray();
+    }
+
+    static bool ContainsLevelScript(string prefabPath, HashSet<string> levelScripts,
+        Dictionary<string, bool> cache, HashSet<string> visiting)
+    {
+        if (cache.TryGetValue(prefabPath, out bool known)) return known;
+        if (!prefabPath.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase) || !visiting.Add(prefabPath)) return false;
+        string full = ToFull(prefabPath);
+        if (!File.Exists(full)) return false;
+        string yaml = File.ReadAllText(full);
+        bool found = Regex.Matches(yaml, @"m_Script:\s*\{fileID:\s*11500000,\s*guid:\s*([0-9a-fA-F]{32})")
+            .Cast<Match>().Any(m => levelScripts.Contains(m.Groups[1].Value));
+        if (!found)
+        {
+            // A variant or wrapper can inherit its level component from another prefab.
+            foreach (Match source in Regex.Matches(yaml, @"m_SourcePrefab:\s*\{fileID:\s*-?\d+,\s*guid:\s*([0-9a-fA-F]{32})"))
+            {
+                string basePath = AssetDatabase.GUIDToAssetPath(source.Groups[1].Value);
+                if (ContainsLevelScript(basePath, levelScripts, cache, visiting)) { found = true; break; }
+            }
+        }
+        visiting.Remove(prefabPath);
+        cache[prefabPath] = found;
+        return found;
     }
 
     public static ScanResult Scan(string prefabPath)
@@ -185,11 +211,9 @@ public static class PlayableLevelFactory
             return result;
         }
 
-        string text = File.ReadAllText(ToFull(result.ScriptPath));
+        string text = StripSourceComments(File.ReadAllText(ToFull(result.ScriptPath)));
         var steps = new SortedSet<int>();
-        foreach (Match m in Regex.Matches(text, @"\bStartStep(\d+)(?!\w)"))
-            steps.Add(int.Parse(m.Groups[1].Value));
-        foreach (Match m in Regex.Matches(text, @"#region\s+[^\r\n]*\bSTEP\s*(\d+)\b", RegexOptions.IgnoreCase))
+        foreach (Match m in Regex.Matches(text, @"\bvoid\s+StartStep(\d+)\s*\("))
             steps.Add(int.Parse(m.Groups[1].Value));
 
         result.Steps = steps.ToArray();
@@ -405,6 +429,7 @@ public static class PlayableLevelFactory
         var log = new List<string>();
         var result = new BuildResult();
         string destPrefab = null;
+        PlayableBuildSafety.AssetBackup backup = null;
 
         try
         {
@@ -412,6 +437,8 @@ public static class PlayableLevelFactory
                 throw new Exception("Kam az kam 1 step select karo.");
 
             var keep = new HashSet<int>(keepSteps.Where(s => s > 0));
+            if (keep.Count == 0 || keepSteps.Any(s => s <= 0))
+                throw new Exception("Select valid positive step numbers.");
             var ordered = keep.OrderBy(s => s).ToList();
             int first = ordered[0];
             int last = ordered[ordered.Count - 1];
@@ -419,6 +446,12 @@ public static class PlayableLevelFactory
             var scan = Scan(sourcePrefabPath);
             if (!string.IsNullOrEmpty(scan.Error))
                 throw new Exception(scan.Error);
+            if (keep.Any(s => !scan.Steps.Contains(s)))
+                throw new Exception("Selected steps are not present in the source level: " + string.Join(",", keep.Except(scan.Steps)));
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
+                throw new Exception("Build playables in Edit Mode.");
+            if (!string.IsNullOrEmpty(variant) && Regex.IsMatch(variant, "[^A-Za-z0-9]"))
+                throw new Exception("Variant names may contain letters and numbers only; choose a distinct name.");
 
             string variantSuffix = string.IsNullOrEmpty(variant) ? "" : "_" + Regex.Replace(variant, "[^A-Za-z0-9]", "");
 
@@ -448,7 +481,7 @@ public static class PlayableLevelFactory
             Directory.CreateDirectory(ToFull(PlayableLevels));
 
             string destScript = plannedDestScript;
-            string sourceText = File.ReadAllText(ToFull(scan.ScriptPath));
+            string sourceText = StripSourceComments(File.ReadAllText(ToFull(scan.ScriptPath)));
 
             // Fields declared in step headers before `first` stay in the generated script (steps
             // there aren't played, but ForceCompleteStepN() for them still runs at boot and still
@@ -465,6 +498,10 @@ public static class PlayableLevelFactory
 
             string playableText = RewriteScript(sourceText, scan.ClassName, playableClass, keep, first, last, mode, scan.FixStep, log);
 
+            PlayableBuildSafety.CheckScript(playableText, playableClass);
+            backup = new PlayableBuildSafety.AssetBackup(ToFull(destScript), ToFull(plannedDestPrefab));
+
+            bool scriptChanged = !File.Exists(ToFull(destScript)) || File.ReadAllText(ToFull(destScript)) != playableText;
             File.WriteAllText(ToFull(destScript), playableText);
             AssetDatabase.ImportAsset(destScript, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
 
@@ -481,6 +518,11 @@ public static class PlayableLevelFactory
             destPrefab = plannedDestPrefab;
 
             File.Copy(ToFull(sourcePrefabPath), ToFull(destPrefab), true);
+            // Keep the compiled source component while trimming. A freshly generated class
+            // cannot be deserialized until Unity's next compilation/domain reload.
+            AssetDatabase.ImportAsset(destPrefab, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
+            TrimPrefab(destPrefab, ordered, mode, unusedObjectPaths, log, playableText);
+            AttachCtaComponent(destPrefab, log);
             string yaml = File.ReadAllText(ToFull(destPrefab));
             int rebinds = 0;
             yaml = Regex.Replace(
@@ -496,15 +538,14 @@ public static class PlayableLevelFactory
 
             AssetDatabase.ImportAsset(destPrefab, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
 
-            TrimPrefab(destPrefab, ordered, mode, unusedObjectPaths, log);
             AssetDatabase.SaveAssets();
-
-            AttachCtaComponent(destPrefab, log);
+            if (rebinds == 0)
+                throw new InvalidOperationException("No source level component was rebound. Prefab variants must be unpacked before building.");
 
             EditorPrefs.SetString(LastPrefabPref, destPrefab);
 
             if (placeInScene)
-                PlayableEditorMenu.SwapSceneLevel(destPrefab, innerBuiltPrefab);
+                PlayableBuildSafety.QueueScene(destPrefab, innerBuiltPrefab, destScript, scriptChanged);
 
             result.Ok = true;
             result.PrefabPath = destPrefab;
@@ -516,16 +557,8 @@ public static class PlayableLevelFactory
         }
         catch (Exception e)
         {
-            // A build that dies partway leaves the WORST possible artifact: the generated script
-            // is already written and the copied prefab already rebound to it, but TrimPrefab threw
-            // before saving, so that prefab is still the untrimmed original. Playing it looks like
-            // a broken level — steps stall, tools take no input — rather than a failed build.
-            // Delete it: a missing prefab is an obvious failure, a poisoned one is not.
-            if (!string.IsNullOrEmpty(destPrefab) && File.Exists(ToFull(destPrefab)))
-            {
-                AssetDatabase.DeleteAsset(destPrefab);
-                log.Add("Half-built prefab deleted: " + destPrefab);
-            }
+            // Restore both outputs and their GUIDs, including on rebuilds of existing creatives.
+            if (backup != null) { backup.Restore(); log.Add("Restored the previous script, prefab and their GUIDs."); }
 
             result.Ok = false;
             result.Error = e.Message;
@@ -535,7 +568,7 @@ public static class PlayableLevelFactory
         }
     }
 
-    static string RewriteScript(
+    internal static string RewriteScript(
         string text,
         string originalClass,
         string playableClass,
@@ -546,6 +579,15 @@ public static class PlayableLevelFactory
         int fixStep,
         List<string> log)
     {
+        text = StripSourceComments(text);
+        // Resolve Fix-It predicates before their owning step region can be removed.
+        if (mode == InnerMode.Exclude)
+        {
+            int ignored = 0;
+            text = FlattenFixedGates(text, ref ignored);
+            text = Regex.Replace(text, @"(?m)^[ \t]*is\w+Fixed\s*=\s*Is\w+Fixed\s*\(\s*\)\s*;[ \t]*\r?\n", "");
+            text = Regex.Replace(text, @"\bIs\w*Fixed\s*\(\s*\)(?!\s*\{)", "true");
+        }
         text = Regex.Replace(
             text,
             @"\bclass\s+" + Regex.Escape(originalClass) + @"\b",
@@ -566,15 +608,24 @@ public static class PlayableLevelFactory
         text = StripSaveSystem(text, log);
         text = RedirectLoadingManagerFades(text, log);
         text = Regex.Replace(text, @"(\r?\n){3,}", "\n\n");
+        ValidateStepReferences(text);
         log.Add("Keeping steps [" + string.Join(",", keep.OrderBy(s => s)) + "], layers through step " + (last + 1) + ".");
         return text;
+    }
+
+    internal static string StripSourceComments(string text)
+    {
+        // Preserve strings (including verbatim strings), line numbers and character offsets.
+        return Regex.Replace(text, "@\"(?:\"\"|[^\"])*\"|\"(?:\\\\.|[^\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*'|//[^\\r\\n]*|/\\*[\\s\\S]*?\\*/",
+            m => m.Value.StartsWith("//", StringComparison.Ordinal) || m.Value.StartsWith("/*", StringComparison.Ordinal)
+                ? new string(m.Value.Select(c => c == '\r' || c == '\n' ? c : ' ').ToArray()) : m.Value);
     }
 
     /// <summary>
     /// The opposite of ExcludeInnerLevels: the Fix-It button (and, in Outer mode, its inner
     /// level) stay in the playable exactly as the level ships them. Only the scene reloads have
     /// to go, since a playable is a single scene — Enter() hops into the inner level, Return()
-    /// comes back, and CtaOnFix sends the tap to the store instead.
+    /// comes back after its selected steps.
     /// </summary>
     static string KeepInnerLevels(string text, InnerMode mode, List<string> log)
     {
@@ -592,18 +643,14 @@ public static class PlayableLevelFactory
         }
 
         string call;
-        if (mode == InnerMode.CtaOnFix)
-            call = "PlayableCTA.FireNow();";
-        else if (mode == InnerMode.Outer)
+        if (mode == InnerMode.Outer)
             call = "PlayableInnerLevel.Enter();";
         else if (mode == InnerMode.InnerEndsPlayable)
             call = "LevelComplete();";
         else
             call = "PlayableInnerLevel.Return();";
 
-        // CtaOnFix ends the playable on the button, so the button has to stay on screen for
-        // every further tap. Anything in the hop that dismissed the prompt has to go with the hop.
-        return RewireInnerHops(text, call, mode == InnerMode.CtaOnFix, log);
+        return RewireInnerHops(text, call, false, log);
     }
 
     /// <summary>
@@ -1120,14 +1167,14 @@ public static class PlayableLevelFactory
 
                     var inv = Regex.Match(
                         caseBody,
-                        @"Invoke\s*\(\s*nameof\s*\(\s*(StartStep\w+)\s*\)\s*(,\s*[^)]+)?\)\s*;");
+                        @"Invoke\s*\(\s*nameof\s*\(\s*(StartStep\d+\w*)\s*\)\s*(,\s*[^)]+)?\)\s*;");
                     if (inv.Success)
                     {
                         startInvoke = inv.Value.Trim();
                         return;
                     }
 
-                    var direct = Regex.Match(caseBody, @"StartStep\w+\s*\(\s*\)\s*;");
+                    var direct = Regex.Match(caseBody, @"StartStep\d+\w*\s*\(\s*\)\s*;");
                     if (direct.Success)
                         startInvoke = direct.Value.Trim();
                     return;
@@ -1275,16 +1322,133 @@ public static class PlayableLevelFactory
                 names.Add(fm.Groups[1].Value);
         }
 
+        string surviving = text;
+        for (int step = maxStep; step >= 1; step--)
+            if (!keepScript.Contains(step))
+            {
+                surviving = RemoveStepRegion(surviving, step);
+                surviving = RemoveStepHeaderBlock(surviving, step, true);
+            }
+        surviving = StripRemovedHelperCalls(text, surviving, new List<string>());
+        string survivingMask = LunaScriptSanitizer.Mask(surviving);
+        names.RemoveWhere(name => Regex.IsMatch(survivingMask, @"\b" + Regex.Escape(name) + @"\b"));
         return names;
+    }
+
+    static HashSet<string> DeclaredMethods(string text)
+    {
+        return new HashSet<string>(Regex.Matches(LunaScriptSanitizer.Mask(text),
+            @"\b(?:void|IEnumerator|bool|float|int|string|Vector[234]|Quaternion|Color)\s+(\w+)\s*\([^;{}]*\)\s*\{")
+            .Cast<Match>().Select(m => m.Groups[1].Value), StringComparer.Ordinal);
+    }
+
+    static string StripRemovedHelperCalls(string source, string surviving, List<string> log, bool validate = false)
+    {
+        var removed = DeclaredMethods(source);
+        removed.ExceptWith(DeclaredMethods(surviving));
+        if (removed.Count == 0) return surviving;
+        if (validate)
+        {
+            bool restored;
+            do
+            {
+                restored = false;
+                string live = LunaScriptSanitizer.Mask(surviving);
+                foreach (string name in removed.ToArray())
+                {
+                    // Shared non-step helpers can live inside a skipped region (e.g.
+                    // Manicure's PlayAnySound). Keep their implementation and dependencies.
+                    if (Regex.IsMatch(name, @"\d") || !Regex.IsMatch(live, @"\b" + Regex.Escape(name) + @"\b")) continue;
+                    var declaration = Regex.Match(LunaScriptSanitizer.Mask(source),
+                        @"(?m)^[ \t]*(?:(?:public|private|protected|internal|static|virtual|override)\s+)*[\w.<>,\[\]]+\s+" + Regex.Escape(name) + @"\s*\([^;{}]*\)\s*\{");
+                    if (!declaration.Success) continue;
+                    int close = FindMatchingBrace(source, declaration.Index + declaration.Length - 1);
+                    var type = Regex.Match(live, @"\bclass\s+\w+[^{}]*\{");
+                    if (close < 0 || !type.Success) continue;
+                    surviving = surviving.Insert(type.Index + type.Length, "\n" + source.Substring(declaration.Index, close - declaration.Index + 1) + "\n");
+                    removed.Remove(name); restored = true;
+                    log.Add("Preserved shared helper from an excluded region: " + name);
+                }
+            } while (restored);
+        }
+        if (removed.Count == 0) return surviving;
+        var result = LunaScriptSanitizer.Sanitize(surviving, new LunaSanitizeOptions {
+            ConvertOnMouse = false, FixAnimatorSpeed = false, FixParticleClear = false,
+            RemoveEmptyTryCatch = false, StripMissingSingletonCalls = false,
+            StripCallPatterns = removed.Select(name => @"(?<![\w.])" + Regex.Escape(name) + @"\s*\(").ToList()
+        });
+        if (result.Changed) log.Add("Removed standalone calls to helpers owned by excluded steps.");
+        string mask = LunaScriptSanitizer.Mask(result.Text);
+        var unresolved = removed.Where(name => Regex.IsMatch(mask, @"\b" + Regex.Escape(name) + @"\b")).ToArray();
+        if (validate && unresolved.Length > 0)
+            throw new InvalidOperationException("Removed step helpers are still used by surviving code: " + string.Join(", ", unresolved));
+        return result.Text;
+    }
+
+    static string RestoreSharedStepFields(string source, string surviving, HashSet<int> keep, int maxStep, List<string> log)
+    {
+        string mask = LunaScriptSanitizer.Mask(surviving);
+        var declarations = new List<string>();
+        for (int step = 1; step <= maxStep; step++)
+        {
+            if (keep.Contains(step)) continue;
+            string header = GetStepHeaderBlock(source, step);
+            foreach (Match field in Regex.Matches(header,
+                @"(?m)^[ \t]*(?:public|private|protected|internal)\s+(?:static\s+)?[\w.<>,\[\]?]+\s+(?<name>\w+)\s*(?:=[^;]*)?;"))
+                if (Regex.IsMatch(mask, @"\b" + Regex.Escape(field.Groups["name"].Value) + @"\b"))
+                {
+                    declarations.Add(field.Value);
+                    log.Add("Preserved shared field used by surviving helpers: " + field.Groups["name"].Value);
+                }
+        }
+        if (declarations.Count == 0) return surviving;
+        var type = Regex.Match(mask, @"\bclass\s+\w+[^{}]*\{");
+        if (!type.Success) throw new InvalidOperationException("Generated level class was not found while restoring shared fields.");
+        return surviving.Insert(type.Index + type.Length, "\n" + string.Join("\n", declarations) + "\n");
+    }
+
+    internal static string RewriteInvokedSteps(string text, Func<int, string, string> rewrite)
+    {
+        string mask = LunaScriptSanitizer.Mask(text);
+        var matches = Regex.Matches(mask, @"\bInvoke\s*\(").Cast<Match>().Reverse().ToList();
+        var result = new StringBuilder(text);
+        foreach (var match in matches)
+        {
+            int open = match.Index + match.Length - 1;
+            int close = FindMatchingPair(mask, open, '(', ')');
+            if (close < 0) continue;
+            string arguments = text.Substring(open + 1, close - open - 1);
+            var target = Regex.Match(arguments,
+                @"^\s*(?:nameof\s*\(\s*StartStep(?<step>\d+)\s*\)|""StartStep(?<step>\d+)"")(?<delay>\s*,[\s\S]*)?\s*$");
+            if (!target.Success) continue;
+            int end = close + 1;
+            int next = end;
+            while (next < mask.Length && char.IsWhiteSpace(mask[next])) next++;
+            bool statement = next < mask.Length && mask[next] == ';';
+            if (statement) end = next + 1;
+            string replacement = rewrite(int.Parse(target.Groups["step"].Value), target.Groups["delay"].Success ? target.Groups["delay"].Value : null);
+            if (!statement && !replacement.TrimStart().StartsWith("{", StringComparison.Ordinal)) replacement = replacement.TrimEnd(';');
+            result.Remove(match.Index, end - match.Index);
+            result.Insert(match.Index, replacement);
+        }
+        return result.ToString();
+    }
+
+    internal static void ValidateStepReferences(string text)
+    {
+        string mask = LunaScriptSanitizer.Mask(text);
+        var declared = new HashSet<string>(Regex.Matches(mask, @"\bvoid\s+(StartStep\d+\w*)\s*\(")
+            .Cast<Match>().Select(m => m.Groups[1].Value), StringComparer.Ordinal);
+        var missing = Regex.Matches(mask, @"\bStartStep\d+\w*\b").Cast<Match>().Select(m => m.Value)
+            .Where(name => !declared.Contains(name)).Distinct().ToArray();
+        if (missing.Length > 0) throw new InvalidOperationException("Generated playable references removed step methods: " + string.Join(", ", missing));
     }
 
     static string FixStepChaining(string text, HashSet<int> keep, int lastKept, List<string> log)
     {
         string source = text;
-        text = Regex.Replace(
-            text,
-            @"Invoke\s*\(\s*nameof\s*\(\s*StartStep(\d+)\s*\)\s*(,\s*[^)]+)?\)\s*;",
-            m => RewriteNextCall(int.Parse(m.Groups[1].Value), keep, lastKept, m.Groups[2].Success ? m.Groups[2].Value : null, true, source, log));
+        text = RewriteInvokedSteps(text, (target, delay) =>
+            RewriteNextCall(target, keep, lastKept, delay, true, source, log));
 
         text = Regex.Replace(
             text,
@@ -1461,6 +1625,7 @@ public static class PlayableLevelFactory
                 end++;
             string call = body.Substring(start, close - start + 1);
             bool nextStep = call.IndexOf("StartStep", StringComparison.Ordinal) >= 0 ||
+                            call.IndexOf("nameof(LevelComplete)", StringComparison.Ordinal) >= 0 && call.IndexOf("View", StringComparison.Ordinal) >= 0 ||
                             call.IndexOf("FadeAnim", StringComparison.Ordinal) >= 0 ||
                             call.IndexOf(nextZoom, StringComparison.Ordinal) >= 0;
             if (nextStep)
@@ -1475,10 +1640,8 @@ public static class PlayableLevelFactory
             }
         }
 
-        body = Regex.Replace(
-            body,
-            @"Invoke\s*\(\s*nameof\s*\(\s*StartStep(?:\d+|2b)\s*\)\s*(,\s*[^)]+)?\)\s*;",
-            m => "Invoke(nameof(LevelComplete)" + (m.Groups[1].Success ? m.Groups[1].Value : ", 1f") + ");");
+        body = RewriteInvokedSteps(body, (target, delay) =>
+            "Invoke(nameof(LevelComplete)" + (delay ?? ", 1f") + ");");
         body = Regex.Replace(
             body,
             @"(?<!void\s)(?<!nameof\s*\(\s*)StartStep(?:\d+|2b)\s*\(\s*\)\s*;",
@@ -1524,15 +1687,21 @@ public static class PlayableLevelFactory
         return next;
     }
 
-    static void TrimPrefab(string prefabPath, List<int> orderedKeep, InnerMode mode, List<string> unusedObjectPaths, List<string> log)
+    static void TrimPrefab(string prefabPath, List<int> orderedKeep, InnerMode mode, List<string> unusedObjectPaths, List<string> log, string generatedScript)
     {
         var keep = new HashSet<int>(orderedKeep);
         var root = PrefabUtility.LoadPrefabContents(prefabPath);
         try
         {
+            if (PrefabUtility.IsPartOfPrefabInstance(root))
+                PrefabUtility.UnpackPrefabInstance(root, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
             var level = root.GetComponent<LevelData>();
             if (level == null)
                 level = root.GetComponentInChildren<LevelData>(true);
+            if (level == null) throw new InvalidOperationException("The copied prefab has no compiled source LevelData component.");
+            var retainedFields = new HashSet<string>(Regex.Matches(LunaScriptSanitizer.Mask(generatedScript),
+                @"(?m)^[ \t]*(?:(?:public|private|protected|internal|static|readonly)\s+)*[\w.<>,\[\]?]+\s+(\w+)\s*(?:=[^;\r\n]*)?;")
+                .Cast<Match>().Select(m => m.Groups[1].Value));
 
             if (level != null && level.ToolIcons != null && level.ToolIcons.Count > 0)
             {
@@ -1557,10 +1726,12 @@ public static class PlayableLevelFactory
             for (int s = 1; s < first; s++)
                 keepObjects.Add(s);
 
-            int removed = DestroyUnusedStepObjects(root, keepObjects, lastKept, log);
-            removed += DestroyExtraLayerObjects(root, lastKept, log);
-            removed += DestroyFieldReferencedObjects(root, level, unusedObjectPaths, log);
-            // Only Exclude cuts the Fix-It art. Outer/CtaOnFix need the button itself, and the
+            var protectedObjects = level.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                .Where(f => retainedFields.Contains(f.Name)).Select(f => ResolveFieldGameObject(f, level)).Where(go => go != null && go != root).ToList();
+            int removed = DestroyUnusedStepObjects(root, keepObjects, lastKept, log, protectedObjects);
+            removed += DestroyExtraLayerObjects(root, lastKept, log, protectedObjects);
+            removed += DestroyFieldReferencedObjects(root, level, unusedObjectPaths, log, retainedFields);
+            // Only Exclude cuts the Fix-It art. Outer needs the button itself, and the
             // inner level's own objects match the same markers — deleting there guts the level.
             if (mode == InnerMode.Exclude)
                 removed += DestroyInnerLevelObjects(root, log);
@@ -1595,71 +1766,17 @@ public static class PlayableLevelFactory
         var root = PrefabUtility.LoadPrefabContents(prefabPath);
         try
         {
-            if (root.GetComponent<PlayableCTA>() == null)
-                root.AddComponent<PlayableCTA>();
+            var cta = root.GetComponent<PlayableCTA>();
+            if (cta == null) cta = root.AddComponent<PlayableCTA>();
+            cta.trigger = PlayableCTA.Trigger.Manual;
 
-            log.Add("PlayableCTA attached to root (Trigger = Manual by default). " +
-                    "Set a Trigger in the Inspector, or wire PlayableCTA.FireCTA() into any " +
-                    "UnityEvent — that's how you fire the CTA mid-step.");
+            log.Add("PlayableCTA uses Manual trigger; completing the final selected step ends the playable. No tease step is built.");
 
             if (root.GetComponent<PlayableFadeCoverSettings>() == null)
                 root.AddComponent<PlayableFadeCoverSettings>();
 
             log.Add("PlayableFadeCoverSettings attached to root — tune revealDelay/revealDuration " +
                     "in the Inspector if the ForceComplete fade-cover isn't hiding a step's entrance tween.");
-
-            PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
-        }
-        finally
-        {
-            PrefabUtility.UnloadPrefabContents(root);
-        }
-    }
-
-    /// <summary>True if the source script declares a [Header("STEP n")] block at all —
-    /// used by the Step Wizard to tell whether a "tease step" beyond the last real step
-    /// actually exists before trying to build one.</summary>
-    public static bool StepHasContent(string sourcePrefabPath, int step)
-    {
-        var scan = Scan(sourcePrefabPath);
-        if (!string.IsNullOrEmpty(scan.Error))
-            return false;
-        string text = File.ReadAllText(ToFull(scan.ScriptPath));
-        return Regex.IsMatch(text, @"\[Header\(""[^""]*STEP\s*" + step + @"(?!\d)[^""]*""\)\]");
-    }
-
-    /// <summary>
-    /// Wires the built prefab's PlayableCTA to OnToolAppear, watching teaseStep's own tool.
-    /// teaseStep was built as a normal kept step (real entrance, real tool) by the caller —
-    /// this just arms the CTA to intercept the first tap on it instead of leaving Trigger on
-    /// the AttachCtaComponent default of Manual.
-    /// </summary>
-    public static void ConfigureTeaseCta(string prefabPath, int teaseStep, List<string> log)
-    {
-        var root = PrefabUtility.LoadPrefabContents(prefabPath);
-        try
-        {
-            var level = root.GetComponent<LevelData>() ?? root.GetComponentInChildren<LevelData>(true);
-            var cta = root.GetComponent<PlayableCTA>();
-            if (level == null || cta == null)
-            {
-                log.Add("Tease step " + teaseStep + ": LevelData/PlayableCTA not found on root — left as Manual.");
-                return;
-            }
-
-            var toolField = level.GetType().GetField("ToolStep" + teaseStep);
-            object val = toolField != null ? toolField.GetValue(level) : null;
-            GameObject tool = val as GameObject ?? (val as Component)?.gameObject;
-            if (tool == null)
-            {
-                log.Add("Tease step " + teaseStep + ": ToolStep" + teaseStep + " not found/unassigned — CTA left as Manual, wire watchedTool by hand.");
-                return;
-            }
-
-            cta.trigger = PlayableCTA.Trigger.OnToolAppear;
-            cta.watchedTool = tool;
-            log.Add("PlayableCTA → OnToolAppear watching '" + tool.name + "' (step " + teaseStep +
-                    "). Step " + teaseStep + " plays as a tease — tapping its tool redirects to store.");
 
             PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
         }
@@ -1699,6 +1816,7 @@ public static class PlayableLevelFactory
 
     static string StripUnusedStepScript(string text, HashSet<int> keep, int first, int last, bool keepFixGate, List<string> log)
     {
+        string source = text;
         var keepScript = new HashSet<int>(keep);
         for (int s = 1; s < first; s++)
             keepScript.Add(s);
@@ -1720,11 +1838,16 @@ public static class PlayableLevelFactory
             log.Add("Script removed step " + step + " region + fields.");
         }
 
+        text = StripRemovedHelperCalls(source, text, log, true);
+        text = RestoreSharedStepFields(source, text, keepScript, maxStep, log);
+
         if (last <= 20)
         {
             int maxView = ViewIndexForStep(last + 1);
             for (int v = maxView + 1; v <= 6; v++)
             {
+                if (Regex.Matches(LunaScriptSanitizer.Mask(text), @"\bView" + v + @"\b").Count > 1)
+                    continue;
                 text = Regex.Replace(
                     text,
                     @"^\s*public\s+GameObject\s+View" + v + @"\s*;\s*\r?\n",
@@ -1808,7 +1931,7 @@ public static class PlayableLevelFactory
         return true;
     }
 
-    static int DestroyUnusedStepObjects(GameObject root, HashSet<int> keep, int lastKept, List<string> log)
+    static int DestroyUnusedStepObjects(GameObject root, HashSet<int> keep, int lastKept, List<string> log, List<GameObject> protectedObjects)
     {
         var toDestroy = new List<GameObject>();
         var seen = new HashSet<int>();
@@ -1821,7 +1944,7 @@ public static class PlayableLevelFactory
             if (IsUnusedView(t.name, keep, lastKept) ||
                 IsRemovableStepObject(t.name, keep, out _))
             {
-                if (ContainsKeptStepChild(t, keep))
+                if (ContainsKeptStepChild(t, keep) || protectedObjects.Any(p => p != null && (p.transform == t || p.transform.IsChildOf(t))))
                     continue;
                 int id = t.gameObject.GetInstanceID();
                 if (!seen.Add(id))
@@ -1843,7 +1966,7 @@ public static class PlayableLevelFactory
         return removed;
     }
 
-    static int DestroyExtraLayerObjects(GameObject root, int lastKept, List<string> log)
+    static int DestroyExtraLayerObjects(GameObject root, int lastKept, List<string> log, List<GameObject> protectedObjects)
     {
         int until = lastKept + 1;
         var names = new List<string>();
@@ -1875,7 +1998,7 @@ public static class PlayableLevelFactory
         {
             if (t == null || t.gameObject == root)
                 continue;
-            if (set.Contains(t.name))
+            if (set.Contains(t.name) && !protectedObjects.Any(p => p != null && (p.transform == t || p.transform.IsChildOf(t))))
                 toDestroy.Add(t.gameObject);
         }
 
@@ -1905,7 +2028,7 @@ public static class PlayableLevelFactory
     /// live off the destination's own — already trimmed — component) points at that same object or
     /// lives inside it.
     /// </summary>
-    static int DestroyFieldReferencedObjects(GameObject root, LevelData level, List<string> unusedObjectPaths, List<string> log)
+    static int DestroyFieldReferencedObjects(GameObject root, LevelData level, List<string> unusedObjectPaths, List<string> log, HashSet<string> retainedFields)
     {
         if (level == null || unusedObjectPaths == null || unusedObjectPaths.Count == 0)
             return 0;
@@ -1913,6 +2036,7 @@ public static class PlayableLevelFactory
         var protectedGOs = new List<GameObject>();
         foreach (var f in level.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
         {
+            if (!retainedFields.Contains(f.Name)) continue;
             GameObject go = ResolveFieldGameObject(f, level);
             if (go != null && go != root)
                 protectedGOs.Add(go);

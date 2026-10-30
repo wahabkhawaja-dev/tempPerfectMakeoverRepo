@@ -41,22 +41,35 @@ public static class PlayableEditorMenu
     /// </summary>
     public static void SwapSceneLevel(string prefabPath, string innerPrefabPath)
     {
-        var scene = EditorSceneManager.OpenScene(PlayableScene);
-        RemoveExistingLevels(scene);
-
         var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-        if (prefab == null)
+        if (prefab == null || prefab.GetComponentInChildren<LevelData>(true) == null)
         {
-            Debug.LogError("Prefab missing: " + prefabPath);
+            Debug.LogError("Playable prefab is missing or its level script has not compiled: " + prefabPath);
             return;
         }
+        if (!string.IsNullOrEmpty(innerPrefabPath))
+        {
+            var inner = AssetDatabase.LoadAssetAtPath<GameObject>(innerPrefabPath);
+            if (inner == null || inner.GetComponentInChildren<LevelData>(true) == null)
+            {
+                Debug.LogError("Inner playable prefab is missing or its script has not compiled: " + innerPrefabPath);
+                return;
+            }
+        }
+        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        if (scene.path != PlayableScene)
+        {
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            scene = EditorSceneManager.OpenScene(PlayableScene);
+        }
+        RemoveExistingLevels(scene);
 
         var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, scene);
         instance.transform.position = Vector3.zero;
 
         var gm = Object.FindObjectOfType<GameManager>();
         if (gm != null)
-            gm.currentLevel = instance.GetComponent<LevelData>();
+            gm.currentLevel = instance.GetComponentInChildren<LevelData>(true);
 
         WireInnerLevel(scene, instance, innerPrefabPath);
 

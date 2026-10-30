@@ -911,6 +911,13 @@ public partial class CrossProjectPrefabImporter : EditorWindow
 
             var item = new Item { SourceRel = rel, Guid = guid, IsLevelSeed = levelSeeds.Contains(rel) };
             string existing = GuidExistsHere(guid, existsCache) ? AssetDatabase.GUIDToAssetPath(guid) : null;
+            // Luna ships each GUID separately, so a second copy of the same clip doubles its size in the build.
+            if (existing == null && LocalAudioTwin(srcFull) is string twin)
+            {
+                remap[guid] = AssetDatabase.AssetPathToGUID(twin);
+                p.Items.Add(new Item { SourceRel = rel, Dest = twin, Guid = guid, State = State.Remapped, Note = "identical audio already here - references pointed at it" });
+                continue;
+            }
             item.Dest = existing ?? (item.IsLevelSeed ? LevelDestPath(rel, guid, claimedDests) : MirrorPath(rel));
             claimedDests.Add(item.Dest);
             // Conflicts are known up front so references to an asset that won't be copied get nulled, not left Missing.
@@ -1442,12 +1449,23 @@ public partial class CrossProjectPrefabImporter : EditorWindow
     // Helpers
     // ─────────────────────────────────────────────────────────────────────
 
+    // "**/X/" entries of unity.assets.excludes in Luna's config.json (Editor stays: editor code is meant to drop).
+    private static readonly HashSet<string> LunaExcludedFolders = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+        "FacebookSDK", "AdMobPlugin", "InMobiAds", "AudienceNetwork", "YandexMobileAds", "Fyber", "FairBid",
+        "AppsFlyer", "IronSource", "Vungle", "NiceVibrations", "GameAnalytics", "UnityAds", "UnityPurchasing",
+    };
+
     private string MirrorPath(string sourceRel)
     {
         var segments = sourceRel.Substring("Assets/".Length).Split('/');
         if (renameResources)
             for (int i = 0; i < segments.Length - 1; i++)
                 if (segments[i] == "Resources") segments[i] = "_Resources";
+        // Luna's config.json excludes these folder names from the build outright - code mirrored under one
+        // (e.g. NiceVibrations' HapticTypes enum) silently vanishes and everything using it fails to compile.
+        for (int i = 0; i < segments.Length - 1; i++)
+            if (LunaExcludedFolders.Contains(segments[i])) segments[i] = "_" + segments[i];
         return destRoot.TrimEnd('/') + "/" + string.Join("/", segments);
     }
 
@@ -1548,6 +1566,19 @@ public partial class CrossProjectPrefabImporter : EditorWindow
             return fs.Length >= 3 && fs.ReadByte() == 0xEF && fs.ReadByte() == 0xBB && fs.ReadByte() == 0xBF;
         }
         catch { return false; }
+    }
+
+    private static readonly HashSet<string> AudioExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".wav", ".mp3", ".ogg", ".aif", ".aiff" };
+
+    /// <summary>A local audio file byte-identical to <paramref name="sourceFull"/>, or null. Audio only: a clip is always
+    /// sub-asset 8300000, while a texture's sprites depend on its own .meta, so a twin texture could break references.</summary>
+    private static string LocalAudioTwin(string sourceFull)
+    {
+        if (!AudioExtensions.Contains(Path.GetExtension(sourceFull)) || !File.Exists(sourceFull)) return null;
+        long size = new FileInfo(sourceFull).Length;
+        return Directory.EnumerateFiles(Application.dataPath, "*" + Path.GetExtension(sourceFull), SearchOption.AllDirectories)
+            .Where(f => new FileInfo(f).Length == size && FilesIdentical(sourceFull, f))
+            .Select(f => ToRelative(ProjectRoot, f)).FirstOrDefault();
     }
 
     private static bool FilesIdentical(string a, string b)

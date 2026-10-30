@@ -23,7 +23,6 @@ public class PlayableStepWizard : EditorWindow
     int _sourceIndex;
     PlayableLevelFactory.ScanResult _scan;
     readonly HashSet<int> _selected = new HashSet<int>();
-    readonly Dictionary<int, bool> _stepHasContent = new Dictionary<int, bool>();
     bool _placeInScene = true;
     FixItHandling _fixIt = FixItHandling.PlayInnerLevel;
     Vector2 _scroll;
@@ -42,11 +41,8 @@ public class PlayableStepWizard : EditorWindow
         /// <summary>Button stays, tapping it plays the inner level (chosen steps).</summary>
         PlayInnerLevel,
 
-        /// <summary>Button stays, tapping it fires the CTA. The playable ends there.</summary>
-        EndOnFixItButton,
-
-        /// <summary>Button, damaged art and inner level all cut — the level runs already-fixed.</summary>
-        HideFixItButton
+        /// <summary>Button, damaged art and inner level are cut; the level runs already fixed.</summary>
+        HideFixItButton = 2
     }
 
     /// <summary>What happens when the last kept step of the Fix-It level completes.</summary>
@@ -56,9 +52,6 @@ public class PlayableStepWizard : EditorWindow
         EndPlayableInFixItLevel
     }
 
-    enum CtaTiming { OnStepComplete, OnStepStart }
-    CtaTiming _ctaTiming = CtaTiming.OnStepComplete;
-    int _ctaStep = -1; // -1 = last selected step (default, matches original behavior)
 
     /// <summary>Appended to the built prefab/script name so repeated builds of different step
     /// ranges from the same source level don't overwrite each other's "{Level}_Playable" file.</summary>
@@ -71,10 +64,6 @@ public class PlayableStepWizard : EditorWindow
     class Plan
     {
         public List<int> Keep = new List<int>();
-        public int CtaStep;
-        public int TeaseStep;
-        public bool HasTease;
-        public bool CtaOnFixIt;
         public bool WantInner;
         public bool EndsInFixIt;
         public List<int> InnerKeep = new List<int>();
@@ -109,6 +98,7 @@ public class PlayableStepWizard : EditorWindow
     {
         RefreshPrefabList();
         _fixIt = (FixItHandling)EditorPrefs.GetInt(PrefFixIt, (int)FixItHandling.PlayInnerLevel);
+        if (!Enum.IsDefined(typeof(FixItHandling), _fixIt)) _fixIt = FixItHandling.PlayInnerLevel;
         _afterFixIt = (AfterFixIt)EditorPrefs.GetInt(PrefAfterFixIt, (int)AfterFixIt.ReturnToMainLevel);
         _variant = EditorPrefs.GetString(PrefVariant, "");
         string saved = EditorPrefs.GetString(PrefSource, "Assets/Resources/Lvl_GP/Level3_2.prefab");
@@ -119,6 +109,7 @@ public class PlayableStepWizard : EditorWindow
 
     void RefreshPrefabList()
     {
+        string current = _sourceIndex >= 0 && _sourceIndex < _prefabPaths.Length ? _prefabPaths[_sourceIndex] : null;
         var paths = new List<string>(PlayableLevelFactory.ListSourcePrefabs());
         string requestedSource = EditorPrefs.GetString(PrefSource, "");
         if (requestedSource.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase) &&
@@ -130,6 +121,21 @@ public class PlayableStepWizard : EditorWindow
         _prefabLabels = new string[_prefabPaths.Length];
         for (int i = 0; i < _prefabPaths.Length; i++)
             _prefabLabels[i] = SourceLabel(_prefabPaths[i]);
+        if (current != null) _sourceIndex = Mathf.Max(0, Array.IndexOf(_prefabPaths, current));
+    }
+
+    void OnProjectChange()
+    {
+        if (EditorApplication.isCompiling || EditorApplication.isUpdating) return;
+        RefreshPrefabList();
+        Rescan();
+        RestoreSteps();
+        Repaint();
+    }
+
+    void OnFocus()
+    {
+        OnProjectChange();
     }
 
     /// <summary>"Level1_1   [Fix-It @ step 5 -> Level1_5]" / "Level1_5   [Fix-It level of Level1_1]".</summary>
@@ -151,10 +157,9 @@ public class PlayableStepWizard : EditorWindow
     {
         _scan = null;
         _innerScan = null;
-        _stepHasContent.Clear();
         if (_prefabPaths.Length == 0)
         {
-            _status = "Resources/Lvl_GP mein koi level prefab nahi.";
+            _status = "No compatible level prefabs found under Assets.";
             return;
         }
 
@@ -287,8 +292,8 @@ public class PlayableStepWizard : EditorWindow
             "(apne chune hue steps ke saath), button pe CTA le jao, ya button hi hata do. " +
             "Baaki layers, extra scratches, extra tools DELETE. " +
             "Akhri selected step complete → LevelComplete + CTA (agla StartStep nahi). " +
-            "Source list mein Resources/Lvl_GP ke original levels AND already-built _Playable " +
-            "prefabs dono aate hain — [Fix-It ...] tag batata hai kaunsa level Fix-It level pe jata hai " +
+            "Source list mein Assets ke sab LevelData prefabs aate hain — imported Event/SP levels, custom folders aur built playables. " +
+            "[Fix-It ...] tag batata hai kaunsa level Fix-It level pe jata hai " +
             "aur kaunsa khud Fix-It level hai.",
             MessageType.Info);
 
@@ -472,17 +477,6 @@ public class PlayableStepWizard : EditorWindow
             MessageType.Info);
     }
 
-    /// <summary>
-    /// True when the build should keep the Fix-It button and end the playable on it. Needs the
-    /// gate's step to actually be in the build, otherwise the button never shows up to be tapped.
-    /// </summary>
-    bool EndsOnFixItButton(List<int> ordered)
-    {
-        return _fixIt == FixItHandling.EndOnFixItButton &&
-               _scan != null && _scan.HasInnerLevels && _scan.FixStep > 0 &&
-               ordered.Contains(_scan.FixStep);
-    }
-
     void DrawFixItHandling()
     {
         if (!_scan.HasInnerLevels || !string.IsNullOrEmpty(_scan.ParentPrefabPath))
@@ -516,7 +510,7 @@ public class PlayableStepWizard : EditorWindow
             EditorGUILayout.HelpBox(
                 "Inner level ka prefab detect nahi hua (script mein levelToPlay/partToPlay + LoadScene " +
                 "pattern nahi mila). Fix-It button rahega par tap kuch nahi karega — " +
-                "'End On Fix-It Button' use karo.",
+                "choose Hide Fix-It Button or import the linked Fix-It level.",
                 MessageType.Warning);
             return;
         }
@@ -557,14 +551,6 @@ public class PlayableStepWizard : EditorWindow
             EditorGUILayout.HelpBox(
                 "The CTA ends the playable before step " + fix + " plays, so the Fix-It button never shows up.",
                 MessageType.Warning);
-            return;
-        }
-
-        if (plan.HasTease && plan.TeaseStep == fix)
-        {
-            EditorGUILayout.HelpBox(
-                "Fix-It step " + fix + " is the tease step: its tool tap fires the CTA, so the Fix-It level is not built.",
-                MessageType.None);
             return;
         }
 
@@ -668,18 +654,6 @@ public class PlayableStepWizard : EditorWindow
         return list;
     }
 
-    bool StepHasContentCached(int step)
-    {
-        bool has;
-        if (!_stepHasContent.TryGetValue(step, out has))
-        {
-            has = PlayableLevelFactory.StepHasContent(_prefabPaths[_sourceIndex], step);
-            _stepHasContent[step] = has;
-        }
-
-        return has;
-    }
-
     Plan MakePlan()
     {
         var plan = new Plan();
@@ -690,41 +664,11 @@ public class PlayableStepWizard : EditorWindow
             return plan;
         }
 
-        int ctaStep = ordered.Contains(_ctaStep) ? _ctaStep : ordered[ordered.Count - 1];
-        plan.CtaOnFixIt = EndsOnFixItButton(ordered);
-
-        bool fixItPlays = !plan.CtaOnFixIt && _fixIt == FixItHandling.PlayInnerLevel &&
+        bool fixItPlays = _fixIt == FixItHandling.PlayInnerLevel &&
                           HasFixItLevel && ordered.Contains(_scan.FixStep);
         plan.EndsInFixIt = fixItPlays && _afterFixIt == AfterFixIt.EndPlayableInFixItLevel;
-
-        int keepUpTo;
-        if (plan.CtaOnFixIt || plan.EndsInFixIt)
-        {
-            // The button (or the Fix-It level behind it) owns the CTA — no tease after it.
-            ctaStep = _scan.FixStep;
-            keepUpTo = _scan.FixStep;
-        }
-        else
-        {
-            keepUpTo = _ctaTiming == CtaTiming.OnStepStart ? ctaStep - 1 : ctaStep;
-        }
-
-        plan.CtaStep = ctaStep;
-        plan.TeaseStep = keepUpTo + 1;
-        plan.HasTease = !plan.CtaOnFixIt && !plan.EndsInFixIt && StepHasContentCached(plan.TeaseStep);
-
-        plan.Keep = ordered.FindAll(s => s <= keepUpTo);
-        if (plan.HasTease && !plan.Keep.Contains(plan.TeaseStep))
-        {
-            plan.Keep.Add(plan.TeaseStep);
-            plan.Keep.Sort();
-        }
-
-        if (plan.Keep.Count == 0)
-        {
-            plan.Error = "CTA Step 'On Start' ka matlab pehla selected step bhi exclude ho gaya — kam az kam 1 step chahiye pehle.";
-            return plan;
-        }
+        int keepUpTo = plan.EndsInFixIt ? _scan.FixStep : ordered[ordered.Count - 1];
+        plan.Keep = ordered.FindAll(step => step <= keepUpTo);
 
         plan.WantInner = fixItPlays && _scan.FixStep <= keepUpTo;
         if (!plan.WantInner)
@@ -760,11 +704,7 @@ public class PlayableStepWizard : EditorWindow
 
         foreach (int s in plan.Keep)
         {
-            if (plan.HasTease && s == plan.TeaseStep)
-                parts.Add(s + " (tease: tool tap → CTA)");
-            else if (plan.CtaOnFixIt && s == _scan.FixStep)
-                parts.Add(s + " [Fix-It tap → CTA]");
-            else if (plan.WantInner && s == _scan.FixStep)
+            if (plan.WantInner && s == _scan.FixStep)
                 parts.Add(s + " [Fix-It → " + innerName + ": " + string.Join(" → ", plan.InnerKeep) +
                           (plan.EndsInFixIt ? " → CTA]" : " → back to " + s + "]"));
             else
@@ -772,7 +712,7 @@ public class PlayableStepWizard : EditorWindow
         }
 
         string flow = string.Join(" → ", parts);
-        if (!plan.HasTease && !plan.CtaOnFixIt && !plan.EndsInFixIt)
+        if (!plan.EndsInFixIt)
             flow += " → CTA";
         return flow;
     }
@@ -780,57 +720,11 @@ public class PlayableStepWizard : EditorWindow
     void DrawCtaSection(Plan plan)
     {
         EditorGUILayout.Space(10);
-        EditorGUILayout.LabelField("CTA Trigger", EditorStyles.boldLabel);
-
-        var ordered = Sorted(_selected);
-        int lastSelected = ordered[ordered.Count - 1];
-        if (_ctaStep < 0 || !ordered.Contains(_ctaStep))
-            _ctaStep = lastSelected;
-
-        // The Fix-It button owns the CTA in that mode, so these two controls would only lie.
-        if (plan.CtaOnFixIt)
-        {
-            EditorGUILayout.HelpBox(
-                "CTA fires when the Fix-It button on step " + _scan.FixStep + " is tapped — set above, " +
-                "under Fix-It button. Timing / CTA Step do not apply.",
-                MessageType.None);
-            return;
-        }
-
-        if (plan.EndsInFixIt)
-        {
-            EditorGUILayout.HelpBox(
-                "CTA fires when the Fix-It level's last kept step completes — set under 'After last Fix-It step'. " +
-                "Timing / CTA Step do not apply.",
-                MessageType.None);
-            return;
-        }
-
-        _ctaTiming = (CtaTiming)EditorGUILayout.EnumPopup("Timing", _ctaTiming);
-
-        int ctaStepIndex = Mathf.Max(0, ordered.IndexOf(_ctaStep));
-        var stepLabels = ordered.ConvertAll(s => s.ToString()).ToArray();
-        ctaStepIndex = EditorGUILayout.Popup("CTA Step", ctaStepIndex, stepLabels);
-        _ctaStep = ordered[Mathf.Clamp(ctaStepIndex, 0, ordered.Count - 1)];
-
-        string help;
-        if (_ctaTiming == CtaTiming.OnStepStart)
-        {
-            help = "CTA fires the instant step " + _ctaStep + " would begin — it never actually plays. " +
-                   (_ctaStep == ordered[0]
-                       ? "This is the first selected step, so the CTA fires immediately."
-                       : "Steps before it in your selection still play normally.");
-        }
-        else
-        {
-            help = "CTA fires when step " + _ctaStep + " completes (default: last selected step).";
-        }
-
-        help += "\n\nFor any other moment — mid-step, on a timer, after N taps — use the " +
-                "PlayableCTA component added to the built prefab's root: set its Trigger, or wire " +
-                "PlayableCTA.FireCTA() into whichever UnityEvent marks that moment.";
-
-        EditorGUILayout.HelpBox(help, MessageType.None);
+        EditorGUILayout.LabelField("CTA — Step Complete", EditorStyles.boldLabel);
+        string message = plan.EndsInFixIt
+            ? "CTA fires when the last selected Fix-It step completes."
+            : "CTA fires when step " + plan.Keep[plan.Keep.Count - 1] + " completes.";
+        EditorGUILayout.HelpBox(message + " Only selected steps are built; no extra tool or tease step is added.", MessageType.None);
     }
 
     void RunBuild()
@@ -845,18 +739,7 @@ public class PlayableStepWizard : EditorWindow
             return;
         }
 
-        // The step right after the last genuinely playable one is the "tease" step:
-        // OnStepStart → ctaStep itself is the tease (nothing before it plays if it's first).
-        // OnStepComplete → ctaStep plays normally, ctaStep+1 is the tease.
-        // A tease step is built exactly like a normal kept step (real entrance, real tool,
-        // its own Complete() falls through to LevelComplete same as any last step) — the
-        // only difference is PlayableCTA gets wired to OnToolAppear, watching that step's
-        // tool, so tapping it redirects to store instead of actually playing.
-        var outerMode = plan.CtaOnFixIt
-            ? PlayableLevelFactory.InnerMode.CtaOnFix
-            : plan.WantInner
-                ? PlayableLevelFactory.InnerMode.Outer
-                : PlayableLevelFactory.InnerMode.Exclude;
+        var outerMode = plan.WantInner ? PlayableLevelFactory.InnerMode.Outer : PlayableLevelFactory.InnerMode.Exclude;
 
         if (!plan.WantInner)
         {
@@ -900,13 +783,6 @@ public class PlayableStepWizard : EditorWindow
         {
             var built = PlayableLevelFactory.Build(
                 _prefabPaths[_sourceIndex], plan.Keep, _placeInScene, outerMode, innerBuilt, _variant);
-
-            if (built.Ok && plan.HasTease)
-            {
-                var teaseLog = new List<string>();
-                PlayableLevelFactory.ConfigureTeaseCta(built.PrefabPath, plan.TeaseStep, teaseLog);
-                built.Log += "\n" + string.Join("\n", teaseLog);
-            }
 
             if (built.Ok)
             {

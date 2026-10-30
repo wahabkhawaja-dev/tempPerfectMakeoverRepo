@@ -1,5 +1,8 @@
 # Cross-project prefab importing
 
+For step pruning, step-complete CTA behavior, generated-script failures and builder
+validation, see [PLAYABLE_BUILDER.md](PLAYABLE_BUILDER.md).
+
 Implemented in `Assets/_Playable/Scripts/Editor`, adapted from the importer, script planner,
 sanitizer, YAML patcher and editor UI in `D:/UNITY/LUNA/CleanAsmrPlayables`.
 The reference project's `project_analysis.md`, `PLAYABLE_AND_CTA_REFERENCE.md` and
@@ -23,7 +26,9 @@ The reference project's `project_analysis.md`, `PLAYABLE_AND_CTA_REFERENCE.md` a
    rolls the import back. Wait for the `[Prefab Importer] Import validated` Console message.
 6. **Make Playable** opens this project's Step Wizard. Default imported level prefabs are
    in `Assets/_ImportedFromParent/Levels`; dependencies are mirrored below
-   `Assets/_ImportedFromParent`. A custom destination also works through **Make Playable**.
+   `Assets/_ImportedFromParent`. The wizard discovers compatible level prefabs anywhere below `Assets`, including custom
+   destinations, SP/event names and prefab variants; it refreshes after project changes
+   and on focus while preserving the selected source.
 
 The parent project is read-only. Files and metadata are copied into this project or
 references are mapped to an existing local asset. Imported prefabs have no runtime
@@ -89,7 +94,7 @@ independent export settings in `luna.json` are unchanged.
 ## Verification (2026-10-28)
 
 **Playable > Validate Prefab Importer** runs disposable fixture tests without editing scenes
-or production prefabs. The 31 checks exercise nested prefab imports, script remapping,
+or production prefabs. The 34 checks exercise nested prefab imports, script remapping,
 secondary textures in `.meta`, CG/save adaptation, event discovery, preserved sprite size
 and transforms through the actual creator trim, conflict/missing-dependency/stale-plan
 rejection, partial-write rollback, exact overwritten-file restoration, undo cleanup, and
@@ -141,3 +146,13 @@ exercised in Play Mode through `Step1Done` and `ActionOnTap.Tap` with the vibrat
 absent; the lid opened without the reported exception. The closing method and its delayed
 callbacks were exercised separately. This validates those paths, not every remaining level
 interaction; compilation/reference validation alone is not a full gameplay test.
+
+### Playable source discovery
+
+The Step Wizard catalogue identifies prefabs by a `LevelData`-derived component rather
+than a fixed folder or naming prefix. It scans local `Assets` prefab YAML against actual
+compiled level-script GUIDs, including inherited base/nested prefab bindings, without
+loading every level's art. Ordinary particle/tool dependency prefabs are excluded.
+Levels must first exist in this project; parent-project entries in the importer's picker
+are not yet local playable sources. The regression fixtures cover SP names, arbitrary
+event names in custom folders, variants, and exclusion of non-level nested dependencies.

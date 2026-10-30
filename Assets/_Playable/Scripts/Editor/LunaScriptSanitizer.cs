@@ -80,7 +80,7 @@ public static class LunaScriptSanitizer
     {
         "Firebase", "GameAnalyticsSDK", "GoogleMobileAds", "com.adjust", "Io.AppMetrica", "AppodealAds",
         "UnityEngine.Purchasing", "UnityEngine.Advertisements", "Unity.Notifications", "Google.Play",
-        "Facebook.Unity", "Unity.Services", "AppsFlyerSDK",
+        "Facebook.Unity", "Unity.Services", "AppsFlyerSDK", "UnityEngine.U2D.Animation",
     };
 
     private static readonly string[] MouseMessages =
@@ -102,6 +102,7 @@ public static class LunaScriptSanitizer
         if (options.RemoveEmptyTryCatch) text = RemoveEmptyTryCatch(text, result);
         if (options.FixAnimatorSpeed) text = FixAnimatorSpeed(text, result);
         if (options.FixParticleClear) text = FixParticleClear(text, result);
+        text = FixSpriteSkinBones(text, result);
         if (options.ConvertOnMouse) text = ConvertOnMouse(text, options.Catalog, nl, result);
         ReportTypedMemberGaps(text, options.Catalog, result);
         ReportUnavailableTypes(text, options.UnavailableTypes, result);
@@ -526,6 +527,27 @@ public static class LunaScriptSanitizer
         }
         result.Hit("ParticleSystem.Clear(bool) -> Clear()", edits.Count);
         return ApplyEdits(text, edits);
+    }
+
+    /// <summary>Luna's C# API has no UnityEngine.U2D.Animation (the skinning itself still plays), so
+    /// `x.GetComponent&lt;SpriteSkin&gt;().boneTransforms` becomes every transform under x (x itself excluded).</summary>
+    private static string FixSpriteSkinBones(string text, LunaSanitizeResult result)
+    {
+        string mask = Mask(text);
+        var edits = new List<Edit>();
+        foreach (Match m in Regex.Matches(mask, @"\b(?<obj>[\w\.]+)\s*\.\s*GetComponent\s*<\s*(?:UnityEngine\s*\.\s*U2D\s*\.\s*Animation\s*\.\s*)?SpriteSkin\s*>\s*\(\s*\)\s*\.\s*boneTransforms\b"))
+        {
+            // ponytail: includes non-bone children too; fine for rest-pose capture/restore, the only use so far.
+            string obj = text.Substring(m.Groups["obj"].Index, m.Groups["obj"].Length);
+            edits.Add(new Edit { Start = m.Index, End = m.Index + m.Length,
+                With = $"System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Skip({obj}.GetComponentsInChildren<Transform>(true), 1))" });
+        }
+        result.Hit("SpriteSkin.boneTransforms -> child transforms", edits.Count);
+        text = ApplyEdits(text, edits);
+        Match left = Regex.Match(Mask(text), @"\bSpriteSkin\b");
+        if (left.Success)
+            result.Warnings.Add($"line {LineOf(text, left.Index)}: SpriteSkin isn't in Luna's C# API - this line won't compile in the playable.");
+        return text;
     }
 
     // ─────────────────────────────────────────────────────────────────────
