@@ -2,11 +2,11 @@
 
 Branch: `MakeoverFashionASMRThemes_004_CrownHalloween_CTAComplete_30Oct2026`
 
-This work is isolated in `C:/Users/Cigra Studio/.codex/worktrees/crown-halloween/PerfecrMakeoverASMR_Playables`. Branch 004 is based on branch 003's completed commit `653cc69a` (rebased from its original `818e105f` base). The original Halloween commit `882868e7` remains on `codex/backup-crown-halloween-882868e7`. Branch 003 and its checkout are unchanged by the rebase.
+The active project is `D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables`. Commit `4ba5a1d6` consolidates Halloween 004 with the completed 003 changes. The previous isolated worktree remains detached as a backup; do not export from both copies.
 
 ## Open and rebuild
 
-Open this worktree with Unity 2022.3.62f2 and load `Assets/_Playable/Scenes/Gameplay_Playable.unity`. The configured level is `Assets/_Playable/Halloween2026/Prefabs/Halloween_Crown_Playable.prefab`.
+Open the active project with Unity 2022.3.62f2 and load `Assets/_Playable/Scenes/Gameplay_Playable.unity`. The configured level is `Assets/_Playable/Halloween2026/Prefabs/Halloween_Crown_Playable.prefab`.
 
 Use **Playable > Halloween Crown > Build Rigs and Scene** in Edit Mode to rebuild the rigs, cloth wipe setup and scene. This replaces the active scene's level and configures its game manager; save other scene work first. **Playable > Halloween Crown > Validate** checks missing scripts, broken object references, skin bindings, the retained foam renderer, cloth camera-follow bindings, hidden future layers, absence of water particles and manual CTA configuration.
 
@@ -52,4 +52,10 @@ Release-to-complete regression check: releasing below the threshold kept the ste
 
 Continuous-foam/follow regression checks: the original `Step3Done` callback kept Mix alpha at 1 and Mix E at 0 through the handoff; the cloth enabled `BD_CameraFollow` on entry and disabled it on finish. A simulated tool-tip sweep on the retained Mix renderer reached 100% GPU erasure, stayed incomplete while dragging, and completed with CTA only after release. Runtime console reported no errors in the successful test. Startup checks confirmed zero opacity for Spray, Mix, Mix E, Clean and the wipe surface after the base setup delay.
 
-No browser/Luna export has been certified. During repeated imports the SDK intermittently reported Windows IO 1224 locks on its worktree cache files; that editor/export issue is separate from the successful Unity gameplay test. Validate the exported creative in Luna before shipping.
+Browser export repair (30 October): replaced zero-border Sliced geometry with Simple sprite geometry while retaining bounds. Baked the existing saved bone-root fitting into renderer transforms, without recalculating tool sizes. The sprayer trigger and contact tips retain their world positions. Disabled runtime refitting on baked rigs and enabled normal Unity play-mode reloads. Prefab rig/reference validation passes and the SDK compiles with zero errors. Fresh browser testing covers embedded portrait preview and pointer-driven dust, spray and mixing steps. Generated LunaTemp files are ignored by Git; prior caches/config are preserved under Library/HalloweenBuildBackups.
+
+## Creative Library destination
+
+Application ID is 42211, server EU. Select this application in Upload to Creative Library, then select New Concept and use the branch name as the concept name, or select the intended existing concept. Do not paste the application URL into the concept-name field. A successful upload log is not evidence that a particular concept is visible: verify the selected concept in the web library and confirm Update if prompted. The locally generated archive is LunaTemp/stage4/create-hub/_build.zip.
+
+Final browser verification: a full pointer-driven portrait playthrough completed dust, shampoo spray, mixing and cloth erasure, then displayed the completion end card. No pink materials appeared. The user separately verified the result. The embedded phone preview was checked as well. The retired detached worktree has been removed; its remaining source/config changes were preserved in a named Git stash.

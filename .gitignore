@@ -6,6 +6,9 @@
 # See: https://github.com/github/gitignore/tree/main/Global
 #
 .utmp/
+
+# Playworks output is regenerated per checkout and must not travel between branches.
+/LunaTemp/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/

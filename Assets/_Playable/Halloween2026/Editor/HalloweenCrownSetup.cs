@@ -31,6 +31,7 @@ public static class HalloweenCrownSetup
         var root = PrefabUtility.LoadPrefabContents(PrefabPath);
         try
         {
+            HalloweenCrownWebCompatibility.RestoreToolFits(root);
             HalloweenCrownWipeSetup.Configure(root);
             foreach (var renderer in root.GetComponentsInChildren<SpriteRenderer>(true))
             {
@@ -39,6 +40,7 @@ public static class HalloweenCrownSetup
                 if (!path.StartsWith(Tools, StringComparison.Ordinal) || path.EndsWith("/Duster.png")) continue;
                 BuildHierarchy(renderer);
             }
+            HalloweenCrownWebCompatibility.Apply(root);
             var cta = root.GetComponent<PlayableCTA>();
             if (cta == null) cta = root.AddComponent<PlayableCTA>();
             cta.trigger = PlayableCTA.Trigger.Manual;
@@ -156,6 +158,8 @@ public static class HalloweenCrownSetup
     static void BuildHierarchy(SpriteRenderer renderer)
     {
         var existing = renderer.GetComponent<HalloweenToolRigFit>();
+        Vector3? savedRootScale=existing!=null&&existing.skinRoot!=null?(Vector3?)existing.skinRoot.localScale:null;
+        Vector3? savedRootPosition=existing!=null&&existing.skinRoot!=null?(Vector3?)existing.skinRoot.localPosition:null;
         // Rebuilds preserve the authored rectangle stored before skinning was installed.
         Vector2 size = existing != null ? existing.authoredSize : renderer.drawMode == SpriteDrawMode.Simple
             ? (Vector2)renderer.sprite.bounds.size : renderer.size;
@@ -187,6 +191,11 @@ public static class HalloweenCrownSetup
         }
         var fit = existing != null ? existing : renderer.gameObject.AddComponent<HalloweenToolRigFit>();
         fit.skinRoot=transforms[0]; fit.authoredSize=size; fit.authoredCenter=center; fit.ApplyFit();
+        if(savedRootScale.HasValue)
+        {
+            fit.skinRoot.localScale=savedRootScale.Value;
+            fit.skinRoot.localPosition=savedRootPosition.Value;
+        }
         skin.enabled=true;
     }
 
@@ -217,7 +226,11 @@ public static class HalloweenCrownSetup
             var skin=fit.GetComponent<SpriteSkin>(); var sprite=fit.GetComponent<SpriteRenderer>().sprite;
             int count=SpriteDataAccessExtensions.GetBindPoses(sprite).Length;
             if(skin==null || skin.rootBone==null || skin.boneTransforms.Length!=count || skin.boneTransforms.Any(b=>b==null)) errors.Add(fit.name+": invalid rig binding");
+            if(!fit.rendererFitBaked||fit.enabled||(fit.skinRoot.localScale-Vector3.one).sqrMagnitude>.0001f)
+                errors.Add(fit.name+": tool fitting must be baked into its sprite transform for Luna.");
         }
+        if(prefab.GetComponentsInChildren<SpriteRenderer>(true).Any(s=>s.drawMode!=SpriteDrawMode.Simple))
+            errors.Add("Halloween artwork must use Simple sprite geometry for Luna.");
         if(prefab.GetComponent<Level3_Crown_Playable>()==null) errors.Add("Original crown gameplay script was replaced.");
         var wipe=prefab.GetComponent<HalloweenCrownWipe>();
         if(wipe==null || wipe.clothTool==null || wipe.wipeTip==null || wipe.foamSurface==null || wipe.cleanCrown==null || wipe.cameraFollow==null)

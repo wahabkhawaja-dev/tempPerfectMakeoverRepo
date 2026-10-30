@@ -9,6 +9,9 @@ public sealed class HalloweenToolRigFit : MonoBehaviour
     public Transform skinRoot;
     public Vector2 authoredSize;
     public Vector2 authoredCenter;
+    [HideInInspector] public bool rendererFitBaked;
+    [HideInInspector] public Vector3 rendererOriginalPosition,rendererOriginalScale;
+    [HideInInspector] public Vector3 bakedRootPosition,bakedRootScale;
     SpriteRenderer surface;
     Sprite fittedSprite;
 

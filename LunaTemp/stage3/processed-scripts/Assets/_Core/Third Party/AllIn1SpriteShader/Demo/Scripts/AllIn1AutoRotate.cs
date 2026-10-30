@@ -1,1 +1,0 @@
-namespace AllIn1SpriteShader.Demo.Scripts {}
