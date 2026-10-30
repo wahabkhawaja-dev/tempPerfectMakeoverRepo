@@ -274,10 +274,14 @@ public class CG_ChalkTrace : MonoBehaviour
                     trail.time = SliceCutter.SlashLife;
                     trail.startWidth = SliceCutter.SlashWidth;
                     trail.endWidth = 0f;
-                    trail.startColor = SliceCutter.SlashColor;
+                    // [Luna] a TrailRenderer added at runtime has no gradient for startColor/endColor to write into
+                    // ("Cannot read properties of null (reading 'setKey')"); the same two-key gradient, assigned whole.
                     Color clear = SliceCutter.SlashColor;
                     clear.a = 0f;
-                    trail.endColor = clear;
+                    var fade = new Gradient();
+                    fade.SetKeys(new[] { new GradientColorKey(SliceCutter.SlashColor, 0f), new GradientColorKey(clear, 1f) },
+                                 new[] { new GradientAlphaKey(SliceCutter.SlashColor.a, 0f), new GradientAlphaKey(0f, 1f) });
+                    trail.colorGradient = fade;
                     trail.minVertexDistance = .03f;
                     trail.sortingLayerID = SliceCutter.Sheet.sortingLayerID;
                     trail.sortingOrder = SliceCutter.Sheet.sortingOrder + SliceCutter.SlashSortingOffset;
@@ -286,7 +290,7 @@ public class CG_ChalkTrace : MonoBehaviour
                 }
                 if (Dust != null)
                 {
-                    sliceDust[i] = Instantiate(Dust, visual.transform, true);
+                    sliceDust[i] = Instantiate(Dust.gameObject, visual.transform, true).GetComponent<ParticleSystem>();
                     sliceDust[i].Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 }
                 visual.SetActive(false);
@@ -473,14 +477,14 @@ public class CG_ChalkTrace : MonoBehaviour
         Sprite os = Outline.sprite;
         var order = new List<int>();
         var at = new List<float>();
-        Color32[] src = os.texture.isReadable ? os.texture.GetPixels32() : null;
         float duration = Mathf.Max(.05f, SliceDuration);
         float stagger = Mathf.Max(0f, SliceStagger);
         float total = duration + stagger * (SliceStrokes.Length - 1);
         // Precompute the actual outline sections once. This prevents a crossing or nearby slash from
         // revealing another part of the garment, and avoids transform calls in the pixel search.
-        var segmentFrom = new List<Vector3>();
-        var segmentTo = new List<Vector3>();
+        // [Luna] Plain floats, not Vector3: millions of tests (inked pixels x segments) and every Vector3 op is an
+        // allocation in the browser - this one frame froze the playable for 5.6 s before each chalk step.
+        var segments = new List<float>(); // per segment: ax, ay, az, abx, aby, abz, |ab|^2
         var owner = new List<int>();
         for (int i = 0; i < SliceStrokes.Length; i++)
         {
@@ -489,30 +493,46 @@ public class CG_ChalkTrace : MonoBehaviour
                 section = new[] { SliceStrokes[i].From, SliceStrokes[i].To };
             for (int j = 1; j < section.Length; j++)
             {
-                segmentFrom.Add(PathSpace.TransformPoint(section[j - 1]));
-                segmentTo.Add(PathSpace.TransformPoint(section[j]));
+                Vector3 a = PathSpace.TransformPoint(section[j - 1]), ab = PathSpace.TransformPoint(section[j]) - a;
+                segments.Add(a.x); segments.Add(a.y); segments.Add(a.z);
+                segments.Add(ab.x); segments.Add(ab.y); segments.Add(ab.z); segments.Add(ab.sqrMagnitude);
                 owner.Add(i);
             }
         }
-        for (int y = 0; y < h; y++)
-            for (int x = 0; x < w; x++)
+        float[] seg = segments.ToArray();
+        int[] own = owner.ToArray();
+        int count = own.Length;
+        // Each slice's start and travel, for the moment its chalk reaches a pixel.
+        var travel = new float[SliceStrokes.Length * 4];
+        for (int i = 0; i < SliceStrokes.Length; i++)
+        {
+            Vector3 t = sliceTo[i] - sliceFrom[i];
+            travel[i * 4] = t.x; travel[i * 4 + 1] = t.y; travel[i * 4 + 2] = t.z; travel[i * 4 + 3] = t.sqrMagnitude;
+        }
+        // Outline.transform.TransformPoint of a point in its plane (z = 0) is origin + x * ex + y * ey.
+        Transform ot = Outline.transform;
+        Vector3 o = ot.TransformPoint(Vector3.zero), ex = ot.TransformPoint(Vector3.right) - o, ey = ot.TransformPoint(Vector3.up) - o;
+        float ppu = os.pixelsPerUnit, pivX = os.pivot.x, pivY = os.pivot.y;
+        float cellX = os.rect.width / w, cellY = os.rect.height / h; // outline pixels per mask pixel (ds in the editor)
+        foreach (int idx in DrawnMaskPixels(os, w, h, ds))
             {
-                if (src != null && !Drawn(src, os.texture.width, os.rect, x * ds, y * ds, ds)) continue;
-                Vector2 local = (new Vector2((x + .5f) * ds, (y + .5f) * ds) - os.pivot) / os.pixelsPerUnit;
-                Vector3 p = Outline.transform.TransformPoint(local);
+                int x = idx % w, y = idx / w;
+                float lx = ((x + .5f) * cellX - pivX) / ppu, ly = ((y + .5f) * cellY - pivY) / ppu;
+                float px = o.x + ex.x * lx + ey.x * ly, py = o.y + ex.y * lx + ey.y * ly, pz = o.z + ex.z * lx + ey.z * ly;
                 float best = float.MaxValue, when = 0f;
-                for (int j = 0; j < owner.Count; j++)
+                for (int j = 0; j < count; j++)
                 {
-                    Vector3 a = segmentFrom[j];
-                    Vector3 b = segmentTo[j];
-                    Vector3 ab = b - a;
-                    float f = ab.sqrMagnitude > .000001f ? Mathf.Clamp01(Vector3.Dot(p - a, ab) / ab.sqrMagnitude) : 0f;
-                    float d = (p - (a + ab * f)).sqrMagnitude;
+                    int s = j * 7;
+                    float ax = seg[s], ay = seg[s + 1], az = seg[s + 2], abx = seg[s + 3], aby = seg[s + 4], abz = seg[s + 5], ab2 = seg[s + 6];
+                    float f = ab2 > .000001f ? Mathf.Clamp01(((px - ax) * abx + (py - ay) * aby + (pz - az) * abz) / ab2) : 0f;
+                    float dx = px - (ax + abx * f), dy = py - (ay + aby * f), dz = pz - (az + abz * f);
+                    float d = dx * dx + dy * dy + dz * dz;
                     if (d >= best) continue;
                     best = d;
-                    int i = owner[j];
-                    Vector3 travel = sliceTo[i] - sliceFrom[i];
-                    float u = travel.sqrMagnitude > .000001f ? Mathf.Clamp01(Vector3.Dot(p - sliceFrom[i], travel) / travel.sqrMagnitude) : 1f;
+                    int i = own[j];
+                    Vector3 from = sliceFrom[i];
+                    float t2 = travel[i * 4 + 3];
+                    float u = t2 > .000001f ? Mathf.Clamp01(((px - from.x) * travel[i * 4] + (py - from.y) * travel[i * 4 + 1] + (pz - from.z) * travel[i * 4 + 2]) / t2) : 1f;
                     when = (i * stagger + u * duration) / total;
                 }
                 order.Add(y * w + x);
@@ -520,7 +540,7 @@ public class CG_ChalkTrace : MonoBehaviour
             }
         revealOrder = order.ToArray();
         revealAt = at.ToArray();
-        System.Array.Sort(revealAt, revealOrder);
+        LunaArray.Sort(revealAt, revealOrder);
         orderStart = -1;
     }
 
@@ -736,13 +756,14 @@ public class CG_ChalkTrace : MonoBehaviour
         {
             Sprite os = Outline.sprite;
             int ds = Mathf.Max(1, MaskDownsample);
-            int w = Mathf.CeilToInt(os.rect.width / ds), h = Mathf.CeilToInt(os.rect.height / ds);
+            MaskGrid(os, ds, out int w, out int h);
 
             maskTex = new Texture2D(w, h, TextureFormat.RGBA32, false);
             maskTex.wrapMode = TextureWrapMode.Clamp;
 
+            // Sized to cover the outline exactly (ppu / ds in the editor, where the grid is rect / ds).
             Vector2 pivot = new Vector2(os.pivot.x / os.rect.width, os.pivot.y / os.rect.height);
-            Sprite maskSprite = Sprite.Create(maskTex, new Rect(0, 0, w, h), pivot, os.pixelsPerUnit / ds);
+            Sprite maskSprite = Sprite.Create(maskTex, new Rect(0, 0, w, h), pivot, w * os.pixelsPerUnit / os.rect.width);
 
             var go = new GameObject("Chalk Mask");
             go.transform.SetParent(Outline.transform, false);
@@ -752,9 +773,11 @@ public class CG_ChalkTrace : MonoBehaviour
             mask.alphaCutoff = 0.5f;
             mask.isCustomRangeActive = true;
             mask.backSortingOrder = Outline.sortingOrder - 1;
-            mask.frontSortingOrder = Outline.sortingOrder;
+            mask.frontSortingOrder = Outline.sortingOrder + 1; // [Luna] its front order is exclusive
         }
 
+        // A new texture's contents are undefined, so it is always cleared. (Skipping it on a fresh texture in Luna left
+        // SetPixel nothing to draw into: the chalk outline never appeared.)
         maskTex.SetPixels32(new Color32[maskTex.width * maskTex.height]);
         maskTex.Apply(false);
         hasLast = false;
@@ -781,16 +804,18 @@ public class CG_ChalkTrace : MonoBehaviour
 
         Sprite os = Outline.sprite;
 
-        if (os == null || !os.texture.isReadable)
-            return;
-
         int ds = Mathf.Max(1, MaskDownsample);
+        // Without the bake (or, in the editor, a readable outline) it reveals around the tip instead (MarkRadius).
+        bool baked = HasBake(os, ds);
+#if UNITY_LUNA
+        if (!baked)
+            return;
+#else
+        if (os == null || (!baked && !os.texture.isReadable))
+            return;
+#endif
+
         int w = maskTex.width, h = maskTex.height, n = Points.Length;
-        // the sprite's whole rect, as the mask is sized (textureRect is trimmed to what is drawn)
-        Rect rect = os.rect;
-        Texture2D tex = os.texture;
-        Color32[] src = tex.GetPixels32();
-        int tw = tex.width;
 
         // the path in the outline's pixel space
         var path = new Vector2[n];
@@ -804,13 +829,11 @@ public class CG_ChalkTrace : MonoBehaviour
         var order = new List<int>();
         var at = new List<float>();
 
-        for (int my = 0; my < h; my++)
-            for (int mx = 0; mx < w; mx++)
+        float cellX = os.rect.width / w, cellY = os.rect.height / h; // outline pixels per mask pixel (ds in the editor)
+        foreach (int idx in DrawnMaskPixels(os, w, h, ds))
             {
-                if (!Drawn(src, tw, rect, mx * ds, my * ds, ds))
-                    continue;
-
-                Vector2 p = new Vector2((mx + .5f) * ds, (my + .5f) * ds);
+                int mx = idx % w, my = idx / w;
+                Vector2 p = new Vector2((mx + .5f) * cellX, (my + .5f) * cellY);
                 float best = float.MaxValue, bestAt = 0f;
 
                 for (int i = 0; i < n; i++)
@@ -832,8 +855,80 @@ public class CG_ChalkTrace : MonoBehaviour
 
         revealOrder = order.ToArray();
         revealAt = at.ToArray();
-        System.Array.Sort(revealAt, revealOrder);
+        LunaArray.Sort(revealAt, revealOrder);
     }
+
+    // Mask pixels where the outline image has ink, baked in the editor (BakeDrawnPixels): a Luna build can't read
+    // texture pixels at runtime - its GetPixels32 ran past the data ("Cannot read properties of undefined (reading 'a')")
+    // and stopped the chalk step. With the bake the browser reveals exactly the editor's pixels, without reading any.
+    // The bake's mask grid is kept with it: Luna rebuilds sprite.rect from the downscaled texture (568 x 1372 came back
+    // as 570.6 x 1382.8), so a grid worked out from it there didn't line up with the bake - which was then ignored and
+    // every mask pixel searched instead (the freeze before each chalk step).
+    [SerializeField, HideInInspector] int[] drawnPixels;
+    [SerializeField, HideInInspector] int drawnW, drawnH, drawnDs;
+
+    /// <summary>The bake fits this outline: same downsample and, allowing Luna's rounding (under 1% seen), the same grid.</summary>
+    bool HasBake(Sprite os, int ds) =>
+        os != null && drawnPixels != null && drawnPixels.Length > 0 && drawnDs == ds && drawnW > 0 && drawnH > 0 &&
+        Mathf.Abs(os.rect.width / ds / drawnW - 1f) < .03f && Mathf.Abs(os.rect.height / ds / drawnH - 1f) < .03f;
+
+    /// <summary>The mask grid: the bake's when there is one, else the outline's size over the downsample.</summary>
+    void MaskGrid(Sprite os, int ds, out int w, out int h)
+    {
+        if (HasBake(os, ds)) { w = drawnW; h = drawnH; return; }
+        w = Mathf.CeilToInt(os.rect.width / ds);
+        h = Mathf.CeilToInt(os.rect.height / ds);
+    }
+
+    /// <summary>Indices (y * w + x) of the inked mask pixels: the bake when it fits, else read from the texture.</summary>
+    int[] DrawnMaskPixels(Sprite os, int w, int h, int ds)
+    {
+        if (HasBake(os, ds) && w == drawnW && h == drawnH)
+            return drawnPixels;
+
+        Color32[] src = null;
+#if !UNITY_LUNA
+        if (os != null && os.texture.isReadable)
+            src = os.texture.GetPixels32();
+#endif
+        var list = new List<int>();
+        for (int y = 0; y < h; y++)
+            for (int x = 0; x < w; x++)
+                if (src == null || Drawn(src, os.texture.width, os.rect, x * ds, y * ds, ds))
+                    list.Add(y * w + x);
+        return list.ToArray();
+    }
+
+#if UNITY_EDITOR
+    /// <summary>Stores which mask pixels the outline inks, for Luna builds. Returns true when it changed anything.</summary>
+    public bool BakeDrawnPixels()
+    {
+        Sprite os = Outline != null ? Outline.sprite : null;
+        if (os == null || !os.texture.isReadable)
+        {
+            bool had = drawnPixels != null && drawnPixels.Length > 0;
+            drawnPixels = null;
+            drawnW = drawnH = drawnDs = 0;
+            return had;
+        }
+        int ds = Mathf.Max(1, MaskDownsample);
+        int w = Mathf.CeilToInt(os.rect.width / ds), h = Mathf.CeilToInt(os.rect.height / ds);
+        Color32[] src = os.texture.GetPixels32();
+        var list = new List<int>();
+        for (int y = 0; y < h; y++)
+            for (int x = 0; x < w; x++)
+                if (Drawn(src, os.texture.width, os.rect, x * ds, y * ds, ds))
+                    list.Add(y * w + x);
+        int[] baked = list.ToArray();
+        if (drawnW == w && drawnH == h && drawnDs == ds && drawnPixels != null && System.Linq.Enumerable.SequenceEqual(baked, drawnPixels))
+            return false;
+        drawnPixels = baked;
+        drawnW = w;
+        drawnH = h;
+        drawnDs = ds;
+        return true;
+    }
+#endif
 
     static bool Drawn(Color32[] src, int tw, Rect rect, int x0, int y0, int ds)
     {
@@ -868,7 +963,7 @@ public class CG_ChalkTrace : MonoBehaviour
             return;
 
         Sprite os = Outline.sprite;
-        float ds = Mathf.Max(1, MaskDownsample);
+        float ds = os.rect.width / maskTex.width; // outline pixels per mask pixel (MaskDownsample in the editor)
 
         Vector2 local = Outline.transform.InverseTransformPoint(world);
         Vector2 px = (local * os.pixelsPerUnit + os.pivot) / ds;

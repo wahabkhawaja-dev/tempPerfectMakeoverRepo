@@ -410,7 +410,7 @@ public class CG_SewPath : MonoBehaviour
         mask.alphaCutoff = 0.5f;
         mask.isCustomRangeActive = true;
         mask.backSortingOrder = Guide.sortingOrder - 1;
-        mask.frontSortingOrder = Guide.sortingOrder;
+        mask.frontSortingOrder = Guide.sortingOrder + 1; // [Luna] its front order is exclusive
 
         Guide.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
     }

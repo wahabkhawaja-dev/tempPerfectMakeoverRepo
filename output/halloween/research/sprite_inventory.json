@@ -1,0 +1,1097 @@
+[
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/1 Dust.png",
+    "size": [
+      911,
+      680
+    ],
+    "alpha_bbox": [
+      14,
+      17,
+      897,
+      663
+    ],
+    "guid": "d08a32f26a0284c49a0af855960c9e9e"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/2 Dirty.png",
+    "size": [
+      909,
+      675
+    ],
+    "alpha_bbox": [
+      16,
+      12,
+      893,
+      675
+    ],
+    "guid": "f41aad8a061a83040b4b22e06e7a479f"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/3 Spray.png",
+    "size": [
+      912,
+      675
+    ],
+    "alpha_bbox": [
+      15,
+      12,
+      897,
+      675
+    ],
+    "guid": "75d16b0c8ec6d4246997026eea4f1af5"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/4 Mix.png",
+    "size": [
+      935,
+      707
+    ],
+    "alpha_bbox": [
+      17,
+      16,
+      918,
+      703
+    ],
+    "guid": "2225d83b58254a548acd57f140601d21"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/5 Clean.png",
+    "size": [
+      907,
+      681
+    ],
+    "alpha_bbox": [
+      15,
+      18,
+      892,
+      660
+    ],
+    "guid": "7e1e8767c72a18c439f17f235fe637a5"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Gem.png",
+    "size": [
+      181,
+      306
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      181,
+      306
+    ],
+    "guid": "1ed6910881d44ab4aa22679931907b88"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Glue 1.png",
+    "size": [
+      83,
+      173
+    ],
+    "alpha_bbox": [
+      4,
+      9,
+      79,
+      164
+    ],
+    "guid": "59ee7aae8edb88f4b9770221ffcae4ae"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Glue 2.png",
+    "size": [
+      108,
+      273
+    ],
+    "alpha_bbox": [
+      13,
+      15,
+      95,
+      258
+    ],
+    "guid": "b49574e0cf5c502459be4e0d743ed745"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Bg/Bg.png",
+    "size": [
+      2048,
+      2732
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      2048,
+      2732
+    ],
+    "guid": "04e5b5ff373bdd646be0e0611ddc98ce"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Bg/Podium.png",
+    "size": [
+      1119,
+      1257
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1119,
+      1257
+    ],
+    "guid": "634a49c577b47314ebbdcef391888d06"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Bg/Shadow.png",
+    "size": [
+      1577,
+      769
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1577,
+      769
+    ],
+    "guid": "3737355ed7899b4439a0d0e1d894187a"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Tools/Brush.png",
+    "size": [
+      207,
+      882
+    ],
+    "alpha_bbox": [
+      7,
+      10,
+      199,
+      873
+    ],
+    "guid": "ac89fc0b13c6ed74b8e1ddcf1daf6e60"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Tools/Splash.png",
+    "size": [
+      512,
+      512
+    ],
+    "alpha_bbox": [
+      0,
+      1,
+      512,
+      512
+    ],
+    "guid": "b41fc79a32577fe42af29f1635de13cc"
+  },
+  {
+    "group": "crown",
+    "path": "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Tools/Spray.png",
+    "size": [
+      241,
+      495
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      241,
+      495
+    ],
+    "guid": "054a8f0b1896ee1418cb75538b39fed1"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/1.png",
+    "size": [
+      2314,
+      3086
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      2314,
+      3086
+    ],
+    "guid": "0ba0953c58192c54fb2e9ea8bf4d3eff"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/3.png",
+    "size": [
+      2048,
+      2732
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      2048,
+      2732
+    ],
+    "guid": "88b080aa0af910245927806fcfd528c1"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/bg base_.png",
+    "size": [
+      3355,
+      4050
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      3355,
+      4050
+    ],
+    "guid": "c3deeb1879f6d95479b432aa90b1644e"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/dyyer_.png",
+    "size": [
+      461,
+      616
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      461,
+      616
+    ],
+    "guid": "58c3797f525ec8c4e90dae9f5b1fd1d1"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/hand wash_ 2.png",
+    "size": [
+      210,
+      547
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      210,
+      547
+    ],
+    "guid": "c0bcad1eb3b68d7489e7ee7732c68162"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/hand wash_.png",
+    "size": [
+      210,
+      547
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      210,
+      547
+    ],
+    "guid": "b98cfe1642f531c448044086d33dbf58"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/hand wash_1.png",
+    "size": [
+      210,
+      547
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      210,
+      547
+    ],
+    "guid": "0bb9da35061710a499f2d1c87bab2259"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/holder_.png",
+    "size": [
+      135,
+      244
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      135,
+      244
+    ],
+    "guid": "20959252b05061642a32fd63dad32d93"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/sink_.png",
+    "size": [
+      1169,
+      923
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1169,
+      923
+    ],
+    "guid": "1c97780e2e1a0994d8b116977b937243"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/tap.png",
+    "size": [
+      139,
+      303
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      139,
+      303
+    ],
+    "guid": "8b04f2016ef5e5a4b8d506dcdb70dd8c"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/tap1.png",
+    "size": [
+      139,
+      303
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      139,
+      303
+    ],
+    "guid": "b2f84fcb2ea526743b38a896d2994de4"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/tap1Top.png",
+    "size": [
+      139,
+      74
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      139,
+      74
+    ],
+    "guid": "1d3b7bd5d069cd34aab2f170076a4018"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/1.png",
+    "size": [
+      616,
+      607
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      616,
+      607
+    ],
+    "guid": "c00b564f62a8d2946831a47320e3629e"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/clean wet_.png",
+    "size": [
+      829,
+      534
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      829,
+      534
+    ],
+    "guid": "5856b992e39b7314e82281870d688fab"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/cloth to rub_.png",
+    "size": [
+      757,
+      411
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      757,
+      411
+    ],
+    "guid": "0ac6436fb8caf1b49a7d3cb0d59e13ed"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/cloth_.png",
+    "size": [
+      870,
+      564
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      870,
+      564
+    ],
+    "guid": "8e7a63e2037ad7143b80a81429f5046a"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/dress_.png",
+    "size": [
+      813,
+      2448
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      813,
+      2448
+    ],
+    "guid": "7e9945efee6cce6499d214af4403903b"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/dress_only.png",
+    "size": [
+      713,
+      1680
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      713,
+      1680
+    ],
+    "guid": "1bfe00fbb41b7724195ce07721a543d5"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/sdress hadow.png",
+    "size": [
+      576,
+      178
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      576,
+      178
+    ],
+    "guid": "8090173e079978543909d317542e9d94"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/wet_.png",
+    "size": [
+      870,
+      564
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      870,
+      564
+    ],
+    "guid": "edce4a35bd83f0e4bbf051287c376d25"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/hands to rub/1.png",
+    "size": [
+      431,
+      326
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      431,
+      326
+    ],
+    "guid": "408ccd07974907c4691649129690eef2"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/hands to rub/2.png",
+    "size": [
+      352,
+      336
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      352,
+      336
+    ],
+    "guid": "e8880f32b9be7c746909492f21a95e17"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/hands to rub/cloth to rub_.png",
+    "size": [
+      757,
+      411
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      757,
+      411
+    ],
+    "guid": "88a73a52937c5e0469ca79fdc8a42c53"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/hands to rub/left_.png",
+    "size": [
+      828,
+      874
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      828,
+      874
+    ],
+    "guid": "706ba609d5bfc10479c35e6ee5e1327d"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/hands to rub/right_.png",
+    "size": [
+      830,
+      877
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      830,
+      877
+    ],
+    "guid": "2a865503e208e3747a19ae58cec29ef7"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/hands to rub/with foam 1.png",
+    "size": [
+      840,
+      877
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      840,
+      877
+    ],
+    "guid": "9b400127299f3a7498fe3f1b6aca6b70"
+  },
+  {
+    "group": "basin",
+    "path": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/hands to rub/with foam 2.png",
+    "size": [
+      840,
+      874
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      840,
+      874
+    ],
+    "guid": "b6c965c3a8525f94dac32106cd365458"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Dracula Scissor.png",
+    "size": [
+      1364,
+      957
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1364,
+      957
+    ],
+    "guid": "6066bc17e1bdd0940ba95c3936cd4bea"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Machine.png",
+    "size": [
+      1728,
+      1788
+    ],
+    "alpha_bbox": [
+      36,
+      3,
+      1715,
+      1787
+    ],
+    "guid": "7854fd53271132a43913dc3c0f079de0"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/bg/BG 2.png",
+    "size": [
+      2054,
+      2732
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      2054,
+      2732
+    ],
+    "guid": "54a8a09c3d2d4b246bddb70ba7c3008e"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/bg/BG.png",
+    "size": [
+      2064,
+      2752
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      2064,
+      2752
+    ],
+    "guid": "3efe84eff5140e64c9c81d54c36dab57"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Chalk Pant.png",
+    "size": [
+      540,
+      1298
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      540,
+      1298
+    ],
+    "guid": "aaf3ead777fe3214582093d906716b11"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Layer 108.png",
+    "size": [
+      568,
+      1372
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      568,
+      1372
+    ],
+    "guid": "8be03f827c42a6d46a2d84e278e9582c"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Layer 109.png",
+    "size": [
+      928,
+      1026
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      928,
+      1026
+    ],
+    "guid": "de69eded6bdb35e44a7263256bcffb11"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Layer 79.png",
+    "size": [
+      262,
+      269
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      262,
+      269
+    ],
+    "guid": "f9ff723d0c526ca42b7ad3abafe12f51"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Layer 81.png",
+    "size": [
+      338,
+      190
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      338,
+      190
+    ],
+    "guid": "6ee316e5d5bec734081fef3dfdfd3eb8"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Layer 94.png",
+    "size": [
+      1016,
+      1480
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1016,
+      1480
+    ],
+    "guid": "669c45a00ac165a45807544b282eb6b1"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Roll 1.png",
+    "size": [
+      1155,
+      388
+    ],
+    "alpha_bbox": [
+      31,
+      22,
+      1124,
+      366
+    ],
+    "guid": "a354646df8e3531458d9ac499aeb2475"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Roll 2.png",
+    "size": [
+      1147,
+      311
+    ],
+    "alpha_bbox": [
+      21,
+      26,
+      1126,
+      311
+    ],
+    "guid": "762c17f32b02301488b3480eda411eaa"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Fabric/Roll 3.png",
+    "size": [
+      1141,
+      230
+    ],
+    "alpha_bbox": [
+      18,
+      16,
+      1123,
+      212
+    ],
+    "guid": "6ec794e151ccafb4c8b104e08b984d76"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Loom/craiyon_145210_image.png",
+    "size": [
+      349,
+      74
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      349,
+      74
+    ],
+    "guid": "8c0c1983032e95340a835abcc7c5920c"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Loom/craiyon_145856_image.png",
+    "size": [
+      968,
+      41
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      968,
+      41
+    ],
+    "guid": "51282fefa2cc5bf46a0ab333933fb377"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Loom/Layer 75 copy 8.png",
+    "size": [
+      1003,
+      1341
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1003,
+      1341
+    ],
+    "guid": "83cfd5438b0216848a6f807a3a76f30d"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Loom/shadow.png",
+    "size": [
+      928,
+      369
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      928,
+      369
+    ],
+    "guid": "babf0c57425537447af2988b73d38b55"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Machine/Layer 91 copy.png",
+    "size": [
+      1083,
+      605
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1083,
+      605
+    ],
+    "guid": "fe3e5ff9d18394543b4eeffd66e3d4cc"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Machine/upper part.png",
+    "size": [
+      367,
+      263
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      367,
+      263
+    ],
+    "guid": "39f2cf9ebbaa9ff438548b2b66484ab8"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/mannequin/Bat Chain.png",
+    "size": [
+      220,
+      79
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      220,
+      79
+    ],
+    "guid": "57631fdb22260964facea788c72abf96"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/mannequin/Layer 86.png",
+    "size": [
+      488,
+      644
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      488,
+      644
+    ],
+    "guid": "79c058264a1272b48a1e7c0b33aaa9e3"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/mannequin/Layer 91.png",
+    "size": [
+      532,
+      813
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      532,
+      813
+    ],
+    "guid": "4307ef08f32906e48b0ea6056dc11bf1"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/mannequin/Layer 93.png",
+    "size": [
+      950,
+      1610
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      950,
+      1610
+    ],
+    "guid": "ba70de45c1e188a44b115db8997070b3"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/mannequin/Layer 94 copy.png",
+    "size": [
+      33,
+      32
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      33,
+      32
+    ],
+    "guid": "018921c0743e1a542ab354dc612f80a8"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/mannequin/Layer 97.png",
+    "size": [
+      248,
+      481
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      248,
+      481
+    ],
+    "guid": "ceeb2c5a2ecff5c4ab5e62050434f0ab"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/mannequin/Layer 98.png",
+    "size": [
+      376,
+      156
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      376,
+      156
+    ],
+    "guid": "4841e657e5ac6ec4db67e88bdbecb764"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Measuring tape/chalk.png",
+    "size": [
+      123,
+      66
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      123,
+      66
+    ],
+    "guid": "d8a8084068ccf9243a911603a094fec5"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Measuring tape/Layer 95.png",
+    "size": [
+      66,
+      112
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      66,
+      112
+    ],
+    "guid": "8ca1da0e17716f0468851d63f10e8d8a"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Measuring tape/Layer 96.png",
+    "size": [
+      58,
+      166
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      58,
+      166
+    ],
+    "guid": "8dd67a5130614014e95c0db1233eef75"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Measuring tape/Layer 98.png",
+    "size": [
+      69,
+      95
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      69,
+      95
+    ],
+    "guid": "3515a9e22ef564c4f854f2ba652911eb"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/Measuring tape/Layer 99.png",
+    "size": [
+      228,
+      66
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      228,
+      66
+    ],
+    "guid": "f749726aa4e74bb41ab6502587023c29"
+  },
+  {
+    "group": "alternatives",
+    "path": "Assets/_ImportedFromParent/_Core/2D Data/Halloween/Dracula/Dress/Slicing/plastic bag/Layer 100.png",
+    "size": [
+      951,
+      1593
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      951,
+      1593
+    ],
+    "guid": "251678880221e5a43a0644cf847c907d"
+  }
+]

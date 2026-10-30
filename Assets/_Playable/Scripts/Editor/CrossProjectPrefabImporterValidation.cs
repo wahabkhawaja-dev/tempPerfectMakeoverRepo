@@ -52,6 +52,35 @@ public partial class CrossProjectPrefabImporter
             var skin = LunaScriptSanitizer.Sanitize("using UnityEngine.U2D.Animation;\nvoid F() { bones = Tool.GetComponent<UnityEngine.U2D.Animation.SpriteSkin>().boneTransforms; }", hapticOptions);
             Check(!skin.Text.Contains("SpriteSkin") && !skin.Text.Contains("U2D.Animation") && skin.Text.Contains("Skip(Tool.GetComponentsInChildren<Transform>(true), 1)") && skin.Warnings.Count == 0,
                 "SpriteSkin bone lookups become Luna-safe child transforms");
+            string apiGaps = "int[] order; float[] at; IComparer<float> cmp;\nvoid F() { if (Source.isActiveAndEnabled && isActiveAndEnabled) { } System.Array.Sort(at, order); Array.Sort(at, cmp); }";
+            string apiFixed = LunaScriptSanitizer.Sanitize(apiGaps, hapticOptions).Text;
+            Check(!apiFixed.Contains("isActiveAndEnabled") && apiFixed.Contains("(Source.enabled && Source.gameObject.activeInHierarchy)")
+                  && apiFixed.Contains("(enabled && gameObject.activeInHierarchy)") && apiFixed.Contains("LunaArray.Sort(at, order)")
+                  && apiFixed.Contains("Array.Sort(at, cmp)") && LunaScriptSanitizer.Sanitize(apiFixed, hapticOptions).Text == apiFixed,
+                "Luna-missing isActiveAndEnabled and Array.Sort(keys, items) are rewritten; comparer sorts are left alone");
+            string emitCode = "void F(ParticleSystem a) { var emit = new ParticleSystem.EmitParams(); emit.position = p; ParticleSystem ps = a; ps.Emit(emit, 1); a.Emit(3); }";
+            string emitFixed = LunaScriptSanitizer.Sanitize(emitCode, hapticOptions).Text;
+            Check(!emitFixed.Contains("ParticleSystem.EmitParams") && emitFixed.Contains("new LunaEmitParams()") && emitFixed.Contains("LunaParticles.Emit(ps, emit, 1)")
+                  && emitFixed.Contains("a.Emit(3)") && LunaScriptSanitizer.Sanitize(emitFixed, hapticOptions).Text == emitFixed,
+                "ParticleSystem.EmitParams emits go through LunaParticles.Emit; plain Emit(count) is left alone");
+            string spreadCode = "void Add(params Vector2[] poly) { }\nvoid Tag(int id, params Color[] cs) { }\nvoid F(Vector2[] arr) { Add(a, b, F2(c, d)); Add(arr); Add(new[] { a }); Tag(1, c1, c2); Tag(2); }";
+            string spreadFixed = LunaScriptSanitizer.Sanitize(spreadCode, hapticOptions).Text;
+            Check(spreadFixed.Contains("Add(new Vector2[] { a, b, F2(c, d) })") && spreadFixed.Contains("Add(arr)") && spreadFixed.Contains("Add(new[] { a })")
+                  && spreadFixed.Contains("Tag(1, new Color[] { c1, c2 })") && spreadFixed.Contains("Tag(2)") && spreadFixed.Contains("void Add(params Vector2[] poly)")
+                  && LunaScriptSanitizer.Sanitize(spreadFixed, hapticOptions).Text == spreadFixed,
+                "calls spreading arguments into a params Unity-struct array pass an explicit array (Bridge LP2007 crash)");
+            string rangeCode = "void F() { mask.backSortingOrder = Outline.sortingOrder - 1; mask.frontSortingOrder = Outline.sortingOrder; }";
+            string rangeFixed = LunaScriptSanitizer.Sanitize(rangeCode, hapticOptions).Text;
+            Check(rangeFixed.Contains("mask.frontSortingOrder = Outline.sortingOrder + 1;") && rangeFixed.Contains("backSortingOrder = Outline.sortingOrder - 1;")
+                  && LunaScriptSanitizer.Sanitize(rangeFixed, hapticOptions).Text == rangeFixed,
+                "runtime SpriteMask front order is moved one past its sprite (Luna's front bound is exclusive)");
+            string cloneCode = "public ParticleSystem Dust; public SpriteRenderer Weft; public GameObject Prefab; MyScript Mine;\nvoid F() { var d = Instantiate(Dust, parent, true); var w = Instantiate(Weft, Weft.transform.parent); var g = Instantiate(Prefab); var m = Instantiate(Mine); }";
+            string cloneFixed = LunaScriptSanitizer.Sanitize(cloneCode, hapticOptions).Text;
+            Check(cloneFixed.Contains("Instantiate(Dust.gameObject, parent, true).GetComponent<ParticleSystem>()")
+                  && cloneFixed.Contains("Instantiate(Weft.gameObject, Weft.transform.parent).GetComponent<SpriteRenderer>()")
+                  && cloneFixed.Contains("Instantiate(Prefab);") && cloneFixed.Contains("Instantiate(Mine);")
+                  && LunaScriptSanitizer.Sanitize(cloneFixed, hapticOptions).Text == cloneFixed,
+                "Instantiate of a built-in component clones its GameObject (Luna can't clone the component itself)");
             Check(AdaptMakeoverTypes("CG_SaveSystem.Instance.GetLevel(levelNo).subLevels[partNo].stepsDone = 2;", new ReflectionCatalog())
                 == "SaveSystem.Instance.DataFields.AllLevels[levelNo].subLevels[partNo].stepsDone = 2;", "parent event save accessor adapts to local in-memory data");
             string identity = "guid: " + id + "\n  bones:\n  - guid: " + id + "\n  ref: {fileID: 7, guid: " + id + ", type: 3}";

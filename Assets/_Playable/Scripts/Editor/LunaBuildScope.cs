@@ -319,7 +319,16 @@ public static class LunaBuildScope
         }
         catch { return; }
         var m = StaleCacheErrors.Match(log);
-        if (m.Success) ResetLunaCache("the last build failed with: " + m.Value);
+        if (!m.Success) return;
+        // stage4 is Luna's packaged output. A lock there is held inside the Unity process itself (seen on
+        // stage4/develop/engine/unity/bin/bridge.js after a preview); clearing caches can't release it, a restart does.
+        if (m.Value.Contains(@"\stage4\") || m.Value.Contains("/stage4/"))
+        {
+            Debug.LogError("[Luna Cache] The build failed because Unity itself still holds a file of the previous build open:\n" + m.Value +
+                           "\nSave your work and restart Unity, then build again. (Clearing the cache can't release it.)");
+            return;
+        }
+        ResetLunaCache("the last build failed with: " + m.Value);
     }
 
     public static void ResetLunaCache(string why)

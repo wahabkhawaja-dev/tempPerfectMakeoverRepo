@@ -103,6 +103,7 @@ public static class LunaScriptSanitizer
         if (options.FixAnimatorSpeed) text = FixAnimatorSpeed(text, result);
         if (options.FixParticleClear) text = FixParticleClear(text, result);
         text = FixSpriteSkinBones(text, result);
+        text = FixMissingLunaApis(text, result);
         if (options.ConvertOnMouse) text = ConvertOnMouse(text, options.Catalog, nl, result);
         ReportTypedMemberGaps(text, options.Catalog, result);
         ReportUnavailableTypes(text, options.UnavailableTypes, result);
@@ -527,6 +528,132 @@ public static class LunaScriptSanitizer
         }
         result.Hit("ParticleSystem.Clear(bool) -> Clear()", edits.Count);
         return ApplyEdits(text, edits);
+    }
+
+    /// <summary>
+    /// Members Luna's cut-down C# API lacks (Luna build errors CS1061 / CS1503):
+    /// x.isActiveAndEnabled -> (x.enabled &amp;&amp; x.gameObject.activeInHierarchy), and Array.Sort(keys, items) ->
+    /// LunaArray.Sort when the second argument is an array declared in this file (Array.Sort(array, comparer) has the
+    /// same shape and Luna does support it), and ParticleSystem.EmitParams -> LunaEmitParams / LunaParticles.Emit.
+    /// The stand-ins live in Assets/_Playable/Scripts/LunaCompat.cs.
+    /// </summary>
+    private static string FixMissingLunaApis(string text, LunaSanitizeResult result)
+    {
+        string mask = Mask(text);
+        var edits = new List<Edit>();
+        foreach (Match m in Regex.Matches(mask, @"(?<![\w.])((?:this\s*\.\s*)?(?:[A-Za-z_]\w*\s*\.\s*)*)isActiveAndEnabled\b"))
+        {
+            string target = Regex.Replace(text.Substring(m.Groups[1].Index, m.Groups[1].Length), @"\s+", "");
+            edits.Add(new Edit { Start = m.Index, End = m.Index + m.Length,
+                With = "(" + target + "enabled && " + target + "gameObject.activeInHierarchy)" });
+        }
+        result.Hit("isActiveAndEnabled -> enabled && activeInHierarchy", edits.Count);
+
+        int sorts = 0;
+        foreach (Match m in Regex.Matches(mask, @"\b(?:System\s*\.\s*)?Array\s*\.\s*Sort\s*\(\s*([A-Za-z_]\w*)\s*,\s*([A-Za-z_]\w*)\s*\)"))
+        {
+            if (!Regex.IsMatch(mask, @"[\w>]\s*\[\s*\]\s+" + Regex.Escape(m.Groups[2].Value) + @"\b")) continue; // a comparer, not an items array
+            edits.Add(new Edit { Start = m.Index, End = m.Index + m.Length, With = "LunaArray.Sort(" + m.Groups[1].Value + ", " + m.Groups[2].Value + ")" });
+            sorts++;
+        }
+        result.Hit("Array.Sort(keys, items) -> LunaArray.Sort", sorts);
+
+        // ParticleSystem.EmitParams -> LunaEmitParams, and ps.Emit(thoseParams, n) -> LunaParticles.Emit(ps, thoseParams, n).
+        var emitVars = new HashSet<string>(Regex.Matches(mask, @"\b(?:var|LunaEmitParams|ParticleSystem\s*\.\s*EmitParams)\s+(\w+)\s*(?:=\s*new\s+(?:ParticleSystem\s*\.\s*EmitParams|LunaEmitParams)\b|[;,)])")
+            .Cast<Match>().Select(m => m.Groups[1].Value));
+        int emits = 0;
+        foreach (Match m in Regex.Matches(mask, @"\bParticleSystem\s*\.\s*EmitParams\b"))
+        {
+            edits.Add(new Edit { Start = m.Index, End = m.Index + m.Length, With = "LunaEmitParams" });
+            emits++;
+        }
+        foreach (Match m in Regex.Matches(mask, @"(?<![\w.])([A-Za-z_][\w.]*?)\s*\.\s*Emit\s*\(\s*(\w+)\s*,"))
+        {
+            if (!emitVars.Contains(m.Groups[2].Value)) continue;
+            edits.Add(new Edit { Start = m.Index, End = m.Index + m.Length,
+                With = "LunaParticles.Emit(" + text.Substring(m.Groups[1].Index, m.Groups[1].Length) + ", " + m.Groups[2].Value + "," });
+            emits++;
+        }
+        result.Hit("ParticleSystem.EmitParams -> LunaEmitParams / LunaParticles.Emit", emits);
+
+        // Bridge (Luna's C#->JS step) crashes with "Index was outside the bounds of the array" (LP2007) on a call that
+        // spreads separate arguments into a params array of a Unity struct (AddFragment(a, b, c) for params Vector2[]).
+        // Passing the array explicitly means the same and avoids it.
+        int spread = 0;
+        foreach (Match decl in Regex.Matches(mask, @"\b(\w+)\s*\(([^()]*?)\bparams\s+(Vector[234](?:Int)?|Color(?:32)?|Quaternion|Rect|Bounds|Matrix4x4)\s*\[\s*\]\s*\w+\s*\)"))
+        {
+            string method = decl.Groups[1].Value, type = decl.Groups[3].Value;
+            int fixedCount = decl.Groups[2].Value.Count(ch => ch == ','); // each fixed parameter is followed by a comma
+            foreach (Match call in Regex.Matches(mask, @"(?<![\w.])" + Regex.Escape(method) + @"\s*\("))
+            {
+                if (call.Index == decl.Groups[1].Index) continue; // the declaration itself
+                int open = call.Index + call.Length - 1, close = MatchForward(mask, open);
+                if (close < 0) continue;
+                var args = SplitTopLevel(mask, open + 1, close);
+                if (args.Count <= fixedCount) continue;
+                var spreadArgs = args.Skip(fixedCount).ToList();
+                string first = mask.Substring(spreadArgs[0].start, spreadArgs[0].end - spreadArgs[0].start).Trim();
+                if (spreadArgs.Count == 1 && (Regex.IsMatch(first, @"^(?:new\b|null\b)") ||
+                    Regex.IsMatch(mask, @"\b" + Regex.Escape(type) + @"\s*\[\s*\]\s+" + Regex.Escape(first) + @"\b"))) continue; // already an array
+                int from = spreadArgs[0].start, to = spreadArgs[spreadArgs.Count - 1].end;
+                while (from < to && char.IsWhiteSpace(mask[from])) from++; // keep the caller's spacing
+                edits.Add(new Edit { Start = from, End = to, With = "new " + type + "[] { " + text.Substring(from, to - from).Trim() + " }" });
+                spread++;
+            }
+        }
+        result.Hit("params struct[] spread call -> explicit array (Bridge crash)", spread);
+
+        // Luna's SpriteMask front order is exclusive (Unity's is inclusive): a mask whose front is set to its sprite's
+        // own order hides that sprite in the browser. One above keeps the same sprites inside in both.
+        int ranges = 0;
+        foreach (Match m in Regex.Matches(mask, @"\.\s*frontSortingOrder\s*=\s*([A-Za-z_][\w.]*\.\s*sortingOrder)\s*;"))
+        {
+            var g = m.Groups[1];
+            edits.Add(new Edit { Start = g.Index + g.Length, End = g.Index + g.Length, With = " + 1" });
+            ranges++;
+        }
+        result.Hit("SpriteMask front order -> +1 (Luna treats it as exclusive)", ranges);
+
+        // Luna's Instantiate clones only a GameObject, a Transform or a script ("Don't know what should be instantiated"
+        // for a built-in component - CG_ChalkTrace's Instantiate(Dust, ...) with Dust a ParticleSystem). Clone the
+        // component's GameObject and take the component from the copy.
+        int clones = 0;
+        foreach (Match call in Regex.Matches(mask, @"(?<![\w.])Instantiate\s*\(\s*([A-Za-z_]\w*)\s*(?=[,)])"))
+        {
+            string name = call.Groups[1].Value;
+            var decl = Regex.Match(mask, @"\b(" + LunaBuiltinComponents + @")\s+" + Regex.Escape(name) + @"\s*[;=,)]");
+            if (!decl.Success) continue;
+            int open = mask.IndexOf('(', call.Index), close = MatchForward(mask, open);
+            if (close < 0) continue;
+            var arg = call.Groups[1];
+            edits.Add(new Edit { Start = arg.Index + arg.Length, End = arg.Index + arg.Length, With = ".gameObject" });
+            edits.Add(new Edit { Start = close + 1, End = close + 1, With = ".GetComponent<" + decl.Groups[1].Value + ">()" });
+            clones++;
+        }
+        result.Hit("Instantiate(builtin component) -> Instantiate(x.gameObject).GetComponent<T>()", clones);
+        return ApplyEdits(text, edits);
+    }
+
+    /// <summary>Unity's built-in (non-script) component types Luna's Instantiate can't clone on their own.</summary>
+    private const string LunaBuiltinComponents =
+        "ParticleSystem|SpriteRenderer|MeshRenderer|LineRenderer|TrailRenderer|Renderer|AudioSource|Animator|Animation|" +
+        "Rigidbody2D|Rigidbody|Collider2D|BoxCollider2D|CircleCollider2D|PolygonCollider2D|EdgeCollider2D|CapsuleCollider2D|" +
+        "Collider|Camera|Light|SpriteMask|SortingGroup";
+
+    /// <summary>Spans of the comma-separated arguments between <paramref name="from"/> and <paramref name="to"/> (exclusive).</summary>
+    private static List<(int start, int end)> SplitTopLevel(string mask, int from, int to)
+    {
+        var parts = new List<(int, int)>();
+        int depth = 0, start = from;
+        for (int i = from; i < to; i++)
+        {
+            char c = mask[i];
+            if (c == '(' || c == '[' || c == '{') depth++;
+            else if (c == ')' || c == ']' || c == '}') depth--;
+            else if (c == ',' && depth == 0) { parts.Add((start, i)); start = i + 1; }
+        }
+        if (mask.Substring(start, to - start).Trim().Length > 0 || parts.Count > 0) parts.Add((start, to));
+        return parts;
     }
 
     /// <summary>Luna's C# API has no UnityEngine.U2D.Animation (the skinning itself still plays), so

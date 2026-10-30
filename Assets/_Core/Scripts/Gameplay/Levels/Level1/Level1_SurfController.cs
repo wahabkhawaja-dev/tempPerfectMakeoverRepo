@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -60,14 +60,14 @@ public class Level1_SurfController : MonoBehaviour
         DOTween.Init();
     }
 
-    private void OnMouseDown()
+    private void __LunaMouseDown()
     {
         if (isCompleted) return;
         isHolding = true;
         StartSurfAnimation();
     }
 
-    private void OnMouseUp()
+    private void __LunaMouseUp()
     {
         if (isCompleted) return;
         isHolding = false;
@@ -172,5 +172,45 @@ public class Level1_SurfController : MonoBehaviour
 
         OnComplete?.Invoke();
         Debug.Log("✅ Surf Completed!");
+    }
+
+    // [Luna] OnMouse* messages don't fire reliably in Luna/WebGL, so input is polled instead.
+    bool __lunaMouseHeld;
+
+    void Update()
+    {
+        __LunaPollMouse();
+    }
+
+    void __LunaPollMouse()
+    {
+        if (!__lunaMouseHeld)
+        {
+            if (UnityEngine.Input.GetMouseButtonDown(0) && __LunaPointerOverThis())
+            {
+                __lunaMouseHeld = true;
+                __LunaMouseDown();
+            }
+        }
+        else if (!UnityEngine.Input.GetMouseButton(0))
+        {
+            __lunaMouseHeld = false;
+            __LunaMouseUp();
+        }
+    }
+
+    bool __LunaPointerOverThis()
+    {
+        UnityEngine.Camera cam = UnityEngine.Camera.main;
+        if (cam == null) return false;
+        if (GetComponent<UnityEngine.Collider2D>() != null)
+        {
+            UnityEngine.RaycastHit2D hit = UnityEngine.Physics2D.Raycast(cam.ScreenToWorldPoint(UnityEngine.Input.mousePosition), UnityEngine.Vector2.zero);
+            return hit.collider != null && hit.collider.gameObject == gameObject;
+        }
+        UnityEngine.RaycastHit hit3D;
+        return GetComponent<UnityEngine.Collider>() != null
+            && UnityEngine.Physics.Raycast(cam.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit3D)
+            && hit3D.collider.gameObject == gameObject;
     }
 }

@@ -25,7 +25,7 @@ public class CG_LoopFeedback
 
         on = play;
 
-        if (Source != null && Source.clip != null && Source.isActiveAndEnabled)
+        if (Source != null && Source.clip != null && Source.enabled && Source.gameObject.activeInHierarchy)
         {
             if (play)
             {

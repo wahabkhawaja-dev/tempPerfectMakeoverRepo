@@ -607,6 +607,7 @@ public static class PlayableLevelFactory
             text = RouteCompletionToFixItReturn(text, log);
         text = StripSaveSystem(text, log);
         text = RetireSkippedSteps(text, first, log);
+        text = ApplyLunaRuntimeFixes(text, log);
         text = RedirectLoadingManagerFades(text, log);
         text = Regex.Replace(text, @"(\r?\n){3,}", "\n\n");
         ValidateStepReferences(text);
@@ -697,6 +698,24 @@ public static class PlayableLevelFactory
         }
         if (guarded > 0) log.Add("ForceComplete: null-guarded " + guarded + " hide call(s) so hidden-only objects can leave the prefab.");
         return guardedText;
+    }
+
+    /// <summary>
+    /// What the importer does to every imported script, for level scripts that were never imported: Luna only polls
+    /// Input.GetMouseButton*, so OnMouse* handlers become polled input, plus the Luna API rewrites (FixMissingLunaApis).
+    /// Nothing is stripped here - the factory has already decided what the playable keeps.
+    /// </summary>
+    static string ApplyLunaRuntimeFixes(string text, List<string> log)
+    {
+        var result = LunaScriptSanitizer.Sanitize(text, new LunaSanitizeOptions
+        {
+            ConvertOnMouse = true, StripCalls = false, StripMissingSingletonCalls = false, RemoveEmptyTryCatch = false,
+            FixAnimatorSpeed = false, FixParticleClear = false, BlockedNamespaces = new List<string>(),
+            Catalog = new CrossProjectPrefabImporter.ReflectionCatalog(),
+        });
+        foreach (var hit in result.RuleHits) log.Add("Luna: " + hit.Key + " x" + hit.Value);
+        foreach (var warning in result.Warnings) log.Add("Luna warning: " + warning);
+        return result.Text;
     }
 
     internal static string StripSourceComments(string text)
@@ -1451,6 +1470,17 @@ public static class PlayableLevelFactory
                     int close = FindMatchingBrace(source, declaration.Index + declaration.Length - 1);
                     var type = Regex.Match(live, @"\bclass\s+\w+[^{}]*\{");
                     if (close < 0 || !type.Success) continue;
+                    // Not shared after all when its body drives an excluded step's own state (Dress's UpdateZipLoops reads
+                    // zipMoved_8 / isStep8Done): leave it out and let its standalone calls be stripped below.
+                    string sourceMask = LunaScriptSanitizer.Mask(source);
+                    string helperBody = sourceMask.Substring(declaration.Index, close - declaration.Index + 1);
+                    string elsewhere = sourceMask.Remove(declaration.Index, close - declaration.Index + 1); // its own locals don't count
+                    if (Regex.Matches(helperBody, @"\b[A-Za-z_]\w*\d\w*\b").Cast<Match>().Select(m => m.Value).Distinct()
+                        .Any(id => !Regex.IsMatch(live, @"\b" + Regex.Escape(id) + @"\b") && Regex.IsMatch(elsewhere, @"\b[\w.<>,\[\]]+\s+" + Regex.Escape(id) + @"\s*[;=,(]")))
+                    {
+                        log.Add("Not preserving '" + name + "' from an excluded region: it drives that step's own state; its calls are stripped.");
+                        continue;
+                    }
                     surviving = surviving.Insert(type.Index + type.Length, "\n" + source.Substring(declaration.Index, close - declaration.Index + 1) + "\n");
                     removed.Remove(name); restored = true;
                     log.Add("Preserved shared helper from an excluded region: " + name);
@@ -1825,6 +1855,11 @@ public static class PlayableLevelFactory
             removed += DestroyRetiredStepObjects(root, level, generatedScript, first, log);
             int broken = CleanupBrokenPlayableRefs(root, log);
             broken += NullDanglingReferences(root);
+            FixMaskRangesForLuna(root, log);
+            GiveMeshRenderersAMaterial(root, log);
+            // Luna can't read texture pixels at runtime; the chalk's outline pixels are baked for it.
+            foreach (var chalk in root.GetComponentsInChildren<CG_ChalkTrace>(true))
+                if (chalk.BakeDrawnPixels()) log.Add("  - baked outline pixels of chalk '" + chalk.name + "' for Luna");
 
             if (level != null)
             {
@@ -2394,6 +2429,47 @@ public static class PlayableLevelFactory
         if (!decl.Success) return null;
         var header = Regex.Matches(script.Substring(0, decl.Index), @"\[Header\(""[^""]*\bSTEP\s*(\d+)", RegexOptions.IgnoreCase).Cast<Match>().LastOrDefault();
         return header != null ? int.Parse(header.Groups[1].Value) : (int?)null;
+    }
+
+    /// <summary>
+    /// Luna draws a custom-range SpriteMask as two stencil passes - "open" at its back order, "close" at its front
+    /// order - and a masked sprite at exactly the front order ties with the close pass and draws after it, i.e.
+    /// invisible (Dress step 2's unrolling fabric). Unity counts the front order as inside the range, so moving the
+    /// front up past the masked sprites shows the same set in both. Only masks with such a tie change, so it is idempotent.
+    /// </summary>
+    internal static int FixMaskRangesForLuna(GameObject root, List<string> log)
+    {
+        int fixedCount = 0;
+        var masked = root.GetComponentsInChildren<SpriteRenderer>(true).Where(r => r.maskInteraction != SpriteMaskInteraction.None).ToList();
+        foreach (var mask in root.GetComponentsInChildren<SpriteMask>(true))
+        {
+            if (!mask.isCustomRangeActive) continue;
+            bool tie = masked.Any(r => r.sortingLayerID == mask.frontSortingLayerID && r.sortingOrder == mask.frontSortingOrder);
+            if (!tie) continue;
+            mask.frontSortingOrder += 1;
+            fixedCount++;
+            log?.Add("  - mask '" + mask.name + "': front order " + (mask.frontSortingOrder - 1) + " → " + mask.frontSortingOrder + " (Luna hides sprites at the front order)");
+        }
+        return fixedCount;
+    }
+
+    /// <summary>
+    /// A MeshRenderer whose material a script builds at runtime (CG_ZipperBag's "Bag Open") is saved with none, which
+    /// Luna draws with its InternalErrorShader fallback and - since nothing references Sprites-Default then - may not
+    /// ship the shader the script asks for. Giving it Sprites-Default fixes both; the script still replaces it.
+    /// </summary>
+    internal static int GiveMeshRenderersAMaterial(GameObject root, List<string> log)
+    {
+        var spriteDefault = AssetDatabase.GetBuiltinExtraResource<Material>("Sprites-Default.mat");
+        int count = 0;
+        foreach (var mr in root.GetComponentsInChildren<MeshRenderer>(true))
+        {
+            if (mr.sharedMaterials.Length > 0 && mr.sharedMaterials.All(m => m != null)) continue;
+            mr.sharedMaterial = spriteDefault;
+            count++;
+            log?.Add("  - '" + mr.name + "' had no material: Sprites-Default (Luna can't draw a renderer without one)");
+        }
+        return count;
     }
 
     /// <summary>References to destroyed objects become real nulls, so nothing in the saved prefab dangles.</summary>

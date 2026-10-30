@@ -1,0 +1,942 @@
+{
+  "prefabs": [
+    {
+      "path": "Assets/Resources/Lvl_GP/Level1_1.prefab",
+      "level": "Level1_Hair",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": true,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level1_2.prefab",
+      "level": "Level1_Cloth",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level1_3.prefab",
+      "level": "Level1_Face",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level1_4.prefab",
+      "level": "Level1_Armpit",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "hasInner": true,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level1_5.prefab",
+      "level": "Level1_Shower",
+      "steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hasInner": true,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level1_6.prefab",
+      "level": "Lvl3_WaxMachine",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": true,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level2_1.prefab",
+      "level": "Level2_Face_New",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level2_2.prefab",
+      "level": "Level2_Cloth",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level2_3.prefab",
+      "level": "Level2_Shoe",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level2_4.prefab",
+      "level": "Lvl2_Glasses",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level2_5.prefab",
+      "level": "Lvl3_LipStick",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level3_1.prefab",
+      "level": "Level3_Crown",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level3_2.prefab",
+      "level": "Level3_Manicure",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "hasInner": true,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level3_4.prefab",
+      "level": "Level3_Face",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/Resources/Lvl_GP/Level3_5.prefab",
+      "level": "Lvl3_Stove",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hasInner": true,
+      "error": null
+    },
+    {
+      "path": "Assets/_Core/Prefabs/Level2_1_Backup.prefab",
+      "level": "Level2_Face",
+      "steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Core/Prefabs/Level2_2.prefab",
+      "level": "Level2_Cloth",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Core/Prefabs/Level3_6.prefab",
+      "level": "Lvl3_Stove",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hasInner": true,
+      "error": null
+    },
+    {
+      "path": "Assets/_ImportedFromParent/Levels/Event1_2.prefab",
+      "level": "CG_Level4_Dress",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_ImportedFromParent/Levels/Event1_3.prefab",
+      "level": "CG_Level4_Casket",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Event1_2_Playable_PlayableStep2to6.prefab",
+      "level": "CG_Level4_Dress_Playable_PlayableStep2to6",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Event1_3_Playable_LeanTest8.prefab",
+      "level": "CG_Level4_Casket_Playable_LeanTest8",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Event1_3_Playable_PlayableStep2to6.prefab",
+      "level": "CG_Level4_Casket_Playable_PlayableStep2to6",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Event1_3_Playable_PlayableStep8.prefab",
+      "level": "CG_Level4_Casket_Playable_PlayableStep8",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_1_Playable.prefab",
+      "level": "Level1_Hair_Playable",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_1_Playable_NewTest.prefab",
+      "level": "Level1_Hair_Playable_NewTest",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_1_Playable_Step34.prefab",
+      "level": "Level1_Hair_Playable_Step34",
+      "steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_1_Playable_Step47.prefab",
+      "level": "Level1_Hair_Playable_Step47",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_4_Playable.prefab",
+      "level": "Level1_Armpit_Playable",
+      "steps": [
+        1,
+        2,
+        3
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_5_Playable.prefab",
+      "level": "Level1_Shower_Playable",
+      "steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_5_Playable_NewTest.prefab",
+      "level": "Level1_Shower_Playable_NewTest",
+      "steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level1_6_Playable.prefab",
+      "level": "Lvl3_WaxMachine_Playable",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level2_1_Playable.prefab",
+      "level": "Level2_Face_New_Playable",
+      "steps": [
+        1,
+        2,
+        3
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level2_2_Playable.prefab",
+      "level": "Level2_Cloth_Playable",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level2_3_Playable.prefab",
+      "level": "Level2_Shoe_Playable",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level3_1_Playable.prefab",
+      "level": "Level3_Crown_Playable",
+      "steps": [
+        1,
+        2,
+        3
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level3_1_Playable_NewTest.prefab",
+      "level": "Level3_Crown_Playable_NewTest",
+      "steps": [
+        1,
+        2,
+        3
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level3_2_Playable.prefab",
+      "level": "Level3_Manicure_Playable",
+      "steps": [
+        1,
+        2,
+        3
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level3_4_Playable.prefab",
+      "level": "Level3_Face_Playable",
+      "steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "hasInner": false,
+      "error": null
+    },
+    {
+      "path": "Assets/_Playable/Levels/Level3_5_Playable.prefab",
+      "level": "Lvl3_Stove_Playable",
+      "steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hasInner": false,
+      "error": null
+    }
+  ],
+  "basinBindings": [
+    {
+      "obj": "Hand_icon",
+      "asset": "Assets/_Core/2D Data/Common/Hand 1.png",
+      "width": 181.0,
+      "height": 173.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Hand_icon",
+      "asset": "Assets/_Core/2D Data/Common/Hand 1.png",
+      "width": 181.0,
+      "height": 173.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "BG ",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/cleaning-bg.png",
+      "width": 384.0,
+      "height": 512.0,
+      "ppu": 37.4816971
+    },
+    {
+      "obj": "BG",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/cleaning-bg.png",
+      "width": 384.0,
+      "height": 512.0,
+      "ppu": 37.4816971
+    },
+    {
+      "obj": "BG (1)",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/cleaning-bg.png",
+      "width": 384.0,
+      "height": 512.0,
+      "ppu": 37.4816971
+    },
+    {
+      "obj": "Door",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/Door/Door_Close0.png",
+      "width": 129.0,
+      "height": 512.0,
+      "ppu": 25.8
+    },
+    {
+      "obj": "Arm",
+      "asset": "Assets/_Core/2D Data/Levels/Level 1/Level 1 Menu/changing slices/Layer 54.png",
+      "width": 465.0,
+      "height": 139.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Cloth",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/dress_only.png",
+      "width": 216.999985,
+      "height": 512.0,
+      "ppu": 30.434782
+    },
+    {
+      "obj": "Bin_Back",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/basket_.png",
+      "width": 512.0,
+      "height": 426.000031,
+      "ppu": 58.9211655
+    },
+    {
+      "obj": "Step1_Indication",
+      "asset": "Assets/_Core/2D Data/Levels/Level 1/Cloths/indication arrow_.png",
+      "width": 167.0,
+      "height": 256.0,
+      "ppu": 57.5862045
+    },
+    {
+      "obj": "Bin_Front",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/front.png",
+      "width": 511.999969,
+      "height": 445.999969,
+      "ppu": 69.0402451
+    },
+    {
+      "obj": "ClothInside",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/TeacherDress_Dirty.png",
+      "width": 512.0,
+      "height": 505.0,
+      "ppu": 83.11688
+    },
+    {
+      "obj": "BG",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/bg base_.png",
+      "width": 424.0,
+      "height": 512.0,
+      "ppu": 25.2757072
+    },
+    {
+      "obj": "Tap_Render",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/tap1.png",
+      "width": 139.0,
+      "height": 303.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Tap_Top",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/tap1Top.png",
+      "width": 139.0,
+      "height": 74.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Waterfall",
+      "asset": "Assets/_Core/2D Data/Levels/Level 3/2. Manicure/Slicing/BG/Kitchen/s2/Waterfall.png",
+      "width": 256.0,
+      "height": 512.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Icon",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/holder_.png",
+      "width": 135.0,
+      "height": 244.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Icon",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/bg/hand wash_.png",
+      "width": 197.0,
+      "height": 512.0,
+      "ppu": 93.60146
+    },
+    {
+      "obj": "SinkWaterBase",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/water/clean water bse_.png",
+      "width": 512.0,
+      "height": 209.0,
+      "ppu": 51.56093
+    },
+    {
+      "obj": "SinkWaterTop",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/water/clean water upper.png",
+      "width": 512.0,
+      "height": 206.0,
+      "ppu": 50.1216545
+    },
+    {
+      "obj": "SinkFoam",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/water/clean soap water_.png",
+      "width": 512.0,
+      "height": 220.999985,
+      "ppu": 50.3416824
+    },
+    {
+      "obj": "SinkFoam_Dirty",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/water/dirty water soap.png",
+      "width": 512.0,
+      "height": 212.000015,
+      "ppu": 50.9960175
+    },
+    {
+      "obj": "SinkMask",
+      "asset": "Assets/_Core/_UI/Common/White Square.png",
+      "width": 128.0,
+      "height": 128.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "ClothinSink_Dirty",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/cloth_.png",
+      "width": 512.0,
+      "height": 332.0,
+      "ppu": 58.8505745
+    },
+    {
+      "obj": "ClothinSink_Wet",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/wet_.png",
+      "width": 512.0,
+      "height": 332.0,
+      "ppu": 58.8505745
+    },
+    {
+      "obj": "ClothinSink_Clean",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/clean wet_.png",
+      "width": 512.0,
+      "height": 330.0,
+      "ppu": 61.761158
+    },
+    {
+      "obj": "BG",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/bg.png",
+      "width": 383.0,
+      "height": 512.0,
+      "ppu": 74.95117
+    },
+    {
+      "obj": "GreenLight",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/dryer/on.png",
+      "width": 22.0,
+      "height": 22.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "DressRoom_BG",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/BG 1.png",
+      "width": 384.0,
+      "height": 512.0,
+      "ppu": 37.4816971
+    },
+    {
+      "obj": "Sweater",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/Jersey_.png",
+      "width": 355.0,
+      "height": 512.0,
+      "ppu": 38.46732
+    },
+    {
+      "obj": "PatchMask",
+      "asset": "Assets/_Core/_UI/Common/White Square.png",
+      "width": 128.0,
+      "height": 128.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Body",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/Hand Left.png",
+      "width": 305.0,
+      "height": 512.0,
+      "ppu": 48.22415
+    },
+    {
+      "obj": "Body (1)",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/Right Hand.png",
+      "width": 437.0,
+      "height": 512.0,
+      "ppu": 48.0075
+    },
+    {
+      "obj": "Torn patch",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/Torn patch.png",
+      "width": 193.0,
+      "height": 512.0,
+      "ppu": 78.28747
+    },
+    {
+      "obj": "Torn patch upper area",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/Torn patch upper area.png",
+      "width": 195.0,
+      "height": 512.0,
+      "ppu": 77.68924
+    },
+    {
+      "obj": "knitted patch",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/knitted patch.png",
+      "width": 204.0,
+      "height": 413.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "String",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/Thread 1.png",
+      "width": 458.0,
+      "height": 215.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Wool ball_Green",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/Green Yarn Ball.png",
+      "width": 256.0,
+      "height": 212.0,
+      "ppu": 64.242424
+    },
+    {
+      "obj": "Shadow_WoolBallRed",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/Red Ball Shadow.png",
+      "width": 231.0,
+      "height": 81.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Wool ball_Red",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/Red_Ball_03.png",
+      "width": 281.0,
+      "height": 280.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Infinity",
+      "asset": "Assets/_Core/2D Data/Hand/infinity.png",
+      "width": 256.0,
+      "height": 256.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Hand",
+      "asset": "Assets/_Core/2D Data/Common/Hand 1.png",
+      "width": 181.0,
+      "height": 173.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Bin_Back",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/basket_.png",
+      "width": 512.0,
+      "height": 426.000031,
+      "ppu": 58.9211655
+    },
+    {
+      "obj": "Bin_Front",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/front.png",
+      "width": 511.999969,
+      "height": 445.999969,
+      "ppu": 69.0402451
+    },
+    {
+      "obj": "Tool2_Cloth",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/TeacherDress_Dirty.png",
+      "width": 512.0,
+      "height": 505.0,
+      "ppu": 83.11688
+    },
+    {
+      "obj": "Hand_L",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/left_.png",
+      "width": 414.0,
+      "height": 437.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Hand_R",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/right_.png",
+      "width": 415.0,
+      "height": 438.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Hand_L",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/with foam 2.png",
+      "width": 420.0,
+      "height": 437.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Hand_R",
+      "asset": "Assets/_Playable/HalvedTextures/2_2 steps 4 to 6/with foam 1.png",
+      "width": 420.0,
+      "height": 438.0,
+      "ppu": 100.0
+    },
+    {
+      "obj": "Bin_Back",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/basket_.png",
+      "width": 512.0,
+      "height": 426.000031,
+      "ppu": 58.9211655
+    },
+    {
+      "obj": "Bin_Front",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/basket/front.png",
+      "width": 511.999969,
+      "height": 445.999969,
+      "ppu": 69.0402451
+    },
+    {
+      "obj": "ClothRend",
+      "asset": "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/clean wet_.png",
+      "width": 512.0,
+      "height": 330.0,
+      "ppu": 61.761158
+    }
+  ],
+  "textureCount": 2525,
+  "sceneCount": 6
+}

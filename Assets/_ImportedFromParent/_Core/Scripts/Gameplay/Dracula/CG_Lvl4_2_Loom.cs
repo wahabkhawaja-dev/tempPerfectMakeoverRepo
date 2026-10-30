@@ -250,7 +250,7 @@ public class CG_Lvl4_2_Loom : MonoBehaviour
             string name = Weft.name + " " + (i + 1);
             Transform existing = Weft.transform.parent.Find(name);
 
-            wefts[i] = existing != null ? existing.GetComponent<SpriteRenderer>() : Instantiate(Weft, Weft.transform.parent);
+            wefts[i] = existing != null ? existing.GetComponent<SpriteRenderer>() : Instantiate(Weft.gameObject, Weft.transform.parent).GetComponent<SpriteRenderer>();
             wefts[i].name = name;
             wefts[i].gameObject.SetActive(false);
         }

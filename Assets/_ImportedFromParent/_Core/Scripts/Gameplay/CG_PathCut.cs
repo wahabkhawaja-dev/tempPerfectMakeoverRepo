@@ -401,7 +401,7 @@ public class CG_PathCut : MonoBehaviour
         emitCarry -= count;
 
         // Each bit is flicked a little way off the blades, mostly downwards, and settles there.
-        var emit = new ParticleSystem.EmitParams();
+        var emit = new LunaEmitParams();
         emit.position = ToolTip.position;
         emit.applyShapeToPosition = true;
 
@@ -411,7 +411,7 @@ public class CG_PathCut : MonoBehaviour
 
             ParticleSystem ps = CutParticlesBehind != null && Random.value < .5f ? CutParticlesBehind : CutParticles;
 
-            ps.Emit(emit, 1);
+            LunaParticles.Emit(ps, emit, 1);
         }
     }
 

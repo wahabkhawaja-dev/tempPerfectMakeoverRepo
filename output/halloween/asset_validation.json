@@ -1,0 +1,236 @@
+[
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/01_Dust.png",
+    "size": [
+      1447,
+      1087
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      10,
+      1447,
+      1087
+    ],
+    "sha256": "51e0bf65f45d9bb9566754509ba70a125c62ca46738548724de408f05720668d"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/02_Dirty.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      15,
+      1432,
+      1070
+    ],
+    "sha256": "22dba83b4a8733513396d75e9b59753cfaa4f48916dffe834000609ac011fe61"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/03_Spray.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1448,
+      1086
+    ],
+    "sha256": "0d7d6a0f324fc162422ae37b87c6e034c7c9e1a7a8701d205f5fb51657894ac4"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/04_Foam.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1448,
+      1086
+    ],
+    "sha256": "7849f117370b7cd3fb42fabf7fa0c3fa4288863785079fc31914b759b17e85f7"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/05_Clean.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      17,
+      1438,
+      1070
+    ],
+    "sha256": "c63987cd68dcc37048153c8e4e3adc58581305df9c0ba20c947b042cb45cd51f"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Environment/Podium.png",
+    "size": [
+      1183,
+      1329
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1183,
+      1329
+    ],
+    "sha256": "ac98453eb6e8a76e18f8810a02153761e53c29e43aa7abf4549c6127761c2e47"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Environment/Room.png",
+    "size": [
+      1086,
+      1448
+    ],
+    "alpha_range": [
+      255,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1086,
+      1448
+    ],
+    "sha256": "b543a533aa6e6f706e19df976c832c99e3f3b772764be8f8080fa974d82a1240"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/BrushBody.png",
+    "size": [
+      725,
+      2170
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      122,
+      1,
+      685,
+      2152
+    ],
+    "sha256": "ff619cb8debfc4f6d027a80d692311fdc623f177afa13451bbbac81a5435d341"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/BrushFoamHead.png",
+    "size": [
+      839,
+      1874
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      35,
+      39,
+      815,
+      1874
+    ],
+    "sha256": "8f4303efff41c7a4ed3cc169c83c063cea02b1cabf94c9920346e0f0495332a4"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/Duster.png",
+    "size": [
+      990,
+      1589
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      980,
+      1577
+    ],
+    "sha256": "d6abb7b6da11dae7b3acfc180750c98f001e6712834531ce74711beb17acb415"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/SprayBody.png",
+    "size": [
+      725,
+      2169
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      724,
+      2145
+    ],
+    "sha256": "080991c428125367ed4a30d9cfba7cb64cd6adcb604d23ad2db0688d72530454"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/SprayHead.png",
+    "size": [
+      1439,
+      1093
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      0,
+      0,
+      1409,
+      1080
+    ],
+    "sha256": "b7df3258ad149e67c3ac295bde0daa0342d48e7707da7367db9f93a91c1bd52f"
+  },
+  {
+    "path": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/SprayHeadPressed.png",
+    "size": [
+      1146,
+      1372
+    ],
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_bbox": [
+      27,
+      80,
+      1112,
+      1372
+    ],
+    "sha256": "9a26862ff8270af4df721b3a1ffeca113d4eb792675519c63b23b19c46e98a17"
+  }
+]

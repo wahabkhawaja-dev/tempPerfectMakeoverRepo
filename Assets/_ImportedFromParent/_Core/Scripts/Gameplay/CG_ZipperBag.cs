@@ -149,7 +149,7 @@ public class CG_ZipperBag : MonoBehaviour
         mesh.triangles = tris;
         Opening.sharedMesh = mesh;
 
-        material = new Material(Shader.Find("Sprites/Default"));
+        material = LunaMaterials.SpriteDefault(Opening.GetComponent<MeshRenderer>().sharedMaterial); // [Luna] Shader.Find can miss there
         material.mainTexture = tex;
         Opening.GetComponent<MeshRenderer>().sharedMaterial = material;
 

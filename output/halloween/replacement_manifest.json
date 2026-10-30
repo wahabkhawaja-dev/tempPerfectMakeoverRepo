@@ -1,0 +1,80 @@
+[
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/1 Dust.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/01_Dust.png",
+    "originalWorldWidth": 4.55,
+    "originalWorldHeight": 3.4
+  },
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/2 Dirty.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/02_Dirty.png",
+    "originalWorldWidth": 4.54,
+    "originalWorldHeight": 3.37
+  },
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/3 Spray.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/03_Spray.png",
+    "originalWorldWidth": 4.56,
+    "originalWorldHeight": 3.37
+  },
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/4 Mix.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/04_Foam.png",
+    "originalWorldWidth": 4.67,
+    "originalWorldHeight": 3.53
+  },
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/5 Clean.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/05_Clean.png",
+    "originalWorldWidth": 4.53,
+    "originalWorldHeight": 3.4
+  },
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/Bg.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Environment/Room.png",
+    "originalWorldWidth": 5.10999346,
+    "originalWorldHeight": 6.831114
+  },
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/Podium.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Environment/Podium.png",
+    "originalWorldWidth": 2.79,
+    "originalWorldHeight": 3.14
+  },
+  {
+    "original": "Assets/_Core/2D Data/Levels/Level 3/TOOLS/1. Duster/1 Duster.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/Duster.png",
+    "originalWorldWidth": 2.86,
+    "originalWorldHeight": 4.59
+  },
+  {
+    "original": "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Shower/Shower Body.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/SprayBody.png",
+    "originalWorldWidth": 1.09,
+    "originalWorldHeight": 4.46
+  },
+  {
+    "original": "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Shower/Shower Head 1.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/SprayHead.png",
+    "originalWorldWidth": 0.96,
+    "originalWorldHeight": 0.98
+  },
+  {
+    "original": "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Shower/Shower Head 2.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/SprayHeadPressed.png",
+    "originalWorldWidth": 0.86,
+    "originalWorldHeight": 1.03
+  },
+  {
+    "original": "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/3 Brush A.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/BrushBody.png",
+    "originalWorldWidth": 0.41,
+    "originalWorldHeight": 3.15
+  },
+  {
+    "original": "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Brush/3 Brush B.png",
+    "replacement": "Assets/_Playable/Halloween2026/Sprites/Crown/Tools/BrushFoamHead.png",
+    "originalWorldWidth": 0.82,
+    "originalWorldHeight": 1.83
+  }
+]

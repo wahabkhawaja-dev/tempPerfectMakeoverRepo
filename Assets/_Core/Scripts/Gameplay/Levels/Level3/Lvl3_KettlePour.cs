@@ -102,6 +102,7 @@ public class Lvl3_KettlePour : MonoBehaviour
 
     void Update()
     {
+        __LunaPollMouse();
         // safety: finger lifted outside the collider
         if (isHolding && !Input.GetMouseButton(0))
         {
@@ -136,7 +137,7 @@ public class Lvl3_KettlePour : MonoBehaviour
 
     #region INPUT
 
-    void OnMouseDown()
+    void __LunaMouseDown()
     {
         if (isDone)
             return;
@@ -152,7 +153,7 @@ public class Lvl3_KettlePour : MonoBehaviour
         StartPour();
     }
 
-    void OnMouseUp()
+    void __LunaMouseUp()
     {
         if (!isHolding)
             return;
@@ -322,4 +323,39 @@ public class Lvl3_KettlePour : MonoBehaviour
     }
 
     #endregion
+
+    // [Luna] OnMouse* messages don't fire reliably in Luna/WebGL, so input is polled instead.
+    bool __lunaMouseHeld;
+
+    void __LunaPollMouse()
+    {
+        if (!__lunaMouseHeld)
+        {
+            if (UnityEngine.Input.GetMouseButtonDown(0) && __LunaPointerOverThis())
+            {
+                __lunaMouseHeld = true;
+                __LunaMouseDown();
+            }
+        }
+        else if (!UnityEngine.Input.GetMouseButton(0))
+        {
+            __lunaMouseHeld = false;
+            __LunaMouseUp();
+        }
+    }
+
+    bool __LunaPointerOverThis()
+    {
+        UnityEngine.Camera cam = UnityEngine.Camera.main;
+        if (cam == null) return false;
+        if (GetComponent<UnityEngine.Collider2D>() != null)
+        {
+            UnityEngine.RaycastHit2D hit = UnityEngine.Physics2D.Raycast(cam.ScreenToWorldPoint(UnityEngine.Input.mousePosition), UnityEngine.Vector2.zero);
+            return hit.collider != null && hit.collider.gameObject == gameObject;
+        }
+        UnityEngine.RaycastHit hit3D;
+        return GetComponent<UnityEngine.Collider>() != null
+            && UnityEngine.Physics.Raycast(cam.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit3D)
+            && hit3D.collider.gameObject == gameObject;
+    }
 }

@@ -1623,7 +1623,7 @@ public partial class CrossProjectPrefabImporter : EditorWindow
     private static string Sanitize(string s) => Regex.Replace(s ?? "import", @"[^\w\-]+", "_");
 
     /// <summary>Answers type/member questions from this project's compiled game code.</summary>
-    private sealed class ReflectionCatalog : ILunaTypeCatalog
+    internal sealed class ReflectionCatalog : ILunaTypeCatalog
     {
         private readonly Dictionary<string, Type> types = new Dictionary<string, Type>(StringComparer.Ordinal);
         private const BindingFlags All = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;

@@ -1,0 +1,41 @@
+Assets\_Core\2D Data\Common\Hand 1.png
+Assets\_Core\2D Data\Hand\infinity.png
+Assets\_Core\2D Data\Levels\Level 1\Cloths\indication arrow_.png
+Assets\_Core\2D Data\Levels\Level 1\Level 1 Menu\changing slices\Layer 54.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\Door\Door_Close0.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\basket\TeacherDress_Dirty.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\basket\basket_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\basket\front.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\bg\hand wash_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\bg\holder_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\bg\tap1.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\bg\tap1Top.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\clothes\clean wet_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\clothes\cloth_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\clothes\dress_only.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\clothes\wet_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\dryer\on.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\water\clean soap water_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\water\clean water bse_.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\water\clean water upper.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\ClothCleaning\water\dirty water soap.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\Green Yarn Ball.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\Red Ball Shadow.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\Red_Ball_03.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\Torn patch upper area.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\Torn patch.png
+Assets\_Core\2D Data\Levels\Level 2\3. Cloth\knitted patch.png
+Assets\_Core\2D Data\Levels\Level 3\2. Manicure\Slicing\BG\Kitchen\s2\Waterfall.png
+Assets\_Core\_UI\Common\White Square.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\BG 1.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\Hand Left.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\Jersey_.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\Right Hand.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\Thread 1.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\bg base_.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\bg.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\cleaning-bg.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\left_.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\right_.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\with foam 1.png
+Assets\_Playable\HalvedTextures\2_2 steps 4 to 6\with foam 2.png

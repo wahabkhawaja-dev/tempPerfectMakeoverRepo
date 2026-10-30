@@ -1,0 +1,128 @@
+// Execute as an Editor method body. Makes an independent art-only copy of the existing 1–3 playable.
+string skin = "Assets/_Playable/Halloween2026/Sprites/Crown/";
+string legacy = "Assets/_Playable/HalvedTextures/3_1 steps 1 to 3/";
+string core = "Assets/_Core/2D Data/Levels/Level 3/";
+var entries = new[] {
+    new[] { legacy+"1 Dust.png",skin+"01_Dust.png" },
+    new[] { legacy+"2 Dirty.png",skin+"02_Dirty.png" },
+    new[] { legacy+"3 Spray.png",skin+"03_Spray.png" },
+    new[] { legacy+"4 Mix.png",skin+"04_Foam.png" },
+    new[] { legacy+"5 Clean.png",skin+"05_Clean.png" },
+    new[] { legacy+"Bg.png",skin+"Environment/Room.png" },
+    new[] { legacy+"Podium.png",skin+"Environment/Podium.png" },
+    new[] { core+"TOOLS/1. Duster/1 Duster.png",skin+"Tools/Duster.png" },
+    new[] { core+"TOOLS/Shower/Shower Body.png",skin+"Tools/SprayBody.png" },
+    new[] { core+"TOOLS/Shower/Shower Head 1.png",skin+"Tools/SprayHead.png" },
+    new[] { core+"TOOLS/Shower/Shower Head 2.png",skin+"Tools/SprayHeadPressed.png" },
+    new[] { legacy+"3 Brush A.png",skin+"Tools/BrushBody.png" },
+    new[] { core+"TOOLS/Brush/3 Brush B.png",skin+"Tools/BrushFoamHead.png" }
+};
+AssetDatabase.Refresh();
+var replacements = new System.Collections.Generic.Dictionary<UnityEngine.Object,UnityEngine.Object>();
+var manifest = new System.Collections.Generic.List<object>();
+foreach (var pair in entries)
+{
+    var original = AssetDatabase.LoadAssetAtPath<Sprite>(pair[0]);
+    if (original == null) throw new System.Exception("Missing original sprite: "+pair[0]);
+    var importer = AssetImporter.GetAtPath(pair[1]) as TextureImporter;
+    if (importer == null) throw new System.Exception("Missing generated texture: "+pair[1]);
+    importer.textureType = TextureImporterType.Sprite;
+    importer.spriteImportMode = SpriteImportMode.Single;
+    importer.spritePixelsPerUnit = 100;
+    importer.mipmapEnabled = false;
+    importer.alphaIsTransparency = true;
+    importer.npotScale = TextureImporterNPOTScale.None;
+    importer.maxTextureSize = 2048;
+    importer.textureCompression = TextureImporterCompression.Uncompressed;
+    importer.spriteBorder = Vector4.zero;
+    var settings = new TextureImporterSettings();
+    importer.ReadTextureSettings(settings);
+    settings.spriteMeshType = SpriteMeshType.FullRect;
+    settings.spriteAlignment = (int)SpriteAlignment.Custom;
+    settings.spritePivot = new Vector2(original.pivot.x/original.rect.width,original.pivot.y/original.rect.height);
+    importer.SetTextureSettings(settings);
+    importer.SaveAndReimport();
+    var replacement = AssetDatabase.LoadAssetAtPath<Sprite>(pair[1]);
+    if (replacement == null) throw new System.Exception("Sprite import failed: "+pair[1]);
+    string fullSource = pair[0].StartsWith(legacy) && System.IO.Path.GetFileName(pair[0])[0] >= '1' && System.IO.Path.GetFileName(pair[0])[0] <= '5'
+        && !pair[0].EndsWith("3 Brush A.png")
+        ? core+"1. Crown/Slicing/"+System.IO.Path.GetFileName(pair[0]) : pair[0];
+    var fullSprite = AssetDatabase.LoadAssetAtPath<Sprite>(fullSource);
+    if (fullSprite == null) fullSprite = original;
+    importer.spritePixelsPerUnit *= replacement.bounds.size.x/fullSprite.bounds.size.x;
+    importer.SaveAndReimport();
+    replacement = AssetDatabase.LoadAssetAtPath<Sprite>(pair[1]);
+    replacements.Add(original,replacement);
+    replacements[original.texture] = replacement.texture;
+    replacements[fullSprite] = replacement;
+    replacements[fullSprite.texture] = replacement.texture;
+    manifest.Add(new { original=pair[0], replacement=pair[1], originalWorldWidth=original.bounds.size.x, originalWorldHeight=original.bounds.size.y });
+}
+// Copy the duster's four-bone rig, weighted vertices and topology into the new sprite.
+var factories = new UnityEditor.U2D.Sprites.SpriteDataProviderFactories(); factories.Init();
+var sourceProvider = factories.GetSpriteEditorDataProviderFromObject(AssetImporter.GetAtPath(core+"TOOLS/1. Duster/1 Duster.png"));
+var targetProvider = factories.GetSpriteEditorDataProviderFromObject(AssetImporter.GetAtPath(skin+"Tools/Duster.png"));
+sourceProvider.InitSpriteEditorDataProvider(); targetProvider.InitSpriteEditorDataProvider();
+var from = sourceProvider.GetSpriteRects()[0]; var to = targetProvider.GetSpriteRects()[0];
+float sx = to.rect.width/from.rect.width; float sy = to.rect.height/from.rect.height;
+var bones = sourceProvider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteBoneDataProvider>().GetBones(from.spriteID);
+for(int i=0;i<bones.Count;i++) { var bone=bones[i]; bone.position=new Vector3(bone.position.x*sx,bone.position.y*sy,bone.position.z); bone.length*=sx; bones[i]=bone; }
+targetProvider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteBoneDataProvider>().SetBones(to.spriteID,bones);
+var sourceMesh=sourceProvider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteMeshDataProvider>();
+var targetMesh=targetProvider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteMeshDataProvider>();
+var vertices=sourceMesh.GetVertices(from.spriteID);
+for(int i=0;i<vertices.Length;i++)vertices[i].position=new Vector2(vertices[i].position.x*sx,vertices[i].position.y*sy);
+targetMesh.SetVertices(to.spriteID,vertices); targetMesh.SetIndices(to.spriteID,sourceMesh.GetIndices(from.spriteID)); targetMesh.SetEdges(to.spriteID,sourceMesh.GetEdges(from.spriteID));
+targetProvider.Apply();
+((TextureImporter)AssetImporter.GetAtPath(skin+"Tools/Duster.png")).SaveAndReimport();
+string dest = "Assets/_Playable/Halloween2026/Prefabs/Halloween_Crown_Playable.prefab";
+System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(dest));
+AssetDatabase.Refresh();
+var root = PrefabUtility.LoadPrefabContents("Assets/_Playable/Levels/Level3_1_Playable.prefab");
+int changed = 0;
+try
+{
+    root.name = "Halloween_Crown_Playable";
+    // Size stretches the zero-border sprite rectangle without scaling transforms/colliders.
+    foreach (var renderer in root.GetComponentsInChildren<SpriteRenderer>(true))
+    {
+        UnityEngine.Object next;
+        if (renderer.sprite != null && replacements.TryGetValue(renderer.sprite,out next))
+        {
+            var size = renderer.drawMode == SpriteDrawMode.Simple ? (Vector2)renderer.sprite.bounds.size : renderer.size;
+            renderer.sprite = (Sprite)next;
+            if (renderer.GetComponent<UnityEngine.U2D.Animation.SpriteSkin>() == null) { renderer.drawMode = SpriteDrawMode.Sliced; renderer.size = size; }
+            changed++;
+        }
+    }
+    foreach (var component in root.GetComponentsInChildren<Component>(true))
+    {
+        if (component == null) throw new System.Exception("Source prefab has a missing script.");
+        using (var serialized = new SerializedObject(component))
+        {
+            var property = serialized.GetIterator();
+            while (property.Next(true))
+            {
+                UnityEngine.Object next;
+                if (property.propertyType == SerializedPropertyType.ObjectReference && property.objectReferenceValue != null && replacements.TryGetValue(property.objectReferenceValue,out next))
+                    property.objectReferenceValue = next;
+            }
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+        }
+    }
+    var level = root.GetComponentInChildren<LevelData>(true);
+    level.ToolIcons = new System.Collections.Generic.List<Sprite> {
+        AssetDatabase.LoadAssetAtPath<Sprite>(skin+"Tools/Duster.png"),
+        AssetDatabase.LoadAssetAtPath<Sprite>(skin+"Tools/SprayBody.png"),
+        AssetDatabase.LoadAssetAtPath<Sprite>(skin+"Tools/BrushBody.png")
+    };
+    // Explicitly retain every authored transform after sprite-change editor callbacks.
+    var sourceTransforms=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Playable/Levels/Level3_1_Playable.prefab").GetComponentsInChildren<Transform>(true);
+    var targetTransforms=root.GetComponentsInChildren<Transform>(true);
+    for(int i=0;i<sourceTransforms.Length;i++) { targetTransforms[i].localPosition=sourceTransforms[i].localPosition; targetTransforms[i].localRotation=sourceTransforms[i].localRotation; targetTransforms[i].localScale=sourceTransforms[i].localScale; }
+    PrefabUtility.SaveAsPrefabAsset(root,dest);
+}
+finally { PrefabUtility.UnloadPrefabContents(root); }
+AssetDatabase.SaveAssets();
+System.IO.File.WriteAllText("output/halloween/replacement_manifest.json",Newtonsoft.Json.JsonConvert.SerializeObject(manifest,Newtonsoft.Json.Formatting.Indented));
+return new { prefab=dest, replacedRenderers=changed, sprites=entries.Length };

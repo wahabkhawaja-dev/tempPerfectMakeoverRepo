@@ -357,13 +357,8 @@ public class BD_Fold : MonoBehaviour
    
     void CalculateStickerUVRect()
     {
-        Sprite s = frontRenderer.sprite;
-        stickerUVRect = new Rect(
-            s.textureRect.x / s.texture.width,
-            s.textureRect.y / s.texture.height,
-            s.textureRect.width / s.texture.width,
-            s.textureRect.height / s.texture.height
-        );
+        // [Luna] textures ship downscaled; textureRect / texture size ran past 1 there
+        stickerUVRect = LunaSprites.UvRect(frontRenderer.sprite);
     }
 
     Vector2 GetPointerWorldPos()

@@ -14,7 +14,6 @@ using UnityEngine.Events;
 // after the cut, until they are let go).
 public class CG_ClothSlicer : MonoBehaviour
 {
-    static readonly int ColorPropID = Shader.PropertyToID("_Color");
 
     [Space()]
     [Tooltip("The sheet - its sprite is what gets cut (its own renderer is switched off once cutting starts).")]
@@ -147,7 +146,6 @@ public class CG_ClothSlicer : MonoBehaviour
 
     Vector2 quadMin, quadMax, uvMin, uvMax;
     Material mat;
-    MaterialPropertyBlock mpb;
     float totalArea, removedArea;
     bool active;
     bool slashDriven;
@@ -183,21 +181,18 @@ public class CG_ClothSlicer : MonoBehaviour
         Sprite sprite = Sheet.sprite;
         Bounds b = sprite.bounds;
         Texture2D tex = sprite.texture;
-        Rect rect = sprite.textureRect;
 
         quadMin = b.min;
         quadMax = b.max;
-        uvMin = new Vector2(rect.xMin / tex.width, rect.yMin / tex.height);
-        uvMax = new Vector2(rect.xMax / tex.width, rect.yMax / tex.height);
+        Rect uvRect = LunaSprites.UvRect(sprite); // [Luna] textures ship downscaled; textureRect / texture size ran past 1
+        uvMin = uvRect.min;
+        uvMax = uvRect.max;
 
         if (mat == null)
         {
-            mat = new Material(Shader.Find("Sprites/Default"));
+            mat = LunaMaterials.SpriteDefault(Sheet.sharedMaterial); // [Luna] Shader.Find can miss there
             mat.mainTexture = tex;
         }
-
-        if (mpb == null)
-            mpb = new MaterialPropertyBlock();
 
         keepPoly = KeepOutline();
 
@@ -274,26 +269,26 @@ public class CG_ClothSlicer : MonoBehaviour
 
                 if (r < SquareChance)
                 {
-                    AddFragment(a, bq, c, d);
+                    AddFragment(new Vector2[] { a, bq, c, d });
                 }
                 else if (r < SquareChance + FanChance)
                 {
                     Vector2 m = (a + bq + c + d) * .25f + Vector2.Scale(Random.insideUnitCircle * Jitter * .5f, cell);
 
-                    AddFragment(a, bq, m);
-                    AddFragment(bq, c, m);
-                    AddFragment(c, d, m);
-                    AddFragment(d, a, m);
+                    AddFragment(new Vector2[] { a, bq, m });
+                    AddFragment(new Vector2[] { bq, c, m });
+                    AddFragment(new Vector2[] { c, d, m });
+                    AddFragment(new Vector2[] { d, a, m });
                 }
                 else if (Random.value < .5f)
                 {
-                    AddFragment(a, bq, c);
-                    AddFragment(a, c, d);
+                    AddFragment(new Vector2[] { a, bq, c });
+                    AddFragment(new Vector2[] { a, c, d });
                 }
                 else
                 {
-                    AddFragment(a, bq, d);
-                    AddFragment(bq, c, d);
+                    AddFragment(new Vector2[] { a, bq, d });
+                    AddFragment(new Vector2[] { bq, c, d });
                 }
             }
     }
@@ -317,8 +312,8 @@ public class CG_ClothSlicer : MonoBehaviour
         f.MR.sharedMaterial = mat;
         f.MR.sortingLayerID = Sheet.sortingLayerID;
         f.MR.sortingOrder = Sheet.sortingOrder;
-        SetColor(f.MR, Sheet.color);
         Rebuild(f.MF, poly);
+        SetColor(f.MR, Sheet.color);
 
         if (!f.Kept)
             totalArea += f.Area;
@@ -725,7 +720,7 @@ public class CG_ClothSlicer : MonoBehaviour
 
         slash = go.AddComponent<LineRenderer>();
         slash.useWorldSpace = true;
-        slashMat = new Material(Shader.Find("Sprites/Default"));
+        slashMat = LunaMaterials.SpriteDefault(Sheet.sharedMaterial); // [Luna] Shader.Find can miss there
         slash.sharedMaterial = slashMat;
         slash.textureMode = LineTextureMode.Stretch;
         slash.numCapVertices = 2;
@@ -742,11 +737,20 @@ public class CG_ClothSlicer : MonoBehaviour
         slash.positionCount = 0;
     }
 
+    // [Luna] The tint goes in the piece's vertex colours, not a MaterialPropertyBlock: Luna drew these runtime meshes
+    // without vertex colours as invisible (the cloth looked cut away before the scissors got there). Sprites/Default
+    // multiplies the vertex colour exactly as it did _Color, so Unity looks the same.
     void SetColor(MeshRenderer mr, Color c)
     {
-        mpb.Clear();
-        mpb.SetColor(ColorPropID, c);
-        mr.SetPropertyBlock(mpb);
+        var mf = mr.GetComponent<MeshFilter>();
+        var mesh = mf != null ? mf.sharedMesh : null;
+        if (mesh == null)
+            return;
+
+        var colors = new Color[mesh.vertexCount];
+        for (int i = 0; i < colors.Length; i++)
+            colors[i] = c;
+        mesh.colors = colors;
     }
 
     void Rebuild(MeshFilter mf, Vector2[] shape)
@@ -766,12 +770,15 @@ public class CG_ClothSlicer : MonoBehaviour
         }
 
         var tris = new int[(n - 2) * 3];
+        // [Luna] Every piece is wound clockwise as the camera sees it (Unity's front face). The pieces come in either
+        // winding; Unity's Sprites/Default draws both sides, but Luna culled the back-facing half of the cloth.
+        bool clockwise = Area(shape, true) < 0f;
 
         for (int i = 0; i < n - 2; i++)
         {
             tris[i * 3] = 0;
-            tris[i * 3 + 1] = i + 1;
-            tris[i * 3 + 2] = i + 2;
+            tris[i * 3 + 1] = clockwise ? i + 1 : i + 2;
+            tris[i * 3 + 2] = clockwise ? i + 2 : i + 1;
         }
 
         var mesh = new Mesh();
@@ -822,7 +829,8 @@ public class CG_ClothSlicer : MonoBehaviour
         return ((d1 > 0f) != (d2 > 0f)) && ((d3 > 0f) != (d4 > 0f));
     }
 
-    static float Area(Vector2[] p)
+    // signed: positive when the points run counter-clockwise (x right, y up)
+    static float Area(Vector2[] p, bool signed = false)
     {
         float area = 0f;
 
@@ -832,7 +840,7 @@ public class CG_ClothSlicer : MonoBehaviour
             area += a.x * b.y - b.x * a.y;
         }
 
-        return Mathf.Abs(area) * .5f;
+        return (signed ? area : Mathf.Abs(area)) * .5f;
     }
 
     static Vector2 Centroid(Vector2[] p)

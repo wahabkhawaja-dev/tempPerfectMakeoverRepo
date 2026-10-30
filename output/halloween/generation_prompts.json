@@ -1,0 +1,94 @@
+{
+  "method": "built-in image_gen",
+  "selected": "Crown",
+  "environment_and_tools": [
+    [
+      "room",
+      "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Bg/Bg.png",
+      false,
+      "A complete Halloween room BACKGROUND only, portrait same 2048:2732 aspect ratio and same camera, wall/floor line and perspective as the room reference. Transform the beige room into a refined spooky gothic crown restoration chamber in the game's realistic prerendered 3D style. Muted smoky plum plaster/stone wall, dark walnut plank floor, a pointed gothic window on RIGHT where original window is, pale cool moonlight with distant black bat silhouettes outside, subtle cobwebs in upper corners, dark carved shelf and small aged books on left, warm candle lanterns and two carved glowing pumpkins near the far floor edges. Preserve a LARGE EMPTY calm midtone central wall and EMPTY central floor for the separate foreground crown/pedestal; no table or stand in center. Overall lighter midtone wall behind crown so dark metal remains readable, restrained atmospheric shadows, warm amber practical light from left consistent with crown. Rich physically shaded materials, not cartoon, vector, brush painting or horror photomontage. No crown, people, hands, UI, lettering, text, skull pile, blood, thick fog or foreground decorations blocking playable tools. Image 1 establishes original ROOM GEOMETRY; image 2 is COLOR/MATERIAL coordination only. Fill entire canvas as opaque background."
+    ],
+    [
+      "podium",
+      "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/Bg/Podium.png",
+      true,
+      "A single Halloween display PEDESTAL cutout. Edit image 1, preserve its exact front-view cabinet silhouette, top cushion dimensions, camera and perspective, bottom base outline and framing. Reskin the brown wood as carved near-black walnut with subtle antique-gold thin trim, small elegant raised bat wings and pumpkin emblem in the central front panel, cushion as deep plum velvet with understated gold stitching. Match image 2 Halloween crown colors, rendering quality and upper-left warm highlights. IMPORTANT remove the unwanted original room/floor pixels surrounding the wooden cabinet; ONLY cabinet and cushion have opacity, outside silhouette truly transparent. Do not add a crown, candles, chains, floating bats, background, ground plane or text. Detailed realistic prerendered game art, same style as input, not flat cartoon. Keep original 1119:1257 aspect ratio."
+    ],
+    [
+      "duster",
+      "Assets/_Core/2D Data/Levels/Level 3/TOOLS/1. Duster/1 Duster.png",
+      true,
+      "Single Halloween feather DUSTER sprite. Image 1 is exact edit target. Keep exact long thin vertical silhouette, wooden handle at TOP and splayed fluffy feather head at BOTTOM, feather outline, lengths, width, view and tool tip positions. Only reskin surface/colors: handle polished near-black ebony with fine gold wrap bands and tiny carved pumpkin-face detail; collar antique gold; fluffy feathers softly alternating smoky black, muted plum and burnt orange at their tips. Real individual feather fibers, same realistic prerendered texture/detail as input. Image 2 establishes coordinated palette. No added protrusions, ribbons, skull tops, hands, particles or text; no background or floor. Preserve transparent alpha and complete feather tips. Preserve original very tall aspect ratio and whitespace, do not zoom crop."
+    ],
+    [
+      "spray_body",
+      "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Shower/Shower Body.png",
+      true,
+      "Single Halloween JEWELRY CLEANING SPRAY BOTTLE main sprite, exact same silhouette, height/width ratio, neck, base, trigger and nozzle geometry and framing as image 1. Change ONLY decoration/material: bottle body dark translucent plum glass with warm amber cleaning fluid, black pump and original trigger shape, slim antique gold neck/base bands. Replace the entire white printed product label with a charcoal/plum oval label bearing ONLY one elegant small gold jack-o-lantern emblem, NO WORDS OR LETTERS. Match realistic rendered plastics/glass and original lighting, coordinate with crown image 2. This remains a practical cleaning sprayer, not a flask/potion cork bottle. No added horns, wings, bats or silhouette changes. True transparent background, no floor, no cast shadow outside sprite. Preserve original long narrow aspect and nozzle angle exactly."
+    ],
+    [
+      "spray_head",
+      "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Shower/Shower Head 1.png",
+      true,
+      "Only the separate Halloween SPRAYER TRIGGER/HEAD overlay part in image 1. Keep exact outer silhouette, spray nozzle at left, trigger on right, perspective, crop, proportions, transparency and attachment positions. Black lacquered plastic with narrow antique gold trim and tiny burnt-orange highlight on nozzle, matching the same black-and-gold Halloween cleaning sprayer. Do not draw bottle or pipe or droplets. Detailed realistic prerendered plastic as original, not cartoon. Image 2 only palette reference. Transparent background, original 128:98 aspect."
+    ],
+    [
+      "brush_body",
+      "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Brush/3 Brush A.png",
+      true,
+      "Single Halloween SCRUB BRUSH sprite. Image 1 exact edit target: keep exact extremely tall slim silhouette and curved ergonomic handle, hanging hole at bottom, rectangular head at top, bristles facing LEFT, head width and handle length/curve. Recolor yellow plastic to satin near-black charcoal with thin amber-orange edge trim, an understated antique-gold pumpkin emblem stamped near the top of handle, fine realistic amber and charcoal bristles. All original anatomical/tool dimensions unchanged. Match original realistic molded plastic and bristle shading, image 2 palette only. No extra ornaments or protrusions, no hands, text, floor or background. Preserve entire narrow object without clipping; true alpha including hanging hole. Output same very narrow aspect or transparent padding, not a close-up of only the head."
+    ],
+    [
+      "brush_foam",
+      "Assets/_Core/2D Data/Levels/Level 3/TOOLS/Brush/3 Brush B.png",
+      true,
+      "Only the separate FOAMY BRUSH HEAD overlay in image 1, not whole brush. Preserve exact rectangular head silhouette and original head width/height, bristles facing LEFT, lower attachment, camera and crop. Yellow plastic becomes charcoal black with restrained amber-orange trim and amber/black bristles, preserve the white small soap bubbles on the left-side bristles. Match realistic molded plastic and lather detail in original. Image 2 palette only. No handle extension, extra objects, label, text or background. True transparent alpha exterior. Keep original 82:183 aspect."
+    ]
+  ],
+  "state_edits": [
+    [
+      "crown_dust",
+      "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/1 Dust.png",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/Assets/_Playable/Halloween2026/Sprites/Crown/05_Clean.png",
+      "CROWN dust state. Retain the first image's exact Halloween crown design, camera, silhouette, center pumpkin engraving, amber jewel placement and 1448x1086 canvas. The second image is ONLY a reference for heavy baked-on dry mud, dusty crusts and tarnish coverage. Apply that dirty BEFORE-cleaning material state to the first crown. Thick flaky brown-black dry earth in crevices, tarnished silver, partly obscured orange stones; center jack-o-lantern still faintly readable. Keep every edge and hole in its original position, no scene or loose specks beyond silhouette."
+    ],
+    [
+      "crown_dirty",
+      "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/2 Dirty.png",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/Assets/_Playable/Halloween2026/Sprites/Crown/05_Clean.png",
+      "CROWN tarnished state after dusting. Keep the first Halloween crown's exact design, engraving, amber jewels, framing, camera, silhouette and 1448x1086 canvas. Second image demonstrates dirty material coverage only. Add thin brown soot and oxidized gritty tarnish over the metal, much less chunky than dust state; retain clearly readable faceted amber gems and jack-o-lantern engraving. No new ornaments, no fog, no floating dust. Not clean yet."
+    ],
+    [
+      "crown_spray",
+      "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/3 Spray.png",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/Assets/_Playable/Halloween2026/Sprites/Crown/05_Clean.png",
+      "CROWN sprayed state. Keep first image's exact Halloween crown design, center jack-o-lantern engraving, amber gems, silhouette, framing, front view and 1448x1086 canvas. Second is ONLY a reference for surface wetness and droplet coverage. Add a thin muddy tarnished surface with numerous realistic round clear water droplets clinging to the crown. Preserve material detail, no running water or spray jets outside object, no soap foam yet."
+    ],
+    [
+      "crown_foam",
+      "Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/4 Mix.png",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/Assets/_Playable/Halloween2026/Sprites/Crown/05_Clean.png",
+      "CROWN scrubbed soap state. Keep the first Halloween crown's EXACT silhouette, design, orange gems, center pumpkin engraving, framing and 1448x1086 canvas. Second is ONLY a reference for dense realistic lather coverage. Cover the SAME first crown in white micro-bubble soap lather and wet streaks, slightly dirt-tinted around crevices. Leave some orange gems and pumpkin design peeking through. Only change surface state; do not move or replace any part. No extra props or background."
+    ],
+    [
+      "basin_dirty",
+      "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/cloth_.png",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/Assets/_Playable/Halloween2026/Sprites/Basin/03_CleanWet.png",
+      "BASIN dry dirty clothing state. First image is the definitive pumpkin-orange knit cardigan and aubergine shirt with two tiny pale gold bat embroidery motifs. Second image is the EXACT pose, fold structure and dirty coverage target. Recolor only the second clothing pile to match first orange/plum fabric and buttons, preserve second silhouette, camera, original 870x564 aspect ratio, sleeve/collar positions, no new folds or objects. Keep its heavy dry brown mud and grime, realistic textile detail and clearly dirty shirt; embroidery mostly obscured by dirt. Dry matte grime; no wet shine, no foam. Complete single clothing pile with transparent exterior."
+    ],
+    [
+      "basin_wet",
+      "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/wet_.png",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/Assets/_Playable/Halloween2026/Sprites/Basin/03_CleanWet.png",
+      "BASIN wet dirty clothing state. First is material/color identity: pumpkin-orange knit cardigan, dark aubergine shirt, small dark brown buttons, two tiny pale gold bat embroidery motifs. Edit SECOND image in place to those same Halloween colors, preserving its EXACT crumpled silhouette, fold geometry, collar, sleeves, perspective and 870x564 aspect ratio. Keep heavy muddy soiling and the second image's wet sheen and small water beads. This is dirty wet before scrubbing, not clean. No added props, hands, background, or outline. True transparent alpha."
+    ],
+    [
+      "basin_rub",
+      "Assets/_Core/2D Data/Levels/Level 2/3. Cloth/ClothCleaning/clothes/cloth to rub_.png",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/Assets/_Playable/Halloween2026/Sprites/Basin/03_CleanWet.png",
+      "BASIN stretched scrub cloth state. First shows fabric colors and realistic rendering only. SECOND image is the exact edit target, an irregular partially transparent spread/rubbed garment layer, not a pile. Preserve SECOND image's complete unusual silhouette, stretches, transparent holes, wet fabric folds and 757x411 aspect ratio EXACTLY. Change burgundy cloth to pumpkin-orange knit and cream fabric to dark aubergine plum matching first image. Preserve realistic white microfoam streaks and wet sheen from second image. Do not fill in holes, close the outline, add hands, or convert it into a neat pile. Transparent background and existing holes remain truly transparent."
+    ]
+  ],
+  "clean_crown": "Precise-object edit of Assets/_Core/2D Data/Levels/Level 3/1. Crown/Slicing/5 Clean.png. Preserve crown silhouette, front camera, filigree, gemstone shapes and positions, large teardrop bezel and framing. Polished dark antique silver with warm gold bevel highlights; amber-orange faceted stones; raised jack-o-lantern engraving inside central plate; tiny bat etchings along lower band. Match original realistic prerendered material style and upper-left highlights. True alpha background, no extra props, text, particles, floor or silhouette extensions.",
+  "pressed_trigger": "Image 1 exact pressed trigger: Assets/_Core/2D Data/Levels/Level 3/TOOLS/Shower/Shower Head 2.png. Image 2 unpressed Halloween SprayHead.png for materials only. Glossy near-black plastic, thin antique-gold contour trim and small orange nozzle highlight. Retain original pressed angle, short lower trigger, crop and 86:103 aspect, real alpha, no bottle or text."
+}

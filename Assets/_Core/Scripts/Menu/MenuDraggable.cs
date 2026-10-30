@@ -42,7 +42,7 @@ public class MenuDraggable : MonoBehaviour
         cam = Camera.main;
     }
 
-    void OnMouseDown()
+    void __LunaMouseDown()
     {
         if (!canDrag)
             return;
@@ -66,6 +66,7 @@ public class MenuDraggable : MonoBehaviour
 
     void Update()
     {
+        __LunaPollMouse();
         if (!isDragging)
             return;
 
@@ -78,7 +79,7 @@ public class MenuDraggable : MonoBehaviour
         transform.position = targetPos;
     }
 
-    void OnMouseUp()
+    void __LunaMouseUp()
     {
         if (!isDragging)
             return;
@@ -92,5 +93,40 @@ public class MenuDraggable : MonoBehaviour
             transform.DOKill();
             transform.DOMove(startPos, returnDuration).SetEase(returnEase);
         }
+    }
+
+    // [Luna] OnMouse* messages don't fire reliably in Luna/WebGL, so input is polled instead.
+    bool __lunaMouseHeld;
+
+    void __LunaPollMouse()
+    {
+        if (!__lunaMouseHeld)
+        {
+            if (UnityEngine.Input.GetMouseButtonDown(0) && __LunaPointerOverThis())
+            {
+                __lunaMouseHeld = true;
+                __LunaMouseDown();
+            }
+        }
+        else if (!UnityEngine.Input.GetMouseButton(0))
+        {
+            __lunaMouseHeld = false;
+            __LunaMouseUp();
+        }
+    }
+
+    bool __LunaPointerOverThis()
+    {
+        UnityEngine.Camera cam = UnityEngine.Camera.main;
+        if (cam == null) return false;
+        if (GetComponent<UnityEngine.Collider2D>() != null)
+        {
+            UnityEngine.RaycastHit2D hit = UnityEngine.Physics2D.Raycast(cam.ScreenToWorldPoint(UnityEngine.Input.mousePosition), UnityEngine.Vector2.zero);
+            return hit.collider != null && hit.collider.gameObject == gameObject;
+        }
+        UnityEngine.RaycastHit hit3D;
+        return GetComponent<UnityEngine.Collider>() != null
+            && UnityEngine.Physics.Raycast(cam.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit3D)
+            && hit3D.collider.gameObject == gameObject;
     }
 }
