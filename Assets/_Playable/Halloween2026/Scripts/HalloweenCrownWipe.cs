@@ -13,6 +13,7 @@ public sealed class HalloweenCrownWipe : MonoBehaviour
     public ScratchCardManager foamSurface;
     public SpriteRenderer cleanCrown;
     public GameObject[] priorLayers;
+    public BD_CameraFollow cameraFollow;
     public Vector3 dockPosition = new Vector3(1.7f,-.55f,-2);
     [Range(.7f,1)] public float finishThreshold=.94f;
     public bool Begun { get; private set; }
@@ -24,6 +25,7 @@ public sealed class HalloweenCrownWipe : MonoBehaviour
     public void Begin()
     {
         if(Begun)return;
+        cameraFollow=clothTool.GetComponent<BD_CameraFollow>();
         Begun=true;
         StartCoroutine(Enter());
     }
@@ -32,11 +34,12 @@ public sealed class HalloweenCrownWipe : MonoBehaviour
     {
         UI_Manager.instance.SetProgressBarPos();
         CameraController.Instance.MoveCamera(level.MainZoom.CameraPos,level.MainZoom.CameraFOV);
-        cleanCrown.gameObject.SetActive(true);
-        cleanCrown.color=new Color(1,1,1,1);
+        Level3_Crown_Playable.FadeLayer(cleanCrown.gameObject,1);
+        // Initially disabled, then kept active and hidden through opacity after use.
         foamSurface.gameObject.SetActive(true);
         clothTool.gameObject.SetActive(true);
         clothTool.canDrag=false;
+        cameraFollow.enabled=false;
         clothTool.thisCollider=clothTool.GetComponent<Collider2D>();
         clothTool.thisCollider.enabled=false;
         yield return null;
@@ -45,13 +48,15 @@ public sealed class HalloweenCrownWipe : MonoBehaviour
         foamSurface.Progress.ResetProgress();
         foamSurface.Card.InputEnabled=false;
         foamSurface.Card.IsScratching=false;
-        foreach(var layer in priorLayers)if(layer!=null)layer.SetActive(false);
+        Level3_Crown_Playable.FadeLayer(foamSurface.SpriteCard,1);
+        foreach(var layer in priorLayers)Level3_Crown_Playable.FadeLayer(layer,0);
         clothTool.transform.DOKill();
         clothTool.transform.DOMove(dockPosition,.55f).OnComplete(()=>{
             clothTool.startPos=dockPosition;
             clothTool.startScale=clothTool.transform.localScale;
             clothTool.canDrag=true;
             clothTool.thisCollider.enabled=true;
+            cameraFollow.enabled=true;
             ready=true;
         });
     }
@@ -87,14 +92,15 @@ public sealed class HalloweenCrownWipe : MonoBehaviour
     {
         finishing=true;
         ready=false;
+        cameraFollow.enabled=false;
+        CameraController.Instance.KillPositionTweens();
         clothTool.isDragging=false;
         clothTool.canDrag=false;
         clothTool.thisCollider.enabled=false;
-        foamSurface.SpriteCard.GetComponent<SpriteRenderer>().DOFade(0,.4f);
+        Level3_Crown_Playable.FadeLayer(foamSurface.SpriteCard,0,.4f);
         clothTool.transform.DOMoveX(8,.55f).OnComplete(()=>clothTool.gameObject.SetActive(false));
         UI_Manager.instance.SetProgressBar(1);
         yield return new WaitForSeconds(.6f);
-        foamSurface.gameObject.SetActive(false);
         CameraController.Instance.MoveCamera(level.MainZoom.CameraPos,level.MainZoom.CameraFOV);
         yield return new WaitForSeconds(.7f);
         Finished=true;

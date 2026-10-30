@@ -50,6 +50,9 @@ public class LevelData : MonoBehaviour
              "disabling something above it in the hierarchy would hide it again.")]
     public GameObject[] disableOnLevelComplete;
 
+    // Some playables reveal restore surfaces only when their own step begins.
+    protected virtual bool RevealRestoreLayersAtStart { get { return true; } }
+
     WaitForSeconds wait1sec = new WaitForSeconds(1f);
     IEnumerator Setup()
     {
@@ -92,7 +95,7 @@ public class LevelData : MonoBehaviour
 
         for (int i = 0; i < AllScratches.Length; i++)
         {
-            if (AllScratches[i].Card.Mode == ScratchCard.ScratchMode.Restore)
+            if (RevealRestoreLayersAtStart && AllScratches[i].Card.Mode == ScratchCard.ScratchMode.Restore)
             {
                 AllScratches[i].SpriteCard.GetComponent<SpriteRenderer>().DOKill();
                 AllScratches[i].SpriteCard.GetComponent<SpriteRenderer>().DOFade(1, 0.001f);

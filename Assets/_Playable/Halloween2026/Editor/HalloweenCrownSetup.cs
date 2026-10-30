@@ -220,15 +220,20 @@ public static class HalloweenCrownSetup
         }
         if(prefab.GetComponent<Level3_Crown_Playable>()==null) errors.Add("Original crown gameplay script was replaced.");
         var wipe=prefab.GetComponent<HalloweenCrownWipe>();
-        if(wipe==null || wipe.clothTool==null || wipe.wipeTip==null || wipe.foamSurface==null || wipe.cleanCrown==null)
+        if(wipe==null || wipe.clothTool==null || wipe.wipeTip==null || wipe.foamSurface==null || wipe.cleanCrown==null || wipe.cameraFollow==null)
             errors.Add("Cloth wipe references are incomplete.");
         else
         {
             var level=prefab.GetComponent<Level3_Crown_Playable>();
-            if(level.AllScratches.Contains(wipe.foamSurface))errors.Add("Inactive wipe must initialize separately from LevelData.Setup.");
-            if(level.AllScratches.Any(s=>s.SpriteCard==wipe.foamSurface.SpriteCard))errors.Add("Wipe shares an earlier scratch surface.");
+            if(level.AllScratches.Contains(wipe.foamSurface))errors.Add("Wipe mask must be managed separately from LevelData.Setup.");
+            if(!level.useContinuousFoamSurface||wipe.foamSurface.SpriteCard!=level.Mix)
+                errors.Add("Mix and cloth wipe must use the same foam renderer.");
+            if(wipe.cameraFollow.Tool!=wipe.clothTool||wipe.cameraFollow.Pivot!=wipe.wipeTip)
+                errors.Add("Cloth camera follow is not bound to its drag/contact tip.");
             if(wipe.priorLayers.Any(g=>wipe.foamSurface.SpriteCard.transform.IsChildOf(g.transform)))errors.Add("Wipe surface would be hidden with earlier layers.");
             if(wipe.clothTool.GetComponentsInChildren<ParticleSystem>(true).Length!=0)errors.Add("Cloth must not contain water particles.");
+            if(level.SpraySR_2.color.a!=0||level.Mix.GetComponent<SpriteRenderer>().color.a!=0||level.MixE.GetComponent<SpriteRenderer>().color.a!=0||wipe.cleanCrown.color.a!=0||wipe.foamSurface.SpriteCard.GetComponent<SpriteRenderer>().color.a!=0)
+                errors.Add("Future crown layers must start at zero opacity.");
         }
         if(prefab.GetComponent<PlayableCTA>().trigger!=PlayableCTA.Trigger.Manual) errors.Add("CTA must remain step-complete/manual.");
         Directory.CreateDirectory("Library/HalloweenCrownValidation");

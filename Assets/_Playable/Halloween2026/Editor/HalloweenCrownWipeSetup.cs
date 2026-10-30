@@ -4,7 +4,6 @@ using System.Linq;
 using ScratchCardAsset;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.U2D.Animation;
 
 public static class HalloweenCrownWipeSetup
 {
@@ -51,9 +50,9 @@ public static class HalloweenCrownWipeSetup
         template.ScratchSurfaceSprite=originalSurface.sprite;
         var foam=UnityEngine.Object.Instantiate(template,template.transform.parent);
         foam.name=scratchName;
-        foam.SpriteCard=UnityEngine.Object.Instantiate(template.SpriteCard,foam.transform);
-        foam.SpriteCard.name="Wipe Foam Surface";
-        foam.SpriteCard.SetActive(true);
+        // The wipe has its own erase mask but takes over the existing Mix renderer.
+        // No differently sized duplicate is blended over the completed foam.
+        foam.SpriteCard=level.Mix;
         foam.Card.Surface=foam.SpriteCard.transform;
         foam.Card.ScratchSurface=null;
         foam.Mode=ScratchCard.ScratchMode.Erase;
@@ -64,28 +63,65 @@ public static class HalloweenCrownWipeSetup
         foam.Card.InputEnabled=false;foam.InputEnabled=false;foam.Card.IsScratching=false;
         foam.Card.shouldPaintHoles=false;foam.Card.canSpreadMask=false;
         foam.Card.BrushScale=new Vector2(.35f,.35f);foam.EraseTextureScale=foam.Card.BrushScale;
-        var target=level.GetComponentsInChildren<SpriteRenderer>(true).First(s=>s.name=="Mix E");
         var surface=foam.SpriteCard.GetComponent<SpriteRenderer>();
-        surface.color=Color.white;
         surface.sprite=foam.ScratchSurfaceSprite;
-        surface.drawMode=SpriteDrawMode.Simple;
-        surface.sortingLayerID=target.sortingLayerID;
-        surface.sortingOrder=target.sortingOrder+1;
-        var parentScale=surface.transform.parent.lossyScale;
-        var size=surface.sprite.bounds.size;
-        surface.transform.localScale=new Vector3(target.bounds.size.x/size.x/Mathf.Abs(parentScale.x),target.bounds.size.y/size.y/Mathf.Abs(parentScale.y),1);
-        surface.transform.position=target.bounds.center-surface.transform.TransformVector(surface.sprite.bounds.center);
         foam.gameObject.SetActive(false);
-        // This inactive surface initializes on entering the wipe. LevelData.Setup would
-        // clear it before ScratchCard.Start has allocated its render textures.
+        surface.color=new Color(1,1,1,0);
+        // The independent surface starts disabled at zero opacity until the wipe.
+        // Its mask is managed by the wipe controller, not LevelData.Setup.
         level.AllScratches=level.AllScratches.Where(s=>s!=null&&s!=foam).ToArray();
         level.ToolIcons=level.ToolIcons.Take(3).Concat(new[]{body.sprite}).ToList();
         controller.level=level;controller.clothTool=drag;controller.wipeTip=tip;
         controller.foamSurface=foam;
         controller.cleanCrown=level.GetComponentsInChildren<SpriteRenderer>(true).First(s=>s.name=="Clean");
-        controller.priorLayers=level.GetComponentsInChildren<Transform>(true)
-            .Where(t=>new[]{"Dust","Dirty","Spray","Mix","Mix E"}.Contains(t.name)).Select(t=>t.gameObject).ToArray();
+        ApplyClothFollowAndFoam(root);
         cloth.SetActive(false);
+    }
+
+    public static void ApplyClothFollowAndFoam(GameObject root)
+    {
+        var level=root.GetComponent<Level3_Crown_Playable>();
+        var wipe=root.GetComponent<HalloweenCrownWipe>();
+        var oldSurface=wipe.foamSurface.SpriteCard;
+        wipe.foamSurface.SpriteCard=level.Mix;
+        wipe.foamSurface.Card.Surface=level.Mix.transform;
+        wipe.foamSurface.Card.ScratchSurface=null;
+        if(oldSurface!=level.Mix&&oldSurface.transform.IsChildOf(wipe.foamSurface.transform))
+            UnityEngine.Object.DestroyImmediate(oldSurface);
+        level.useContinuousFoamSurface=true;
+        wipe.priorLayers=level.GetComponentsInChildren<Transform>(true)
+            .Where(t=>new[]{"Dust","Dirty","Spray","Mix E"}.Contains(t.name)).Select(t=>t.gameObject).ToArray();
+        var follow=wipe.clothTool.GetComponent<BD_CameraFollow>();
+        if(follow==null)
+        {
+            follow=wipe.clothTool.gameObject.AddComponent<BD_CameraFollow>();
+            var original=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Lvl_GP/Level3_1.prefab")
+                .GetComponent<Level3_Crown>().ToolStep4.GetComponent<BD_CameraFollow>();
+            EditorUtility.CopySerialized(original,follow);
+        }
+        follow.Tool=wipe.clothTool;
+        follow.Pivot=wipe.wipeTip;
+        follow.enabled=false;
+        wipe.cameraFollow=follow;
+        PrepareLayerOpacity(root);
+    }
+
+    public static void PrepareLayerOpacity(GameObject root)
+    {
+        var level=root.GetComponent<Level3_Crown_Playable>();
+        var wipe=root.GetComponent<HalloweenCrownWipe>();
+        foreach(var layer in wipe.priorLayers)
+        {
+            bool initial=layer.name=="Dust"||layer.name=="Dirty";
+            layer.SetActive(initial);
+            Level3_Crown_Playable.FadeLayer(layer,initial?1:0,0);
+        }
+        level.Mix.SetActive(false);
+        Level3_Crown_Playable.FadeLayer(level.Mix,0,0);
+        wipe.cleanCrown.gameObject.SetActive(false);
+        Level3_Crown_Playable.FadeLayer(wipe.cleanCrown.gameObject,0,0);
+        wipe.foamSurface.gameObject.SetActive(false);
+        Level3_Crown_Playable.FadeLayer(wipe.foamSurface.SpriteCard,0,0);
     }
 
     // Explicit assignments keep the requested swap stable across repeated rebuilds.

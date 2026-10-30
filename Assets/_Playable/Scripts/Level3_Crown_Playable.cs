@@ -4,6 +4,14 @@ using System.Collections;
 
 public class Level3_Crown_Playable : LevelData
 {
+    protected override bool RevealRestoreLayersAtStart { get { return false; } }
+
+    void Awake()
+    {
+        FadeLayer(SpraySR_2.gameObject, 0, 0);
+        FadeLayer(Mix, 0, 0);
+        FadeLayer(MixE, 0, 0);
+    }
     [Space()]
     [Header("----------------------------------------------------------------------------------")]
     [Space()]
@@ -62,6 +70,9 @@ public class Level3_Crown_Playable : LevelData
     public GameObject Mix;
     public GameObject MixE;
 
+    [Tooltip("Keep the same foam renderer between mixing and the final wipe.")]
+    public bool useContinuousFoamSurface;
+
     IEnumerator Start()
     {
 
@@ -84,7 +95,7 @@ public class Level3_Crown_Playable : LevelData
         // STEP 3
         Step3Col.SetActive(false);
 
-        MixE.SetActive(false);
+        FadeLayer(MixE, 0, 0);
 
         ToolStep3CameraFollow.enabled = false;
 
@@ -96,6 +107,25 @@ public class Level3_Crown_Playable : LevelData
 }
 
     #region HELPERS
+
+    public static void FadeLayer(GameObject layer, float alpha, float duration = .35f)
+    {
+        if (layer == null) return;
+        // A future layer may start disabled. Enable it once at zero opacity
+        // when its step begins; subsequent hiding uses opacity rather than toggles.
+        if (alpha > 0 && !layer.activeSelf) layer.SetActive(true);
+        foreach (var surface in layer.GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            surface.DOKill();
+            if (duration > 0) surface.DOFade(alpha, duration);
+            else
+            {
+                var color = surface.color;
+                color.a = alpha;
+                surface.color = color;
+            }
+        }
+    }
 
     // On resume SetProgressIconIndex() has already scrolled the carousel onto the
     // icon of the step we are about to start, so that step must not advance it again.
@@ -167,7 +197,7 @@ public class Level3_Crown_Playable : LevelData
 
     void ForceCompleteStep1()
     {
-        DustSR_1.SetActive(false);
+        FadeLayer(DustSR_1, 0);
     }
 
     #endregion
@@ -179,6 +209,7 @@ public class Level3_Crown_Playable : LevelData
     void StartStep2()
     {
         AdvanceProgressIcon();
+        FadeLayer(SpraySR_2.gameObject, 1);
 
         CameraController.Instance.MoveCamera(ZoomStep2.CameraPos, ZoomStep2.CameraFOV);
 
@@ -238,7 +269,7 @@ public class Level3_Crown_Playable : LevelData
 
         for (int i = 0; i < SRsToFadeOut_2.Length; i++)
         {
-            SRsToFadeOut_2[i].gameObject.SetActive(false);
+            FadeLayer(SRsToFadeOut_2[i].gameObject, 0);
         }
     }
 
@@ -251,6 +282,7 @@ public class Level3_Crown_Playable : LevelData
     void StartStep3()
     {
         AdvanceProgressIcon();
+        FadeLayer(Mix, 1);
 
         CameraController.Instance.MoveCamera(ZoomStep3.CameraPos, ZoomStep3.CameraFOV);
 
@@ -288,8 +320,7 @@ public class Level3_Crown_Playable : LevelData
 
         DOVirtual.DelayedCall(1f, () =>
         {
-            Mix.SetActive(false);
-            MixE.SetActive(true);
+            CompleteFoamLayer();
 
         });
 
@@ -309,9 +340,31 @@ public class Level3_Crown_Playable : LevelData
     {
         ForceCompleteStep2();
 
-        Mix.SetActive(false);
+        CompleteFoamLayer();
+    }
 
-        MixE.SetActive(true);
+    void CompleteFoamLayer()
+    {
+        if (!useContinuousFoamSurface)
+        {
+            FadeLayer(Mix, 0);
+            FadeLayer(MixE, 1);
+            return;
+        }
+
+        // Finish the remaining mask on the same renderer. Cross-fading two
+        // transparent copies exposes the underlayers and shifts the crown edges.
+        FadeLayer(MixE, 0, 0);
+        FadeLayer(Mix, 1, 0);
+        foreach (var scratch in AllScratches)
+        {
+            if (scratch.SpriteCard != Mix) continue;
+            scratch.Card.IsScratching = false;
+            scratch.Card.InputEnabled = false;
+            scratch.InputEnabled = false;
+            scratch.Card.ClearSmoothly(.3f);
+            break;
+        }
     }
 
     #endregion

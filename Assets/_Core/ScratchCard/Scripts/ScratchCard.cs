@@ -445,21 +445,31 @@ namespace ScratchCardAsset
             RenderTexture tempRT = new RenderTexture(RenderTexture.width, RenderTexture.height, 0, RenderTextureFormat.ARGB32);
             Material fadeMat = new Material(GameManager.instance.restoreEffectShader);
 
-            while (elapsedTime < duration)
+            try
             {
-                elapsedTime += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsedTime / duration);
+                while (elapsedTime < duration)
+                {
+                    elapsedTime += Time.deltaTime;
+                    float t = Mathf.Clamp01(elapsedTime / duration);
 
-                fadeMat.SetFloat("_Fade", t);
-                Graphics.Blit(startTexture, tempRT, fadeMat);
-                Graphics.Blit(tempRT, RenderTexture);
+                    fadeMat.SetFloat("_Fade", t);
+                    Graphics.Blit(startTexture, tempRT, fadeMat);
+                    Graphics.Blit(tempRT, RenderTexture);
 
-                yield return null;
+                    yield return null;
+                }
+
+                // Final precision clear after the mask has faded to transparency.
+                cardRenderer.FillRenderTextureWithColor(new Color(0, 0, 0, 0));
+                IsScratched = true;
             }
-
-            // Final precision clear (won’t jerk because texture is already transparent)
-            cardRenderer.FillRenderTextureWithColor(new Color(0, 0, 0, 0));
-            IsScratched = true;
+            finally
+            {
+                tempRT.Release();
+                Destroy(tempRT);
+                Destroy(startTexture);
+                Destroy(fadeMat);
+            }
         }
 
 
