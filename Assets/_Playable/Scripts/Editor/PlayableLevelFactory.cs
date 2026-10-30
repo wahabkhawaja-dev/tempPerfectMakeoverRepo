@@ -606,11 +606,97 @@ public static class PlayableLevelFactory
         if (mode == InnerMode.Inner)
             text = RouteCompletionToFixItReturn(text, log);
         text = StripSaveSystem(text, log);
+        text = RetireSkippedSteps(text, first, log);
         text = RedirectLoadingManagerFades(text, log);
         text = Regex.Replace(text, @"(\r?\n){3,}", "\n\n");
         ValidateStepReferences(text);
         log.Add("Keeping steps [" + string.Join(",", keep.OrderBy(s => s)) + "], layers through step " + (last + 1) + ".");
         return text;
+    }
+
+    /// <summary>
+    /// Steps before the first kept one never play: Start() jumps straight to their ForceCompleteStepN() end state.
+    /// Their StartStepN/StepNDone bodies are emptied so objects only they drive (that step's tool) can leave the
+    /// prefab, and every "X.SetActive(false);" in a ForceComplete is null-guarded because TrimPrefab deletes objects
+    /// whose only job left is to be hidden (DestroyRetiredStepObjects) — Luna ships everything a prefab references,
+    /// hidden or not.
+    /// </summary>
+    internal static string RetireSkippedSteps(string text, int first, List<string> log)
+    {
+        if (first > 1)
+        {
+            string mask = LunaScriptSanitizer.Mask(text);
+            // Every void/coroutine method with its body span. (No "out" parameters: an empty body wouldn't compile.)
+            var methods = new List<(int open, int close, string name, bool isPublic, bool coroutine)>();
+            foreach (Match m in Regex.Matches(mask, @"\b(?:(public|private|protected|internal)\s+)?(?:(?:override|virtual|static|new)\s+)*(void|IEnumerator)\s+(\w+)\s*\(([^()]*)\)\s*\{"))
+            {
+                if (m.Groups[4].Value.Contains("out ")) continue;
+                int open = m.Index + m.Length - 1, close = FindMatchingBrace(mask, open);
+                if (close > open) methods.Add((open, close, m.Groups[3].Value, m.Groups[1].Value == "public", m.Groups[2].Value == "IEnumerator"));
+            }
+            // From the raw text: Mask blanks preprocessor lines (positions are the same in both).
+            var skippedRegions = Regex.Matches(text, @"#region[^\r\n]*\bSTEP\s*(\d+)[^\r\n]*[\s\S]*?#endregion", RegexOptions.IgnoreCase).Cast<Match>()
+                .Where(r => int.Parse(r.Groups[1].Value) < first).ToList();
+            bool StepMethod(string name, int at)
+            {
+                var n = Regex.Match(name, @"^(?:StartStep(\d+)[A-Za-z]?|Step(\d+)[A-Za-z]?Done)$");
+                if (n.Success) return int.Parse(n.Groups[1].Success ? n.Groups[1].Value : n.Groups[2].Value) < first;
+                return !name.StartsWith("ForceComplete") && skippedRegions.Any(r => at > r.Index && at < r.Index + r.Length);
+            }
+            // Unity calls these itself; a string Invoke("X") is invisible to the masked text.
+            bool EngineOrStringCalled(string name) =>
+                Regex.IsMatch(name, @"^(?:Awake|Start|Update|LateUpdate|FixedUpdate|On[A-Z]\w*|Reset|OnValidate)$") || text.Contains("\"" + name + "\"");
+
+            var emptied = new HashSet<string>();
+            bool Inside(int at) => methods.Any(b => emptied.Contains(b.name) && at > b.open && at < b.close);
+            // Something that still runs (kept steps, Start, a ForceComplete) calls it: leave it alone.
+            bool CalledElsewhere(string name) => Regex.Matches(mask, @"(?<![\w.])" + Regex.Escape(name) + @"\b").Cast<Match>()
+                .Count(c => !Inside(c.Index)) > methods.Count(b => b.name == name);
+            // Skipped steps' own methods, then (repeatedly) private helpers only emptied code called.
+            for (bool changed = true; changed;)
+            {
+                changed = false;
+                foreach (var b in methods)
+                {
+                    if (emptied.Contains(b.name) || EngineOrStringCalled(b.name)) continue;
+                    if (!StepMethod(b.name, b.open))
+                    {
+                        if (b.isPublic || b.name.StartsWith("ForceComplete")) continue;
+                        // Only a helper emptied code actually called: one nothing calls may be an animation event's.
+                        if (!Regex.Matches(mask, @"(?<![\w.])" + Regex.Escape(b.name) + @"\b").Cast<Match>().Any(c => Inside(c.Index))) continue;
+                    }
+                    emptied.Add(b.name);
+                    if (CalledElsewhere(b.name)) emptied.Remove(b.name);
+                    else changed = true;
+                }
+            }
+            foreach (var b in methods.Where(b => emptied.Contains(b.name)).OrderByDescending(b => b.open))
+                text = text.Substring(0, b.open) + (b.coroutine ? "{ yield break; }" : "{ }") + text.Substring(b.close + 1);
+            if (emptied.Count > 0)
+                log.Add("Skipped steps never play: emptied " + string.Join(", ", emptied.OrderBy(n => n)) + ".");
+        }
+
+        int guarded = 0;
+        string guardedText = text, guardMask = LunaScriptSanitizer.Mask(text);
+        // Back to front: an edit only shifts text after it, so the mask's earlier positions stay valid.
+        foreach (Match m in Regex.Matches(guardMask, @"\bvoid\s+ForceCompleteStep\w*\s*\(\s*\)\s*\{").Cast<Match>().Reverse())
+        {
+            int open = m.Index + m.Length - 1, close = FindMatchingBrace(guardMask, open);
+            if (close <= open) continue;
+            string body = guardedText.Substring(open, close - open);
+            // "X.SetActive(false);" / "X.gameObject.SetActive(false);" hide X; "RestoreScratches(X);" finishes the cards
+            // X's tool drives (Card.ClearInstantly) - the build removes/bakes those cards, so X can go too.
+            string fixedBody = Regex.Replace(body, @"(?m)^([ \t]*)(?:(\w+)((?:\.gameObject)?\.SetActive)\s*\(\s*false\s*\)|(\w*Scratch\w*)\s*\(\s*(\w+)\s*\))\s*;",
+                g =>
+                {
+                    guarded++;
+                    if (g.Groups[2].Success) return g.Groups[1].Value + "if (" + g.Groups[2].Value + " != null) " + g.Groups[2].Value + g.Groups[3].Value + "(false);";
+                    return g.Groups[1].Value + "if (" + g.Groups[5].Value + " != null) " + g.Groups[4].Value + "(" + g.Groups[5].Value + ");";
+                });
+            guardedText = guardedText.Substring(0, open) + fixedBody + guardedText.Substring(close);
+        }
+        if (guarded > 0) log.Add("ForceComplete: null-guarded " + guarded + " hide call(s) so hidden-only objects can leave the prefab.");
+        return guardedText;
     }
 
     internal static string StripSourceComments(string text)
@@ -1736,7 +1822,9 @@ public static class PlayableLevelFactory
             if (mode == InnerMode.Exclude)
                 removed += DestroyInnerLevelObjects(root, log);
             removed += DestroyUnreferencedScratchCards(root, keepObjects, log);
+            removed += DestroyRetiredStepObjects(root, level, generatedScript, first, log);
             int broken = CleanupBrokenPlayableRefs(root, log);
+            broken += NullDanglingReferences(root);
 
             if (level != null)
             {
@@ -1746,6 +1834,8 @@ public static class PlayableLevelFactory
                     level.AllSources = level.AllSources.Where(s => s != null).ToArray();
                 if (level.AllScratches != null)
                     level.AllScratches = level.AllScratches.Where(s => s != null).ToArray();
+                if (level.disableOnLevelComplete != null)
+                    level.disableOnLevelComplete = level.disableOnLevelComplete.Where(g => g != null).ToArray();
             }
 
             log.Add("Unused step objects deleted: " + removed + ", broken refs cleaned: " + broken);
@@ -2120,6 +2210,210 @@ public static class PlayableLevelFactory
         if (value is Component c && c != null)
             return c.gameObject;
         return null;
+    }
+
+    /// <summary>
+    /// Ported from CleanAsmrPlayables' StripClone: an object is kept intact or removed completely, never left in the
+    /// prefab just switched off (Luna ships everything a prefab references, hidden or not). A level field whose only
+    /// uses left in the generated script are null-guarded "X.SetActive(false)" lines (RetireSkippedSteps), or none at
+    /// all, has its object deleted — unless code still uses something inside it, code walks the children of a used
+    /// object around it, it is scenery visible when the playable opens, or a surviving component references it.
+    /// </summary>
+    static int DestroyRetiredStepObjects(GameObject root, LevelData level, string generatedScript, int first, List<string> log)
+    {
+        if (level == null || string.IsNullOrEmpty(generatedScript)) return 0;
+        string mask = LunaScriptSanitizer.Mask(generatedScript);
+        // RetireSkippedSteps' guarded ForceComplete lines: hiding X, or finishing the scratch cards of X's tool.
+        const string Guarded = @"\bif \((\w+) != null\) (?:\1(?:\.gameObject)?\.SetActive\(false\)|\w*Scratch\w*\(\1\));";
+        var hiddenOnly = new HashSet<string>(Regex.Matches(mask, Guarded).Cast<Match>().Select(m => m.Groups[1].Value));
+        string uses = Regex.Replace(mask, Guarded, " ");
+        bool Under(Transform t, Transform ancestor) => t == ancestor || t.IsChildOf(ancestor);
+        string RootPath(Transform t)
+        {
+            var parts = new List<string>();
+            for (var c = t; c != null && c != root.transform; c = c.parent) parts.Insert(0, c.name);
+            return string.Join("/", parts);
+        }
+        List<Transform> Targets(FieldInfo f)
+        {
+            var list = new List<Transform>();
+            void Add(object v)
+            {
+                if (v is GameObject go && go != null) list.Add(go.transform);
+                else if (v is Component c && c != null) list.Add(c.transform);
+            }
+            object value = f.GetValue(level);
+            if (value is System.Collections.IEnumerable items && !(value is string) && !(value is Transform)) foreach (var item in items) Add(item);
+            else Add(value);
+            return list.Where(t => t != root.transform && t.IsChildOf(root.transform)).Distinct().ToList();
+        }
+
+        // Fields the generated script declares; bookkeeping on LevelData itself (AllDrags, ...) is compacted, not used.
+        var fields = level.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(f => f.DeclaringType != typeof(LevelData) && Regex.IsMatch(mask, @"(?<![\w.])" + Regex.Escape(f.Name) + @"\s*(?:=[^;]*)?;"))
+            .ToList();
+        int UseCount(string name) => Regex.Matches(uses, @"(?<![\w.])" + Regex.Escape(name) + @"\b").Count - 1; // minus the declaration
+        var dead = fields.Where(f => UseCount(f.Name) <= 0).ToList();
+        var live = fields.Except(dead).ToList();
+        var liveTargets = live.SelectMany(Targets).ToList();
+        // Code that walks a used object's children (GetChild / Find / ...InChildren / childCount) needs all of them.
+        var walked = live.Where(f => Regex.IsMatch(mask, @"(?<![\w.])" + Regex.Escape(f.Name) + @"\b[^;\n]*(GetChild|\.Find\s*\(|InChildren|childCount)"))
+            .SelectMany(Targets).ToList();
+
+        var roots = new Dictionary<Transform, string>();
+        foreach (var f in dead)
+            foreach (var t in Targets(f))
+            {
+                if (roots.ContainsKey(t)) continue;
+                string keepReason =
+                    liveTargets.FirstOrDefault(l => Under(l, t)) is Transform l1 ? "code still uses '" + RootPath(l1) + "'" :
+                    walked.FirstOrDefault(w => Under(t, w)) is Transform w1 ? "code walks the children of '" + RootPath(w1) + "'" :
+                    // Visible scenery at open stays; a hidden object or a tool (dragged/slid on screen by its step) goes.
+                    !hiddenOnly.Contains(f.Name) && t.gameObject.activeInHierarchy && t.GetComponentInChildren<BasicDrag>(true) == null &&
+                    t.GetComponentsInChildren<Renderer>(true).Any(r => !(r is ParticleSystemRenderer)) ? "visible when the playable opens" : null;
+                if (keepReason != null) log.Add("  - kept '" + RootPath(t) + "' (" + f.Name + "): " + keepReason);
+                else roots[t] = f.Name;
+            }
+
+        // Scratch cards driven by a skipped step's tool were finished before the playable opens: an Erase card (dirt) is
+        // scratched off, so it goes; a Restore card (paint) is fully revealed, so it is baked into a plain sprite below.
+        // Only steps BEFORE the start count - a later step's card is still unscratched at open.
+        var finishedCards = new HashSet<ScratchCardManager>();
+        foreach (var f in fields.Where(f => StepOfField(generatedScript, mask, f.Name) is int s && s < first))
+            foreach (var t in Targets(f))
+            {
+                foreach (var progress in t.GetComponentsInChildren<BD_Progress>(true))
+                    if (progress.AllScratches != null)
+                        foreach (var s in progress.AllScratches)
+                            if (s != null && s.ScratchManager != null) finishedCards.Add(s.ScratchManager);
+                foreach (var card in t.GetComponentsInChildren<ScratchCardManager>(true)) finishedCards.Add(card);
+            }
+        var bakeCards = new List<ScratchCardManager>();
+        foreach (var card in finishedCards)
+        {
+            if (card.Mode != ScratchCard.ScratchMode.Erase) { bakeCards.Add(card); continue; }
+            if (liveTargets.Any(l => Under(l, card.transform))) { log.Add("  - kept finished scratch card '" + RootPath(card.transform) + "': code still uses it"); continue; }
+            if (!roots.ContainsKey(card.transform)) roots[card.transform] = "scratch card already scratched off in a skipped step";
+        }
+
+        // Anything a surviving component references must survive too (fixpoint). The level component is left out:
+        // its used fields are liveTargets already, and its dead fields are what is being removed.
+        var refs = new List<(Transform from, Transform to, string what)>();
+        foreach (var component in root.GetComponentsInChildren<Component>(true))
+        {
+            if (component == null || component is Transform || component == level) continue;
+            var it = new SerializedObject(component).GetIterator();
+            while (it.Next(true))
+            {
+                if (it.propertyType != SerializedPropertyType.ObjectReference) continue;
+                // A scratch card's ToolTip only matters while it is scratched; it doesn't keep a removed tool alive.
+                if (component is ScratchCard && it.propertyPath == "ToolTip") continue;
+                var to = it.objectReferenceValue is GameObject g ? g.transform : (it.objectReferenceValue as Component)?.transform;
+                if (to != null && to.IsChildOf(root.transform)) refs.Add((component.transform, to, component.GetType().Name + "." + it.propertyPath));
+            }
+        }
+        // An object that exists only to serve removed objects (a follower aimed at a removed tool, a "Play Sfx On Col"
+        // trigger for it) goes with them instead of keeping them alive: no visuals, no cards, nothing code needs, and
+        // every reference it makes to a level object points at something being removed.
+        var levelObjects = fields.SelectMany(Targets).ToList();
+        // A satellite that something else turned out to need is never offered again (else add/block would cycle forever).
+        var refusedSatellites = new HashSet<Transform>();
+        bool IsSatellite(Transform s)
+        {
+            if (s == root.transform || refusedSatellites.Contains(s) || liveTargets.Any(l => Under(l, s) || Under(s, l)) || walked.Any(w => Under(s, w))) return false;
+            if (s.GetComponentsInChildren<Renderer>(true).Any(r => !(r is ParticleSystemRenderer)) || s.GetComponentsInChildren<UnityEngine.UI.Graphic>(true).Length > 0) return false;
+            if (s.GetComponentsInChildren<ScratchCardManager>(true).Length > 0) return false;
+            var outgoing = refs.Where(x => Under(x.from, s) && !Under(x.to, s) && levelObjects.Any(o => Under(x.to, o) && !Under(s, o))).ToList();
+            return outgoing.Count > 0 && outgoing.All(x => roots.Keys.Any(r => Under(x.to, r)));
+        }
+        for (bool changed = true; changed;)
+        {
+            changed = false;
+            foreach (var (from, to, what) in refs)
+            {
+                if (roots.Keys.Any(r => Under(from, r))) continue;
+                if (!roots.Keys.Any(r => Under(to, r))) continue;
+                Transform satellite = null;
+                for (var s = from; s != null && s != root.transform && IsSatellite(s); s = s.parent) satellite = s;
+                if (satellite != null)
+                {
+                    roots[satellite] = "only serves removed '" + RootPath(to) + "'";
+                    changed = true;
+                    break; // roots changed under the enumeration of its keys below
+                }
+                foreach (var blocked in roots.Keys.Where(r => Under(to, r)).ToList())
+                {
+                    log.Add("  - kept '" + RootPath(blocked) + "' (" + roots[blocked] + "): " + what + " on '" + RootPath(from) + "' uses it");
+                    if (roots[blocked].StartsWith("only serves")) refusedSatellites.Add(blocked);
+                    roots.Remove(blocked);
+                    changed = true;
+                }
+            }
+        }
+
+        // Finished Restore cards become plain sprites of their revealed result, when nothing that stays drives them.
+        var spriteMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Sprites-Default.mat");
+        foreach (var card in bakeCards)
+        {
+            if (card == null || roots.Keys.Any(r => Under(card.transform, r))) continue;
+            var parts = new List<Transform> { card.transform };
+            if (card.Card != null) parts.Add(card.Card.transform);
+            if (card.Progress != null) parts.Add(card.Progress.transform);
+            var user = refs.FirstOrDefault(x => parts.Any(p => Under(x.to, p)) && !parts.Any(p => Under(x.from, p)) && !roots.Keys.Any(r => Under(x.from, r)));
+            var sprite = card.SpriteCard != null ? card.SpriteCard.GetComponent<SpriteRenderer>() : null;
+            if (user.from != null || card.RenderType != ScratchCardManager.ScratchCardRenderType.SpriteRenderer || sprite == null || card.ScratchSurfaceSprite == null)
+            {
+                log.Add("  - kept finished scratch card '" + RootPath(card.transform) + "' working" + (user.from != null ? ": " + user.what + " on '" + RootPath(user.from) + "' uses it" : " (can't bake it into a sprite)"));
+                continue;
+            }
+            sprite.sprite = card.ScratchSurfaceSprite;
+            if (spriteMaterial != null) sprite.sharedMaterial = spriteMaterial;
+            var color = sprite.color; color.a = 1f; sprite.color = color;
+            card.SpriteCard.SetActive(true);
+            if (card.Progress != null) UnityEngine.Object.DestroyImmediate(card.Progress);
+            if (card.Card != null) UnityEngine.Object.DestroyImmediate(card.Card);
+            log.Add("  - baked finished scratch card '" + RootPath(sprite.transform) + "' into a plain sprite");
+            UnityEngine.Object.DestroyImmediate(card);
+        }
+
+        int removed = 0;
+        foreach (var t in roots.Keys.Where(t => !roots.Keys.Any(o => o != t && t.IsChildOf(o))).ToList()) // top-most only
+        {
+            removed += t.GetComponentsInChildren<Transform>(true).Length;
+            string why = roots[t].StartsWith("scratch card") || roots[t].StartsWith("only serves") ? roots[t] : roots[t] + " is only hidden or unused by the playable";
+            log.Add("  - removed '" + RootPath(t) + "' (" + why + ")");
+            UnityEngine.Object.DestroyImmediate(t.gameObject);
+        }
+        return removed;
+    }
+
+    /// <summary>The N of the "[Header(... STEP N ...)]" a field is declared under, or null.</summary>
+    static int? StepOfField(string script, string mask, string field)
+    {
+        var decl = Regex.Match(mask, @"(?m)^[ \t]*(?:(?:public|private|protected|internal|readonly)\s+)*[\w.<>,\[\]?]+\s+" + Regex.Escape(field) + @"\s*(?:=[^;\r\n]*)?;");
+        if (!decl.Success) return null;
+        var header = Regex.Matches(script.Substring(0, decl.Index), @"\[Header\(""[^""]*\bSTEP\s*(\d+)", RegexOptions.IgnoreCase).Cast<Match>().LastOrDefault();
+        return header != null ? int.Parse(header.Groups[1].Value) : (int?)null;
+    }
+
+    /// <summary>References to destroyed objects become real nulls, so nothing in the saved prefab dangles.</summary>
+    static int NullDanglingReferences(GameObject root)
+    {
+        int cleaned = 0;
+        foreach (var component in root.GetComponentsInChildren<Component>(true))
+        {
+            if (component == null || component is Transform) continue;
+            var so = new SerializedObject(component);
+            var it = so.GetIterator();
+            while (it.Next(true))
+            {
+                if (it.propertyType != SerializedPropertyType.ObjectReference || it.objectReferenceValue != null || it.objectReferenceInstanceIDValue == 0) continue;
+                it.objectReferenceValue = null;
+                cleaned++;
+            }
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+        return cleaned;
     }
 
     static int DestroyInnerLevelObjects(GameObject root, List<string> log)
