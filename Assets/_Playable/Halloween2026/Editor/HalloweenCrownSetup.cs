@@ -26,12 +26,12 @@ public static class HalloweenCrownSetup
         RigSprite(Tools + "SprayHeadPressed.png", "HC_Trigger", 1);
         RigSprite(Tools + "BrushBody.png", "HC_Brush", 3);
         RigSprite(Tools + "BrushFoamHead.png", "HC_Bristles", 1);
-        RigSprite(Tools + "WaterShower.png", "HC_Water", 2);
+        RigSprite(Tools + "Cloth.png", "HC_Cloth", 3);
 
         var root = PrefabUtility.LoadPrefabContents(PrefabPath);
         try
         {
-            HalloweenCrownRinseSetup.Configure(root);
+            HalloweenCrownWipeSetup.Configure(root);
             foreach (var renderer in root.GetComponentsInChildren<SpriteRenderer>(true))
             {
                 if (renderer.sprite == null) continue;
@@ -72,7 +72,7 @@ public static class HalloweenCrownSetup
         }
         gm = UnityEngine.Object.FindObjectOfType<HalloweenCrownGameManager>(true);
         if(gm == null) throw new InvalidOperationException("Completion gate did not bind.");
-        ((HalloweenCrownGameManager)gm).rinse = gm.currentLevel.GetComponent<HalloweenCrownRinse>();
+        ((HalloweenCrownGameManager)gm).wipe = gm.currentLevel.GetComponent<HalloweenCrownWipe>();
         EditorSceneManager.MarkSceneDirty(gm.gameObject.scene);
         EditorSceneManager.SaveScene(gm.gameObject.scene);
         AssetDatabase.SaveAssets();
@@ -219,15 +219,16 @@ public static class HalloweenCrownSetup
             if(skin==null || skin.rootBone==null || skin.boneTransforms.Length!=count || skin.boneTransforms.Any(b=>b==null)) errors.Add(fit.name+": invalid rig binding");
         }
         if(prefab.GetComponent<Level3_Crown_Playable>()==null) errors.Add("Original crown gameplay script was replaced.");
-        var rinse=prefab.GetComponent<HalloweenCrownRinse>();
-        if(rinse==null || rinse.waterTool==null || rinse.impactTip==null || rinse.foamSurface==null || rinse.cleanCrown==null)
-            errors.Add("Rinse references are incomplete.");
+        var wipe=prefab.GetComponent<HalloweenCrownWipe>();
+        if(wipe==null || wipe.clothTool==null || wipe.wipeTip==null || wipe.foamSurface==null || wipe.cleanCrown==null)
+            errors.Add("Cloth wipe references are incomplete.");
         else
         {
             var level=prefab.GetComponent<Level3_Crown_Playable>();
-            if(level.AllScratches.Contains(rinse.foamSurface))errors.Add("Inactive rinse must initialize separately from LevelData.Setup.");
-            if(level.AllScratches.Any(s=>s.SpriteCard==rinse.foamSurface.SpriteCard))errors.Add("Rinse shares an earlier scratch surface.");
-            if(rinse.priorLayers.Any(g=>rinse.foamSurface.SpriteCard.transform.IsChildOf(g.transform)))errors.Add("Rinse surface would be hidden with earlier layers.");
+            if(level.AllScratches.Contains(wipe.foamSurface))errors.Add("Inactive wipe must initialize separately from LevelData.Setup.");
+            if(level.AllScratches.Any(s=>s.SpriteCard==wipe.foamSurface.SpriteCard))errors.Add("Wipe shares an earlier scratch surface.");
+            if(wipe.priorLayers.Any(g=>wipe.foamSurface.SpriteCard.transform.IsChildOf(g.transform)))errors.Add("Wipe surface would be hidden with earlier layers.");
+            if(wipe.clothTool.GetComponentsInChildren<ParticleSystem>(true).Length!=0)errors.Add("Cloth must not contain water particles.");
         }
         if(prefab.GetComponent<PlayableCTA>().trigger!=PlayableCTA.Trigger.Manual) errors.Add("CTA must remain step-complete/manual.");
         Directory.CreateDirectory("Library/HalloweenCrownValidation");

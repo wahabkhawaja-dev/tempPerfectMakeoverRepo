@@ -1,10 +1,12 @@
-/// <summary>Extends the existing three-step creative with its final water rinse.</summary>
+using UnityEngine.Serialization;
+
+/// <summary>Extends the existing three-step creative with its final cloth wipe.</summary>
 public sealed class HalloweenCrownGameManager : GameManagerPlayable
 {
-    public HalloweenCrownRinse rinse;
+    [FormerlySerializedAs("rinse")] public HalloweenCrownWipe wipe;
     public override void Complete()
     {
-        if (rinse != null && !rinse.Finished) { rinse.Begin(); return; }
+        if (wipe != null && !wipe.Finished) { wipe.Begin(); return; }
         base.Complete();
     }
 }
