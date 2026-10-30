@@ -2313,6 +2313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Halloween_Crown_Playable
       objectReference: {fileID: 0}
+    - target: {fileID: 7553839371846551409, guid: 45b4090448db56144a2b0ae8357a64f2, type: 3}
+      propertyPath: finishThreshold
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8071334835356309665, guid: 45b4090448db56144a2b0ae8357a64f2, type: 3}
       propertyPath: m_Enabled
       value: 0

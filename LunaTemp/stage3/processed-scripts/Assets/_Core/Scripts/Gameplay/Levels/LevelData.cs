@@ -9,6 +9,13 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
+    // Imported event/special levels call this before entering each step. The parent game's
+    // current implementation also returns true; playables have no energy gate to wait for.
+    protected bool TryStartStep(System.Action stepStartAction, int stepNumber)
+    {
+        return true;
+    }
+
     [Space()]
     public string levelName = "";
 

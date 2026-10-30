@@ -34826,6 +34826,16 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_Core/Audio/Levels/Gameplay/Underarm waxing/BG.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_Core/Audio/Levels/Gameplay/Heavy Water Shower.wav"
                     }
                 ]
             },
