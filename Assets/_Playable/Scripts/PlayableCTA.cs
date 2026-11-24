@@ -44,6 +44,9 @@ public class PlayableCTA : MonoBehaviour
     [Header("When should the CTA fire?")]
     public Trigger trigger = Trigger.Manual;
 
+    [Tooltip("Open the store automatically on level completion. Turning this off keeps the end card, input blocking and tap-to-open behaviour.")]
+    public bool autoCtaOnLevelComplete = true;
+
     [Tooltip("Trigger = AfterSeconds: seconds until the CTA fires.")]
     public float afterSeconds = 15f;
 
@@ -221,7 +224,7 @@ public class PlayableCTA : MonoBehaviour
         Fire(showCardThisFire);
     }
 
-    void Fire(bool showCardThisFire)
+    void Fire(bool showCardThisFire, bool openStore = true)
     {
         if (!HasFired)
         {
@@ -262,7 +265,8 @@ public class PlayableCTA : MonoBehaviour
                 onCtaFired.Invoke();
         }
 
-        OpenStore();
+        if (openStore)
+            OpenStore();
     }
 
     /// <summary>Activates endCard and switches off thingsToDisableOnEndCard together, so a
@@ -270,7 +274,16 @@ public class PlayableCTA : MonoBehaviour
     void ShowEndCard()
     {
         if (endCard != null)
+        {
+            var group = endCard.GetComponent<CanvasGroup>();
+            if (group == null)
+                group = endCard.AddComponent<CanvasGroup>();
+
+            group.DOKill();
+            group.alpha = 0f;
             endCard.SetActive(true);
+            group.DOFade(1f, .45f).SetEase(Ease.OutSine).SetUpdate(true);
+        }
 
         if (thingsToDisableOnEndCard != null)
         {
@@ -280,6 +293,15 @@ public class PlayableCTA : MonoBehaviour
                     thingsToDisableOnEndCard[i].SetActive(false);
             }
         }
+    }
+
+    /// <summary>Finishes the playable, optionally opening the store before the next tap.</summary>
+    public static void FireOnLevelComplete()
+    {
+        if (active != null)
+            active.Fire(true, active.autoCtaOnLevelComplete);
+        else
+            OpenStoreStatic(true);
     }
 
     /// <summary>Fires the CTA from anywhere, without needing a reference to this component.</summary>

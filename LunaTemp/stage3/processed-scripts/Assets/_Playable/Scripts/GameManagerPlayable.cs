@@ -42,7 +42,7 @@ public class GameManagerPlayable : GameManager
 
         MuteLevelAudio();
 
-        LunaDirect();
+        PlayableCTA.FireOnLevelComplete();
     }
 
     /// <summary>Call from a step's own StepNComplete()/StepNDone() method to play the

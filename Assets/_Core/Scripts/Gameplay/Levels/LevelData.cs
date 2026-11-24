@@ -50,6 +50,15 @@ public class LevelData : MonoBehaviour
              "disabling something above it in the hierarchy would hide it again.")]
     public GameObject[] disableOnLevelComplete;
 
+    [Header("Completion Camera")]
+    [Tooltip("Move to Completion Zoom before finishing the level and showing the end panel.")]
+    public bool zoomBeforeComplete;
+    public ZoomPos completionZoom = new ZoomPos();
+    [Min(.05f)] public float completionZoomDuration = .75f;
+
+    bool completionCameraMoving;
+    bool completionCameraReady;
+
     WaitForSeconds wait1sec = new WaitForSeconds(1f);
     IEnumerator Setup()
     {
@@ -113,6 +122,25 @@ public class LevelData : MonoBehaviour
 
     public void LevelComplete()
     {
+        if (completionCameraMoving)
+            return;
+
+        var controller = CameraController.Instance;
+        if (zoomBeforeComplete && !completionCameraReady && controller != null && controller.cam != null)
+        {
+            completionCameraMoving = true;
+            GameManager.instance.isPaused = true;
+            GameManager.instance.StopAllDrags();
+            controller.MoveCamera(completionZoom.CameraPos, Mathf.Max(.01f, completionZoom.CameraFOV),
+                Mathf.Max(.05f, completionZoomDuration), Ease.InOutSine, () =>
+                {
+                    completionCameraMoving = false;
+                    completionCameraReady = true;
+                    LevelComplete();
+                });
+            return;
+        }
+
         // CALL EVENT
 
         GameManager.instance.Complete();

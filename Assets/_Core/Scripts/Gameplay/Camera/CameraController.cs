@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
             cam.fieldOfView = sizeOrFov;
     }
 
-    public void MoveCamera(Vector3 targetPosition, float targetSizeOrFov, float duration = -1f, Ease? ease = null)
+    public void MoveCamera(Vector3 targetPosition, float targetSizeOrFov, float duration = -1f, Ease? ease = null, System.Action onComplete = null)
     {
         KillTweens();
         cam.transform.DOKill();
@@ -55,6 +55,9 @@ public class CameraController : MonoBehaviour
         
         else
             sizeTween = DOTween.To(() => cam.fieldOfView, x => cam.fieldOfView = x, targetSizeOrFov, duration).SetEase(tweenEase);
+
+        if (onComplete != null)
+            sizeTween.OnComplete(() => onComplete());
     }
 
     public void ResetCameraInstant()
