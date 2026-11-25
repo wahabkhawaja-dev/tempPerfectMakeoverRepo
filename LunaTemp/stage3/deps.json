@@ -27,7 +27,7 @@
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Basic Drag/BasicDrag.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Basic Drag/BD_Action.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Basic Drag/BD_CameraFollow.cs",
-      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Level1_Cloth_Playable_PlayableStep4.cs",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/Level1_Cloth_Playable_PlayableStep1to2.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/LevelData.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Ui/UI_Manager.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level1/Level1_SurfController.cs",
@@ -36,12 +36,12 @@
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/SpriteButton.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Ui/ToastManager.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Audio/AudioController.cs",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Basic Drag/BD_Fold.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level1/RotaryTimerKnob.cs",
-      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Levels/Level1/SewingCol.cs",
-      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/Demigiant/DOTweenPro/DOTweenAnimation.cs",
-      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/Demigiant/DOTween/Modules/DOTweenModuleUI.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/PlaceItem.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableFadeCoverSettings.cs",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/Demigiant/DOTweenPro/DOTweenAnimation.cs",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/Demigiant/DOTween/Modules/DOTweenModuleUI.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Camera/CameraController.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Audio/MusicSource.cs",
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Generic/Statics.cs",
@@ -53,12 +53,6 @@
     ],
     [
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/PlayParticlesOnCollision.cs"
-    ],
-    [
-      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Procedural_Rope/StaticFixedPipe.cs"
-    ],
-    [
-      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/ProceduralRope.cs"
     ],
     [
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Scripts/Gameplay/Tool Scroller/CarouselScroller.cs",
@@ -263,7 +257,8 @@
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/2DxFx/Scripts/_2dxFX_Waterfall.cs"
     ],
     [
-      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/2DxFx/Scripts/_2dxFX_Wave.cs"
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/2DxFx/Scripts/_2dxFX_Wave.cs",
+      "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Playable/Scripts/PlayableSpriteMask.cs"
     ],
     [
       "D:/UNITY/LUNA/PerfecrMakeoverASMR_Playables/LunaTemp/stage3/processed-scripts/Assets/_Core/Third Party/2DxFx/Scripts/_2dxFX_WoodFX.cs"

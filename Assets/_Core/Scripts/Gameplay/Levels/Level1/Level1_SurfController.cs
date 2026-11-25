@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -44,12 +44,14 @@ public class Level1_SurfController : MonoBehaviour
     private bool isHolding = false;
     private Coroutine progressCoroutine;
     private bool isCompleted = false;
+    private BasicDrag drag;
 
     float m_LastPressTime;
     float m_PressDelay = 0.25f;
 
     private void Start()
     {
+        drag = GetComponentInParent<BasicDrag>();
         defaultRotation = transform.localEulerAngles;
         if (maskItem != null)
             defaultMaskY = maskItem.localPosition.y;
@@ -60,14 +62,14 @@ public class Level1_SurfController : MonoBehaviour
         DOTween.Init();
     }
 
-    private void OnMouseDown()
+    private void __LunaMouseDown()
     {
         if (isCompleted) return;
         isHolding = true;
         StartSurfAnimation();
     }
 
-    private void OnMouseUp()
+    private void __LunaMouseUp()
     {
         if (isCompleted) return;
         isHolding = false;
@@ -100,7 +102,7 @@ public class Level1_SurfController : MonoBehaviour
         while (isHolding && currentHoldProgress < 1f)
         {
             // NEW LOGIC: Check if SPECIFIC tip collider is touching the target zone
-            bool isTipInZone = tipCollider.IsTouching(targetZoneCollider);
+            bool isTipInZone = IsTipInZone();
 
             surf_SubEmitter.SetActive(isTipInZone);
             //Indication.SetActive(!isTipInZone);
@@ -133,6 +135,21 @@ public class Level1_SurfController : MonoBehaviour
         float z = transform.localEulerAngles.z;
         if (z > 180f) z -= 360f;
         return z;
+    }
+
+    bool IsTipInZone()
+    {
+        var tip = tipCollider as CircleCollider2D;
+        var zone = targetZoneCollider as BoxCollider2D;
+        if (tip == null || zone == null) return tipCollider.IsTouching(targetZoneCollider);
+        // Luna's trigger contacts do not consistently follow animated collider offsets.
+        Vector3 center = tip.transform.TransformPoint(tip.offset);
+        Vector2 local = (Vector2)zone.transform.InverseTransformPoint(center) - zone.offset;
+        Vector2 half = zone.size * .5f;
+        Vector2 nearest = zone.offset + new Vector2(Mathf.Clamp(local.x, -half.x, half.x), Mathf.Clamp(local.y, -half.y, half.y));
+        Vector2 delta = (Vector2)center - (Vector2)zone.transform.TransformPoint(nearest);
+        float radius = tip.radius * Mathf.Max(Mathf.Abs(tip.transform.lossyScale.x), Mathf.Abs(tip.transform.lossyScale.y));
+        return delta.sqrMagnitude <= radius * radius;
     }
 
     private void UpdateMaskPosition(float progress)
@@ -173,4 +190,22 @@ public class Level1_SurfController : MonoBehaviour
         OnComplete?.Invoke();
         Debug.Log("✅ Surf Completed!");
     }
+
+    bool __lunaMouseHeld;
+
+    void Update()
+    {
+        bool held = drag != null && drag.isDragging;
+        if (held && !__lunaMouseHeld)
+        {
+            __lunaMouseHeld = true;
+            __LunaMouseDown();
+        }
+        else if (!held && __lunaMouseHeld)
+        {
+            __lunaMouseHeld = false;
+            __LunaMouseUp();
+        }
+    }
+
 }

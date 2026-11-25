@@ -116,6 +116,10 @@ public class LevelData : MonoBehaviour
 
     public void LevelStart()
     {
+        // Creative's world-space UI raycaster needs an explicit event camera.
+        foreach (var canvas in GetComponentsInChildren<Canvas>(true))
+            if (canvas.renderMode != RenderMode.ScreenSpaceOverlay && canvas.worldCamera == null)
+                canvas.worldCamera = Camera.main;
         // CALL EVENT
         StartCoroutine(Setup());
     }

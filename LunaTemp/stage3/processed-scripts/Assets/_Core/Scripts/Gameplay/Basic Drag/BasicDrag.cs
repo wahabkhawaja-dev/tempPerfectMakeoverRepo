@@ -130,7 +130,7 @@ public class BasicDrag : MonoBehaviour
 
         startRot = transform.eulerAngles;
 
-        if (anim != null)
+        if (anim != null && anim.gameObject.activeInHierarchy)
         {
             anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
 
@@ -153,6 +153,7 @@ public class BasicDrag : MonoBehaviour
 
     void Update()
     {
+        if (!gameObject.activeInHierarchy) return;
         //if (GameManager.instance.isPaused)
         //    return;
 
@@ -212,7 +213,7 @@ public class BasicDrag : MonoBehaviour
         {
             HandleDragging();
 
-            if (anim != null)
+            if (anim != null && anim.gameObject.activeInHierarchy)
                 anim.enabled = true;
         }
 
@@ -220,7 +221,7 @@ public class BasicDrag : MonoBehaviour
         {
             isObjectMovingWhileDragging = false;
 
-            if (anim != null)
+            if (anim != null && anim.gameObject.activeInHierarchy)
             {
                 anim.Play(anim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
 

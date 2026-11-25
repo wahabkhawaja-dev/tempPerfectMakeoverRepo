@@ -10,6 +10,58 @@ using UnityEngine;
 
 public static class PlayableBuilderValidation
 {
+    [MenuItem("Playable/Validate Luna Cloth Rendering")]
+    public static void RunLunaClothRenderingChecks()
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
+            throw new InvalidOperationException("Run rendering checks in Edit Mode.");
+        var root = new GameObject("Luna rendering regression fixture");
+        root.SetActive(false);
+        var texture = new Texture2D(2, 2);
+        var sprite = Sprite.Create(texture, new Rect(0, 0, 2, 2), Vector2.one * .5f);
+        try
+        {
+            var mask = root.AddComponent<SpriteMask>();
+            mask.sprite = sprite;
+            mask.isCustomRangeActive = true;
+            mask.backSortingOrder = 5;
+            mask.frontSortingOrder = 10;
+            var inside = new GameObject("inside"); inside.transform.SetParent(root.transform);
+            var outside = new GameObject("outside"); outside.transform.SetParent(root.transform);
+            var a = inside.AddComponent<SpriteRenderer>(); a.sprite = sprite; a.sortingOrder = 7;
+            var b = outside.AddComponent<SpriteRenderer>(); b.sprite = sprite; b.sortingOrder = 20;
+            a.maskInteraction = b.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            PlayableMaskBaker.Bake(root);
+            if (a.GetComponent<PlayableSpriteMask>().masks.Length != 1 || b.GetComponent<PlayableSpriteMask>().masks.Length != 0 || mask.enabled)
+                throw new InvalidOperationException("Luna mask sorting range regression.");
+
+            var tip = inside.AddComponent<CircleCollider2D>();
+            tip.offset = new Vector2(-4.4f, 1.78f); tip.radius = .52f;
+            tip.transform.localScale = Vector3.one * .26f;
+            tip.transform.localEulerAngles = new Vector3(0, 0, 80);
+            var zone = outside.AddComponent<BoxCollider2D>(); zone.size = new Vector2(.5f, .2f);
+            zone.transform.position = tip.transform.TransformPoint(tip.offset) + Vector3.forward;
+            var pour = inside.AddComponent<Level1_SurfController>(); pour.tipCollider = tip; pour.targetZoneCollider = zone;
+            var hit = typeof(Level1_SurfController).GetMethod("IsTipInZone", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (!(bool)hit.Invoke(pour, null)) throw new InvalidOperationException("Rotated spout overlap rejected.");
+            zone.transform.position += Vector3.right * 5;
+            if ((bool)hit.Invoke(pour, null)) throw new InvalidOperationException("Distant spout overlap accepted.");
+
+            var finish = typeof(PlayableLevelFactory).GetMethod("EndLastStepBody", BindingFlags.Static | BindingFlags.NonPublic);
+            string body = "UI_Manager.instance.FadeAnim(1f, 1.5f); DOVirtual.DelayedCall(1f, () => { WashingView.SetActive(false); DressingView.SetActive(true); }); Invoke(nameof(StartStep3), 3f);";
+            string rewritten = (string)finish.Invoke(null, new object[] { body, 2, true });
+            if (rewritten.Contains("DressingView") || rewritten.Contains("FadeAnim") || !rewritten.Contains("nameof(LevelComplete)"))
+                throw new InvalidOperationException("Final bridge enters an excluded room.");
+            Debug.Log("[Luna Cloth Validation] PASS: mask sorting range, rotated spout hit/miss, final bridge.");
+        }
+        finally
+        {
+            UnityEngine.Object.DestroyImmediate(root);
+            UnityEngine.Object.DestroyImmediate(sprite);
+            UnityEngine.Object.DestroyImmediate(texture);
+        }
+    }
+
     static IEnumerator<Action> catalog;
 
     [MenuItem("Playable/Validate All Source Step Ranges")]

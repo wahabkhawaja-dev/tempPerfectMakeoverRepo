@@ -1,4 +1,4 @@
-﻿using UnityEngine.UI;
+using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine;
 using System.Collections;
@@ -418,7 +418,7 @@ public class Level1_Cloth : LevelData
 
             ToolInputToggle(ToolStep2.gameObject, true);
 
-            ToolStep2CamFollow.enabled = true;
+            if (ToolStep2CamFollow != null) ToolStep2CamFollow.enabled = true;
         });
     }
 
@@ -431,9 +431,9 @@ public class Level1_Cloth : LevelData
 
         ToolInputToggle(ToolStep2.gameObject, false);
 
-        ToolStep2CamFollow.enabled = false;
+        if (ToolStep2CamFollow != null) ToolStep2CamFollow.enabled = false;
 
-        ToolStep2.anim.enabled = false;
+        if (ToolStep2.anim != null) ToolStep2.anim.enabled = false;
 
         ToolStep2.transform.DOKill();
 
@@ -499,6 +499,10 @@ public class Level1_Cloth : LevelData
                 AudioController.instance.PlayAnySfx(0, machineStartSfx, 0);
         });
 
+        countDownTimerText.resizeTextForBestFit = false;
+        countDownTimerText.fontSize = Mathf.Max(1, Mathf.FloorToInt(countDownTimerText.rectTransform.rect.height * .8f));
+        countDownTimerText.horizontalOverflow = HorizontalWrapMode.Overflow;
+        countDownTimerText.verticalOverflow = VerticalWrapMode.Overflow;
         countDownTimerText.text = "05";
 
         StartCoroutine(StartCountDown());
@@ -626,7 +630,7 @@ public class Level1_Cloth : LevelData
 
             ToolInputToggle(clothCleanInside2.gameObject, true);
 
-            clothCleanInside2Cam.enabled = true;
+            if (clothCleanInside2Cam != null) clothCleanInside2Cam.enabled = true;
 
             clothCleanInside2.GetComponent<SpriteRenderer>().sortingOrder = 26;
             clothCleanInside2.startOrder = 26;
@@ -648,7 +652,7 @@ public class Level1_Cloth : LevelData
         // if (VibrationManager.instance)
             // VibrationManager.instance.MediumImpact();
 
-        clothCleanInside2Cam.enabled = false;
+        if (clothCleanInside2Cam != null) clothCleanInside2Cam.enabled = false;
 
         clothCleanInside2.OnMouseDownEvent -= OnCleanClothPicked;
 

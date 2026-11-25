@@ -1662,7 +1662,8 @@ public static class PlayableLevelFactory
         var names = new List<string>
         {
             "Step" + lastKept + "Complete",
-            "Step" + lastKept + "Done"
+            "Step" + lastKept + "Done",
+            "CallStep" + (lastKept + 1)
         };
 
         int rewrites = 0;
@@ -1678,7 +1679,7 @@ public static class PlayableLevelFactory
                 continue;
 
             string body = text.Substring(open + 1, close - open - 1);
-            string next = EndLastStepBody(body, lastKept);
+            string next = EndLastStepBody(body, lastKept, names[i].StartsWith("CallStep", StringComparison.Ordinal));
             if (next == body)
                 continue;
 
@@ -1691,8 +1692,10 @@ public static class PlayableLevelFactory
         return text;
     }
 
-    static string EndLastStepBody(string body, int lastKept)
+    static string EndLastStepBody(string body, int lastKept, bool finalBridge = false)
     {
+        if (finalBridge)
+            body = Regex.Replace(body, @"UI_Manager\.instance\.FadeAnim\s*\([^;]*\)\s*;", "");
         string nextZoom = "ZoomStep" + (lastKept + 1);
         int idx = 0;
         while (idx < body.Length)
@@ -1710,13 +1713,14 @@ public static class PlayableLevelFactory
             if (end + 1 < body.Length && body[end + 1] == ';')
                 end++;
             string call = body.Substring(start, close - start + 1);
-            bool nextStep = call.IndexOf("StartStep", StringComparison.Ordinal) >= 0 ||
+            bool viewSwitch = finalBridge && call.Contains(".SetActive(") && (call.Contains("View") || call.Contains("Tools"));
+            bool nextStep = viewSwitch || call.IndexOf("StartStep", StringComparison.Ordinal) >= 0 ||
                             call.IndexOf("nameof(LevelComplete)", StringComparison.Ordinal) >= 0 && call.IndexOf("View", StringComparison.Ordinal) >= 0 ||
                             call.IndexOf("FadeAnim", StringComparison.Ordinal) >= 0 ||
                             call.IndexOf(nextZoom, StringComparison.Ordinal) >= 0;
             if (nextStep)
             {
-                string insert = "Invoke(nameof(LevelComplete), 1f);";
+                string insert = viewSwitch ? "" : "Invoke(nameof(LevelComplete), 1f);";
                 body = body.Substring(0, start) + insert + body.Substring(end + 1);
                 idx = start + insert.Length;
             }
@@ -1839,6 +1843,7 @@ public static class PlayableLevelFactory
             }
 
             log.Add("Unused step objects deleted: " + removed + ", broken refs cleaned: " + broken);
+            PlayableMaskBaker.Bake(root);
             PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
         }
         finally
@@ -2569,7 +2574,6 @@ public static class PlayableLevelFactory
             var pipe = pipes[i];
             if (pipe == null)
                 continue;
-            if (pipe.toolTransform != null && pipe.lineRenderer != null)
             if (pipe.toolTransform != null && pipe.meshRenderer != null)
                 continue;
             log.Add("  - deleted broken pipe '" + pipe.gameObject.name + "'");

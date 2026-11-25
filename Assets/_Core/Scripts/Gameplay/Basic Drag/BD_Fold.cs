@@ -78,7 +78,9 @@ public class BD_Fold : MonoBehaviour
     {
         frontRenderer = GetComponent<SpriteRenderer>();
         selfCollider = GetComponent<Collider2D>();
-        frontMat = new Material(Shader.Find("Custom/SpriteFold"));
+        // Clone the exported material: Luna cannot resolve this shader through Shader.Find.
+        frontMat = new Material(frontRenderer.sharedMaterial);
+        frontMat.mainTexture = frontRenderer.sprite.texture;
         frontRenderer.material = frontMat;
 
         CalculateStickerUVRect();
@@ -95,7 +97,8 @@ public class BD_Fold : MonoBehaviour
         if (backRenderer != null)
             backRenderer.sortingOrder = frontRenderer.sortingOrder + 1;
 
-        backMat = new Material(Shader.Find("Custom/SpriteFold"));
+        backMat = new Material(frontMat);
+        backMat.mainTexture = backRenderer.sprite.texture;
         backMat.SetFloat("_IsBack", 1.0f);
         backRenderer.material = backMat;
 
@@ -171,7 +174,7 @@ public class BD_Fold : MonoBehaviour
 
         Vector2 world = Camera.main.ScreenToWorldPoint(screenPos);
 
-        if (selfCollider == null || !selfCollider.OverlapPoint(world))
+        if (!PointerInput.IsOverCollider(selfCollider))
             return;
 
         Vector2 mouseUV = WorldToUV(world);
@@ -286,7 +289,10 @@ public class BD_Fold : MonoBehaviour
         float delta = Mathf.Abs(currentFoldDist - lastFoldDistForAudio);
         bool moving = delta > audioMoveThreshold && isDragging;
         float targetVolume = moving ? 1f : 0f;
-        audioVolume = Mathf.MoveTowards(audioVolume, targetVolume, Time.deltaTime * audioFadeSpeed);
+        float audioStep = Time.deltaTime * audioFadeSpeed;
+        audioVolume = targetVolume > audioVolume
+            ? Mathf.Min(audioVolume + audioStep, targetVolume)
+            : Mathf.Max(audioVolume - audioStep, targetVolume);
         dragAudioSource.volume = audioVolume;
         if (audioVolume > 0.01f) { if (!dragAudioSource.isPlaying) dragAudioSource.Play(); }
         else { if (dragAudioSource.isPlaying) dragAudioSource.Stop(); }

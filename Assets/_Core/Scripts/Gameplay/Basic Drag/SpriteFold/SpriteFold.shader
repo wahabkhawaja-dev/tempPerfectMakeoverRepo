@@ -26,7 +26,7 @@
             struct v2f { float2 uv : TEXCOORD0; float4 vertex : SV_POSITION; };
 
             sampler2D _MainTex;
-            float2 _FoldOrigin, _FoldDir;
+            float4 _FoldOrigin, _FoldDir;
             float _FoldDist, _IsBack, _ShadowStrength;
 
             v2f vert (appdata v) {
@@ -35,8 +35,8 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 v = i.uv - _FoldOrigin;
-                float dist = dot(v, _FoldDir);
+                float2 v = i.uv - _FoldOrigin.xy;
+                float dist = dot(v, _FoldDir.xy);
                 float foldLine = _FoldDist * 0.5;
                 bool isFoldedSide = dist > foldLine;
 
@@ -57,7 +57,7 @@
                 {
                     // BACK SIDE
                     if (!isFoldedSide) discard;
-                    float2 reflectedUV = i.uv - (_FoldDir * 2.0 * (dist - foldLine));
+                    float2 reflectedUV = i.uv - (_FoldDir.xy * 2.0 * (dist - foldLine));
                     if (reflectedUV.x < 0 || reflectedUV.x > 1 || reflectedUV.y < 0 || reflectedUV.y > 1) discard;
                     fixed4 col = tex2D(_MainTex, reflectedUV);
                     col.rgb *= 0.8; 
