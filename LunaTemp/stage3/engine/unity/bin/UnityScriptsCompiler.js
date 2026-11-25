@@ -1,11 +1,256 @@
-if ( TRACE ) { TRACE( JSON.parse( '["ActionOnTap#init","ActionOnTap#Awake","ActionOnTap#Update","ActionOnTap#Tap","ArrayExtensions#RotateLeft","ArrayExtensions#RotateRight","AudioController#Awake","AudioController#Start","AudioController#SetupThings","AudioController#PlaySfx","AudioController#PlayAnySfx","AudioController#PlayUiClickSfx","AudioController#PlayBtnClickSfx","AudioController#PlayBtnClickSfxGameplay","BasicDrag#init","BasicDrag#Start","BasicDrag#OnEnable","BasicDrag#OnDisable","BasicDrag#Update","BasicDrag#Exec","BasicDrag#MouseDownPressed","BasicDrag#MouseUpPressed","BasicDrag#OnDragStart","BasicDrag#OnDragStart_Delta","BasicDrag#HandleDragging","BasicDrag#OnDragEnd","BasicDrag#IncreaseSR","BasicDrag#DecreaseSR","BasicDrag#ResetState","BasicDrag#OffestReset","BasicDrag#StopTheDrag","BasicDrag#HasSwipedDown","BasicDrag#isOverUI","BD_AnimationHelper#init","BD_AnimationHelper#TriggerOnComplete","BD_AnimationHelper#PlaySfx","BD_AnimatorDrag#init","BD_AnimatorDrag#Start","BD_AnimatorDrag#PlayAnim","BD_AnimatorDrag#StopAnim","BD_AnimatorDrag#Update","BD_CameraFollow#init","BD_CameraFollow#Start","BD_CameraFollow#Update","BD_CameraFollow#DisableFollow","BD_Clamp#init","BD_Clamp#OnEnable","BD_Clamp#AssignVals","BD_Progress#init","BD_Progress#Start","BD_Progress#EnableProgress","BD_Progress#DisableProgress","BD_Progress#EnableToolTips","BD_Progress#DisableToolTips","BD_Progress#ProgressChecking","BD_Progress#CheckAllScratchProgress","BD_Progress#giveCollectiveProgress","BD_Progress#giveProgressForScratch","BD_Progress#CallTheComplete","BD_ProgressHelper#init","BD_ProgressHelper#Start","BD_ProgressHelper#EnableProgress","BD_ProgressHelper#DisableProgress","BD_ProgressHelper#ProgressChecking","BD_SpriteChange#init","BD_SpriteChange#Start","BD_SpriteChange#ToolPicked","BD_SpriteChange#ToolReleased","BD_ToolRotate#init","BD_ToolRotate#Start","BD_ToolRotate#Update","CameraController#init","CameraController#Awake","CameraController#SetCameraInstant","CameraController#MoveCamera","CameraController#ResetCameraInstant","CameraController#ResetCameraTween","CameraController#KillTweens","CameraController#KillPositionTweens","CameraController#Camera_Shake","CarouselScroller#CenterItemObj#get","CarouselScroller#init","CarouselScroller#InitCarousel","CarouselScroller#SetupInitialPositions","CarouselScroller#SetItemAlphaState","CarouselScroller#SetAlpha","CarouselScroller#EnableCurrentTick","CarouselScroller#EnableCurrentTick1st","CarouselScroller#ScrollNext","CarouselScroller#Animate","CarouselScroller#UpdateAllItemData","CarouselScroller#SetItemData","CarouselScroller#UpdateEdgeVisibility","DestroyObj#init","DestroyObj#Start","DG.Tweening.DOTweenAnimation#Dispatch_OnReset","DG.Tweening.DOTweenAnimation#TypeToDOTargetType","DG.Tweening.DOTweenAnimation#init","DG.Tweening.DOTweenAnimation#Awake","DG.Tweening.DOTweenAnimation#Start","DG.Tweening.DOTweenAnimation#Reset","DG.Tweening.DOTweenAnimation#OnDestroy","DG.Tweening.DOTweenAnimation#RewindThenRecreateTween","DG.Tweening.DOTweenAnimation#RewindThenRecreateTweenAndPlay","DG.Tweening.DOTweenAnimation#RecreateTween","DG.Tweening.DOTweenAnimation#RecreateTweenAndPlay","DG.Tweening.DOTweenAnimation#CreateTween","DG.Tweening.DOTweenAnimation#GetTweens","DG.Tweening.DOTweenAnimation#SetAnimationTarget","DG.Tweening.DOTweenAnimation#DOPlay","DG.Tweening.DOTweenAnimation#DOPlayBackwards","DG.Tweening.DOTweenAnimation#DOPlayForward","DG.Tweening.DOTweenAnimation#DOPause","DG.Tweening.DOTweenAnimation#DOTogglePause","DG.Tweening.DOTweenAnimation#DORewind","DG.Tweening.DOTweenAnimation#DORestart","DG.Tweening.DOTweenAnimation#DORestart$1","DG.Tweening.DOTweenAnimation#DOComplete","DG.Tweening.DOTweenAnimation#DOKill","DG.Tweening.DOTweenAnimation#DOPlayById","DG.Tweening.DOTweenAnimation#DOPlayAllById","DG.Tweening.DOTweenAnimation#DOPauseAllById","DG.Tweening.DOTweenAnimation#DOPlayBackwardsById","DG.Tweening.DOTweenAnimation#DOPlayBackwardsAllById","DG.Tweening.DOTweenAnimation#DOPlayForwardById","DG.Tweening.DOTweenAnimation#DOPlayForwardAllById","DG.Tweening.DOTweenAnimation#DOPlayNext","DG.Tweening.DOTweenAnimation#DORewindAndPlayNext","DG.Tweening.DOTweenAnimation#DORewindAllById","DG.Tweening.DOTweenAnimation#DORestartById","DG.Tweening.DOTweenAnimation#DORestartAllById","DG.Tweening.DOTweenAnimation#DOKillById","DG.Tweening.DOTweenAnimation#DOKillAllById","DG.Tweening.DOTweenAnimation#CreateEditorPreview","DG.Tweening.DOTweenAnimation#GetTweenGO","DG.Tweening.DOTweenAnimation#GetTweenTarget","DG.Tweening.DOTweenAnimation#ReEvaluateRelativeTween","DG.Tweening.DOTweenAnimationExtensions#IsSameOrSubclassOf","DG.Tweening.DOTweenCYInstruction.WaitForCompletion#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForCompletion#ctor","DG.Tweening.DOTweenCYInstruction.WaitForElapsedLoops#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForElapsedLoops#ctor","DG.Tweening.DOTweenCYInstruction.WaitForKill#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForKill#ctor","DG.Tweening.DOTweenCYInstruction.WaitForPosition#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForPosition#ctor","DG.Tweening.DOTweenCYInstruction.WaitForRewind#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForRewind#ctor","DG.Tweening.DOTweenCYInstruction.WaitForStart#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForStart#ctor","DG.Tweening.DOTweenModuleAudio#DOFade","DG.Tweening.DOTweenModuleAudio#DOPitch","DG.Tweening.DOTweenModuleAudio#DOSetFloat","DG.Tweening.DOTweenModuleAudio#DOComplete","DG.Tweening.DOTweenModuleAudio#DOKill","DG.Tweening.DOTweenModuleAudio#DOFlip","DG.Tweening.DOTweenModuleAudio#DOGoto","DG.Tweening.DOTweenModuleAudio#DOPause","DG.Tweening.DOTweenModuleAudio#DOPlay","DG.Tweening.DOTweenModuleAudio#DOPlayBackwards","DG.Tweening.DOTweenModuleAudio#DOPlayForward","DG.Tweening.DOTweenModuleAudio#DORestart","DG.Tweening.DOTweenModuleAudio#DORewind","DG.Tweening.DOTweenModuleAudio#DOSmoothRewind","DG.Tweening.DOTweenModuleAudio#DOTogglePause","DG.Tweening.DOTweenModulePhysics2D#DOMove","DG.Tweening.DOTweenModulePhysics2D#DOMoveX","DG.Tweening.DOTweenModulePhysics2D#DOMoveY","DG.Tweening.DOTweenModulePhysics2D#DORotate","DG.Tweening.DOTweenModulePhysics2D#DOJump","DG.Tweening.DOTweenModulePhysics2D#DOPath","DG.Tweening.DOTweenModulePhysics2D#DOPath$1","DG.Tweening.DOTweenModulePhysics2D#DOLocalPath","DG.Tweening.DOTweenModulePhysics2D#DOLocalPath$1","DG.Tweening.DOTweenModuleSprite#DOColor","DG.Tweening.DOTweenModuleSprite#DOFade","DG.Tweening.DOTweenModuleSprite#DOGradientColor","DG.Tweening.DOTweenModuleSprite#DOBlendableColor","DG.Tweening.DOTweenModuleUI#DOFade","DG.Tweening.DOTweenModuleUI#DOFade$1","DG.Tweening.DOTweenModuleUI#DOFade$2","DG.Tweening.DOTweenModuleUI#DOFade$3","DG.Tweening.DOTweenModuleUI#DOFade$4","DG.Tweening.DOTweenModuleUI#DOColor","DG.Tweening.DOTweenModuleUI#DOColor$1","DG.Tweening.DOTweenModuleUI#DOColor$2","DG.Tweening.DOTweenModuleUI#DOColor$3","DG.Tweening.DOTweenModuleUI#DOFillAmount","DG.Tweening.DOTweenModuleUI#DOGradientColor","DG.Tweening.DOTweenModuleUI#DOFlexibleSize","DG.Tweening.DOTweenModuleUI#DOMinSize","DG.Tweening.DOTweenModuleUI#DOPreferredSize","DG.Tweening.DOTweenModuleUI#DOScale","DG.Tweening.DOTweenModuleUI#DOAnchorPos","DG.Tweening.DOTweenModuleUI#DOAnchorPosX","DG.Tweening.DOTweenModuleUI#DOAnchorPosY","DG.Tweening.DOTweenModuleUI#DOAnchorPos3D","DG.Tweening.DOTweenModuleUI#DOAnchorPos3DX","DG.Tweening.DOTweenModuleUI#DOAnchorPos3DY","DG.Tweening.DOTweenModuleUI#DOAnchorPos3DZ","DG.Tweening.DOTweenModuleUI#DOAnchorMax","DG.Tweening.DOTweenModuleUI#DOAnchorMin","DG.Tweening.DOTweenModuleUI#DOPivot","DG.Tweening.DOTweenModuleUI#DOPivotX","DG.Tweening.DOTweenModuleUI#DOPivotY","DG.Tweening.DOTweenModuleUI#DOSizeDelta","DG.Tweening.DOTweenModuleUI#DOPunchAnchorPos","DG.Tweening.DOTweenModuleUI#DOShakeAnchorPos","DG.Tweening.DOTweenModuleUI#DOShakeAnchorPos$1","DG.Tweening.DOTweenModuleUI#DOJumpAnchorPos","DG.Tweening.DOTweenModuleUI#DONormalizedPos","DG.Tweening.DOTweenModuleUI#DOHorizontalNormalizedPos","DG.Tweening.DOTweenModuleUI#DOVerticalNormalizedPos","DG.Tweening.DOTweenModuleUI#DOValue","DG.Tweening.DOTweenModuleUI#DOCounter","DG.Tweening.DOTweenModuleUI#DOText","DG.Tweening.DOTweenModuleUI#DOBlendableColor","DG.Tweening.DOTweenModuleUI#DOBlendableColor$1","DG.Tweening.DOTweenModuleUI#DOBlendableColor$2","DG.Tweening.DOTweenModuleUI#DOShapeCircle","DG.Tweening.DOTweenModuleUI.Utils#SwitchToRectTransform","DG.Tweening.DOTweenModuleUnityVersion#DOGradientColor","DG.Tweening.DOTweenModuleUnityVersion#DOGradientColor$1","DG.Tweening.DOTweenModuleUnityVersion#WaitForCompletion","DG.Tweening.DOTweenModuleUnityVersion#WaitForRewind","DG.Tweening.DOTweenModuleUnityVersion#WaitForKill","DG.Tweening.DOTweenModuleUnityVersion#WaitForElapsedLoops","DG.Tweening.DOTweenModuleUnityVersion#WaitForPosition","DG.Tweening.DOTweenModuleUnityVersion#WaitForStart","DG.Tweening.DOTweenModuleUnityVersion#DOOffset","DG.Tweening.DOTweenModuleUnityVersion#DOTiling","DG.Tweening.DOTweenModuleUtils#Init","DG.Tweening.DOTweenModuleUtils#Preserver","DG.Tweening.DOTweenModuleUtils.Physics#SetOrientationOnPath","DG.Tweening.DOTweenModuleUtils.Physics#HasRigidbody2D","DG.Tweening.DOTweenModuleUtils.Physics#HasRigidbody","DG.Tweening.DOTweenModuleUtils.Physics#CreateDOTweenPathTween","DG.Tweening.DOTweenProShortcuts#ctor","DG.Tweening.DOTweenProShortcuts#DOSpiral","GameManager#TryParseLevelName","GameManager#init","GameManager#Awake","GameManager#Start","GameManager#EnsureSaveSystem","GameManager#EnsureLoadingManager","GameManager#BindSceneLevel","GameManager#BindLevel","GameManager#ApplySaveForSceneLevel","GameManager#LoadLevel","GameManager#Complete","GameManager#Next","GameManager#Home","GameManager#Continue","GameManager#Restart","GameManager#ReloadActiveScene","GameManager#checkForDrag","GameManager#MuteLevelAudio","GameManager#UnMuteLevelAudio","GameManager#StopAllDrags","GameManager#isOverUI","GameManager#RecordLevelStartEvent","GameManager#RecordLevelCompleteEvent","LevelData#init","LevelData#TryStartStep","LevelData#Setup","LevelData#LevelStart","LevelData#LevelComplete","LevelData#ToolInputToggle","LevelData#SetProgressBar","LevelData#SetProgressDelay","LevelData#SetAudioAndDrag","LevelSaveData#init","LoadingManager#init","LoadingManager#Awake","LoadingManager#ShowLoading","LoadingManager#ExecuteLoading","LoadingManager#UpdateProgressText","LoadingManager#ShowFadeAnim","Lvl3_PlaceGlue#init","Lvl3_PlaceGlue#OnTriggerEnter2D","Lvl3_PlaceGlue#PlaceGlue","Lvl3_PlaceItem#init","Lvl3_PlaceItem#Start","Lvl3_PlaceItem#OnTriggerEnter2D","Lvl3_PlaceItem#OnTriggerExit2D","Lvl3_PlaceItem#PlaceItems","MusicSource#Start","MusicSource#PlayMusic","MusicSource#PlayMusicSmooth","PlayableCTA#HasScratchStarted","PlayableCTA#IsCardScratched","PlayableCTA#FireOnLevelComplete","PlayableCTA#FireNow","PlayableCTA#OpenStoreOnly","PlayableCTA#OpenStoreStatic","PlayableCTA#init","PlayableCTA#OnEnable","PlayableCTA#OnDisable","PlayableCTA#Update","PlayableCTA#FireCTA","PlayableCTA#FireFromTrigger","PlayableCTA#Fire","PlayableCTA#ShowEndCard","PlayableCTA#OpenStore","PlayableFadeCover#Cover","PlayableFadeCover#Cover$1","PlayableFadeCover#Reveal","PlayableFadeCover#Reveal$1","PlayableFadeCoverSettings#init","PlayableFadeCoverSettings#OnEnable","PlayableFadeCoverSettings#OnDisable","PlayableHudRuntime#Awake","PlayableHudRuntime#OnPlayClicked","PlayableInstall#Go","PlayableRouter#init","PlayableRouter#SetAll","PlayableRouter#FindChild","PlayableRouter#init","PlayableRouter#Awake","PlayableRouter#ApplyLockState","PlayableRouter#OnLockedTap","PlayableRouter#BuildLockedMessage","PlayableRouter#UnlockedLevelNumber","PlayableRouter#SetLevel","PlayableRouter#Play","PlayableRouter#SwapToLevel","PlayableRouter#DropUnplayedLevels","PlayableRouter.SubLevelSlot#Unlocked#get","PlayParticlesOnCollision#init","PlayParticlesOnCollision#OnTriggerEnter2D","PlaySfxOnCollision#init","PlaySfxOnCollision#Awake","PlaySfxOnCollision#OnTriggerEnter2D","PlaySfxOnCollision#OnTriggerExit2D","PlaySfxOnCollision#Update","PlaySfxOnCollision#HandlePlay","PlaySfxOnCollision#HandleStop","PlaySfxOnCollision#PlayAudio","PlaySfxOnCollision#StopAudio","PlaySfxOnCollision#OnFadeOutComplete","PlaySfxOnCollision#DisableSfx","PlaySfxOnCollision#OnDestroy","PointerInput#IsOverCollider","SaveDataFields#init","SaveSystem#init","SaveSystem#init","SaveSystem#Awake","SaveSystem#EnsureReady","SaveSystem#EnsureAllLevelsExist","SaveSystem#EnsureSubLevels","ScratchCardAsset.Core.Data.Triangle#init","ScratchCardAsset.Core.Data.Triangle#ctor","ScratchCardAsset.Core.Data.Triangle#GetUV","ScratchCardAsset.Core.ScratchCardInput#init","ScratchCardAsset.Core.ScratchCardInput#init","ScratchCardAsset.Core.ScratchCardInput#ctor","ScratchCardAsset.Core.ScratchCardInput#Update","ScratchCardAsset.Core.ScratchCardInput#TryScratch","ScratchCardAsset.Core.ScratchCardInput#Scratch","ScratchCardAsset.Core.ScratchCardInput#ScratchAtPoint","ScratchCardAsset.Core.ScratchCardRenderer#init","ScratchCardAsset.Core.ScratchCardRenderer#init","ScratchCardAsset.Core.ScratchCardRenderer#ctor","ScratchCardAsset.Core.ScratchCardRenderer#Release","ScratchCardAsset.Core.ScratchCardRenderer#CreateRenderTexture","ScratchCardAsset.Core.ScratchCardRenderer#IsInBounds","ScratchCardAsset.Core.ScratchCardRenderer#Filling","ScratchCardAsset.Core.ScratchCardRenderer#FillingLine","ScratchCardAsset.Core.ScratchCardRenderer#ScratchHoleAddition","ScratchCardAsset.Core.ScratchCardRenderer#ScratchHoleAddition$1","ScratchCardAsset.Core.ScratchCardRenderer#ScratchLineAddition","ScratchCardAsset.Core.ScratchCardRenderer#ScratchLineAddition$1","ScratchCardAsset.Core.ScratchCardRenderer#FillRenderTextureWithColor","ScratchCardAsset.Core.ScratchCardRenderer#SetImageSize","ScratchCardAsset.EraseProgress#init","ScratchCardAsset.EraseProgress#Start","ScratchCardAsset.EraseProgress#OnDestroy","ScratchCardAsset.EraseProgress#Update","ScratchCardAsset.EraseProgress#Init","ScratchCardAsset.EraseProgress#GiveProgress","ScratchCardAsset.EraseProgress#CalcProgress","ScratchCardAsset.EraseProgress#GetProgress","ScratchCardAsset.EraseProgress#UpdateProgress","ScratchCardAsset.EraseProgress#ResetProgress","ScratchCardAsset.ScratchCard#init","ScratchCardAsset.ScratchCard#Mode#get","ScratchCardAsset.ScratchCard#Mode#set","ScratchCardAsset.ScratchCard#IsScratched#get","ScratchCardAsset.ScratchCard#IsScratched#set","ScratchCardAsset.ScratchCard#init","ScratchCardAsset.ScratchCard#Start","ScratchCardAsset.ScratchCard#SetStart","ScratchCardAsset.ScratchCard#OnDestroy","ScratchCardAsset.ScratchCard#Update","ScratchCardAsset.ScratchCard#NormalizeThePositionToRotation","ScratchCardAsset.ScratchCard#Init","ScratchCardAsset.ScratchCard#GetScratchBounds","ScratchCardAsset.ScratchCard#InitVariables","ScratchCardAsset.ScratchCard#InitTriangle","ScratchCardAsset.ScratchCard#OnScratchStart","ScratchCardAsset.ScratchCard#OnScratchHole","ScratchCardAsset.ScratchCard#OnScratchLine","ScratchCardAsset.ScratchCard#GetScratchPosition","ScratchCardAsset.ScratchCard#GetCardInput","ScratchCardAsset.ScratchCard#StopColorCoroutine","ScratchCardAsset.ScratchCard#FillInstantly","ScratchCardAsset.ScratchCard#ClearInstantly","ScratchCardAsset.ScratchCard#Clearcurrent","ScratchCardAsset.ScratchCard#Clear","ScratchCardAsset.ScratchCard#ResetRenderTexture","ScratchCardAsset.ScratchCard#GetScratchTexture","ScratchCardAsset.ScratchCard#SetScratchTexture","ScratchCardAsset.ScratchCard#GetCardrenderer","ScratchCardAsset.ScratchCard#ClearSmoothly","ScratchCardAsset.ScratchCard#ClearSmoothlyRoutine","ScratchCardAsset.ScratchCardManager#init","ScratchCardAsset.ScratchCardManager#Awake","ScratchCardAsset.ScratchCardManager#SetEraseTexture","ScratchCardAsset.ScratchCardManager#ResetScratchCard","ScratchCardAsset.ScratchCardManager#GetProgress","ScratchCardAsset.Tools.MeshGenerator#GenerateQuad","ScratchData#init","SpriteButton#init","SpriteButton#Awake","SpriteButton#OnEnable","SpriteButton#Update","SpriteButton#PointerDown","SpriteButton#PointerUp","SpriteButton#ResetButtonState","SpriteButton#IsPointerOverThisObject","SpriteButton#isOverUI","SpriteButton#OnDisable","Statics#GA_LevelStartEvent","Statics#GA_LevelCompleteEvent","Statics#GA_CustomStringEvent","ToastManager#init","ToastManager#Awake","ToastManager#SendToast","ToastManager#HideToast","UI_Manager#init","UI_Manager#init","UI_Manager#Awake","UI_Manager#Update","UI_Manager#MoveButtonsOut","UI_Manager#MoveButtonsIn","UI_Manager#isOverUI","UI_Manager#InitializeTools","UI_Manager#SetProgressIconIndex","UI_Manager#SetProgressBarPos","UI_Manager#SetProgressBar","UI_Manager#SetProgressBarInstant","UI_Manager#SetupToolIconReferences","UI_Manager#FindIconImage","UI_Manager#FindGreyImage","UI_Manager#SetGreyInstant","UI_Manager#FadeGrey","UI_Manager#FindChildObject","UI_Manager#SetToolIcon","UI_Manager#HideToolIcon","UI_Manager#ShowToolIcon","UI_Manager#ShowTool4Instant","UI_Manager#ShowTool4Animated","UI_Manager#HideTool4","UI_Manager#ShowToolTick","UI_Manager#PauseState","UI_Manager#RemoveAdsState","UI_Manager#RateUsState","UI_Manager#ShowCompleteParticles","UI_Manager#Complete","UI_Manager#FadeAnim","UI_Manager#ShowClockProgress","UI_Manager#ShowClockProgress$1","UI_Manager#HideClockProgress","ZoomPos#init","GameManagerPlayable#PlayStepComplete","GameManagerPlayable#PlayParticles","GameManagerPlayable#OnEnable","GameManagerPlayable#Complete","GameManagerPlayable#LunaDirect","Level3_Crown_Playable_NewTest#Start","Level3_Crown_Playable_NewTest#AdvanceProgressIcon","Level3_Crown_Playable_NewTest#StartStep1","Level3_Crown_Playable_NewTest#Step1Done","Level3_Crown_Playable_NewTest#ForceCompleteStep1","Level3_Crown_Playable_NewTest#StartStep2","Level3_Crown_Playable_NewTest#Step2Done","Level3_Crown_Playable_NewTest#ForceCompleteStep2","Level3_Crown_Playable_NewTest#StartStep3","Level3_Crown_Playable_NewTest#Step3Done","Level3_Crown_Playable_NewTest#ForceCompleteStep3"]' ) ); }
+if ( TRACE ) { TRACE( JSON.parse( '["_2dxFX_Wave#init","_2dxFX_Wave#Awake","_2dxFX_Wave#Start","_2dxFX_Wave#CallUpdate","_2dxFX_Wave#Update","_2dxFX_Wave#OnDestroy","_2dxFX_Wave#OnDisable","_2dxFX_Wave#OnEnable","ActionOnTap#init","ActionOnTap#Awake","ActionOnTap#Update","ActionOnTap#Tap","ArrayExtensions#RotateLeft","ArrayExtensions#RotateRight","AudioController#Awake","AudioController#Start","AudioController#SetupThings","AudioController#PlaySfx","AudioController#PlayAnySfx","AudioController#PlayUiClickSfx","AudioController#PlayBtnClickSfx","AudioController#PlayBtnClickSfxGameplay","BasicDrag#init","BasicDrag#Start","BasicDrag#OnEnable","BasicDrag#OnDisable","BasicDrag#Update","BasicDrag#Exec","BasicDrag#MouseDownPressed","BasicDrag#MouseUpPressed","BasicDrag#OnDragStart","BasicDrag#OnDragStart_Delta","BasicDrag#HandleDragging","BasicDrag#OnDragEnd","BasicDrag#IncreaseSR","BasicDrag#DecreaseSR","BasicDrag#ResetState","BasicDrag#OffestReset","BasicDrag#StopTheDrag","BasicDrag#HasSwipedDown","BasicDrag#isOverUI","BD_Action#Start","BD_Action#OnMouseDownCalled","BD_Action#OnMouseUpCalled","BD_CameraFollow#init","BD_CameraFollow#Start","BD_CameraFollow#Update","BD_CameraFollow#DisableFollow","BD_Clamp#init","BD_Clamp#OnEnable","BD_Clamp#AssignVals","BD_Progress#init","BD_Progress#Start","BD_Progress#EnableProgress","BD_Progress#DisableProgress","BD_Progress#EnableToolTips","BD_Progress#DisableToolTips","BD_Progress#ProgressChecking","BD_Progress#CheckAllScratchProgress","BD_Progress#giveCollectiveProgress","BD_Progress#giveProgressForScratch","BD_Progress#CallTheComplete","BD_SpriteChange#init","BD_SpriteChange#Start","BD_SpriteChange#ToolPicked","BD_SpriteChange#ToolReleased","CameraController#init","CameraController#Awake","CameraController#SetCameraInstant","CameraController#MoveCamera","CameraController#ResetCameraInstant","CameraController#ResetCameraTween","CameraController#KillTweens","CameraController#KillPositionTweens","CameraController#Camera_Shake","CarouselScroller#CenterItemObj#get","CarouselScroller#init","CarouselScroller#InitCarousel","CarouselScroller#SetupInitialPositions","CarouselScroller#SetItemAlphaState","CarouselScroller#SetAlpha","CarouselScroller#EnableCurrentTick","CarouselScroller#EnableCurrentTick1st","CarouselScroller#ScrollNext","CarouselScroller#Animate","CarouselScroller#UpdateAllItemData","CarouselScroller#SetItemData","CarouselScroller#UpdateEdgeVisibility","DG.Tweening.DOTweenAnimation#Dispatch_OnReset","DG.Tweening.DOTweenAnimation#TypeToDOTargetType","DG.Tweening.DOTweenAnimation#init","DG.Tweening.DOTweenAnimation#Awake","DG.Tweening.DOTweenAnimation#Start","DG.Tweening.DOTweenAnimation#Reset","DG.Tweening.DOTweenAnimation#OnDestroy","DG.Tweening.DOTweenAnimation#RewindThenRecreateTween","DG.Tweening.DOTweenAnimation#RewindThenRecreateTweenAndPlay","DG.Tweening.DOTweenAnimation#RecreateTween","DG.Tweening.DOTweenAnimation#RecreateTweenAndPlay","DG.Tweening.DOTweenAnimation#CreateTween","DG.Tweening.DOTweenAnimation#GetTweens","DG.Tweening.DOTweenAnimation#SetAnimationTarget","DG.Tweening.DOTweenAnimation#DOPlay","DG.Tweening.DOTweenAnimation#DOPlayBackwards","DG.Tweening.DOTweenAnimation#DOPlayForward","DG.Tweening.DOTweenAnimation#DOPause","DG.Tweening.DOTweenAnimation#DOTogglePause","DG.Tweening.DOTweenAnimation#DORewind","DG.Tweening.DOTweenAnimation#DORestart","DG.Tweening.DOTweenAnimation#DORestart$1","DG.Tweening.DOTweenAnimation#DOComplete","DG.Tweening.DOTweenAnimation#DOKill","DG.Tweening.DOTweenAnimation#DOPlayById","DG.Tweening.DOTweenAnimation#DOPlayAllById","DG.Tweening.DOTweenAnimation#DOPauseAllById","DG.Tweening.DOTweenAnimation#DOPlayBackwardsById","DG.Tweening.DOTweenAnimation#DOPlayBackwardsAllById","DG.Tweening.DOTweenAnimation#DOPlayForwardById","DG.Tweening.DOTweenAnimation#DOPlayForwardAllById","DG.Tweening.DOTweenAnimation#DOPlayNext","DG.Tweening.DOTweenAnimation#DORewindAndPlayNext","DG.Tweening.DOTweenAnimation#DORewindAllById","DG.Tweening.DOTweenAnimation#DORestartById","DG.Tweening.DOTweenAnimation#DORestartAllById","DG.Tweening.DOTweenAnimation#DOKillById","DG.Tweening.DOTweenAnimation#DOKillAllById","DG.Tweening.DOTweenAnimation#CreateEditorPreview","DG.Tweening.DOTweenAnimation#GetTweenGO","DG.Tweening.DOTweenAnimation#GetTweenTarget","DG.Tweening.DOTweenAnimation#ReEvaluateRelativeTween","DG.Tweening.DOTweenAnimationExtensions#IsSameOrSubclassOf","DG.Tweening.DOTweenCYInstruction.WaitForCompletion#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForCompletion#ctor","DG.Tweening.DOTweenCYInstruction.WaitForElapsedLoops#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForElapsedLoops#ctor","DG.Tweening.DOTweenCYInstruction.WaitForKill#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForKill#ctor","DG.Tweening.DOTweenCYInstruction.WaitForPosition#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForPosition#ctor","DG.Tweening.DOTweenCYInstruction.WaitForRewind#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForRewind#ctor","DG.Tweening.DOTweenCYInstruction.WaitForStart#keepWaiting#get","DG.Tweening.DOTweenCYInstruction.WaitForStart#ctor","DG.Tweening.DOTweenModuleAudio#DOFade","DG.Tweening.DOTweenModuleAudio#DOPitch","DG.Tweening.DOTweenModuleAudio#DOSetFloat","DG.Tweening.DOTweenModuleAudio#DOComplete","DG.Tweening.DOTweenModuleAudio#DOKill","DG.Tweening.DOTweenModuleAudio#DOFlip","DG.Tweening.DOTweenModuleAudio#DOGoto","DG.Tweening.DOTweenModuleAudio#DOPause","DG.Tweening.DOTweenModuleAudio#DOPlay","DG.Tweening.DOTweenModuleAudio#DOPlayBackwards","DG.Tweening.DOTweenModuleAudio#DOPlayForward","DG.Tweening.DOTweenModuleAudio#DORestart","DG.Tweening.DOTweenModuleAudio#DORewind","DG.Tweening.DOTweenModuleAudio#DOSmoothRewind","DG.Tweening.DOTweenModuleAudio#DOTogglePause","DG.Tweening.DOTweenModulePhysics2D#DOMove","DG.Tweening.DOTweenModulePhysics2D#DOMoveX","DG.Tweening.DOTweenModulePhysics2D#DOMoveY","DG.Tweening.DOTweenModulePhysics2D#DORotate","DG.Tweening.DOTweenModulePhysics2D#DOJump","DG.Tweening.DOTweenModulePhysics2D#DOPath","DG.Tweening.DOTweenModulePhysics2D#DOPath$1","DG.Tweening.DOTweenModulePhysics2D#DOLocalPath","DG.Tweening.DOTweenModulePhysics2D#DOLocalPath$1","DG.Tweening.DOTweenModuleSprite#DOColor","DG.Tweening.DOTweenModuleSprite#DOFade","DG.Tweening.DOTweenModuleSprite#DOGradientColor","DG.Tweening.DOTweenModuleSprite#DOBlendableColor","DG.Tweening.DOTweenModuleUI#DOFade","DG.Tweening.DOTweenModuleUI#DOFade$1","DG.Tweening.DOTweenModuleUI#DOFade$2","DG.Tweening.DOTweenModuleUI#DOFade$3","DG.Tweening.DOTweenModuleUI#DOFade$4","DG.Tweening.DOTweenModuleUI#DOColor","DG.Tweening.DOTweenModuleUI#DOColor$1","DG.Tweening.DOTweenModuleUI#DOColor$2","DG.Tweening.DOTweenModuleUI#DOColor$3","DG.Tweening.DOTweenModuleUI#DOFillAmount","DG.Tweening.DOTweenModuleUI#DOGradientColor","DG.Tweening.DOTweenModuleUI#DOFlexibleSize","DG.Tweening.DOTweenModuleUI#DOMinSize","DG.Tweening.DOTweenModuleUI#DOPreferredSize","DG.Tweening.DOTweenModuleUI#DOScale","DG.Tweening.DOTweenModuleUI#DOAnchorPos","DG.Tweening.DOTweenModuleUI#DOAnchorPosX","DG.Tweening.DOTweenModuleUI#DOAnchorPosY","DG.Tweening.DOTweenModuleUI#DOAnchorPos3D","DG.Tweening.DOTweenModuleUI#DOAnchorPos3DX","DG.Tweening.DOTweenModuleUI#DOAnchorPos3DY","DG.Tweening.DOTweenModuleUI#DOAnchorPos3DZ","DG.Tweening.DOTweenModuleUI#DOAnchorMax","DG.Tweening.DOTweenModuleUI#DOAnchorMin","DG.Tweening.DOTweenModuleUI#DOPivot","DG.Tweening.DOTweenModuleUI#DOPivotX","DG.Tweening.DOTweenModuleUI#DOPivotY","DG.Tweening.DOTweenModuleUI#DOSizeDelta","DG.Tweening.DOTweenModuleUI#DOPunchAnchorPos","DG.Tweening.DOTweenModuleUI#DOShakeAnchorPos","DG.Tweening.DOTweenModuleUI#DOShakeAnchorPos$1","DG.Tweening.DOTweenModuleUI#DOJumpAnchorPos","DG.Tweening.DOTweenModuleUI#DONormalizedPos","DG.Tweening.DOTweenModuleUI#DOHorizontalNormalizedPos","DG.Tweening.DOTweenModuleUI#DOVerticalNormalizedPos","DG.Tweening.DOTweenModuleUI#DOValue","DG.Tweening.DOTweenModuleUI#DOCounter","DG.Tweening.DOTweenModuleUI#DOText","DG.Tweening.DOTweenModuleUI#DOBlendableColor","DG.Tweening.DOTweenModuleUI#DOBlendableColor$1","DG.Tweening.DOTweenModuleUI#DOBlendableColor$2","DG.Tweening.DOTweenModuleUI#DOShapeCircle","DG.Tweening.DOTweenModuleUI.Utils#SwitchToRectTransform","DG.Tweening.DOTweenModuleUnityVersion#DOGradientColor","DG.Tweening.DOTweenModuleUnityVersion#DOGradientColor$1","DG.Tweening.DOTweenModuleUnityVersion#WaitForCompletion","DG.Tweening.DOTweenModuleUnityVersion#WaitForRewind","DG.Tweening.DOTweenModuleUnityVersion#WaitForKill","DG.Tweening.DOTweenModuleUnityVersion#WaitForElapsedLoops","DG.Tweening.DOTweenModuleUnityVersion#WaitForPosition","DG.Tweening.DOTweenModuleUnityVersion#WaitForStart","DG.Tweening.DOTweenModuleUnityVersion#DOOffset","DG.Tweening.DOTweenModuleUnityVersion#DOTiling","DG.Tweening.DOTweenModuleUtils#Init","DG.Tweening.DOTweenModuleUtils#Preserver","DG.Tweening.DOTweenModuleUtils.Physics#SetOrientationOnPath","DG.Tweening.DOTweenModuleUtils.Physics#HasRigidbody2D","DG.Tweening.DOTweenModuleUtils.Physics#HasRigidbody","DG.Tweening.DOTweenModuleUtils.Physics#CreateDOTweenPathTween","DG.Tweening.DOTweenProShortcuts#ctor","DG.Tweening.DOTweenProShortcuts#DOSpiral","GameManager#TryParseLevelName","GameManager#init","GameManager#Awake","GameManager#Start","GameManager#EnsureSaveSystem","GameManager#EnsureLoadingManager","GameManager#BindSceneLevel","GameManager#BindLevel","GameManager#ApplySaveForSceneLevel","GameManager#LoadLevel","GameManager#Complete","GameManager#Next","GameManager#Home","GameManager#Continue","GameManager#Restart","GameManager#ReloadActiveScene","GameManager#checkForDrag","GameManager#MuteLevelAudio","GameManager#UnMuteLevelAudio","GameManager#StopAllDrags","GameManager#isOverUI","GameManager#RecordLevelStartEvent","GameManager#RecordLevelCompleteEvent","LevelData#init","LevelData#TryStartStep","LevelData#Setup","LevelData#LevelStart","LevelData#LevelComplete","LevelData#ToolInputToggle","LevelData#SetProgressBar","LevelData#SetProgressDelay","LevelData#SetAudioAndDrag","Level1_SurfController#init","Level1_SurfController#Start","Level1_SurfController#OnMouseDown","Level1_SurfController#OnMouseUp","Level1_SurfController#StartSurfAnimation","Level1_SurfController#ProgressCoroutine","Level1_SurfController#GetCurrentRotationZ","Level1_SurfController#UpdateMaskPosition","Level1_SurfController#StopRotationAndParticlesOnly","Level1_SurfController#CompleteLevel","LevelSaveData#init","LoadingManager#init","LoadingManager#Awake","LoadingManager#ShowLoading","LoadingManager#ExecuteLoading","LoadingManager#UpdateProgressText","LoadingManager#ShowFadeAnim","MusicSource#Start","MusicSource#PlayMusic","MusicSource#PlayMusicSmooth","PlaceItem#init","PlaceItem#Start","PlaceItem#OnTriggerEnter2D","PlaceItem#OnTriggerExit2D","PlaceItem#PlaceItemCheck","PlayableCTA#HasScratchStarted","PlayableCTA#IsCardScratched","PlayableCTA#FireOnLevelComplete","PlayableCTA#FireNow","PlayableCTA#OpenStoreOnly","PlayableCTA#OpenStoreStatic","PlayableCTA#init","PlayableCTA#OnEnable","PlayableCTA#OnDisable","PlayableCTA#Update","PlayableCTA#FireCTA","PlayableCTA#FireFromTrigger","PlayableCTA#Fire","PlayableCTA#ShowEndCard","PlayableCTA#OpenStore","PlayableFadeCover#Cover","PlayableFadeCover#Cover$1","PlayableFadeCover#Reveal","PlayableFadeCover#Reveal$1","PlayableFadeCoverSettings#init","PlayableFadeCoverSettings#OnEnable","PlayableFadeCoverSettings#OnDisable","PlayableHudRuntime#Awake","PlayableHudRuntime#OnPlayClicked","PlayableInstall#Go","PlayableRouter#init","PlayableRouter#SetAll","PlayableRouter#FindChild","PlayableRouter#init","PlayableRouter#Awake","PlayableRouter#ApplyLockState","PlayableRouter#OnLockedTap","PlayableRouter#BuildLockedMessage","PlayableRouter#UnlockedLevelNumber","PlayableRouter#SetLevel","PlayableRouter#Play","PlayableRouter#SwapToLevel","PlayableRouter#DropUnplayedLevels","PlayableRouter.SubLevelSlot#Unlocked#get","PlayParticlesOnCollision#init","PlayParticlesOnCollision#OnTriggerEnter2D","PlaySfxOnCollision#init","PlaySfxOnCollision#Awake","PlaySfxOnCollision#OnTriggerEnter2D","PlaySfxOnCollision#OnTriggerExit2D","PlaySfxOnCollision#Update","PlaySfxOnCollision#HandlePlay","PlaySfxOnCollision#HandleStop","PlaySfxOnCollision#PlayAudio","PlaySfxOnCollision#StopAudio","PlaySfxOnCollision#OnFadeOutComplete","PlaySfxOnCollision#DisableSfx","PlaySfxOnCollision#OnDestroy","PointerInput#IsOverCollider","RotaryTimerKnob#init","RotaryTimerKnob#Start","RotaryTimerKnob#OnMouseDown","RotaryTimerKnob#OnMouseUp","RotaryTimerKnob#OnMouseDrag","RotaryTimerKnob#GetMouseAngle","RotaryTimerKnob#UpdateUI","RotaryTimerKnob#TriggerStepFeedback","RotaryTimerKnob#ResetKnob","RotaryTimerKnob#isOverUI","SaveDataFields#init","SaveSystem#init","SaveSystem#init","SaveSystem#Awake","SaveSystem#EnsureReady","SaveSystem#EnsureAllLevelsExist","SaveSystem#EnsureSubLevels","ScratchCardAsset.Core.Data.Triangle#init","ScratchCardAsset.Core.Data.Triangle#ctor","ScratchCardAsset.Core.Data.Triangle#GetUV","ScratchCardAsset.Core.ScratchCardInput#init","ScratchCardAsset.Core.ScratchCardInput#init","ScratchCardAsset.Core.ScratchCardInput#ctor","ScratchCardAsset.Core.ScratchCardInput#Update","ScratchCardAsset.Core.ScratchCardInput#TryScratch","ScratchCardAsset.Core.ScratchCardInput#Scratch","ScratchCardAsset.Core.ScratchCardInput#ScratchAtPoint","ScratchCardAsset.Core.ScratchCardRenderer#init","ScratchCardAsset.Core.ScratchCardRenderer#init","ScratchCardAsset.Core.ScratchCardRenderer#ctor","ScratchCardAsset.Core.ScratchCardRenderer#Release","ScratchCardAsset.Core.ScratchCardRenderer#CreateRenderTexture","ScratchCardAsset.Core.ScratchCardRenderer#IsInBounds","ScratchCardAsset.Core.ScratchCardRenderer#Filling","ScratchCardAsset.Core.ScratchCardRenderer#FillingLine","ScratchCardAsset.Core.ScratchCardRenderer#ScratchHoleAddition","ScratchCardAsset.Core.ScratchCardRenderer#ScratchHoleAddition$1","ScratchCardAsset.Core.ScratchCardRenderer#ScratchLineAddition","ScratchCardAsset.Core.ScratchCardRenderer#ScratchLineAddition$1","ScratchCardAsset.Core.ScratchCardRenderer#FillRenderTextureWithColor","ScratchCardAsset.Core.ScratchCardRenderer#SetImageSize","ScratchCardAsset.EraseProgress#init","ScratchCardAsset.EraseProgress#Start","ScratchCardAsset.EraseProgress#OnDestroy","ScratchCardAsset.EraseProgress#Update","ScratchCardAsset.EraseProgress#Init","ScratchCardAsset.EraseProgress#GiveProgress","ScratchCardAsset.EraseProgress#CalcProgress","ScratchCardAsset.EraseProgress#GetProgress","ScratchCardAsset.EraseProgress#UpdateProgress","ScratchCardAsset.EraseProgress#ResetProgress","ScratchCardAsset.ScratchCard#init","ScratchCardAsset.ScratchCard#Mode#get","ScratchCardAsset.ScratchCard#Mode#set","ScratchCardAsset.ScratchCard#IsScratched#get","ScratchCardAsset.ScratchCard#IsScratched#set","ScratchCardAsset.ScratchCard#init","ScratchCardAsset.ScratchCard#Start","ScratchCardAsset.ScratchCard#SetStart","ScratchCardAsset.ScratchCard#OnDestroy","ScratchCardAsset.ScratchCard#Update","ScratchCardAsset.ScratchCard#NormalizeThePositionToRotation","ScratchCardAsset.ScratchCard#Init","ScratchCardAsset.ScratchCard#GetScratchBounds","ScratchCardAsset.ScratchCard#InitVariables","ScratchCardAsset.ScratchCard#InitTriangle","ScratchCardAsset.ScratchCard#OnScratchStart","ScratchCardAsset.ScratchCard#OnScratchHole","ScratchCardAsset.ScratchCard#OnScratchLine","ScratchCardAsset.ScratchCard#GetScratchPosition","ScratchCardAsset.ScratchCard#GetCardInput","ScratchCardAsset.ScratchCard#StopColorCoroutine","ScratchCardAsset.ScratchCard#FillInstantly","ScratchCardAsset.ScratchCard#ClearInstantly","ScratchCardAsset.ScratchCard#Clearcurrent","ScratchCardAsset.ScratchCard#Clear","ScratchCardAsset.ScratchCard#ResetRenderTexture","ScratchCardAsset.ScratchCard#GetScratchTexture","ScratchCardAsset.ScratchCard#SetScratchTexture","ScratchCardAsset.ScratchCard#GetCardrenderer","ScratchCardAsset.ScratchCard#ClearSmoothly","ScratchCardAsset.ScratchCard#ClearSmoothlyRoutine","ScratchCardAsset.ScratchCardManager#init","ScratchCardAsset.ScratchCardManager#Awake","ScratchCardAsset.ScratchCardManager#SetEraseTexture","ScratchCardAsset.ScratchCardManager#ResetScratchCard","ScratchCardAsset.ScratchCardManager#GetProgress","ScratchCardAsset.Tools.MeshGenerator#GenerateQuad","ScratchData#init","SewingCol#OnTriggerEnter2D","SpriteButton#init","SpriteButton#Awake","SpriteButton#OnEnable","SpriteButton#Update","SpriteButton#PointerDown","SpriteButton#PointerUp","SpriteButton#ResetButtonState","SpriteButton#IsPointerOverThisObject","SpriteButton#isOverUI","SpriteButton#OnDisable","StaticFixedPipe#init","StaticFixedPipe#Start","StaticFixedPipe#BuildMesh","StaticFixedPipe#LateUpdate","StaticFixedPipe#Simulate","StaticFixedPipe#ApplyConstraints","StaticFixedPipe#DrawRope","StaticFixedPipe.RopeSegment#getDefaultValue","StaticFixedPipe.RopeSegment#init","StaticFixedPipe.RopeSegment#$ctor1","StaticFixedPipe.RopeSegment#ctor","StaticFixedPipe.RopeSegment#getHashCode","StaticFixedPipe.RopeSegment#equals","StaticFixedPipe.RopeSegment#$clone","Statics#GA_LevelStartEvent","Statics#GA_LevelCompleteEvent","Statics#GA_CustomStringEvent","ToastManager#init","ToastManager#Awake","ToastManager#SendToast","ToastManager#HideToast","UI_Manager#init","UI_Manager#init","UI_Manager#Awake","UI_Manager#Update","UI_Manager#MoveButtonsOut","UI_Manager#MoveButtonsIn","UI_Manager#isOverUI","UI_Manager#InitializeTools","UI_Manager#SetProgressIconIndex","UI_Manager#SetProgressBarPos","UI_Manager#SetProgressBar","UI_Manager#SetProgressBarInstant","UI_Manager#SetupToolIconReferences","UI_Manager#FindIconImage","UI_Manager#FindGreyImage","UI_Manager#SetGreyInstant","UI_Manager#FadeGrey","UI_Manager#FindChildObject","UI_Manager#SetToolIcon","UI_Manager#HideToolIcon","UI_Manager#ShowToolIcon","UI_Manager#ShowTool4Instant","UI_Manager#ShowTool4Animated","UI_Manager#HideTool4","UI_Manager#ShowToolTick","UI_Manager#PauseState","UI_Manager#RemoveAdsState","UI_Manager#RateUsState","UI_Manager#ShowCompleteParticles","UI_Manager#Complete","UI_Manager#FadeAnim","UI_Manager#ShowClockProgress","UI_Manager#ShowClockProgress$1","UI_Manager#HideClockProgress","ZoomPos#init","GameManagerPlayable#PlayStepComplete","GameManagerPlayable#PlayParticles","GameManagerPlayable#OnEnable","GameManagerPlayable#Complete","GameManagerPlayable#LunaDirect","Level1_Cloth_Playable_PlayableStep4#init","Level1_Cloth_Playable_PlayableStep4#Start","Level1_Cloth_Playable_PlayableStep4#StartStep1","Level1_Cloth_Playable_PlayableStep4#OnClothPicked","Level1_Cloth_Playable_PlayableStep4#OnClothReleased","Level1_Cloth_Playable_PlayableStep4#Step1Complete","Level1_Cloth_Playable_PlayableStep4#PlayClothPlacedSfx","Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep1","Level1_Cloth_Playable_PlayableStep4#StartStep2","Level1_Cloth_Playable_PlayableStep4#PackOpend","Level1_Cloth_Playable_PlayableStep4#Step2Complete","Level1_Cloth_Playable_PlayableStep4#StartMachine","Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep2","Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep3","Level1_Cloth_Playable_PlayableStep4#OpenDoor","Level1_Cloth_Playable_PlayableStep4#OnCleanClothPicked","Level1_Cloth_Playable_PlayableStep4#CallStep3","Level1_Cloth_Playable_PlayableStep4#StartCountDown","Level1_Cloth_Playable_PlayableStep4#StartStep3a","Level1_Cloth_Playable_PlayableStep4#OnTool3aPicked","Level1_Cloth_Playable_PlayableStep4#OnTool3aRelease","Level1_Cloth_Playable_PlayableStep4#Step3aComplete","Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep3a","Level1_Cloth_Playable_PlayableStep4#StartStep3","Level1_Cloth_Playable_PlayableStep4#HideIndication","Level1_Cloth_Playable_PlayableStep4#Step3Complete","Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep4","Level1_Cloth_Playable_PlayableStep4#StartStep4","Level1_Cloth_Playable_PlayableStep4#Step4Complete","Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep5"]' ) ); }
 /**
- * @version 1.0.9825.22131
+ * @version 1.0.9825.25874
  * @copyright anton
  * @compiler Bridge.NET 17.9.42-luna
  */
 Bridge.assembly("UnityScriptsCompiler", function ($asm, globals) {
     "use strict";
+
+    /*_2dxFX_Wave start.*/
+    Bridge.define("_2dxFX_Wave", {
+        inherits: [UnityEngine.MonoBehaviour],
+        fields: {
+            ForceMaterial: null,
+            ActiveChange: false,
+            shader: null,
+            _Alpha: 0,
+            _OffsetX: 0,
+            _OffsetY: 0,
+            _DistanceX: 0,
+            _DistanceY: 0,
+            _WaveTimeX: 0,
+            _WaveTimeY: 0,
+            AutoPlayWaveX: false,
+            AutoPlaySpeedX: 0,
+            AutoPlayWaveY: false,
+            AutoPlaySpeedY: 0,
+            AutoRandom: false,
+            AutoRandomRange: 0,
+            ShaderChange: 0,
+            tempMaterial: null,
+            defaultMaterial: null,
+            CanvasImage: null
+        },
+        ctors: {
+            init: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#init", this ); }
+
+                this.ActiveChange = true;
+                this.shader = "2DxFX/Standard/Wave";
+                this._Alpha = 1.0;
+                this._OffsetX = 10.0;
+                this._OffsetY = 10.0;
+                this._DistanceX = 0.03;
+                this._DistanceY = 0.03;
+                this._WaveTimeX = 0.16;
+                this._WaveTimeY = 0.12;
+                this.AutoPlayWaveX = false;
+                this.AutoPlaySpeedX = 5.0;
+                this.AutoPlayWaveY = false;
+                this.AutoPlaySpeedY = 5.0;
+                this.AutoRandom = false;
+                this.AutoRandomRange = 10.0;
+                this.ShaderChange = 0;
+            }
+        },
+        methods: {
+            /*_2dxFX_Wave.Awake start.*/
+            Awake: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#Awake", this ); }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                    this.CanvasImage = this.gameObject.GetComponent(UnityEngine.UI.Image);
+                }
+            },
+            /*_2dxFX_Wave.Awake end.*/
+
+            /*_2dxFX_Wave.Start start.*/
+            Start: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#Start", this ); }
+
+                this.ShaderChange = 0;
+            },
+            /*_2dxFX_Wave.Start end.*/
+
+            /*_2dxFX_Wave.CallUpdate start.*/
+            CallUpdate: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#CallUpdate", this ); }
+
+                this.Update();
+            },
+            /*_2dxFX_Wave.CallUpdate end.*/
+
+            /*_2dxFX_Wave.Update start.*/
+            Update: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#Update", this ); }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                    if (UnityEngine.MonoBehaviour.op_Equality(this.CanvasImage, null)) {
+                        this.CanvasImage = this.gameObject.GetComponent(UnityEngine.UI.Image);
+                    }
+                }
+                if ((this.ShaderChange === 0) && (this.ForceMaterial != null)) {
+                    this.ShaderChange = 1;
+                    if (this.tempMaterial != null) {
+                        UnityEngine.Object.DestroyImmediate(this.tempMaterial);
+                    }
+                    if (UnityEngine.Component.op_Inequality(this.gameObject.GetComponent(UnityEngine.SpriteRenderer), null)) {
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial = this.ForceMaterial;
+                    } else if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                        this.CanvasImage.material = this.ForceMaterial;
+                    }
+                    this.ForceMaterial.hideFlags = UnityEngine.HideFlags.None;
+                    this.ForceMaterial.shader = UnityEngine.Shader.Find(this.shader);
+
+
+                }
+                if ((this.ForceMaterial == null) && (this.ShaderChange === 1)) {
+                    if (this.tempMaterial != null) {
+                        UnityEngine.Object.DestroyImmediate(this.tempMaterial);
+                    }
+                    this.tempMaterial = new UnityEngine.Material.$ctor2(UnityEngine.Shader.Find(this.shader));
+                    this.tempMaterial.hideFlags = UnityEngine.HideFlags.None;
+                    if (UnityEngine.Component.op_Inequality(this.gameObject.GetComponent(UnityEngine.SpriteRenderer), null)) {
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial = this.tempMaterial;
+                    } else if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                        this.CanvasImage.material = this.tempMaterial;
+                    }
+                    this.ShaderChange = 0;
+                }
+
+                if (this.ActiveChange) {
+                    if (UnityEngine.Component.op_Inequality(this.gameObject.GetComponent(UnityEngine.SpriteRenderer), null)) {
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.SetFloat$1("_Alpha", 1 - this._Alpha);
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.SetFloat$1("_OffsetX", this._OffsetX);
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.SetFloat$1("_OffsetY", this._OffsetY);
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.SetFloat$1("_DistanceX", this._DistanceX);
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.SetFloat$1("_DistanceY", this._DistanceY);
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.SetFloat$1("_WaveTimeX", this._WaveTimeX);
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.SetFloat$1("_WaveTimeY", this._WaveTimeY);
+                    } else if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                        this.CanvasImage.material.SetFloat$1("_Alpha", 1 - this._Alpha);
+                        this.CanvasImage.material.SetFloat$1("_OffsetX", this._OffsetX);
+                        this.CanvasImage.material.SetFloat$1("_OffsetY", this._OffsetY);
+                        this.CanvasImage.material.SetFloat$1("_DistanceX", this._DistanceX);
+                        this.CanvasImage.material.SetFloat$1("_DistanceY", this._DistanceY);
+                        this.CanvasImage.material.SetFloat$1("_WaveTimeX", this._WaveTimeX);
+                        this.CanvasImage.material.SetFloat$1("_WaveTimeY", this._WaveTimeY);
+                    }
+
+                    var timerange;
+                    if (this.AutoRandom) {
+                        timerange = (UnityEngine.Random.Range$1(1, this.AutoRandomRange) / 5) * UnityEngine.Time.deltaTime;
+                    } else {
+                        timerange = UnityEngine.Time.deltaTime;
+                    }
+
+                    if (this.AutoPlayWaveX) {
+                        this._WaveTimeX += this.AutoPlaySpeedX * timerange;
+                    }
+                    if (this.AutoPlayWaveY) {
+                        this._WaveTimeY += this.AutoPlaySpeedY * timerange;
+                    }
+                    if (this._WaveTimeX > 6.28) {
+                        this._WaveTimeX = 0.0;
+                    }
+                    if (this._WaveTimeY > 6.28) {
+                        this._WaveTimeY = 0.0;
+                    }
+                }
+
+            },
+            /*_2dxFX_Wave.Update end.*/
+
+            /*_2dxFX_Wave.OnDestroy start.*/
+            OnDestroy: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#OnDestroy", this ); }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                    if (UnityEngine.MonoBehaviour.op_Equality(this.CanvasImage, null)) {
+                        this.CanvasImage = this.gameObject.GetComponent(UnityEngine.UI.Image);
+                    }
+                }
+                if ((UnityEngine.Application.isPlaying === false) && (UnityEngine.Application.isEditor === true)) {
+
+                    if (this.tempMaterial != null) {
+                        UnityEngine.Object.DestroyImmediate(this.tempMaterial);
+                    }
+
+                    if (this.gameObject.activeSelf && this.defaultMaterial != null) {
+                        if (UnityEngine.Component.op_Inequality(this.gameObject.GetComponent(UnityEngine.SpriteRenderer), null)) {
+                            this.GetComponent(UnityEngine.Renderer).sharedMaterial = this.defaultMaterial;
+                            this.GetComponent(UnityEngine.Renderer).sharedMaterial.hideFlags = UnityEngine.HideFlags.None;
+                        } else if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                            this.CanvasImage.material = this.defaultMaterial;
+                            this.CanvasImage.material.hideFlags = UnityEngine.HideFlags.None;
+                        }
+                    }
+                }
+            },
+            /*_2dxFX_Wave.OnDestroy end.*/
+
+            /*_2dxFX_Wave.OnDisable start.*/
+            OnDisable: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#OnDisable", this ); }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                    if (UnityEngine.MonoBehaviour.op_Equality(this.CanvasImage, null)) {
+                        this.CanvasImage = this.gameObject.GetComponent(UnityEngine.UI.Image);
+                    }
+                }
+                if (this.gameObject.activeSelf && this.defaultMaterial != null) {
+                    if (UnityEngine.Component.op_Inequality(this.gameObject.GetComponent(UnityEngine.SpriteRenderer), null)) {
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial = this.defaultMaterial;
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial.hideFlags = UnityEngine.HideFlags.None;
+                    } else if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                        this.CanvasImage.material = this.defaultMaterial;
+                        this.CanvasImage.material.hideFlags = UnityEngine.HideFlags.None;
+                    }
+                }
+            },
+            /*_2dxFX_Wave.OnDisable end.*/
+
+            /*_2dxFX_Wave.OnEnable start.*/
+            OnEnable: function () {
+if ( TRACE ) { TRACE( "_2dxFX_Wave#OnEnable", this ); }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                    if (UnityEngine.MonoBehaviour.op_Equality(this.CanvasImage, null)) {
+                        this.CanvasImage = this.gameObject.GetComponent(UnityEngine.UI.Image);
+                    }
+                }
+                if (this.defaultMaterial == null) {
+                    this.defaultMaterial = new UnityEngine.Material.$ctor2(UnityEngine.Shader.Find("Sprites/Default"));
+
+
+                }
+                if (this.ForceMaterial == null) {
+                    this.ActiveChange = true;
+                    this.tempMaterial = new UnityEngine.Material.$ctor2(UnityEngine.Shader.Find(this.shader));
+                    this.tempMaterial.hideFlags = UnityEngine.HideFlags.None;
+                    if (UnityEngine.Component.op_Inequality(this.gameObject.GetComponent(UnityEngine.SpriteRenderer), null)) {
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial = this.tempMaterial;
+                    } else if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                        this.CanvasImage.material = this.tempMaterial;
+                    }
+                } else {
+                    this.ForceMaterial.shader = UnityEngine.Shader.Find(this.shader);
+                    this.ForceMaterial.hideFlags = UnityEngine.HideFlags.None;
+                    if (UnityEngine.Component.op_Inequality(this.gameObject.GetComponent(UnityEngine.SpriteRenderer), null)) {
+                        this.GetComponent(UnityEngine.Renderer).sharedMaterial = this.ForceMaterial;
+                    } else if (UnityEngine.MonoBehaviour.op_Inequality(this.gameObject.GetComponent(UnityEngine.UI.Image), null)) {
+                        this.CanvasImage.material = this.ForceMaterial;
+                    }
+                }
+
+            },
+            /*_2dxFX_Wave.OnEnable end.*/
+
+
+        }
+    });
+    /*_2dxFX_Wave end.*/
 
     /*ActionOnTap start.*/
     Bridge.define("ActionOnTap", {
@@ -996,180 +1241,62 @@ if ( TRACE ) { TRACE( "BasicDrag#isOverUI", this ); }
     });
     /*BasicDrag end.*/
 
-    /*BD_AnimationHelper start.*/
-    Bridge.define("BD_AnimationHelper", {
+    /*BD_Action start.*/
+    Bridge.define("BD_Action", {
         inherits: [UnityEngine.MonoBehaviour],
         fields: {
-            OnAnimationComplete: null,
-            sfxClip: null,
-            progress: 0
-        },
-        ctors: {
-            init: function () {
-if ( TRACE ) { TRACE( "BD_AnimationHelper#init", this ); }
-
-                this.progress = 0;
-            }
+            tool: null,
+            setToolLayer: false,
+            tool_SP: null,
+            def_SO: 0,
+            OnMouseDownEvent: null,
+            OnMouseUpEvent: null
         },
         methods: {
-            /*BD_AnimationHelper.TriggerOnComplete start.*/
-            TriggerOnComplete: function () {
-if ( TRACE ) { TRACE( "BD_AnimationHelper#TriggerOnComplete", this ); }
-
-                if (this.OnAnimationComplete != null) {
-                    this.OnAnimationComplete != null ? this.OnAnimationComplete.Invoke() : null;
-                    UnityEngine.Debug.Log$1("Animation Event Triggered: OnAnimationComplete");
-                }
-            },
-            /*BD_AnimationHelper.TriggerOnComplete end.*/
-
-            /*BD_AnimationHelper.PlaySfx start.*/
-            PlaySfx: function () {
-if ( TRACE ) { TRACE( "BD_AnimationHelper#PlaySfx", this ); }
-
-
-
-                if (UnityEngine.Object.op_Implicit(this.sfxClip) && UnityEngine.Object.op_Implicit(AudioController.instance)) {
-                    AudioController.instance.PlayAnySfx(0, this.sfxClip, 0.0);
-                }
-
-                this.progress += 0.2;
-                UI_Manager.instance.SetProgressBar(this.progress);
-            },
-            /*BD_AnimationHelper.PlaySfx end.*/
-
-
-        }
-    });
-    /*BD_AnimationHelper end.*/
-
-    /*BD_AnimatorDrag start.*/
-    Bridge.define("BD_AnimatorDrag", {
-        inherits: [UnityEngine.MonoBehaviour],
-        fields: {
-            BD: null,
-            anim: null,
-            Source: null,
-            Vibration: false,
-            isCompletable: false,
-            completionThreshold: 0,
-            OnComplete: null,
-            isPlaying: false,
-            hasCompleted: false
-        },
-        ctors: {
-            init: function () {
-if ( TRACE ) { TRACE( "BD_AnimatorDrag#init", this ); }
-
-                this.isCompletable = false;
-                this.completionThreshold = 0.98;
-                this.isPlaying = false;
-                this.hasCompleted = false;
-            }
-        },
-        methods: {
-            /*BD_AnimatorDrag.Start start.*/
+            /*BD_Action.Start start.*/
             Start: function () {
-if ( TRACE ) { TRACE( "BD_AnimatorDrag#Start", this ); }
+if ( TRACE ) { TRACE( "BD_Action#Start", this ); }
 
-                if (UnityEngine.Component.op_Inequality(this.anim, null)) {
-                    this.anim.enabled = false;
-                }
-            },
-            /*BD_AnimatorDrag.Start end.*/
+                this.TryGetComponent$1(BasicDrag, Bridge.ref(this, "tool"));
 
-            /*BD_AnimatorDrag.PlayAnim start.*/
-            PlayAnim: function () {
-if ( TRACE ) { TRACE( "BD_AnimatorDrag#PlayAnim", this ); }
+                if (UnityEngine.Object.op_Implicit(this.tool)) {
+                    this.tool.OnMouseDownEvent = Bridge.fn.combine(this.tool.OnMouseDownEvent, Bridge.fn.cacheBind(this, this.OnMouseDownCalled));
+                    this.tool.OnMouseUpEvent = Bridge.fn.combine(this.tool.OnMouseUpEvent, Bridge.fn.cacheBind(this, this.OnMouseUpCalled));
 
-                if (this.isPlaying) {
-                    return;
-                }
+                    if (this.setToolLayer) {
+                        this.def_SO = this.tool_SP.sortingOrder;
+                        this.tool_SP.sortingOrder = (this.tool_SP.sortingOrder + 500) | 0;
 
-                this.isPlaying = true;
-                this.hasCompleted = false;
-
-                if (UnityEngine.Component.op_Inequality(this.anim, null)) {
-                    this.anim.enabled = true;
-                }
-
-                if (UnityEngine.Component.op_Inequality(this.Source, null)) {
-                    this.Source.Play();
-                }
-
-
-            },
-            /*BD_AnimatorDrag.PlayAnim end.*/
-
-            /*BD_AnimatorDrag.StopAnim start.*/
-            StopAnim: function () {
-if ( TRACE ) { TRACE( "BD_AnimatorDrag#StopAnim", this ); }
-
-                if (!this.isPlaying) {
-                    return;
-                }
-
-                this.isPlaying = false;
-                this.hasCompleted = false;
-
-                if (UnityEngine.Component.op_Inequality(this.anim, null)) {
-                    this.anim.enabled = false;
-                }
-
-                if (UnityEngine.Component.op_Inequality(this.Source, null)) {
-                    this.Source.Pause();
-                }
-
-
-            },
-            /*BD_AnimatorDrag.StopAnim end.*/
-
-            /*BD_AnimatorDrag.Update start.*/
-            Update: function () {
-if ( TRACE ) { TRACE( "BD_AnimatorDrag#Update", this ); }
-
-                if (UnityEngine.Component.op_Equality(this.anim, null) || UnityEngine.MonoBehaviour.op_Equality(this.BD, null)) {
-                    return;
-                }
-
-                if (this.BD.isDragging) {
-                    if (this.BD.isObjectMovingWhileDragging) {
-                        this.PlayAnim();
-                    } else {
-                        this.StopAnim();
-                    }
-                } else {
-                    this.StopAnim();
-                }
-
-                if (this.isCompletable && this.isPlaying && !this.hasCompleted) {
-                    var state = this.anim.GetCurrentAnimatorStateInfo(0);
-
-                    if (state.normalizedTime >= this.completionThreshold) {
-                        this.hasCompleted = true;
-
-                        this.StopAnim();
-
-                        UI_Manager.instance.SetProgressBar(1.0);
-
-                        if (UnityEngine.Component.op_Inequality(this.Source, null)) {
-                            this.Source.Stop();
-
-                            this.Source.enabled = false;
-                        }
-
-                        this.OnComplete != null ? this.OnComplete.Invoke() : null;
-                    } else {
-                        UI_Manager.instance.SetProgressBar(state.normalizedTime);
                     }
                 }
+
             },
-            /*BD_AnimatorDrag.Update end.*/
+            /*BD_Action.Start end.*/
+
+            /*BD_Action.OnMouseDownCalled start.*/
+            OnMouseDownCalled: function () {
+if ( TRACE ) { TRACE( "BD_Action#OnMouseDownCalled", this ); }
+
+                if (this.setToolLayer) {
+                    this.tool_SP.sortingOrder = this.def_SO;
+                }
+
+                this.OnMouseDownEvent != null ? this.OnMouseDownEvent.Invoke() : null;
+            },
+            /*BD_Action.OnMouseDownCalled end.*/
+
+            /*BD_Action.OnMouseUpCalled start.*/
+            OnMouseUpCalled: function () {
+if ( TRACE ) { TRACE( "BD_Action#OnMouseUpCalled", this ); }
+
+                this.OnMouseUpEvent != null ? this.OnMouseUpEvent.Invoke() : null;
+            },
+            /*BD_Action.OnMouseUpCalled end.*/
 
 
         }
     });
-    /*BD_AnimatorDrag end.*/
+    /*BD_Action end.*/
 
     /*BD_CameraFollow start.*/
     Bridge.define("BD_CameraFollow", {
@@ -1716,154 +1843,6 @@ if ( TRACE ) { TRACE( "BD_Progress#CallTheComplete", this ); }
     });
     /*BD_Progress end.*/
 
-    /*BD_ProgressHelper start.*/
-    Bridge.define("BD_ProgressHelper", {
-        inherits: [UnityEngine.MonoBehaviour],
-        fields: {
-            BD_Progress: null,
-            fadeSprite: null,
-            fadeIn: false,
-            Co: null,
-            waitTemp: null
-        },
-        ctors: {
-            init: function () {
-if ( TRACE ) { TRACE( "BD_ProgressHelper#init", this ); }
-
-                this.waitTemp = new UnityEngine.WaitForSeconds(0.2);
-            }
-        },
-        methods: {
-            /*BD_ProgressHelper.Start start.*/
-            Start: function () {
-if ( TRACE ) { TRACE( "BD_ProgressHelper#Start", this ); }
-
-                var $step = 0,
-                    $jumpFromFinally,
-                    $returnValue,
-                    $async_e;
-
-                var $enumerator = new Bridge.GeneratorEnumerator(Bridge.fn.bind(this, function () {
-                    try {
-                        for (;;) {
-                            switch ($step) {
-                                case 0: {
-                                    $enumerator.current = new UnityEngine.WaitForSeconds(0.05);
-                                        $step = 1;
-                                        return true;
-                                }
-                                case 1: {
-                                    this.BD_Progress.thisDrag.ProgStartEvent = Bridge.fn.combine(this.BD_Progress.thisDrag.ProgStartEvent, Bridge.fn.cacheBind(this, this.EnableProgress));
-                                        this.BD_Progress.thisDrag.ProgEndEvent = Bridge.fn.combine(this.BD_Progress.thisDrag.ProgEndEvent, Bridge.fn.cacheBind(this, this.DisableProgress));
-
-                                }
-                                default: {
-                                    return false;
-                                }
-                            }
-                        }
-                    } catch($async_e1) {
-                        $async_e = System.Exception.create($async_e1);
-                        throw $async_e;
-                    }
-                }));
-                return $enumerator;
-            },
-            /*BD_ProgressHelper.Start end.*/
-
-            /*BD_ProgressHelper.EnableProgress start.*/
-            EnableProgress: function () {
-if ( TRACE ) { TRACE( "BD_ProgressHelper#EnableProgress", this ); }
-
-                this.Co = this.StartCoroutine$1(this.ProgressChecking());
-            },
-            /*BD_ProgressHelper.EnableProgress end.*/
-
-            /*BD_ProgressHelper.DisableProgress start.*/
-            DisableProgress: function () {
-if ( TRACE ) { TRACE( "BD_ProgressHelper#DisableProgress", this ); }
-
-                if (this.Co != null) {
-                    this.StopCoroutine$2(this.Co);
-                }
-            },
-            /*BD_ProgressHelper.DisableProgress end.*/
-
-            /*BD_ProgressHelper.ProgressChecking start.*/
-            ProgressChecking: function () {
-if ( TRACE ) { TRACE( "BD_ProgressHelper#ProgressChecking", this ); }
-
-                var $step = 0,
-                    $jumpFromFinally,
-                    $returnValue,
-                    progressIs,
-                    $async_e;
-
-                var $enumerator = new Bridge.GeneratorEnumerator(Bridge.fn.bind(this, function () {
-                    try {
-                        for (;;) {
-                            switch ($step) {
-                                case 0: {
-                                    if (this.BD_Progress.isProgDone) {
-                                            $step = 1;
-                                            continue;
-                                        } 
-                                        $step = 2;
-                                        continue;
-                                }
-                                case 1: {
-                                    return false;
-                                }
-                                case 2: {
-                                    if ( !this.BD_Progress.isProgDone ) {
-                                            $step = 3;
-                                            continue;
-                                        } 
-                                        $step = 5;
-                                        continue;
-                                }
-                                case 3: {
-                                    progressIs = this.BD_Progress.giveCollectiveProgress();
-
-                                        if (UnityEngine.Component.op_Inequality(this.fadeSprite, null)) {
-                                            if (this.fadeIn) {
-                                                DG.Tweening.DOTweenModuleSprite.DOFade(this.fadeSprite, progressIs, 1.0);
-                                            } else {
-                                                DG.Tweening.DOTweenModuleSprite.DOFade(this.fadeSprite, 1.0 - progressIs, 1.0);
-                                            }
-                                        }
-
-                                        $enumerator.current = this.waitTemp;
-                                        $step = 4;
-                                        return true;
-                                }
-                                case 4: {
-                                    
-                                        $step = 2;
-                                        continue;
-                                }
-                                case 5: {
-
-                                }
-                                default: {
-                                    return false;
-                                }
-                            }
-                        }
-                    } catch($async_e1) {
-                        $async_e = System.Exception.create($async_e1);
-                        throw $async_e;
-                    }
-                }));
-                return $enumerator;
-            },
-            /*BD_ProgressHelper.ProgressChecking end.*/
-
-
-        }
-    });
-    /*BD_ProgressHelper end.*/
-
     /*BD_SpriteChange start.*/
     Bridge.define("BD_SpriteChange", {
         inherits: [UnityEngine.MonoBehaviour],
@@ -1944,119 +1923,6 @@ if ( TRACE ) { TRACE( "BD_SpriteChange#ToolReleased", this ); }
         }
     });
     /*BD_SpriteChange end.*/
-
-    /*BD_ToolRotate start.*/
-    Bridge.define("BD_ToolRotate", {
-        inherits: [UnityEngine.MonoBehaviour],
-        fields: {
-            startDelay: 0,
-            Tool: null,
-            Clamp: null,
-            Pivot: null,
-            MinAngle: null,
-            MaxAngle: null,
-            rotationSpeed: 0,
-            canStart: false,
-            targetT: 0,
-            currentT: 0
-        },
-        ctors: {
-            init: function () {
-if ( TRACE ) { TRACE( "BD_ToolRotate#init", this ); }
-
-                this.MinAngle = new UnityEngine.Vector3();
-                this.MaxAngle = new UnityEngine.Vector3();
-                this.startDelay = 0.0;
-                this.rotationSpeed = 20.0;
-                this.canStart = false;
-                this.targetT = 0.0;
-                this.currentT = 0.0;
-            }
-        },
-        methods: {
-            /*BD_ToolRotate.Start start.*/
-            Start: function () {
-if ( TRACE ) { TRACE( "BD_ToolRotate#Start", this ); }
-
-                var $step = 0,
-                    $jumpFromFinally,
-                    $returnValue,
-                    x,
-                    normalized,
-                    $async_e;
-
-                var $enumerator = new Bridge.GeneratorEnumerator(Bridge.fn.bind(this, function () {
-                    try {
-                        for (;;) {
-                            switch ($step) {
-                                case 0: {
-                                    if (UnityEngine.Component.op_Equality(this.Pivot, null)) {
-                                            this.Pivot = this.transform;
-                                        }
-
-                                        if (UnityEngine.MonoBehaviour.op_Equality(this.Clamp, null)) {
-                                            this.Clamp = UnityEngine.MonoBehaviour.op_Inequality(this.Tool, null) ? this.Tool.GetComponent(BD_Clamp) : null;
-                                        }
-
-                                        // Initialize rotation state BEFORE enabling updates
-                                        if (UnityEngine.MonoBehaviour.op_Inequality(this.Tool, null) && UnityEngine.MonoBehaviour.op_Inequality(this.Clamp, null)) {
-                                            x = this.Tool.transform.localPosition.x;
-                                            normalized = pc.math.inverseLerp(this.Clamp.ClampX_L, this.Clamp.ClampX_H, x);
-
-                                            this.currentT = normalized;
-                                            this.targetT = normalized;
-
-                                            this.Pivot.localEulerAngles = new pc.Vec3().lerp( this.MinAngle, this.MaxAngle, this.currentT );
-                                        }
-
-                                        $enumerator.current = new UnityEngine.WaitForSeconds(this.startDelay);
-                                        $step = 1;
-                                        return true;
-                                }
-                                case 1: {
-                                    this.canStart = true;
-
-                                }
-                                default: {
-                                    return false;
-                                }
-                            }
-                        }
-                    } catch($async_e1) {
-                        $async_e = System.Exception.create($async_e1);
-                        throw $async_e;
-                    }
-                }));
-                return $enumerator;
-            },
-            /*BD_ToolRotate.Start end.*/
-
-            /*BD_ToolRotate.Update start.*/
-            Update: function () {
-if ( TRACE ) { TRACE( "BD_ToolRotate#Update", this ); }
-
-                if (!this.canStart || UnityEngine.MonoBehaviour.op_Equality(this.Tool, null) || UnityEngine.MonoBehaviour.op_Equality(this.Clamp, null)) {
-                    return;
-                }
-
-                // Normalize Tool X position between 0 and 1
-                var x = this.Tool.transform.localPosition.x;
-                var normalized = pc.math.inverseLerp(this.Clamp.ClampX_L, this.Clamp.ClampX_H, x);
-
-                this.targetT = normalized;
-
-                // Smoothly interpolate for natural motion
-                this.currentT = pc.math.lerp(this.currentT, this.targetT, UnityEngine.Time.deltaTime * this.rotationSpeed);
-
-                // Apply rotation
-                this.Pivot.localEulerAngles = new pc.Vec3().lerp( this.MinAngle, this.MaxAngle, this.currentT );
-            },
-            /*BD_ToolRotate.Update end.*/
-
-
-        }
-    });
-    /*BD_ToolRotate end.*/
 
     /*CameraController start.*/
     Bridge.define("CameraController", {
@@ -2518,61 +2384,6 @@ if ( TRACE ) { TRACE( "CarouselScroller#UpdateEdgeVisibility", this ); }
         }
     });
     /*CarouselScroller end.*/
-
-    /*DestroyObj start.*/
-    Bridge.define("DestroyObj", {
-        inherits: [UnityEngine.MonoBehaviour],
-        fields: {
-            destroyDelay: 0
-        },
-        ctors: {
-            init: function () {
-if ( TRACE ) { TRACE( "DestroyObj#init", this ); }
-
-                this.destroyDelay = 0.0;
-            }
-        },
-        methods: {
-            /*DestroyObj.Start start.*/
-            Start: function () {
-if ( TRACE ) { TRACE( "DestroyObj#Start", this ); }
-
-                var $step = 0,
-                    $jumpFromFinally,
-                    $returnValue,
-                    $async_e;
-
-                var $enumerator = new Bridge.GeneratorEnumerator(Bridge.fn.bind(this, function () {
-                    try {
-                        for (;;) {
-                            switch ($step) {
-                                case 0: {
-                                    $enumerator.current = new UnityEngine.WaitForSeconds(this.destroyDelay);
-                                        $step = 1;
-                                        return true;
-                                }
-                                case 1: {
-                                    UnityEngine.MonoBehaviour.Destroy(this.gameObject);
-
-                                }
-                                default: {
-                                    return false;
-                                }
-                            }
-                        }
-                    } catch($async_e1) {
-                        $async_e = System.Exception.create($async_e1);
-                        throw $async_e;
-                    }
-                }));
-                return $enumerator;
-            },
-            /*DestroyObj.Start end.*/
-
-
-        }
-    });
-    /*DestroyObj end.*/
     /** @namespace System */
 
     /**
@@ -7471,6 +7282,272 @@ if ( TRACE ) { TRACE( "LevelData#SetAudioAndDrag", this ); }
     });
     /*LevelData end.*/
 
+    /*Level1_SurfController start.*/
+    Bridge.define("Level1_SurfController", {
+        inherits: [UnityEngine.MonoBehaviour],
+        fields: {
+            target_rotZ: 0,
+            rotationDuration: 0,
+            rotationEase: 0,
+            maskItem: null,
+            maskTarget_posY: 0,
+            maskMoveDuration: 0,
+            requiredHoldTime: 0,
+            minRotationForProgress: 0,
+            tipCollider: null,
+            targetZoneCollider: null,
+            surf_Particles: null,
+            surf_SubEmitter: null,
+            Indication: null,
+            OnComplete: null,
+            defaultRotation: null,
+            defaultMaskY: 0,
+            currentMaskProgress: 0,
+            currentHoldProgress: 0,
+            rotateTween: null,
+            isHolding: false,
+            progressCoroutine: null,
+            isCompleted: false,
+            m_LastPressTime: 0,
+            m_PressDelay: 0
+        },
+        ctors: {
+            init: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#init", this ); }
+
+                this.defaultRotation = new UnityEngine.Vector3();
+                this.target_rotZ = 80.0;
+                this.rotationDuration = 0.55;
+                this.rotationEase = DG.Tweening.Ease.OutQuad;
+                this.maskMoveDuration = 1.8;
+                this.requiredHoldTime = 2.0;
+                this.minRotationForProgress = 75.0;
+                this.currentMaskProgress = 0.0;
+                this.currentHoldProgress = 0.0;
+                this.isHolding = false;
+                this.isCompleted = false;
+                this.m_PressDelay = 0.25;
+            }
+        },
+        methods: {
+            /*Level1_SurfController.Start start.*/
+            Start: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#Start", this ); }
+
+                this.defaultRotation = this.transform.localEulerAngles.$clone();
+                if (UnityEngine.Component.op_Inequality(this.maskItem, null)) {
+                    this.defaultMaskY = this.maskItem.localPosition.y;
+                }
+
+                if (UnityEngine.GameObject.op_Inequality(this.surf_Particles, null)) {
+                    this.surf_Particles.SetActive(false);
+                }
+
+                DG.Tweening.DOTween.Init();
+            },
+            /*Level1_SurfController.Start end.*/
+
+            /*Level1_SurfController.OnMouseDown start.*/
+            OnMouseDown: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#OnMouseDown", this ); }
+
+                if (this.isCompleted) {
+                    return;
+                }
+                this.isHolding = true;
+                this.StartSurfAnimation();
+            },
+            /*Level1_SurfController.OnMouseDown end.*/
+
+            /*Level1_SurfController.OnMouseUp start.*/
+            OnMouseUp: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#OnMouseUp", this ); }
+
+                if (this.isCompleted) {
+                    return;
+                }
+                this.isHolding = false;
+
+                if (this.currentHoldProgress >= 1.0) {
+                    this.CompleteLevel();
+                } else {
+                    this.StopRotationAndParticlesOnly();
+                }
+            },
+            /*Level1_SurfController.OnMouseUp end.*/
+
+            /*Level1_SurfController.StartSurfAnimation start.*/
+            StartSurfAnimation: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#StartSurfAnimation", this ); }
+
+                if (UnityEngine.GameObject.op_Inequality(this.surf_Particles, null)) {
+                    this.surf_Particles.SetActive(true);
+                }
+
+                /* if (rotateTween != null) rotateTween.Kill();
+                rotateTween = transform.DOLocalRotate(new Vector3(0, 0, target_rotZ), rotationDuration)
+                                      .SetEase(rotationEase);*/
+
+                if (this.progressCoroutine != null) {
+                    this.StopCoroutine$2(this.progressCoroutine);
+                }
+
+                this.progressCoroutine = this.StartCoroutine$1(this.ProgressCoroutine());
+            },
+            /*Level1_SurfController.StartSurfAnimation end.*/
+
+            /*Level1_SurfController.ProgressCoroutine start.*/
+            ProgressCoroutine: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#ProgressCoroutine", this ); }
+
+                var $step = 0,
+                    $jumpFromFinally,
+                    $returnValue,
+                    holdTime,
+                    isTipInZone,
+                    $async_e;
+
+                var $enumerator = new Bridge.GeneratorEnumerator(Bridge.fn.bind(this, function () {
+                    try {
+                        for (;;) {
+                            switch ($step) {
+                                case 0: {
+                                    holdTime = this.currentMaskProgress * this.requiredHoldTime;
+                                    $step = 1;
+                                    continue;
+                                }
+                                case 1: {
+                                    if ( this.isHolding && this.currentHoldProgress < 1.0 ) {
+                                            $step = 2;
+                                            continue;
+                                        } 
+                                        $step = 4;
+                                        continue;
+                                }
+                                case 2: {
+                                    // NEW LOGIC: Check if SPECIFIC tip collider is touching the target zone
+                                        isTipInZone = this.tipCollider.IsTouching(this.targetZoneCollider);
+
+                                        this.surf_SubEmitter.SetActive(isTipInZone);
+                                        //Indication.SetActive(!isTipInZone);
+                                        this.Indication.SetActive(false);
+
+                                        UI_Manager.instance.SetProgressBar(this.currentMaskProgress);
+
+                                        if (this.GetCurrentRotationZ() >= this.minRotationForProgress && isTipInZone) {
+                                            holdTime += UnityEngine.Time.deltaTime;
+                                            this.currentHoldProgress = Math.max(0, Math.min(1, holdTime / this.requiredHoldTime));
+                                            this.currentMaskProgress = this.currentHoldProgress;
+
+                                            this.UpdateMaskPosition(this.currentMaskProgress);
+
+                                            if (this.m_LastPressTime + this.m_PressDelay < UnityEngine.Time.unscaledTime) {
+                                                this.m_LastPressTime = UnityEngine.Time.unscaledTime;
+
+                                                // if (VibrationManager.instance != null)
+                                                // VibrationManager.instance.MediumImpact();
+                                            }
+                                        }
+                                        $enumerator.current = null;
+                                        $step = 3;
+                                        return true;
+                                }
+                                case 3: {
+                                    
+                                        $step = 1;
+                                        continue;
+                                }
+                                case 4: {
+
+                                }
+                                default: {
+                                    return false;
+                                }
+                            }
+                        }
+                    } catch($async_e1) {
+                        $async_e = System.Exception.create($async_e1);
+                        throw $async_e;
+                    }
+                }));
+                return $enumerator;
+            },
+            /*Level1_SurfController.ProgressCoroutine end.*/
+
+            /*Level1_SurfController.GetCurrentRotationZ start.*/
+            GetCurrentRotationZ: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#GetCurrentRotationZ", this ); }
+
+                var z = this.transform.localEulerAngles.z;
+                if (z > 180.0) {
+                    z -= 360.0;
+                }
+                return z;
+            },
+            /*Level1_SurfController.GetCurrentRotationZ end.*/
+
+            /*Level1_SurfController.UpdateMaskPosition start.*/
+            UpdateMaskPosition: function (progress) {
+if ( TRACE ) { TRACE( "Level1_SurfController#UpdateMaskPosition", this ); }
+
+                if (UnityEngine.Component.op_Equality(this.maskItem, null)) {
+                    return;
+                }
+                if (this.GetCurrentRotationZ() < this.minRotationForProgress) {
+                    return;
+                }
+
+                var newY = pc.math.lerp(this.defaultMaskY, this.maskTarget_posY, progress);
+                var pos = this.maskItem.localPosition.$clone();
+                pos.y = newY;
+                this.maskItem.localPosition = pos.$clone();
+            },
+            /*Level1_SurfController.UpdateMaskPosition end.*/
+
+            /*Level1_SurfController.StopRotationAndParticlesOnly start.*/
+            StopRotationAndParticlesOnly: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#StopRotationAndParticlesOnly", this ); }
+
+                /* if (surf_Particles != null)
+                    surf_Particles.SetActive(false);*/
+
+                if (this.rotateTween != null) {
+                    DG.Tweening.TweenExtensions.Kill(this.rotateTween);
+                }
+                DG.Tweening.TweenSettingsExtensions.SetEase$2(DG.Tweening.Core.TweenerCore$3(UnityEngine.Quaternion,UnityEngine.Vector3,DG.Tweening.Plugins.Options.QuaternionOptions), DG.Tweening.ShortcutExtensions.DOLocalRotate(this.transform, this.defaultRotation.$clone(), 0.45), DG.Tweening.Ease.OutQuad);
+            },
+            /*Level1_SurfController.StopRotationAndParticlesOnly end.*/
+
+            /*Level1_SurfController.CompleteLevel start.*/
+            CompleteLevel: function () {
+if ( TRACE ) { TRACE( "Level1_SurfController#CompleteLevel", this ); }
+
+                this.isCompleted = true;
+                if (UnityEngine.GameObject.op_Inequality(this.surf_Particles, null)) {
+                    this.surf_Particles.SetActive(false);
+                }
+
+                if (this.rotateTween != null) {
+                    DG.Tweening.TweenExtensions.Kill(this.rotateTween);
+                }
+                DG.Tweening.ShortcutExtensions.DOLocalRotate(this.transform, new pc.Vec3( 0, 0, 0 ), 0.3);
+
+                if (UnityEngine.Component.op_Inequality(this.maskItem, null)) {
+                    var finalPos = this.maskItem.localPosition.$clone();
+                    finalPos.y = this.maskTarget_posY;
+                    DG.Tweening.TweenSettingsExtensions.SetEase$2(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMove(this.maskItem, finalPos.$clone(), 0.35), DG.Tweening.Ease.OutQuad);
+                }
+
+                this.OnComplete != null ? this.OnComplete.Invoke() : null;
+                UnityEngine.Debug.Log$1("\u2705 Surf Completed!");
+            },
+            /*Level1_SurfController.CompleteLevel end.*/
+
+
+        }
+    });
+    /*Level1_SurfController end.*/
+
     /*LevelSaveData start.*/
     Bridge.define("LevelSaveData", {
         fields: {
@@ -7671,204 +7748,6 @@ if ( TRACE ) { TRACE( "LoadingManager#ShowFadeAnim", this ); }
     });
     /*LoadingManager end.*/
 
-    /*Lvl3_PlaceGlue start.*/
-    Bridge.define("Lvl3_PlaceGlue", {
-        inherits: [UnityEngine.MonoBehaviour],
-        fields: {
-            Tool: null,
-            Detect: null,
-            Target: null,
-            OnComplete: null,
-            PlaceClip: null,
-            isPlaced: false
-        },
-        ctors: {
-            init: function () {
-if ( TRACE ) { TRACE( "Lvl3_PlaceGlue#init", this ); }
-
-                this.isPlaced = false;
-            }
-        },
-        methods: {
-            /*Lvl3_PlaceGlue.OnTriggerEnter2D start.*/
-            OnTriggerEnter2D: function (collision) {
-if ( TRACE ) { TRACE( "Lvl3_PlaceGlue#OnTriggerEnter2D", this ); }
-
-                if (this.isPlaced) {
-                    return;
-                }
-
-                if (UnityEngine.Component.op_Inequality(collision, null)) {
-                    if (UnityEngine.GameObject.op_Equality(collision.gameObject, this.Detect.gameObject)) {
-                        this.PlaceGlue();
-                    }
-                }
-            },
-            /*Lvl3_PlaceGlue.OnTriggerEnter2D end.*/
-
-            /*Lvl3_PlaceGlue.PlaceGlue start.*/
-            PlaceGlue: function () {
-if ( TRACE ) { TRACE( "Lvl3_PlaceGlue#PlaceGlue", this ); }
-
-                if (this.isPlaced) {
-                    return;
-                }
-
-                this.isPlaced = true;
-
-                this.Tool.isPlacedCannotMove = true;
-
-                this.Tool.enabled = false;
-                this.Tool.thisCollider.enabled = false;
-                this.Tool.isDragging = false;
-                this.Tool.canDrag = false;
-
-                DG.Tweening.ShortcutExtensions.DOKill(this.Tool.transform);
-                DG.Tweening.ShortcutExtensions.DOMove(this.Tool.transform, this.Target.transform.position.$clone(), 0.5);
-
-                try {
-                    if (this.PlaceClip != null) {
-                        AudioController.instance.PlayAnySfx(2, this.PlaceClip, 0.4);
-                    }
-
-                    // VibrationManager.instance.MediumImpact();
-                } catch ($e1) {
-                    $e1 = System.Exception.create($e1);
-                }
-
-                DG.Tweening.DOVirtual.DelayedCall(0.51, Bridge.fn.bind(this, function () {
-                    if (this.OnComplete != null) {
-                        this.OnComplete.Invoke();
-                    }
-
-                    this.Target.gameObject.SetActive(true);
-
-                    this.Tool.gameObject.SetActive(false);
-                }));
-            },
-            /*Lvl3_PlaceGlue.PlaceGlue end.*/
-
-
-        }
-    });
-    /*Lvl3_PlaceGlue end.*/
-
-    /*Lvl3_PlaceItem start.*/
-    Bridge.define("Lvl3_PlaceItem", {
-        inherits: [UnityEngine.MonoBehaviour],
-        fields: {
-            Tool: null,
-            Detect: null,
-            Target: null,
-            OnComplete: null,
-            PlaceClip: null,
-            isPlaced: false,
-            isInsideCollider: false
-        },
-        ctors: {
-            init: function () {
-if ( TRACE ) { TRACE( "Lvl3_PlaceItem#init", this ); }
-
-                this.isPlaced = false;
-                this.isInsideCollider = false;
-            }
-        },
-        methods: {
-            /*Lvl3_PlaceItem.Start start.*/
-            Start: function () {
-if ( TRACE ) { TRACE( "Lvl3_PlaceItem#Start", this ); }
-
-                this.Tool.OnMouseUpEvent = Bridge.fn.combine(this.Tool.OnMouseUpEvent, Bridge.fn.cacheBind(this, this.PlaceItems));
-            },
-            /*Lvl3_PlaceItem.Start end.*/
-
-            /*Lvl3_PlaceItem.OnTriggerEnter2D start.*/
-            OnTriggerEnter2D: function (collision) {
-if ( TRACE ) { TRACE( "Lvl3_PlaceItem#OnTriggerEnter2D", this ); }
-
-                if (this.isPlaced) {
-                    return;
-                }
-
-                if (UnityEngine.Component.op_Inequality(collision, null)) {
-                    if (UnityEngine.GameObject.op_Equality(collision.gameObject, this.Detect.gameObject)) {
-                        this.isInsideCollider = true;
-
-                        this.Tool.dontResetItIsInCollider = true;
-                    }
-                }
-            },
-            /*Lvl3_PlaceItem.OnTriggerEnter2D end.*/
-
-            /*Lvl3_PlaceItem.OnTriggerExit2D start.*/
-            OnTriggerExit2D: function (collision) {
-if ( TRACE ) { TRACE( "Lvl3_PlaceItem#OnTriggerExit2D", this ); }
-
-                if (this.isPlaced) {
-                    return;
-                }
-
-                if (UnityEngine.Component.op_Inequality(collision, null)) {
-                    if (UnityEngine.GameObject.op_Equality(collision.gameObject, this.Detect.gameObject)) {
-                        this.isInsideCollider = false;
-
-                        this.Tool.dontResetItIsInCollider = false;
-                    }
-                }
-            },
-            /*Lvl3_PlaceItem.OnTriggerExit2D end.*/
-
-            /*Lvl3_PlaceItem.PlaceItems start.*/
-            PlaceItems: function () {
-if ( TRACE ) { TRACE( "Lvl3_PlaceItem#PlaceItems", this ); }
-
-                if (this.isPlaced) {
-                    return;
-                }
-
-                if (!this.isInsideCollider) {
-                    return;
-                }
-
-                this.isPlaced = true;
-
-                this.Tool.isPlacedCannotMove = true;
-
-                this.Tool.enabled = false;
-                this.Tool.thisCollider.enabled = false;
-                this.Tool.isDragging = false;
-                this.Tool.canDrag = false;
-
-                DG.Tweening.ShortcutExtensions.DOKill(this.Tool.transform);
-                DG.Tweening.ShortcutExtensions.DOMove(this.Tool.transform, this.Target.transform.position.$clone(), 0.5);
-
-                try {
-                    if (this.PlaceClip != null) {
-                        AudioController.instance.PlayAnySfx(2, this.PlaceClip, 0.4);
-                    }
-
-                    // VibrationManager.instance.MediumImpact();
-                } catch ($e1) {
-                    $e1 = System.Exception.create($e1);
-                }
-
-                DG.Tweening.DOVirtual.DelayedCall(0.51, Bridge.fn.bind(this, function () {
-                    if (this.OnComplete != null) {
-                        this.OnComplete.Invoke();
-                    }
-
-                    this.Target.gameObject.SetActive(true);
-
-                    this.Tool.gameObject.SetActive(false);
-                }));
-            },
-            /*Lvl3_PlaceItem.PlaceItems end.*/
-
-
-        }
-    });
-    /*Lvl3_PlaceItem end.*/
-
     /*MusicSource start.*/
     Bridge.define("MusicSource", {
         inherits: [UnityEngine.MonoBehaviour],
@@ -7925,6 +7804,163 @@ if ( TRACE ) { TRACE( "MusicSource#PlayMusicSmooth", this ); }
         }
     });
     /*MusicSource end.*/
+
+    /*PlaceItem start.*/
+    Bridge.define("PlaceItem", {
+        inherits: [UnityEngine.MonoBehaviour],
+        fields: {
+            thisDrag: null,
+            Target: null,
+            Clip: null,
+            jumpOnPlace: false,
+            jumpHeight: 0,
+            jumpDuration: 0,
+            settleDuration: 0,
+            isPlaced: false,
+            isInsideCollider: false,
+            thisCol: null,
+            changeScaleOnPlace: false,
+            item: null,
+            newScaleOnPlace: null,
+            OnPlaced: null
+        },
+        ctors: {
+            init: function () {
+if ( TRACE ) { TRACE( "PlaceItem#init", this ); }
+
+                this.newScaleOnPlace = new UnityEngine.Vector3();
+                this.jumpOnPlace = false;
+                this.jumpHeight = 0.5;
+                this.jumpDuration = 0.2;
+                this.settleDuration = 0.3;
+                this.isPlaced = false;
+                this.isInsideCollider = false;
+                this.newScaleOnPlace = new pc.Vec3( 1, 1, 1 );
+            }
+        },
+        methods: {
+            /*PlaceItem.Start start.*/
+            Start: function () {
+if ( TRACE ) { TRACE( "PlaceItem#Start", this ); }
+
+                this.thisCol = this.GetComponent(UnityEngine.Collider2D);
+                this.thisDrag.OnMouseUpEvent = Bridge.fn.combine(this.thisDrag.OnMouseUpEvent, Bridge.fn.cacheBind(this, this.PlaceItemCheck));
+            },
+            /*PlaceItem.Start end.*/
+
+            /*PlaceItem.OnTriggerEnter2D start.*/
+            OnTriggerEnter2D: function (collision) {
+if ( TRACE ) { TRACE( "PlaceItem#OnTriggerEnter2D", this ); }
+
+                if (this.isPlaced) {
+                    return;
+                }
+
+                if (UnityEngine.Component.op_Inequality(collision, null)) {
+                    if (UnityEngine.GameObject.op_Equality(collision.gameObject, this.Target)) {
+                        this.isInsideCollider = true;
+
+                        this.thisDrag.canReturn = false;
+                        this.thisDrag.dontResetItIsInCollider = true;
+                    }
+                }
+            },
+            /*PlaceItem.OnTriggerEnter2D end.*/
+
+            /*PlaceItem.OnTriggerExit2D start.*/
+            OnTriggerExit2D: function (collision) {
+if ( TRACE ) { TRACE( "PlaceItem#OnTriggerExit2D", this ); }
+
+                if (this.isPlaced) {
+                    return;
+                }
+
+                if (UnityEngine.Component.op_Inequality(collision, null)) {
+                    if (UnityEngine.GameObject.op_Equality(collision.gameObject, this.Target)) {
+                        this.isInsideCollider = false;
+
+                        this.thisDrag.canReturn = true;
+
+                        this.thisDrag.dontResetItIsInCollider = false;
+                    }
+                }
+            },
+            /*PlaceItem.OnTriggerExit2D end.*/
+
+            /*PlaceItem.PlaceItemCheck start.*/
+            PlaceItemCheck: function () {
+if ( TRACE ) { TRACE( "PlaceItem#PlaceItemCheck", this ); }
+
+                if (this.isPlaced) {
+                    return;
+                }
+
+                if (!this.isInsideCollider) {
+                    return;
+                }
+
+                this.thisDrag.isDragging = false;
+                this.thisDrag.canDrag = false;
+                this.thisDrag.thisCollider.enabled = false;
+
+                this.thisCol.enabled = false;
+
+                this.isPlaced = true;
+
+                this.Target.SetActive(false);
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.thisDrag.transform);
+
+                var targetPos = this.Target.transform.position.$clone();
+                var placeDuration = 0.25;
+
+
+                if (this.changeScaleOnPlace) {
+                    DG.Tweening.ShortcutExtensions.DOKill(this.item);
+                    DG.Tweening.ShortcutExtensions.DOScale$1(this.item, this.newScaleOnPlace.$clone(), 0.25);
+                }
+
+                if (this.jumpOnPlace) {
+                    placeDuration = this.jumpDuration + this.settleDuration;
+
+                    var placeSeq = DG.Tweening.DOTween.Sequence();
+                    DG.Tweening.TweenSettingsExtensions.Append(placeSeq, DG.Tweening.TweenSettingsExtensions.SetEase$2(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOMove(this.thisDrag.transform, targetPos.$clone().add( pc.Vec3.UP.clone().clone().scale( this.jumpHeight ) ), this.jumpDuration), DG.Tweening.Ease.OutQuad));
+                    DG.Tweening.TweenSettingsExtensions.Append(placeSeq, DG.Tweening.TweenSettingsExtensions.SetEase$2(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOMove(this.thisDrag.transform, targetPos.$clone(), this.settleDuration), DG.Tweening.Ease.InQuad));
+
+                    DG.Tweening.ShortcutExtensions.DORotateQuaternion(this.thisDrag.transform, this.Target.transform.rotation.$clone(), placeDuration);
+                } else {
+                    DG.Tweening.ShortcutExtensions.DOMove(this.thisDrag.transform, targetPos.$clone(), placeDuration);
+                    DG.Tweening.ShortcutExtensions.DORotateQuaternion(this.thisDrag.transform, this.Target.transform.rotation.$clone(), placeDuration);
+                }
+
+                this.Target.SetActive(false);
+
+                DG.Tweening.DOVirtual.DelayedCall(placeDuration, Bridge.fn.bind(this, function () {
+                    this.OnPlaced.Invoke();
+                }));
+
+                if (this.jumpOnPlace) {
+                    if (this.Clip != null) {
+                        AudioController.instance.PlayAnySfx(2, this.Clip, 0.2);
+                    }
+
+                } else {
+                    if (this.Clip != null) {
+                        AudioController.instance.PlayAnySfx(2, this.Clip, 0.0);
+                    }
+                }
+
+
+                // if (VibrationManager.instance != null)
+                // VibrationManager.instance.MediumImpact();
+
+            },
+            /*PlaceItem.PlaceItemCheck end.*/
+
+
+        }
+    });
+    /*PlaceItem end.*/
 
     /*PlayableCTA start.*/
     /**
@@ -9360,6 +9396,205 @@ if ( TRACE ) { TRACE( "PointerInput#IsOverCollider", this ); }
         }
     });
     /*PointerInput end.*/
+
+    /*RotaryTimerKnob start.*/
+    Bridge.define("RotaryTimerKnob", {
+        inherits: [UnityEngine.MonoBehaviour],
+        fields: {
+            numSteps: 0,
+            onlyClockwise: false,
+            clickSound: null,
+            enableVibration: false,
+            stepText: null,
+            OnComplete: null,
+            stepAngle: 0,
+            currentStep: 0,
+            isCompleted: false,
+            lastMouseAngle: 0,
+            accumulatedRotation: 0,
+            handIndication: null
+        },
+        ctors: {
+            init: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#init", this ); }
+
+                this.numSteps = 5;
+                this.onlyClockwise = true;
+                this.enableVibration = true;
+                this.currentStep = 0;
+                this.isCompleted = false;
+                this.accumulatedRotation = 0.0;
+            }
+        },
+        methods: {
+            /*RotaryTimerKnob.Start start.*/
+            Start: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#Start", this ); }
+
+                this.stepAngle = 360.0 / this.numSteps;
+                this.ResetKnob();
+            },
+            /*RotaryTimerKnob.Start end.*/
+
+            /*RotaryTimerKnob.OnMouseDown start.*/
+            OnMouseDown: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#OnMouseDown", this ); }
+
+                if (this.isOverUI()) {
+                    return;
+                }
+
+
+                if (this.isCompleted) {
+                    return;
+                }
+                this.lastMouseAngle = this.GetMouseAngle();
+
+
+                this.handIndication.SetActive(false);
+            },
+            /*RotaryTimerKnob.OnMouseDown end.*/
+
+            /*RotaryTimerKnob.OnMouseUp start.*/
+            OnMouseUp: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#OnMouseUp", this ); }
+
+                if (this.isOverUI()) {
+                    return;
+                }
+
+                if (this.isCompleted) {
+                    return;
+                }
+
+                this.handIndication.SetActive(true);
+            },
+            /*RotaryTimerKnob.OnMouseUp end.*/
+
+            /*RotaryTimerKnob.OnMouseDrag start.*/
+            OnMouseDrag: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#OnMouseDrag", this ); }
+
+                if (this.isOverUI()) {
+                    return;
+                }
+
+                if (this.isCompleted) {
+                    return;
+                }
+
+                var currentMouseAngle = this.GetMouseAngle();
+                var delta = UnityEngine.Mathf.DeltaAngle(currentMouseAngle, this.lastMouseAngle);
+
+                // Sirf clockwise movement allow karein
+                if (this.onlyClockwise && delta < 0) {
+                    this.lastMouseAngle = currentMouseAngle;
+                    return;
+                }
+
+                // Mouse kitna ghuma usko track karein
+                this.accumulatedRotation += delta;
+
+                // Rotation ko 0 se 360 ke darmiyan rakhen
+                this.accumulatedRotation = Math.max(0, Math.min(this.accumulatedRotation, 360));
+
+                // === SNAP LOGIC ===
+                // Check karein ke kya mouse ne itna travel kar liya hai ke agla step ho jaye
+                var calculatedStep = Math.floor(this.accumulatedRotation / this.stepAngle);
+
+                // Agar step change hua hai to knob ko rotate karein
+                if (calculatedStep !== this.currentStep && calculatedStep < this.numSteps) {
+                    this.currentStep = calculatedStep;
+
+                    // Visual Jump: Knob ko sirf step angle par snap karein
+                    var snapAngle = this.currentStep * this.stepAngle;
+                    this.transform.localRotation = new pc.Quat().setFromEulerAngles_Unity( 0, 0, -snapAngle );
+
+                    this.TriggerStepFeedback();
+                    this.UpdateUI();
+
+                    // Completion check
+                    if (this.currentStep === ((this.numSteps - 1) | 0)) {
+                        this.isCompleted = true;
+                        this.OnComplete != null ? this.OnComplete.Invoke() : null;
+                        UnityEngine.Debug.Log$1("\u2705 Timer Finished!");
+                    }
+                }
+
+                this.lastMouseAngle = currentMouseAngle;
+            },
+            /*RotaryTimerKnob.OnMouseDrag end.*/
+
+            /*RotaryTimerKnob.GetMouseAngle start.*/
+            GetMouseAngle: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#GetMouseAngle", this ); }
+
+                var mousePos = UnityEngine.Input.mousePosition.$clone();
+                var objectPos = UnityEngine.Camera.main.WorldToScreenPoint(this.transform.position);
+                var direction = UnityEngine.Vector2.FromVector3(mousePos.$clone().sub( objectPos ));
+                return Math.atan2(direction.y, direction.x) * UnityEngine.Mathf.Rad2Deg;
+            },
+            /*RotaryTimerKnob.GetMouseAngle end.*/
+
+            /*RotaryTimerKnob.UpdateUI start.*/
+            UpdateUI: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#UpdateUI", this ); }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.stepText, null)) {
+                    this.stepText.text = System.Int32.format((this.currentStep), "00");
+                }
+
+            },
+            /*RotaryTimerKnob.UpdateUI end.*/
+
+            /*RotaryTimerKnob.TriggerStepFeedback start.*/
+            TriggerStepFeedback: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#TriggerStepFeedback", this ); }
+
+                if (this.clickSound != null) {
+                    AudioController.instance.PlayAnySfx(0, this.clickSound, 0);
+                }
+
+                // if (enableVibration)
+                //     VibrationManager.instance.MediumImpact();
+            },
+            /*RotaryTimerKnob.TriggerStepFeedback end.*/
+
+            /*RotaryTimerKnob.ResetKnob start.*/
+            ResetKnob: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#ResetKnob", this ); }
+
+                this.isCompleted = false;
+                this.currentStep = 0;
+                this.accumulatedRotation = 0.0;
+                this.transform.localRotation = new pc.Quat().setFromEulerAngles_Unity( 0, 0, 0 );
+                this.UpdateUI();
+            },
+            /*RotaryTimerKnob.ResetKnob end.*/
+
+            /*RotaryTimerKnob.isOverUI start.*/
+            isOverUI: function () {
+if ( TRACE ) { TRACE( "RotaryTimerKnob#isOverUI", this ); }
+
+                // Ignore drag if pointer is over any UI element
+                if (UnityEngine.MonoBehaviour.op_Inequality(UnityEngine.EventSystems.EventSystem.current, null) && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
+                    return true;
+                }
+
+                if (UnityEngine.Input.touchCount > 0) {
+                    if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject$1(UnityEngine.Input.GetTouch(0).fingerId)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            },
+            /*RotaryTimerKnob.isOverUI end.*/
+
+
+        }
+    });
+    /*RotaryTimerKnob end.*/
 
     /*SaveDataFields start.*/
     Bridge.define("SaveDataFields", {
@@ -11237,6 +11472,54 @@ if ( TRACE ) { TRACE( "ScratchData#init", this ); }
     });
     /*scroller_Item end.*/
 
+    /*SewingCol start.*/
+    Bridge.define("SewingCol", {
+        inherits: [UnityEngine.MonoBehaviour],
+        fields: {
+            targetTip: null,
+            Anim_Items: null,
+            isDone: false,
+            sfx: null
+        },
+        methods: {
+            /*SewingCol.OnTriggerEnter2D start.*/
+            OnTriggerEnter2D: function (collision) {
+if ( TRACE ) { TRACE( "SewingCol#OnTriggerEnter2D", this ); }
+
+                var $t;
+                if (this.isDone) {
+                    return;
+                }
+
+                if (UnityEngine.Component.op_Equality(collision, this.targetTip)) {
+                    this.isDone = true;
+                    $t = Bridge.getEnumerator(this.Anim_Items);
+                    try {
+                        while ($t.moveNext()) {
+                            var anim = $t.Current;
+                            anim.DOPlay();
+                        }
+                    } finally {
+                        if (Bridge.is($t, System.IDisposable)) {
+                            $t.System$IDisposable$Dispose();
+                        }
+                    }
+
+
+                    if (this.sfx != null) {
+                        var rendomSource = UnityEngine.Random.Range(0, 3);
+                        AudioController.instance.PlayAnySfx(rendomSource, this.sfx, 0);
+                    }
+                }
+
+            },
+            /*SewingCol.OnTriggerEnter2D end.*/
+
+
+        }
+    });
+    /*SewingCol end.*/
+
     /*SfxPlayType start.*/
     Bridge.define("SfxPlayType", {
         $kind: 6,
@@ -11588,6 +11871,290 @@ if ( TRACE ) { TRACE( "SpriteButton#OnDisable", this ); }
         }
     });
     /*SpriteButton end.*/
+
+    /*StaticFixedPipe start.*/
+    Bridge.define("StaticFixedPipe", {
+        inherits: [UnityEngine.MonoBehaviour],
+        fields: {
+            meshRenderer: null,
+            toolTransform: null,
+            toolDirectionPoint: null,
+            fixedEndPoint: null,
+            segmentCount: 0,
+            totalLength: 0,
+            constraintIterations: 0,
+            gravity: null,
+            pipeWidth: 0,
+            ropeSegments: null,
+            segmentLength: 0,
+            mesh: null,
+            meshTransform: null,
+            vertices: null
+        },
+        ctors: {
+            init: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe#init", this ); }
+
+                this.gravity = new UnityEngine.Vector3();
+                this.segmentCount = 30;
+                this.totalLength = 5.0;
+                this.constraintIterations = 50;
+                this.gravity = new pc.Vec3( 0, -9.81, 0 );
+                this.pipeWidth = 0.2;
+                this.ropeSegments = new (System.Collections.Generic.List$1(StaticFixedPipe.RopeSegment)).ctor();
+            }
+        },
+        methods: {
+            /*StaticFixedPipe.Start start.*/
+            Start: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe#Start", this ); }
+
+                this.segmentLength = this.totalLength / this.segmentCount;
+
+                var startPos = this.toolTransform.position.$clone();
+                for (var i = 0; i < this.segmentCount; i = (i + 1) | 0) {
+                    this.ropeSegments.add(new StaticFixedPipe.RopeSegment.$ctor1(startPos.$clone()));
+                }
+
+                this.BuildMesh();
+            },
+            /*StaticFixedPipe.Start end.*/
+
+            /*StaticFixedPipe.BuildMesh start.*/
+            BuildMesh: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe#BuildMesh", this ); }
+
+                if (UnityEngine.Component.op_Equality(this.meshRenderer, null)) {
+                    return;
+                }
+
+                this.meshTransform = this.meshRenderer.transform;
+
+                var filter = this.meshRenderer.GetComponent(UnityEngine.MeshFilter);
+                if (UnityEngine.Component.op_Equality(filter, null)) {
+                    filter = this.meshRenderer.gameObject.AddComponent(UnityEngine.MeshFilter);
+                }
+
+                this.mesh = new UnityEngine.Mesh.ctor();
+                this.mesh.MarkDynamic();
+
+                this.vertices = System.Array.init(Bridge.Int.mul(this.segmentCount, 2), function (){
+                    return new UnityEngine.Vector3();
+                }, UnityEngine.Vector3);
+                var uvs = System.Array.init(Bridge.Int.mul(this.segmentCount, 2), function (){
+                    return new UnityEngine.Vector2();
+                }, UnityEngine.Vector2);
+                var triangles = System.Array.init(Bridge.Int.mul((((this.segmentCount - 1) | 0)), 6), 0, System.Int32);
+
+                for (var i = 0; i < ((this.segmentCount - 1) | 0); i = (i + 1) | 0) {
+                    var v = Bridge.Int.mul(i, 2);
+                    var t = Bridge.Int.mul(i, 6);
+                    triangles[t] = v;
+                    triangles[((t + 1) | 0)] = (v + 2) | 0;
+                    triangles[((t + 2) | 0)] = (v + 1) | 0;
+                    triangles[((t + 3) | 0)] = (v + 1) | 0;
+                    triangles[((t + 4) | 0)] = (v + 2) | 0;
+                    triangles[((t + 5) | 0)] = (v + 3) | 0;
+                }
+
+                for (var i1 = 0; i1 < this.segmentCount; i1 = (i1 + 1) | 0) {
+                    var u = i1 / (((this.segmentCount - 1) | 0));
+                    uvs[Bridge.Int.mul(i1, 2)] = new pc.Vec2( u, 0.0 );
+                    uvs[((Bridge.Int.mul(i1, 2) + 1) | 0)] = new pc.Vec2( u, 1.0 );
+                }
+
+                this.mesh.vertices = this.vertices;
+                this.mesh.uv = uvs;
+                this.mesh.triangles = triangles;
+
+                // Luna exposes MeshFilter.sharedMesh / instancedMesh, not .mesh
+                filter.sharedMesh = this.mesh;
+            },
+            /*StaticFixedPipe.BuildMesh end.*/
+
+            /*StaticFixedPipe.LateUpdate start.*/
+            LateUpdate: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe#LateUpdate", this ); }
+
+                this.Simulate();
+                this.DrawRope();
+            },
+            /*StaticFixedPipe.LateUpdate end.*/
+
+            /*StaticFixedPipe.Simulate start.*/
+            Simulate: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe#Simulate", this ); }
+
+                // 1. Physics Simulation (Skip first 2 points)
+                // Yahan Time.deltaTime use krain agar LateUpdate me hain
+                var dt = UnityEngine.Time.deltaTime;
+
+                for (var i = 2; i < this.segmentCount; i = (i + 1) | 0) {
+                    var segment = this.ropeSegments.getItem(i).$clone();
+                    var velocity = segment.posNow.$clone().sub( segment.posOld );
+                    segment.posOld = segment.posNow.$clone();
+                    segment.posNow = segment.posNow.$clone().add( velocity.$clone().add( this.gravity.$clone().clone().scale( dt ).clone().scale( dt ) ) );
+                    this.ropeSegments.setItem(i, segment.$clone());
+                }
+
+                // 2. Constraints
+                for (var i1 = 0; i1 < this.constraintIterations; i1 = (i1 + 1) | 0) {
+                    this.ApplyConstraints();
+                }
+            },
+            /*StaticFixedPipe.Simulate end.*/
+
+            /*StaticFixedPipe.ApplyConstraints start.*/
+            ApplyConstraints: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe#ApplyConstraints", this ); }
+
+                // POINT 0 & 1 KO HAR FRAME TOOL KI NAYI POSITION PR SET KRNA
+                var firstSegment = this.ropeSegments.getItem(0).$clone();
+                firstSegment.posNow = this.toolTransform.position.$clone();
+                firstSegment.posOld = this.toolTransform.position.$clone();
+                this.ropeSegments.setItem(0, firstSegment.$clone());
+
+                var secondSegment = this.ropeSegments.getItem(1).$clone();
+                secondSegment.posNow = this.toolDirectionPoint.position.$clone();
+                secondSegment.posOld = this.toolDirectionPoint.position.$clone();
+                this.ropeSegments.setItem(1, secondSegment.$clone());
+
+                // Last Point Lock
+                var lastSegment = this.ropeSegments.getItem(((this.segmentCount - 1) | 0)).$clone();
+                lastSegment.posNow = this.fixedEndPoint.position.$clone();
+                this.ropeSegments.setItem(((this.segmentCount - 1) | 0), lastSegment.$clone());
+
+                // Distance Constraints
+                for (var i = 0; i < ((this.segmentCount - 1) | 0); i = (i + 1) | 0) {
+                    var seg1 = this.ropeSegments.getItem(i).$clone();
+                    var seg2 = this.ropeSegments.getItem(((i + 1) | 0)).$clone();
+
+                    var dist = pc.Vec3.distance( seg1.posNow, seg2.posNow );
+                    var error = dist - this.segmentLength;
+                    var changeDir = (seg1.posNow.$clone().sub( seg2.posNow )).clone().normalize().$clone();
+                    var changeAmount = changeDir.$clone().clone().scale( error );
+
+                    if (i === 0 || i === 1) {
+                        // Pehly 2 points tool k sath hain, sirf aglay points move hon gay
+                        seg2.posNow = seg2.posNow.$clone().add( changeAmount.$clone() );
+                        this.ropeSegments.setItem(((i + 1) | 0), seg2.$clone());
+                    } else if (i < ((this.segmentCount - 2) | 0)) {
+                        seg1.posNow = seg1.posNow.$clone().sub( changeAmount.$clone().clone().scale( 0.5 ) );
+                        seg2.posNow = seg2.posNow.$clone().add( changeAmount.$clone().clone().scale( 0.5 ) );
+                        this.ropeSegments.setItem(i, seg1.$clone());
+                        this.ropeSegments.setItem(((i + 1) | 0), seg2.$clone());
+                    } else {
+                        seg1.posNow = seg1.posNow.$clone().sub( changeAmount.$clone() );
+                        this.ropeSegments.setItem(i, seg1.$clone());
+                    }
+                }
+            },
+            /*StaticFixedPipe.ApplyConstraints end.*/
+
+            /*StaticFixedPipe.DrawRope start.*/
+            DrawRope: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe#DrawRope", this ); }
+
+                if (this.mesh == null) {
+                    return;
+                }
+
+                var half = this.pipeWidth * 0.5;
+
+                for (var i = 0; i < this.segmentCount; i = (i + 1) | 0) {
+                    var dir = new UnityEngine.Vector3();
+                    if (i === 0) {
+                        dir = this.ropeSegments.getItem(1).$clone().posNow.$clone().sub( this.ropeSegments.getItem(0).$clone().posNow );
+                    } else {
+                        if (i === ((this.segmentCount - 1) | 0)) {
+                            dir = this.ropeSegments.getItem(i).$clone().posNow.$clone().sub( this.ropeSegments.getItem(((i - 1) | 0)).$clone().posNow );
+                        } else {
+                            dir = this.ropeSegments.getItem(((i + 1) | 0)).$clone().posNow.$clone().sub( this.ropeSegments.getItem(((i - 1) | 0)).$clone().posNow );
+                        }
+                    }
+
+                    var normal = new pc.Vec3( -dir.y, dir.x, 0.0 );
+                    if (normal.lengthSq() < 1E-07) {
+                        normal = pc.Vec3.UP.clone();
+                    } else {
+                        normal = normal.clone().normalize().$clone();
+                    }
+
+                    var pos = this.ropeSegments.getItem(i).$clone().posNow.$clone();
+                    this.vertices[Bridge.Int.mul(i, 2)] = this.meshTransform.InverseTransformPoint(pos.$clone().sub( normal.$clone().clone().scale( half ) ));
+                    this.vertices[((Bridge.Int.mul(i, 2) + 1) | 0)] = this.meshTransform.InverseTransformPoint(pos.$clone().add( normal.$clone().clone().scale( half ) ));
+                }
+
+                this.mesh.vertices = this.vertices;
+                this.mesh.RecalculateBounds();
+            },
+            /*StaticFixedPipe.DrawRope end.*/
+
+
+        }
+    });
+    /*StaticFixedPipe end.*/
+
+    /*StaticFixedPipe+RopeSegment start.*/
+    Bridge.define("StaticFixedPipe.RopeSegment", {
+        $kind: 1004,
+        statics: {
+            methods: {
+                getDefaultValue: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe.RopeSegment#getDefaultValue", this ); }
+ return new StaticFixedPipe.RopeSegment(); }
+            }
+        },
+        fields: {
+            posNow: null,
+            posOld: null
+        },
+        ctors: {
+            init: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe.RopeSegment#init", this ); }
+
+                this.posNow = new UnityEngine.Vector3();
+                this.posOld = new UnityEngine.Vector3();
+            },
+            $ctor1: function (pos) {
+if ( TRACE ) { TRACE( "StaticFixedPipe.RopeSegment#$ctor1", this ); }
+
+                this.$initialize();
+                this.posNow = pos.$clone();
+                this.posOld = pos.$clone();
+            },
+            ctor: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe.RopeSegment#ctor", this ); }
+
+                this.$initialize();
+            }
+        },
+        methods: {
+            getHashCode: function () {
+if ( TRACE ) { TRACE( "StaticFixedPipe.RopeSegment#getHashCode", this ); }
+
+                var h = Bridge.addHash([3544990474, this.posNow, this.posOld]);
+                return h;
+            },
+            equals: function (o) {
+if ( TRACE ) { TRACE( "StaticFixedPipe.RopeSegment#equals", this ); }
+
+                if (!Bridge.is(o, StaticFixedPipe.RopeSegment)) {
+                    return false;
+                }
+                return Bridge.equals(this.posNow, o.posNow) && Bridge.equals(this.posOld, o.posOld);
+            },
+            $clone: function (to) {
+if ( TRACE ) { TRACE( "StaticFixedPipe.RopeSegment#$clone", this ); }
+
+                var s = to || new StaticFixedPipe.RopeSegment();
+                s.posNow = this.posNow.$clone();
+                s.posOld = this.posOld.$clone();
+                return s;
+            }
+        }
+    });
+    /*StaticFixedPipe+RopeSegment end.*/
 
     /*Statics start.*/
     Bridge.define("Statics", {
@@ -13009,38 +13576,87 @@ if ( TRACE ) { TRACE( "GameManagerPlayable#LunaDirect", this ); }
     });
     /*GameManagerPlayable end.*/
 
-    /*Level3_Crown_Playable_NewTest start.*/
-    Bridge.define("Level3_Crown_Playable_NewTest", {
+    /*Level1_Cloth_Playable_PlayableStep4 start.*/
+    Bridge.define("Level1_Cloth_Playable_PlayableStep4", {
         inherits: [LevelData],
         fields: {
-            MainZoom: null,
-            View1: null,
-            View2: null,
+            WashingView: null,
+            WashingTools: null,
+            DressingView: null,
+            DressingTools: null,
             ZoomStep1: null,
             ToolStep1: null,
-            ToolStep1CameraFollow: null,
-            Step1Col: null,
-            DustSR_1: null,
+            Basket_Cloth: null,
+            clothInside: null,
+            clothRound: null,
+            machineDoor: null,
+            machineGlass: null,
+            clothSfx: null,
+            doorCloseSfx: null,
             ZoomStep2: null,
+            ZoomStep2b: null,
             ToolStep2: null,
-            ToolStep2CameraFollow: null,
-            SRsToFadeOut_2: null,
-            SpraySR_2: null,
+            ToolStep2CamFollow: null,
+            drawerObj: null,
+            surfObj: null,
+            surfPackTop: null,
+            handStep2: null,
+            surfController: null,
+            clothsInside: null,
+            clothsInsideGlass: null,
+            clothsStaticClean: null,
+            wetCloths: null,
+            clothCleanInside: null,
+            clothCleanInsideAnim: null,
+            waterWave: null,
+            clothCleanInside2: null,
+            clothCleanInside2Cam: null,
+            clothBasketTarget: null,
+            clothBasketTarget2: null,
+            waterSplash_Vfx: null,
+            countDownTimerText: null,
+            countDown: 0,
+            machineTimer: null,
+            machineTimerIndication: null,
+            darazOpenSfx: null,
+            darazCloseSfx: null,
+            doorOpenSfx: null,
+            machineStartSfx: null,
+            machineFinishSfx: null,
+            waterDrainSfx: null,
+            ZoomStep3a: null,
+            ToolStep3a: null,
+            ToolStep3aRend: null,
+            dressingBasket: null,
+            dummyFullParent: null,
+            DressParent: null,
             ZoomStep3: null,
             ToolStep3: null,
-            ToolStep3CameraFollow: null,
-            Step3Col: null,
-            Mix: null,
-            MixE: null,
-            skipIconAdvance: false,
-            isStep1Done: false,
-            isStep2Done: false,
-            isStep3Done: false
+            tornPatch: null,
+            patchCompleted: null,
+            patchOutline: null,
+            ZoomStep4: null,
+            ToolStep4: null,
+            camFollowStep4: null,
+            SteamerBottom: null,
+            step1Complete: false,
+            step2Complete: false,
+            doorOpened: false,
+            step3aComplete: false,
+            step3Complete: false,
+            step4Complete: false
+        },
+        ctors: {
+            init: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#init", this ); }
+
+                this.countDown = 5.0;
+            }
         },
         methods: {
-            /*Level3_Crown_Playable_NewTest.Start start.*/
+            /*Level1_Cloth_Playable_PlayableStep4.Start start.*/
             Start: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#Start", this ); }
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#Start", this ); }
 
                 var $step = 0,
                     $jumpFromFinally,
@@ -13052,36 +13668,22 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#Start", this ); }
                         for (;;) {
                             switch ($step) {
                                 case 0: {
-                                    this.LevelStart();
+                                    // PLAYABLE: cover the ForceComplete step-skip so nothing visibly pops/snaps.
+                                        PlayableFadeCover.Cover();
+
+                                        this.LevelStart();
 
                                         UI_Manager.instance.InitializeTools(this.ToolIcons);
-
-                                        CameraController.Instance.MoveCamera(this.MainZoom.CameraPos, this.MainZoom.CameraFOV, 0.01);
 
                                         $enumerator.current = new UnityEngine.WaitForSeconds(0.1);
                                         $step = 1;
                                         return true;
                                 }
                                 case 1: {
-                                    // STEP 1
-                                        this.Step1Col.SetActive(false);
-
-                                        this.ToolStep1CameraFollow.enabled = false;
-
-                                        // STEP 2
-                                        this.ToolStep2CameraFollow.enabled = false;
-
-                                        // STEP 3
-                                        this.Step3Col.SetActive(false);
-
-                                        this.MixE.SetActive(false);
-
-                                        this.ToolStep3CameraFollow.enabled = false;
-
-
-
-                                        // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
-                                        this.StartStep1();
+                                    // PLAYABLE: no save resume — same ForceComplete + StartStep as original switch.
+                                        this.ForceCompleteStep5();
+                                        this.Invoke("StartStep4", 2.0);
+                                        PlayableFadeCover.Reveal();
                                         return false;
 
                                 }
@@ -13097,230 +13699,424 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#Start", this ); }
                 }));
                 return $enumerator;
             },
-            /*Level3_Crown_Playable_NewTest.Start end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.Start end.*/
 
-            /*Level3_Crown_Playable_NewTest.AdvanceProgressIcon start.*/
-            AdvanceProgressIcon: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#AdvanceProgressIcon", this ); }
-
-                if (this.skipIconAdvance) {
-                    this.skipIconAdvance = false;
-
-                    return;
-                }
-
-                UI_Manager.instance.SetProgressBarPos();
-            },
-            /*Level3_Crown_Playable_NewTest.AdvanceProgressIcon end.*/
-
-            /*Level3_Crown_Playable_NewTest.StartStep1 start.*/
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep1 start.*/
             StartStep1: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#StartStep1", this ); }
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#StartStep1", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep1 end.*/
 
-                CameraController.Instance.MoveCamera(this.ZoomStep1.CameraPos, this.ZoomStep1.CameraFOV);
+            /*Level1_Cloth_Playable_PlayableStep4.OnClothPicked start.*/
+            OnClothPicked: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#OnClothPicked", this ); }
 
-                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep1.transform);
-                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep1.transform, 0.0, 0.5), 1.0), Bridge.fn.bind(this, function () {
-                    this.ToolInputToggle(this.ToolStep1.gameObject, true);
-
-                    this.ToolStep1CameraFollow.enabled = true;
-
-                    this.Step1Col.SetActive(true);
-                }));
+                this.clothInside.gameObject.SetActive(false);
+                this.clothRound.gameObject.SetActive(true);
+                this.clothRound.sortingOrder = 100;
+                this.clothInside.sortingOrder = 100;
             },
-            /*Level3_Crown_Playable_NewTest.StartStep1 end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.OnClothPicked end.*/
 
-            /*Level3_Crown_Playable_NewTest.Step1Done start.*/
-            Step1Done: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#Step1Done", this ); }
+            /*Level1_Cloth_Playable_PlayableStep4.OnClothReleased start.*/
+            OnClothReleased: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#OnClothReleased", this ); }
 
-                if (this.isStep1Done) {
-                    return;
-                }
-
-                this.isStep1Done = true;
-
-                this.Step1Col.SetActive(false);
-
-                this.ToolStep1CameraFollow.enabled = false;
-
-                this.ToolInputToggle(this.ToolStep1.gameObject, false);
-
-                CameraController.Instance.MoveCamera(this.ZoomStep1.CameraPos, this.ZoomStep1.CameraFOV);
-
-                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep1.transform);
-                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep1.transform, -10.0, 1.0), 0.25), Bridge.fn.bind(this, function () {
-                    this.ToolStep1.gameObject.SetActive(false);
+                DG.Tweening.DOVirtual.DelayedCall(0.5, Bridge.fn.bind(this, function () {
+                    this.clothInside.sortingOrder = 26;
+                    this.clothRound.sortingOrder = 26;
+                    this.clothInside.gameObject.SetActive(true);
+                    this.clothRound.gameObject.SetActive(false);
                 }));
 
-                this.Invoke("StartStep2", 1.0);
-
-                try {
-                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo + "_" + (this.levelName || "") + "_Step1_Comp");
-                } catch ($e1) {
-                    $e1 = System.Exception.create($e1);
-                }
             },
-            /*Level3_Crown_Playable_NewTest.Step1Done end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.OnClothReleased end.*/
 
-            /*Level3_Crown_Playable_NewTest.ForceCompleteStep1 start.*/
+            /*Level1_Cloth_Playable_PlayableStep4.Step1Complete start.*/
+            Step1Complete: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#Step1Complete", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.Step1Complete end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.PlayClothPlacedSfx start.*/
+            PlayClothPlacedSfx: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#PlayClothPlacedSfx", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.PlayClothPlacedSfx end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep1 start.*/
             ForceCompleteStep1: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep1", this ); }
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep1", this ); }
 
-                this.DustSR_1.SetActive(false);
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.ToolStep1, null)) {
+                    this.ToolStep1.gameObject.SetActive(false);
+                }
+                if (UnityEngine.GameObject.op_Inequality(this.Basket_Cloth, null)) {
+                    this.Basket_Cloth.gameObject.SetActive(false);
+                }
+
+                if (UnityEngine.Component.op_Inequality(this.clothsInside, null)) {
+                    this.clothsInside.gameObject.SetActive(false);
+                }
+                this.clothsInsideGlass.gameObject.SetActive(true);
+
+                if (UnityEngine.GameObject.op_Inequality(this.machineDoor, null)) {
+                    this.machineDoor.SetActive(false);
+                }
+                this.machineGlass.SetActive(true);
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.clothsStaticClean);
+                DG.Tweening.DOTweenModuleSprite.DOFade(this.clothsStaticClean, 1, 0.0);
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.clothsInsideGlass);
+                DG.Tweening.DOTweenModuleSprite.DOFade(this.clothsInsideGlass, 0.0, 0.0);
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.waterWave);
+                DG.Tweening.DOTweenModuleSprite.DOFade(this.waterWave, 1, 0.0);
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.waterWave.transform);
+                DG.Tweening.ShortcutExtensions.DOLocalMoveY(this.waterWave.transform, -0.3754, 0);
             },
-            /*Level3_Crown_Playable_NewTest.ForceCompleteStep1 end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep1 end.*/
 
-            /*Level3_Crown_Playable_NewTest.StartStep2 start.*/
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep2 start.*/
             StartStep2: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#StartStep2", this ); }
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#StartStep2", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep2 end.*/
 
-                this.AdvanceProgressIcon();
+            /*Level1_Cloth_Playable_PlayableStep4.PackOpend start.*/
+            PackOpend: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#PackOpend", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.PackOpend end.*/
 
-                CameraController.Instance.MoveCamera(this.ZoomStep2.CameraPos, this.ZoomStep2.CameraFOV);
+            /*Level1_Cloth_Playable_PlayableStep4.Step2Complete start.*/
+            Step2Complete: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#Step2Complete", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.Step2Complete end.*/
 
-                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep2.transform);
-                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep2.transform, 0.4, 0.5), 1.0), Bridge.fn.bind(this, function () {
-                    this.ToolInputToggle(this.ToolStep2.gameObject, true);
+            /*Level1_Cloth_Playable_PlayableStep4.StartMachine start.*/
+            StartMachine: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#StartMachine", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.StartMachine end.*/
 
-                    this.ToolStep2CameraFollow.enabled = true;
-                }));
-            },
-            /*Level3_Crown_Playable_NewTest.StartStep2 end.*/
-
-            /*Level3_Crown_Playable_NewTest.Step2Done start.*/
-            Step2Done: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#Step2Done", this ); }
-
-                if (this.isStep2Done) {
-                    return;
-                }
-
-                this.isStep2Done = true;
-
-                this.ToolStep2CameraFollow.enabled = false;
-
-                this.ToolInputToggle(this.ToolStep2.gameObject, false);
-
-                CameraController.Instance.MoveCamera(this.ZoomStep2.CameraPos, this.ZoomStep2.CameraFOV);
-
-                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep2.transform);
-                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep2.transform, -10.0, 1.0), 0.25), Bridge.fn.bind(this, function () {
-                    this.ToolStep2.gameObject.SetActive(false);
-                }));
-
-                DG.Tweening.DOVirtual.DelayedCall(1.0, Bridge.fn.bind(this, function () {
-                    for (var i = 0; i < this.SRsToFadeOut_2.length; i = (i + 1) | 0) {
-                        DG.Tweening.ShortcutExtensions.DOKill(this.SRsToFadeOut_2[i]);
-                        DG.Tweening.DOTweenModuleSprite.DOFade(this.SRsToFadeOut_2[i], 0, 2.0);
-                    }
-
-                }));
-
-                this.Invoke("StartStep3", 1.0);
-
-                try {
-                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo + "_" + (this.levelName || "") + "_Step2_Comp");
-                } catch ($e1) {
-                    $e1 = System.Exception.create($e1);
-                }
-            },
-            /*Level3_Crown_Playable_NewTest.Step2Done end.*/
-
-            /*Level3_Crown_Playable_NewTest.ForceCompleteStep2 start.*/
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep2 start.*/
             ForceCompleteStep2: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep2", this ); }
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep2", this ); }
 
                 this.ForceCompleteStep1();
 
-                this.SpraySR_2.material = GameManager.instance.DefaultMat;
+                CameraController.Instance.ResetCameraInstant();
 
-                for (var i = 0; i < this.SRsToFadeOut_2.length; i = (i + 1) | 0) {
-                    this.SRsToFadeOut_2[i].gameObject.SetActive(false);
+                if (UnityEngine.GameObject.op_Inequality(this.drawerObj, null)) {
+                    this.drawerObj.SetActive(false);
                 }
+                if (UnityEngine.GameObject.op_Inequality(this.surfObj, null)) {
+                    this.surfObj.SetActive(false);
+                }
+
+                this.machineTimer.enabled = true;
+                this.machineTimerIndication.SetActive(true);
+
+                CameraController.Instance.MoveCamera(new pc.Vec3( 0, 0.6, -10.0 ), 3.2);
             },
-            /*Level3_Crown_Playable_NewTest.ForceCompleteStep2 end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep2 end.*/
 
-            /*Level3_Crown_Playable_NewTest.StartStep3 start.*/
-            StartStep3: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#StartStep3", this ); }
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep3 start.*/
+            ForceCompleteStep3: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep3", this ); }
 
-                this.AdvanceProgressIcon();
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.ToolStep2, null)) {
+                    this.ToolStep2.gameObject.SetActive(false);
+                }
 
-                CameraController.Instance.MoveCamera(this.ZoomStep3.CameraPos, this.ZoomStep3.CameraFOV);
+                if (UnityEngine.GameObject.op_Inequality(this.machineDoor, null)) {
+                    this.machineDoor.SetActive(false);
+                }
+                this.machineGlass.SetActive(true);
 
-                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep3.transform);
-                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep3.transform, 0.0, 0.5), 1.0), Bridge.fn.bind(this, function () {
-                    this.ToolInputToggle(this.ToolStep3.gameObject, true);
+                DG.Tweening.ShortcutExtensions.DOKill(this.clothCleanInside);
+                DG.Tweening.DOTweenModuleSprite.DOFade(this.clothCleanInside, 1, 0.0);
 
-                    this.ToolStep3CameraFollow.enabled = true;
-
-                    this.Step3Col.SetActive(true);
+                DG.Tweening.ShortcutExtensions.DOKill(this.clothCleanInsideAnim);
+                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions), DG.Tweening.DOTweenModuleSprite.DOFade(this.clothCleanInsideAnim, 1, 0.0), Bridge.fn.bind(this, function () {
+                    DG.Tweening.ShortcutExtensions.DOKill(this.clothCleanInsideAnim.transform);
+                    DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveY(this.clothCleanInsideAnim.transform, -2, 0), Bridge.fn.bind(this, function () {
+                        this.OpenDoor();
+                    }));
                 }));
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.wetCloths);
+                DG.Tweening.DOTweenModuleSprite.DOFade(this.wetCloths, 0, 0);
             },
-            /*Level3_Crown_Playable_NewTest.StartStep3 end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep3 end.*/
 
-            /*Level3_Crown_Playable_NewTest.Step3Done start.*/
-            Step3Done: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#Step3Done", this ); }
+            /*Level1_Cloth_Playable_PlayableStep4.OpenDoor start.*/
+            OpenDoor: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#OpenDoor", this ); }
 
-                if (this.isStep3Done) {
+                if (this.doorOpened) {
                     return;
                 }
 
-                this.isStep3Done = true;
+                AudioController.instance.PlayAnySfx(0, this.doorOpenSfx, 0.0);
 
-                this.Step3Col.SetActive(false);
+                this.doorOpened = true;
+                this.machineDoor.SetActive(true);
+                this.machineGlass.SetActive(false);
+                this.clothCleanInside.gameObject.SetActive(false);
+                this.clothCleanInside2.gameObject.SetActive(true);
 
-                this.ToolStep3CameraFollow.enabled = false;
+                CameraController.Instance.MoveCamera(new pc.Vec3( 0, 0.0, -10.0 ), 4.3);
 
-                this.ToolInputToggle(this.ToolStep3.gameObject, false);
+                this.Basket_Cloth.SetActive(true);
 
-                CameraController.Instance.MoveCamera(this.ZoomStep3.CameraPos, this.ZoomStep3.CameraFOV);
+                DG.Tweening.ShortcutExtensions.DOKill(this.Basket_Cloth.transform);
+                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.Basket_Cloth.transform, 0.0, 0.5), 0.5), Bridge.fn.bind(this, function () {
+                    this.clothBasketTarget2.SetActive(true);
 
-                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep3.transform);
-                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep3.transform, -10.0, 1.0), 0.25), Bridge.fn.bind(this, function () {
-                    this.ToolStep3.gameObject.SetActive(false);
+                    this.clothCleanInside2.OnMouseDownEvent = Bridge.fn.combine(this.clothCleanInside2.OnMouseDownEvent, Bridge.fn.cacheBind(this, this.OnCleanClothPicked));
+
+                    this.ToolInputToggle(this.clothCleanInside2.gameObject, true);
+
+                    this.clothCleanInside2Cam.enabled = true;
+
+                    this.clothCleanInside2.GetComponent(UnityEngine.SpriteRenderer).sortingOrder = 26;
+                    this.clothCleanInside2.startOrder = 26;
+
+                }));
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.OpenDoor end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.OnCleanClothPicked start.*/
+            OnCleanClothPicked: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#OnCleanClothPicked", this ); }
+
+                this.clothCleanInside2.GetComponent(UnityEngine.SpriteRenderer).sortingOrder = 100;
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.OnCleanClothPicked end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.CallStep3 start.*/
+            CallStep3: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#CallStep3", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.CallStep3 end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.StartCountDown start.*/
+            StartCountDown: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#StartCountDown", this ); }
+
+                var $step = 0,
+                    $jumpFromFinally,
+                    $returnValue,
+                    $async_e;
+
+                var $enumerator = new Bridge.GeneratorEnumerator(Bridge.fn.bind(this, function () {
+                    try {
+                        for (;;) {
+                            switch ($step) {
+                                case 0: {
+                                    return false;
+                                }
+                                default: {
+                                    return false;
+                                }
+                            }
+                        }
+                    } catch($async_e1) {
+                        $async_e = System.Exception.create($async_e1);
+                        throw $async_e;
+                    }
+                }));
+                return $enumerator;
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.StartCountDown end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep3a start.*/
+            StartStep3a: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#StartStep3a", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep3a end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.OnTool3aPicked start.*/
+            OnTool3aPicked: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#OnTool3aPicked", this ); }
+
+                this.ToolStep3aRend.sortingOrder = 100;
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.OnTool3aPicked end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.OnTool3aRelease start.*/
+            OnTool3aRelease: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#OnTool3aRelease", this ); }
+
+                DG.Tweening.DOVirtual.DelayedCall(0.4, Bridge.fn.bind(this, function () {
+                    this.ToolStep3aRend.sortingOrder = 26;
+                }));
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.OnTool3aRelease end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.Step3aComplete start.*/
+            Step3aComplete: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#Step3aComplete", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.Step3aComplete end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep3a start.*/
+            ForceCompleteStep3a: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep3a", this ); }
+
+                if (UnityEngine.GameObject.op_Inequality(this.WashingView, null)) {
+                    this.WashingView.SetActive(false);
+                }
+                if (UnityEngine.GameObject.op_Inequality(this.WashingTools, null)) {
+                    this.WashingTools.SetActive(false);
+                }
+
+                this.DressingView.SetActive(true);
+                this.DressingTools.SetActive(true);
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep3a end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep3 start.*/
+            StartStep3: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#StartStep3", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep3 end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.HideIndication start.*/
+            HideIndication: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#HideIndication", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.HideIndication end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.Step3Complete start.*/
+            Step3Complete: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#Step3Complete", this ); }
+ },
+            /*Level1_Cloth_Playable_PlayableStep4.Step3Complete end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep4 start.*/
+            ForceCompleteStep4: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep4", this ); }
+
+                if (UnityEngine.GameObject.op_Inequality(this.WashingView, null)) {
+                    this.WashingView.SetActive(false);
+                }
+                if (UnityEngine.GameObject.op_Inequality(this.WashingTools, null)) {
+                    this.WashingTools.SetActive(false);
+                }
+
+                this.DressingView.SetActive(true);
+                this.DressingTools.SetActive(true);
+
+                this.DressParent.SetActive(true);
+                if (UnityEngine.GameObject.op_Inequality(this.dummyFullParent, null)) {
+                    this.dummyFullParent.SetActive(false);
+                }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.ToolStep3a, null)) {
+                    this.ToolStep3a.gameObject.SetActive(false);
+                }
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep4 end.*/
+
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep4 start.*/
+            StartStep4: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#StartStep4", this ); }
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep4.transform);
+                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep4.transform, 0.0, 0.5), 0.5), Bridge.fn.bind(this, function () {
+                    this.ToolInputToggle(this.ToolStep4.gameObject, true);
+
+                    this.camFollowStep4.enabled = true;
+
+                    CameraController.Instance.MoveCamera(this.ZoomStep4.CameraPos, this.ZoomStep4.CameraFOV);
                 }));
 
-                DG.Tweening.DOVirtual.DelayedCall(1.0, Bridge.fn.bind(this, function () {
-                    this.Mix.SetActive(false);
-                    this.MixE.SetActive(true);
+                DG.Tweening.ShortcutExtensions.DOKill(this.SteamerBottom.transform);
+                DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.SteamerBottom.transform, -2.0, 0.5), 0.5);
+            },
+            /*Level1_Cloth_Playable_PlayableStep4.StartStep4 end.*/
 
+            /*Level1_Cloth_Playable_PlayableStep4.Step4Complete start.*/
+            Step4Complete: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#Step4Complete", this ); }
+
+                if (this.step4Complete) {
+                    return;
+                }
+
+                this.step4Complete = true;
+
+                this.camFollowStep4.enabled = false;
+
+                this.ToolInputToggle(this.ToolStep4.gameObject, false);
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.SteamerBottom.transform);
+                DG.Tweening.TweenSettingsExtensions.SetDelay(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.SteamerBottom.transform, -15.0, 0.5), 0.5);
+
+                DG.Tweening.ShortcutExtensions.DOKill(this.ToolStep4.transform);
+                DG.Tweening.TweenSettingsExtensions.OnComplete(DG.Tweening.Core.TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions), DG.Tweening.ShortcutExtensions.DOLocalMoveX(this.ToolStep4.transform, -15.0, 0.5), Bridge.fn.bind(this, function () {
+                    this.ToolStep4.gameObject.SetActive(false);
+
+                    this.SteamerBottom.gameObject.SetActive(false);
                 }));
 
-                CameraController.Instance.MoveCamera(this.MainZoom.CameraPos, this.MainZoom.CameraFOV);
+                UI_Manager.instance.SetProgressBarPos();
 
-                this.Invoke("LevelComplete", 1.0);
+                this.Invoke("LevelComplete", 0.5);
+
+                CameraController.Instance.ResetCameraTween();
 
                 try {
-                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo + "_" + (this.levelName || "") + "_Step3_Comp");
+                    Statics.GA_CustomStringEvent("Lvl" + GameManager.instance.currentLevelNo + "_" + (this.levelName || "") + "_Step7_Comp");
                 } catch ($e1) {
                     $e1 = System.Exception.create($e1);
                 }
             },
-            /*Level3_Crown_Playable_NewTest.Step3Done end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.Step4Complete end.*/
 
-            /*Level3_Crown_Playable_NewTest.ForceCompleteStep3 start.*/
-            ForceCompleteStep3: function () {
-if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this ); }
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep5 start.*/
+            ForceCompleteStep5: function () {
+if ( TRACE ) { TRACE( "Level1_Cloth_Playable_PlayableStep4#ForceCompleteStep5", this ); }
 
-                this.ForceCompleteStep2();
+                if (UnityEngine.GameObject.op_Inequality(this.WashingView, null)) {
+                    this.WashingView.SetActive(false);
+                }
+                if (UnityEngine.GameObject.op_Inequality(this.WashingTools, null)) {
+                    this.WashingTools.SetActive(false);
+                }
 
-                this.Mix.SetActive(false);
+                this.DressingView.SetActive(true);
+                this.DressingTools.SetActive(true);
 
-                this.MixE.SetActive(true);
+                DG.Tweening.ShortcutExtensions.DOKill(this.tornPatch);
+                DG.Tweening.DOTweenModuleSprite.DOFade(this.tornPatch, 0, 0.01);
+
+                this.DressParent.SetActive(true);
+                if (UnityEngine.GameObject.op_Inequality(this.dummyFullParent, null)) {
+                    this.dummyFullParent.SetActive(false);
+                }
+
+                if (UnityEngine.MonoBehaviour.op_Inequality(this.ToolStep3a, null)) {
+                    this.ToolStep3a.gameObject.SetActive(false);
+                }
+
             },
-            /*Level3_Crown_Playable_NewTest.ForceCompleteStep3 end.*/
+            /*Level1_Cloth_Playable_PlayableStep4.ForceCompleteStep5 end.*/
 
 
         }
     });
-    /*Level3_Crown_Playable_NewTest end.*/
+    /*Level1_Cloth_Playable_PlayableStep4 end.*/
 
     if ( MODULE_reflection ) {
     var $m = Bridge.setMetadata,
-        $n = ["System","UnityEngine","UnityEngine.Audio","UnityEngine.Events","System.Collections","ScratchCardAsset","DG.Tweening","System.Collections.Generic","UnityEngine.UI","DG.Tweening.Core","DG.Tweening.Plugins.Core.PathCore","System.Globalization","DG.Tweening.Plugins.Options","UnityEngine.Rendering","ScratchCardAsset.Core","ScratchCardAsset.Core.Data"];
+        $n = ["System","UnityEngine","UnityEngine.Audio","UnityEngine.Events","System.Collections","ScratchCardAsset","DG.Tweening","UnityEngine.UI","System.Collections.Generic","DG.Tweening.Core","DG.Tweening.Plugins.Core.PathCore","System.Globalization","DG.Tweening.Plugins.Options","UnityEngine.Rendering","ScratchCardAsset.Core","ScratchCardAsset.Core.Data"];
 
     /*AudioController start.*/
     $m("AudioController", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"PlayAnySfx","t":8,"pi":[{"n":"sfxSourceIndex","pt":$n[0].Int32,"ps":0},{"n":"anyClip","pt":$n[1].AudioClip,"ps":1},{"n":"delay","pt":$n[0].Single,"ps":2}],"sn":"PlayAnySfx","rt":$n[0].Void,"p":[$n[0].Int32,$n[1].AudioClip,$n[0].Single]},{"a":2,"n":"PlayBtnClickSfx","t":8,"sn":"PlayBtnClickSfx","rt":$n[0].Void},{"a":2,"n":"PlayBtnClickSfxGameplay","t":8,"sn":"PlayBtnClickSfxGameplay","rt":$n[0].Void},{"a":2,"n":"PlaySfx","t":8,"pi":[{"n":"sfxSourceIndex","pt":$n[0].Int32,"ps":0},{"n":"clipIndex","pt":$n[0].Int32,"ps":1},{"n":"delay","pt":$n[0].Single,"ps":2}],"sn":"PlaySfx","rt":$n[0].Void,"p":[$n[0].Int32,$n[0].Int32,$n[0].Single]},{"a":2,"n":"PlayUiClickSfx","t":8,"sn":"PlayUiClickSfx","rt":$n[0].Void},{"a":2,"n":"SetupThings","t":8,"sn":"SetupThings","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":2,"n":"AllClips","t":4,"rt":System.Array.type(UnityEngine.AudioClip),"sn":"AllClips"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"MainMixer","t":4,"rt":$n[2].AudioMixer,"sn":"MainMixer"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"SfxSources","t":4,"rt":System.Array.type(UnityEngine.AudioSource),"sn":"SfxSources"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"UiClick","t":4,"rt":$n[1].AudioClip,"sn":"UiClick"},{"a":2,"n":"UiClickSource","t":4,"rt":$n[1].AudioSource,"sn":"UiClickSource"},{"a":2,"n":"instance","is":true,"t":4,"rt":AudioController,"sn":"instance"}]}; }, $n);
@@ -13350,17 +14146,13 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     $m("ActionOnTap", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"Tap","t":8,"sn":"Tap","rt":$n[0].Void},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"OnTap","t":4,"rt":$n[3].UnityEvent,"sn":"OnTap"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"OnTapExtra","t":4,"rt":Function,"sn":"OnTapExtra"},{"a":1,"n":"extraCalled","t":4,"rt":$n[0].Boolean,"sn":"extraCalled","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isDone","t":4,"rt":$n[0].Boolean,"sn":"isDone","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"myCollider","t":4,"rt":$n[1].Collider2D,"sn":"myCollider"}]}; }, $n);
     /*ActionOnTap end.*/
 
-    /*BD_AnimationHelper start.*/
-    $m("BD_AnimationHelper", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"PlaySfx","t":8,"sn":"PlaySfx","rt":$n[0].Void},{"a":2,"n":"TriggerOnComplete","t":8,"sn":"TriggerOnComplete","rt":$n[0].Void},{"at":[new UnityEngine.HeaderAttribute("Events")],"a":2,"n":"OnAnimationComplete","t":4,"rt":$n[3].UnityEvent,"sn":"OnAnimationComplete"},{"a":1,"n":"progress","t":4,"rt":$n[0].Single,"sn":"progress","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"sfxClip","t":4,"rt":$n[1].AudioClip,"sn":"sfxClip"}]}; }, $n);
-    /*BD_AnimationHelper end.*/
-
     /*BasicDrag start.*/
     $m("BasicDrag", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"DecreaseSR","t":8,"sn":"DecreaseSR","rt":$n[0].Void},{"a":1,"n":"Exec","t":8,"sn":"Exec","rt":$n[4].IEnumerator},{"a":1,"n":"HandleDragging","t":8,"sn":"HandleDragging","rt":$n[0].Void},{"a":2,"n":"HasSwipedDown","t":8,"sn":"HasSwipedDown","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"IncreaseSR","t":8,"sn":"IncreaseSR","rt":$n[0].Void},{"a":1,"n":"MouseDownPressed","t":8,"sn":"MouseDownPressed","rt":$n[0].Void},{"a":1,"n":"MouseUpPressed","t":8,"sn":"MouseUpPressed","rt":$n[0].Void},{"a":1,"n":"OffestReset","t":8,"sn":"OffestReset","rt":$n[0].Void},{"a":1,"n":"OnDisable","t":8,"sn":"OnDisable","rt":$n[0].Void},{"a":2,"n":"OnDragEnd","t":8,"pi":[{"n":"overrideVal","dv":false,"o":true,"pt":$n[0].Boolean,"ps":0}],"sn":"OnDragEnd","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":1,"n":"OnDragStart","t":8,"sn":"OnDragStart","rt":$n[0].Void},{"a":1,"n":"OnDragStart_Delta","t":8,"sn":"OnDragStart_Delta","rt":$n[0].Void},{"a":1,"n":"OnEnable","t":8,"sn":"OnEnable","rt":$n[0].Void},{"a":1,"n":"ResetState","t":8,"sn":"ResetState","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":2,"n":"StopTheDrag","t":8,"sn":"StopTheDrag","rt":$n[0].Void},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"a":2,"n":"isOverUI","t":8,"sn":"isOverUI","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"ClampX_H","t":4,"rt":$n[0].Single,"sn":"ClampX_H","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"ClampX_L","t":4,"rt":$n[0].Single,"sn":"ClampX_L","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"ClampY_H","t":4,"rt":$n[0].Single,"sn":"ClampY_H","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"ClampY_L","t":4,"rt":$n[0].Single,"sn":"ClampY_L","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"OnMouseDownEvent","t":4,"rt":Function,"sn":"OnMouseDownEvent"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"OnMouseDownEventIndependentFromCanDrag","t":4,"rt":Function,"sn":"OnMouseDownEventIndependentFromCanDrag"},{"a":2,"n":"OnMouseUpEvent","t":4,"rt":Function,"sn":"OnMouseUpEvent"},{"a":2,"n":"ProgEndEvent","t":4,"rt":Function,"sn":"ProgEndEvent"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ProgStartEvent","t":4,"rt":Function,"sn":"ProgStartEvent"},{"a":2,"n":"Self_ScaleNew","t":4,"rt":$n[1].Vector3,"sn":"Self_ScaleNew"},{"a":2,"n":"ToolLoopClip","t":4,"rt":$n[1].AudioSource,"sn":"ToolLoopClip"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolSelectClip","t":4,"rt":$n[1].AudioClip,"sn":"ToolSelectClip"},{"a":2,"n":"Tool_Offset","t":4,"rt":$n[1].Vector3,"sn":"Tool_Offset"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Vibration","t":4,"rt":$n[0].Boolean,"sn":"Vibration","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"anim","t":4,"rt":$n[1].Animator,"sn":"anim"},{"a":1,"n":"cachedMousePosition","t":4,"rt":$n[1].Vector3,"sn":"cachedMousePosition"},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"canCallMouseUpWhenGamePaused","t":4,"rt":$n[0].Boolean,"sn":"canCallMouseUpWhenGamePaused","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"canDrag","t":4,"rt":$n[0].Boolean,"sn":"canDrag","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"canReturn","t":4,"rt":$n[0].Boolean,"sn":"canReturn","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"canRotateOnPick","t":4,"rt":$n[0].Boolean,"sn":"canRotateOnPick","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"canScaleIncrease","t":4,"rt":$n[0].Boolean,"sn":"canScaleIncrease","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"childSprite","t":4,"rt":System.Array.type(UnityEngine.SpriteRenderer),"sn":"childSprite"},{"a":1,"n":"co","t":4,"rt":$n[1].Coroutine,"sn":"co"},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"dontResetItIsInCollider","t":4,"rt":$n[0].Boolean,"sn":"dontResetItIsInCollider","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"dragByDelta","t":4,"rt":$n[0].Boolean,"sn":"dragByDelta","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"dragParticles","t":4,"rt":$n[1].ParticleSystem,"sn":"dragParticles"},{"a":1,"n":"dragStartPosition","t":4,"rt":$n[1].Vector3,"sn":"dragStartPosition"},{"a":1,"n":"dragThreshold","t":4,"rt":$n[0].Single,"sn":"dragThreshold","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"isDragging","t":4,"rt":$n[0].Boolean,"sn":"isDragging","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isMouseDownPressed","t":4,"rt":$n[0].Boolean,"sn":"isMouseDownPressed","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isObjectMovingWhileDragging","t":4,"rt":$n[0].Boolean,"sn":"isObjectMovingWhileDragging","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"isPlacedCannotMove","t":4,"rt":$n[0].Boolean,"sn":"isPlacedCannotMove","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"jumpOnReturn","t":4,"rt":$n[0].Boolean,"sn":"jumpOnReturn","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"lastMouseWorldPosition","t":4,"rt":$n[1].Vector3,"sn":"lastMouseWorldPosition"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"moveWithPointer","t":4,"rt":$n[0].Boolean,"sn":"moveWithPointer","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"newRot","t":4,"rt":$n[1].Vector3,"sn":"newRot"},{"a":1,"n":"offset","t":4,"rt":$n[1].Vector3,"sn":"offset"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"onDragparticle","t":4,"rt":$n[0].Boolean,"sn":"onDragparticle","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"previousPosition","t":4,"rt":$n[1].Vector3,"sn":"previousPosition"},{"a":2,"n":"returnTime","t":4,"rt":$n[0].Single,"sn":"returnTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"saveStartTransform","t":4,"rt":$n[0].Boolean,"sn":"saveStartTransform","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"startOrder","t":4,"rt":$n[0].Int32,"sn":"startOrder","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"startPos","t":4,"rt":$n[1].Vector3,"sn":"startPos"},{"a":2,"n":"startRot","t":4,"rt":$n[1].Vector3,"sn":"startRot"},{"a":2,"n":"startScale","t":4,"rt":$n[1].Vector3,"sn":"startScale"},{"a":1,"n":"swipeThreshold","t":4,"rt":$n[0].Single,"sn":"swipeThreshold","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"tempPos","t":4,"rt":$n[1].Vector3,"sn":"tempPos"},{"a":1,"n":"thisCamera","t":4,"rt":$n[1].Camera,"sn":"thisCamera"},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"thisCollider","t":4,"rt":$n[1].Collider2D,"sn":"thisCollider"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"thisParticles","t":4,"rt":$n[1].ParticleSystem,"sn":"thisParticles"},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"thisSR","t":4,"rt":$n[1].SpriteRenderer,"sn":"thisSR"},{"a":1,"n":"waitTemp","t":4,"rt":$n[1].WaitForSeconds,"sn":"waitTemp"}]}; }, $n);
     /*BasicDrag end.*/
 
-    /*BD_AnimatorDrag start.*/
-    $m("BD_AnimatorDrag", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"PlayAnim","t":8,"sn":"PlayAnim","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":1,"n":"StopAnim","t":8,"sn":"StopAnim","rt":$n[0].Void},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"BD","t":4,"rt":BasicDrag,"sn":"BD"},{"a":2,"n":"OnComplete","t":4,"rt":$n[3].UnityEvent,"sn":"OnComplete"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Source","t":4,"rt":$n[1].AudioSource,"sn":"Source"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Vibration","t":4,"rt":$n[0].Boolean,"sn":"Vibration","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"anim","t":4,"rt":$n[1].Animator,"sn":"anim"},{"at":[new UnityEngine.RangeAttribute(0.0, 1.0)],"a":2,"n":"completionThreshold","t":4,"rt":$n[0].Single,"sn":"completionThreshold","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"hasCompleted","t":4,"rt":$n[0].Boolean,"sn":"hasCompleted","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"isCompletable","t":4,"rt":$n[0].Boolean,"sn":"isCompletable","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isPlaying","t":4,"rt":$n[0].Boolean,"sn":"isPlaying","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
-    /*BD_AnimatorDrag end.*/
+    /*BD_Action start.*/
+    $m("BD_Action", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"OnMouseDownCalled","t":8,"sn":"OnMouseDownCalled","rt":$n[0].Void},{"a":1,"n":"OnMouseUpCalled","t":8,"sn":"OnMouseUpCalled","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"at":[new UnityEngine.HeaderAttribute("Mouse Events")],"a":2,"n":"OnMouseDownEvent","t":4,"rt":$n[3].UnityEvent,"sn":"OnMouseDownEvent"},{"a":2,"n":"OnMouseUpEvent","t":4,"rt":$n[3].UnityEvent,"sn":"OnMouseUpEvent"},{"a":1,"n":"def_SO","t":4,"rt":$n[0].Int32,"sn":"def_SO","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.HeaderAttribute("Sprite Render"),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"setToolLayer","t":4,"rt":$n[0].Boolean,"sn":"setToolLayer","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"tool","t":4,"rt":BasicDrag,"sn":"tool"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"tool_SP","t":4,"rt":$n[1].SpriteRenderer,"sn":"tool_SP"}]}; }, $n);
+    /*BD_Action end.*/
 
     /*BD_CameraFollow start.*/
     $m("BD_CameraFollow", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"DisableFollow","t":8,"sn":"DisableFollow","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"FOV","t":4,"rt":$n[0].Single,"sn":"FOV","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Pivot","t":4,"rt":$n[1].Transform,"sn":"Pivot"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Tool","t":4,"rt":BasicDrag,"sn":"Tool"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"X_L","t":4,"rt":$n[0].Single,"sn":"X_L","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"X_R","t":4,"rt":$n[0].Single,"sn":"X_R","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"Y_H","t":4,"rt":$n[0].Single,"sn":"Y_H","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("AXIS CONTROLS"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Y_L","t":4,"rt":$n[0].Single,"sn":"Y_L","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"canStart","t":4,"rt":$n[0].Boolean,"sn":"canStart","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"duration","t":4,"rt":$n[0].Single,"sn":"duration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"startDelay","t":4,"rt":$n[0].Single,"sn":"startDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"tempPos","t":4,"rt":$n[1].Vector3,"sn":"tempPos"},{"a":1,"n":"wasDragging","t":4,"rt":$n[0].Boolean,"sn":"wasDragging","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
@@ -13378,17 +14170,9 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     $m("ScratchData", function () { return {"att":1056769,"a":2,"at":[new System.SerializableAttribute()],"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ScratchManager","t":4,"rt":$n[5].ScratchCardManager,"sn":"ScratchManager"},{"a":2,"n":"isComplete","t":4,"rt":$n[0].Boolean,"sn":"isComplete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"scratchLimit","t":4,"rt":$n[0].Single,"sn":"scratchLimit","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}}]}; }, $n);
     /*ScratchData end.*/
 
-    /*BD_ProgressHelper start.*/
-    $m("BD_ProgressHelper", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"DisableProgress","t":8,"sn":"DisableProgress","rt":$n[0].Void},{"a":1,"n":"EnableProgress","t":8,"sn":"EnableProgress","rt":$n[0].Void},{"a":1,"n":"ProgressChecking","t":8,"sn":"ProgressChecking","rt":$n[4].IEnumerator},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"BD_Progress","t":4,"rt":BD_Progress,"sn":"BD_Progress"},{"a":1,"n":"Co","t":4,"rt":$n[1].Coroutine,"sn":"Co"},{"a":2,"n":"fadeIn","t":4,"rt":$n[0].Boolean,"sn":"fadeIn","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"fadeSprite","t":4,"rt":$n[1].SpriteRenderer,"sn":"fadeSprite"},{"a":1,"n":"waitTemp","t":4,"rt":$n[1].WaitForSeconds,"sn":"waitTemp"}]}; }, $n);
-    /*BD_ProgressHelper end.*/
-
     /*BD_SpriteChange start.*/
     $m("BD_SpriteChange", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"a":2,"n":"ToolPicked","t":8,"sn":"ToolPicked","rt":$n[0].Void},{"a":2,"n":"ToolReleased","t":8,"sn":"ToolReleased","rt":$n[0].Void},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"BD","t":4,"rt":BasicDrag,"sn":"BD"},{"a":2,"n":"Default","t":4,"rt":$n[1].Sprite,"sn":"Default"},{"a":2,"n":"Picked","t":4,"rt":$n[1].Sprite,"sn":"Picked"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"SR","t":4,"rt":$n[1].SpriteRenderer,"sn":"SR"},{"a":2,"n":"resetOnRelease","t":4,"rt":$n[0].Boolean,"sn":"resetOnRelease","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
     /*BD_SpriteChange end.*/
-
-    /*BD_ToolRotate start.*/
-    $m("BD_ToolRotate", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Clamp","t":4,"rt":BD_Clamp,"sn":"Clamp"},{"a":2,"n":"MaxAngle","t":4,"rt":$n[1].Vector3,"sn":"MaxAngle"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("AXIS CONTROLS"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"MinAngle","t":4,"rt":$n[1].Vector3,"sn":"MinAngle"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Pivot","t":4,"rt":$n[1].Transform,"sn":"Pivot"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Tool","t":4,"rt":BasicDrag,"sn":"Tool"},{"a":1,"n":"canStart","t":4,"rt":$n[0].Boolean,"sn":"canStart","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"currentT","t":4,"rt":$n[0].Single,"sn":"currentT","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.TooltipAttribute("How quickly the pivot follows tool movement")],"a":2,"n":"rotationSpeed","t":4,"rt":$n[0].Single,"sn":"rotationSpeed","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"startDelay","t":4,"rt":$n[0].Single,"sn":"startDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"targetT","t":4,"rt":$n[0].Single,"sn":"targetT","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}}]}; }, $n);
-    /*BD_ToolRotate end.*/
 
     /*CameraController start.*/
     $m("CameraController", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"Camera_Shake","t":8,"sn":"Camera_Shake","rt":$n[0].Void},{"a":2,"n":"KillPositionTweens","t":8,"sn":"KillPositionTweens","rt":$n[0].Void},{"a":1,"n":"KillTweens","t":8,"sn":"KillTweens","rt":$n[0].Void},{"a":2,"n":"MoveCamera","t":8,"pi":[{"n":"targetPosition","pt":$n[1].Vector3,"ps":0},{"n":"targetSizeOrFov","pt":$n[0].Single,"ps":1},{"n":"duration","dv":-1.0,"o":true,"pt":$n[0].Single,"ps":2},{"n":"ease","dv":null,"o":true,"pt":$n[0].Nullable$1(DG.Tweening.Ease),"ps":3},{"n":"onComplete","dv":null,"o":true,"pt":Function,"ps":4}],"sn":"MoveCamera","rt":$n[0].Void,"p":[$n[1].Vector3,$n[0].Single,$n[0].Single,$n[0].Nullable$1(DG.Tweening.Ease),Function]},{"a":2,"n":"ResetCameraInstant","t":8,"sn":"ResetCameraInstant","rt":$n[0].Void},{"a":2,"n":"ResetCameraTween","t":8,"pi":[{"n":"duration","dv":-1.0,"o":true,"pt":$n[0].Single,"ps":0}],"sn":"ResetCameraTween","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"SetCameraInstant","t":8,"pi":[{"n":"newPosition","pt":$n[1].Vector3,"ps":0},{"n":"sizeOrFov","pt":$n[0].Single,"ps":1}],"sn":"SetCameraInstant","rt":$n[0].Void,"p":[$n[1].Vector3,$n[0].Single]},{"a":2,"n":"Instance","is":true,"t":4,"rt":CameraController,"sn":"Instance"},{"a":2,"n":"cam","t":4,"rt":$n[1].Camera,"sn":"cam"},{"at":[new UnityEngine.HeaderAttribute("Tween Settings"),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"defaultDuration","t":4,"rt":$n[0].Single,"sn":"defaultDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"defaultEase","t":4,"rt":$n[6].Ease,"sn":"defaultEase","box":function ($v) { return Bridge.box($v, DG.Tweening.Ease, System.Enum.toStringFn(DG.Tweening.Ease));}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"defaultFOV","t":4,"rt":$n[0].Single,"sn":"defaultFOV","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HeaderAttribute("Default Settings"),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"defaultPosition","t":4,"rt":$n[1].Vector3,"sn":"defaultPosition"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"defaultSize","t":4,"rt":$n[0].Single,"sn":"defaultSize","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"positionTween","t":4,"rt":$n[6].Tweener,"sn":"positionTween"},{"a":1,"n":"sizeTween","t":4,"rt":$n[6].Tweener,"sn":"sizeTween"}]}; }, $n);
@@ -13398,25 +14182,29 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     $m("ZoomPos", function () { return {"att":1056769,"a":2,"at":[new System.SerializableAttribute()],"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"CameraFOV","t":4,"rt":$n[0].Single,"sn":"CameraFOV","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"CameraPos","t":4,"rt":$n[1].Vector3,"sn":"CameraPos"}]}; }, $n);
     /*ZoomPos end.*/
 
-    /*DestroyObj start.*/
-    $m("DestroyObj", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"destroyDelay","t":4,"rt":$n[0].Single,"sn":"destroyDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}}]}; }, $n);
-    /*DestroyObj end.*/
-
     /*GameManager start.*/
     $m("GameManager", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"ApplySaveForSceneLevel","t":8,"pi":[{"n":"level","pt":LevelData,"ps":0}],"sn":"ApplySaveForSceneLevel","rt":$n[0].Void,"p":[LevelData]},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"BindLevel","t":8,"pi":[{"n":"level","pt":LevelData,"ps":0}],"sn":"BindLevel","rt":$n[0].Void,"p":[LevelData]},{"a":1,"n":"BindSceneLevel","t":8,"sn":"BindSceneLevel","rt":$n[0].Void},{"v":true,"a":2,"n":"Complete","t":8,"sn":"Complete","rt":$n[0].Void},{"a":2,"n":"Continue","t":8,"sn":"Continue","rt":$n[0].Void},{"a":1,"n":"EnsureLoadingManager","t":8,"sn":"EnsureLoadingManager","rt":$n[0].Void},{"a":1,"n":"EnsureSaveSystem","t":8,"sn":"EnsureSaveSystem","rt":$n[0].Void},{"a":2,"n":"Home","t":8,"pi":[{"n":"number","pt":$n[0].Int32,"ps":0}],"sn":"Home","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":1,"n":"LoadLevel","t":8,"sn":"LoadLevel","rt":$n[0].Void},{"a":2,"n":"MuteLevelAudio","t":8,"sn":"MuteLevelAudio","rt":$n[0].Void},{"a":2,"n":"Next","t":8,"sn":"Next","rt":$n[0].Void},{"a":2,"n":"RecordLevelCompleteEvent","t":8,"sn":"RecordLevelCompleteEvent","rt":$n[0].Void},{"a":1,"n":"RecordLevelStartEvent","t":8,"pi":[{"n":"levelIs","pt":$n[0].Int32,"ps":0}],"sn":"RecordLevelStartEvent","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":1,"n":"ReloadActiveScene","t":8,"sn":"ReloadActiveScene","rt":$n[0].Void},{"a":2,"n":"Restart","t":8,"pi":[{"n":"number","pt":$n[0].Int32,"ps":0}],"sn":"Restart","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"a":2,"n":"StopAllDrags","t":8,"sn":"StopAllDrags","rt":$n[0].Void},{"a":1,"n":"TryParseLevelName","is":true,"t":8,"pi":[{"n":"objectName","pt":$n[0].String,"ps":0},{"n":"levelNo","out":true,"pt":$n[0].Int32,"ps":1},{"n":"partNo","out":true,"pt":$n[0].Int32,"ps":2}],"sn":"TryParseLevelName","rt":$n[0].Boolean,"p":[$n[0].String,$n[0].Int32,$n[0].Int32],"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"UnMuteLevelAudio","t":8,"sn":"UnMuteLevelAudio","rt":$n[0].Void},{"a":2,"n":"checkForDrag","t":8,"sn":"checkForDrag","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isOverUI","t":8,"sn":"isOverUI","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"BG_Music","t":4,"rt":$n[1].AudioClip,"sn":"BG_Music"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"DefaultMat","t":4,"rt":$n[1].Material,"sn":"DefaultMat"},{"a":1,"n":"Temp","t":4,"rt":LevelData,"sn":"Temp"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"currentLevel","t":4,"rt":LevelData,"sn":"currentLevel"},{"a":2,"n":"currentLevelNo","t":4,"rt":$n[0].Int32,"sn":"currentLevelNo","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"instance","is":true,"t":4,"rt":GameManager,"sn":"instance"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"isComplete","t":4,"rt":$n[0].Boolean,"sn":"isComplete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isPaused","t":4,"rt":$n[0].Boolean,"sn":"isPaused","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"levelEndTime","t":4,"rt":$n[0].Single,"sn":"levelEndTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"levelStartTime","t":4,"rt":$n[0].Single,"sn":"levelStartTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"restoreEffectShader","t":4,"rt":$n[1].Shader,"sn":"restoreEffectShader"},{"at":[new UnityEngine.TooltipAttribute("OFF for menu-driven playables: the level is activated later by PlayableRouter instead of being loaded at Start. Leave ON for scenes that hold a single level.")],"a":2,"n":"startLevelOnPlay","t":4,"rt":$n[0].Boolean,"sn":"startLevelOnPlay","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"stickerEffectShader","t":4,"rt":$n[1].Shader,"sn":"stickerEffectShader"},{"a":2,"n":"timerCo","t":4,"rt":$n[1].Coroutine,"sn":"timerCo"}]}; }, $n);
     /*GameManager end.*/
 
-    /*Lvl3_PlaceGlue start.*/
-    $m("Lvl3_PlaceGlue", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"OnTriggerEnter2D","t":8,"pi":[{"n":"collision","pt":$n[1].Collider2D,"ps":0}],"sn":"OnTriggerEnter2D","rt":$n[0].Void,"p":[$n[1].Collider2D]},{"a":1,"n":"PlaceGlue","t":8,"sn":"PlaceGlue","rt":$n[0].Void},{"a":2,"n":"Detect","t":4,"rt":$n[1].GameObject,"sn":"Detect"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"OnComplete","t":4,"rt":$n[3].UnityEvent,"sn":"OnComplete"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"PlaceClip","t":4,"rt":$n[1].AudioClip,"sn":"PlaceClip"},{"a":2,"n":"Target","t":4,"rt":$n[1].GameObject,"sn":"Target"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Tool","t":4,"rt":BasicDrag,"sn":"Tool"},{"a":1,"n":"isPlaced","t":4,"rt":$n[0].Boolean,"sn":"isPlaced","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
-    /*Lvl3_PlaceGlue end.*/
+    /*Level1_SurfController start.*/
+    $m("Level1_SurfController", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"CompleteLevel","t":8,"sn":"CompleteLevel","rt":$n[0].Void},{"a":1,"n":"GetCurrentRotationZ","t":8,"sn":"GetCurrentRotationZ","rt":$n[0].Single,"box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"OnMouseDown","t":8,"sn":"OnMouseDown","rt":$n[0].Void},{"a":1,"n":"OnMouseUp","t":8,"sn":"OnMouseUp","rt":$n[0].Void},{"a":1,"n":"ProgressCoroutine","t":8,"sn":"ProgressCoroutine","rt":$n[4].IEnumerator},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":1,"n":"StartSurfAnimation","t":8,"sn":"StartSurfAnimation","rt":$n[0].Void},{"a":1,"n":"StopRotationAndParticlesOnly","t":8,"sn":"StopRotationAndParticlesOnly","rt":$n[0].Void},{"a":1,"n":"UpdateMaskPosition","t":8,"pi":[{"n":"progress","pt":$n[0].Single,"ps":0}],"sn":"UpdateMaskPosition","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"Indication","t":4,"rt":$n[1].GameObject,"sn":"Indication"},{"at":[new UnityEngine.HeaderAttribute("Events")],"a":2,"n":"OnComplete","t":4,"rt":$n[3].UnityEvent,"sn":"OnComplete"},{"a":2,"n":"currentHoldProgress","t":4,"rt":$n[0].Single,"sn":"currentHoldProgress","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"currentMaskProgress","t":4,"rt":$n[0].Single,"sn":"currentMaskProgress","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"defaultMaskY","t":4,"rt":$n[0].Single,"sn":"defaultMaskY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"defaultRotation","t":4,"rt":$n[1].Vector3,"sn":"defaultRotation"},{"a":1,"n":"isCompleted","t":4,"rt":$n[0].Boolean,"sn":"isCompleted","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isHolding","t":4,"rt":$n[0].Boolean,"sn":"isHolding","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"m_LastPressTime","t":4,"rt":$n[0].Single,"sn":"m_LastPressTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"m_PressDelay","t":4,"rt":$n[0].Single,"sn":"m_PressDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HeaderAttribute("Mask Settings")],"a":2,"n":"maskItem","t":4,"rt":$n[1].Transform,"sn":"maskItem"},{"a":2,"n":"maskMoveDuration","t":4,"rt":$n[0].Single,"sn":"maskMoveDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"maskTarget_posY","t":4,"rt":$n[0].Single,"sn":"maskTarget_posY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"minRotationForProgress","t":4,"rt":$n[0].Single,"sn":"minRotationForProgress","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"progressCoroutine","t":4,"rt":$n[1].Coroutine,"sn":"progressCoroutine"},{"at":[new UnityEngine.HeaderAttribute("Progress Settings")],"a":2,"n":"requiredHoldTime","t":4,"rt":$n[0].Single,"sn":"requiredHoldTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"rotateTween","t":4,"rt":$n[6].Tween,"sn":"rotateTween"},{"a":2,"n":"rotationDuration","t":4,"rt":$n[0].Single,"sn":"rotationDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"rotationEase","t":4,"rt":$n[6].Ease,"sn":"rotationEase","box":function ($v) { return Bridge.box($v, DG.Tweening.Ease, System.Enum.toStringFn(DG.Tweening.Ease));}},{"at":[new UnityEngine.HeaderAttribute("Particles")],"a":2,"n":"surf_Particles","t":4,"rt":$n[1].GameObject,"sn":"surf_Particles"},{"a":2,"n":"surf_SubEmitter","t":4,"rt":$n[1].GameObject,"sn":"surf_SubEmitter"},{"at":[new UnityEngine.TooltipAttribute("Target area jiske upar tip honi chahiye")],"a":2,"n":"targetZoneCollider","t":4,"rt":$n[1].Collider2D,"sn":"targetZoneCollider"},{"at":[new UnityEngine.HeaderAttribute("Rotation Settings")],"a":2,"n":"target_rotZ","t":4,"rt":$n[0].Single,"sn":"target_rotZ","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HeaderAttribute("Collider References"),new UnityEngine.TooltipAttribute("Woh collider jo sirf progress check karne ke liye hai (Tip)")],"a":2,"n":"tipCollider","t":4,"rt":$n[1].Collider2D,"sn":"tipCollider"}]}; }, $n);
+    /*Level1_SurfController end.*/
 
-    /*Lvl3_PlaceItem start.*/
-    $m("Lvl3_PlaceItem", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"OnTriggerEnter2D","t":8,"pi":[{"n":"collision","pt":$n[1].Collider2D,"ps":0}],"sn":"OnTriggerEnter2D","rt":$n[0].Void,"p":[$n[1].Collider2D]},{"a":1,"n":"OnTriggerExit2D","t":8,"pi":[{"n":"collision","pt":$n[1].Collider2D,"ps":0}],"sn":"OnTriggerExit2D","rt":$n[0].Void,"p":[$n[1].Collider2D]},{"a":1,"n":"PlaceItems","t":8,"sn":"PlaceItems","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":2,"n":"Detect","t":4,"rt":$n[1].GameObject,"sn":"Detect"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"OnComplete","t":4,"rt":$n[3].UnityEvent,"sn":"OnComplete"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"PlaceClip","t":4,"rt":$n[1].AudioClip,"sn":"PlaceClip"},{"a":2,"n":"Target","t":4,"rt":$n[1].GameObject,"sn":"Target"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Tool","t":4,"rt":BasicDrag,"sn":"Tool"},{"a":1,"n":"isInsideCollider","t":4,"rt":$n[0].Boolean,"sn":"isInsideCollider","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isPlaced","t":4,"rt":$n[0].Boolean,"sn":"isPlaced","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
-    /*Lvl3_PlaceItem end.*/
+    /*RotaryTimerKnob start.*/
+    $m("RotaryTimerKnob", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"GetMouseAngle","t":8,"sn":"GetMouseAngle","rt":$n[0].Single,"box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"OnMouseDown","t":8,"sn":"OnMouseDown","rt":$n[0].Void},{"a":1,"n":"OnMouseDrag","t":8,"sn":"OnMouseDrag","rt":$n[0].Void},{"a":1,"n":"OnMouseUp","t":8,"sn":"OnMouseUp","rt":$n[0].Void},{"a":2,"n":"ResetKnob","t":8,"sn":"ResetKnob","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":1,"n":"TriggerStepFeedback","t":8,"sn":"TriggerStepFeedback","rt":$n[0].Void},{"a":1,"n":"UpdateUI","t":8,"sn":"UpdateUI","rt":$n[0].Void},{"a":2,"n":"isOverUI","t":8,"sn":"isOverUI","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HeaderAttribute("Completion")],"a":2,"n":"OnComplete","t":4,"rt":$n[3].UnityEvent,"sn":"OnComplete"},{"a":1,"n":"accumulatedRotation","t":4,"rt":$n[0].Single,"sn":"accumulatedRotation","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HeaderAttribute("Feedback")],"a":2,"n":"clickSound","t":4,"rt":$n[1].AudioClip,"sn":"clickSound"},{"a":1,"n":"currentStep","t":4,"rt":$n[0].Int32,"sn":"currentStep","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"enableVibration","t":4,"rt":$n[0].Boolean,"sn":"enableVibration","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"handIndication","t":4,"rt":$n[1].GameObject,"sn":"handIndication"},{"a":1,"n":"isCompleted","t":4,"rt":$n[0].Boolean,"sn":"isCompleted","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"lastMouseAngle","t":4,"rt":$n[0].Single,"sn":"lastMouseAngle","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HeaderAttribute("=== Rotary Timer Settings ===")],"a":2,"n":"numSteps","t":4,"rt":$n[0].Int32,"sn":"numSteps","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"onlyClockwise","t":4,"rt":$n[0].Boolean,"sn":"onlyClockwise","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"stepAngle","t":4,"rt":$n[0].Single,"sn":"stepAngle","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HeaderAttribute("Step UI")],"a":2,"n":"stepText","t":4,"rt":$n[7].Text,"sn":"stepText"}]}; }, $n);
+    /*RotaryTimerKnob end.*/
+
+    /*SewingCol start.*/
+    $m("SewingCol", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"OnTriggerEnter2D","t":8,"pi":[{"n":"collision","pt":$n[1].Collider2D,"ps":0}],"sn":"OnTriggerEnter2D","rt":$n[0].Void,"p":[$n[1].Collider2D]},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"Anim_Items","t":4,"rt":System.Array.type(DG.Tweening.DOTweenAnimation),"sn":"Anim_Items"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"isDone","t":4,"rt":$n[0].Boolean,"sn":"isDone","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"sfx","t":4,"rt":$n[1].AudioClip,"sn":"sfx"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"targetTip","t":4,"rt":$n[1].Collider2D,"sn":"targetTip"}]}; }, $n);
+    /*SewingCol end.*/
 
     /*LevelData start.*/
-    $m("LevelData", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"LevelComplete","t":8,"sn":"LevelComplete","rt":$n[0].Void},{"a":2,"n":"LevelStart","t":8,"sn":"LevelStart","rt":$n[0].Void},{"at":[new UnityEngine.ContextMenu.ctor("SetAudioAndDrag")],"a":2,"n":"SetAudioAndDrag","t":8,"sn":"SetAudioAndDrag","rt":$n[0].Void},{"a":2,"n":"SetProgressBar","t":8,"sn":"SetProgressBar","rt":$n[0].Void},{"a":2,"n":"SetProgressDelay","t":8,"sn":"SetProgressDelay","rt":$n[0].Void},{"a":1,"n":"Setup","t":8,"sn":"Setup","rt":$n[4].IEnumerator},{"a":2,"n":"ToolInputToggle","t":8,"pi":[{"n":"tool","pt":$n[1].GameObject,"ps":0},{"n":"toggle","pt":$n[0].Boolean,"ps":1}],"sn":"ToolInputToggle","rt":$n[0].Void,"p":[$n[1].GameObject,$n[0].Boolean]},{"a":3,"n":"TryStartStep","t":8,"pi":[{"n":"stepStartAction","pt":Function,"ps":0},{"n":"stepNumber","pt":$n[0].Int32,"ps":1}],"sn":"TryStartStep","rt":$n[0].Boolean,"p":[Function,$n[0].Int32],"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"AllDrags","t":4,"rt":System.Array.type(BasicDrag),"sn":"AllDrags"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"AllScratches","t":4,"rt":System.Array.type(ScratchCardAsset.ScratchCardManager),"sn":"AllScratches"},{"a":2,"n":"AllSources","t":4,"rt":System.Array.type(UnityEngine.AudioSource),"sn":"AllSources"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"LevelIcon","t":4,"rt":$n[1].Sprite,"sn":"LevelIcon"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Level_BG","t":4,"rt":$n[1].AudioClip,"sn":"Level_BG"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolIcons","t":4,"rt":$n[7].List$1(UnityEngine.Sprite),"sn":"ToolIcons"},{"a":1,"n":"completionCameraMoving","t":4,"rt":$n[0].Boolean,"sn":"completionCameraMoving","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"completionCameraReady","t":4,"rt":$n[0].Boolean,"sn":"completionCameraReady","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"completionZoom","t":4,"rt":ZoomPos,"sn":"completionZoom"},{"a":2,"n":"completionZoomDuration","t":4,"rt":$n[0].Single,"sn":"completionZoomDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.TooltipAttribute("Switched OFF once the end card is shown: HUD, tool bar, gameplay overlays \u2014 anything that should not sit on top of or behind it.\n\nDo NOT list a parent of CompletePanel itself \u2014 the panel is switched on first, but disabling something above it in the hierarchy would hide it again.")],"a":2,"n":"disableOnLevelComplete","t":4,"rt":System.Array.type(UnityEngine.GameObject),"sn":"disableOnLevelComplete"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"levelName","t":4,"rt":$n[0].String,"sn":"levelName"},{"a":2,"n":"levelNo","t":4,"rt":$n[0].Int32,"sn":"levelNo","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"levelReward","t":4,"rt":$n[0].Int32,"sn":"levelReward","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"partNo","t":4,"rt":$n[0].Int32,"sn":"partNo","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"stepsDone","t":4,"rt":$n[0].Int32,"sn":"stepsDone","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"wait1sec","t":4,"rt":$n[1].WaitForSeconds,"sn":"wait1sec"},{"at":[new UnityEngine.HeaderAttribute("Completion Camera"),new UnityEngine.TooltipAttribute("Move to Completion Zoom before finishing the level and showing the end panel.")],"a":2,"n":"zoomBeforeComplete","t":4,"rt":$n[0].Boolean,"sn":"zoomBeforeComplete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
+    $m("LevelData", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"LevelComplete","t":8,"sn":"LevelComplete","rt":$n[0].Void},{"a":2,"n":"LevelStart","t":8,"sn":"LevelStart","rt":$n[0].Void},{"at":[new UnityEngine.ContextMenu.ctor("SetAudioAndDrag")],"a":2,"n":"SetAudioAndDrag","t":8,"sn":"SetAudioAndDrag","rt":$n[0].Void},{"a":2,"n":"SetProgressBar","t":8,"sn":"SetProgressBar","rt":$n[0].Void},{"a":2,"n":"SetProgressDelay","t":8,"sn":"SetProgressDelay","rt":$n[0].Void},{"a":1,"n":"Setup","t":8,"sn":"Setup","rt":$n[4].IEnumerator},{"a":2,"n":"ToolInputToggle","t":8,"pi":[{"n":"tool","pt":$n[1].GameObject,"ps":0},{"n":"toggle","pt":$n[0].Boolean,"ps":1}],"sn":"ToolInputToggle","rt":$n[0].Void,"p":[$n[1].GameObject,$n[0].Boolean]},{"a":3,"n":"TryStartStep","t":8,"pi":[{"n":"stepStartAction","pt":Function,"ps":0},{"n":"stepNumber","pt":$n[0].Int32,"ps":1}],"sn":"TryStartStep","rt":$n[0].Boolean,"p":[Function,$n[0].Int32],"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"AllDrags","t":4,"rt":System.Array.type(BasicDrag),"sn":"AllDrags"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"AllScratches","t":4,"rt":System.Array.type(ScratchCardAsset.ScratchCardManager),"sn":"AllScratches"},{"a":2,"n":"AllSources","t":4,"rt":System.Array.type(UnityEngine.AudioSource),"sn":"AllSources"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"LevelIcon","t":4,"rt":$n[1].Sprite,"sn":"LevelIcon"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Level_BG","t":4,"rt":$n[1].AudioClip,"sn":"Level_BG"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolIcons","t":4,"rt":$n[8].List$1(UnityEngine.Sprite),"sn":"ToolIcons"},{"a":1,"n":"completionCameraMoving","t":4,"rt":$n[0].Boolean,"sn":"completionCameraMoving","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"completionCameraReady","t":4,"rt":$n[0].Boolean,"sn":"completionCameraReady","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"completionZoom","t":4,"rt":ZoomPos,"sn":"completionZoom"},{"a":2,"n":"completionZoomDuration","t":4,"rt":$n[0].Single,"sn":"completionZoomDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.TooltipAttribute("Switched OFF once the end card is shown: HUD, tool bar, gameplay overlays \u2014 anything that should not sit on top of or behind it.\n\nDo NOT list a parent of CompletePanel itself \u2014 the panel is switched on first, but disabling something above it in the hierarchy would hide it again.")],"a":2,"n":"disableOnLevelComplete","t":4,"rt":System.Array.type(UnityEngine.GameObject),"sn":"disableOnLevelComplete"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"levelName","t":4,"rt":$n[0].String,"sn":"levelName"},{"a":2,"n":"levelNo","t":4,"rt":$n[0].Int32,"sn":"levelNo","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"levelReward","t":4,"rt":$n[0].Int32,"sn":"levelReward","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"partNo","t":4,"rt":$n[0].Int32,"sn":"partNo","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"stepsDone","t":4,"rt":$n[0].Int32,"sn":"stepsDone","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"wait1sec","t":4,"rt":$n[1].WaitForSeconds,"sn":"wait1sec"},{"at":[new UnityEngine.HeaderAttribute("Completion Camera"),new UnityEngine.TooltipAttribute("Move to Completion Zoom before finishing the level and showing the end panel.")],"a":2,"n":"zoomBeforeComplete","t":4,"rt":$n[0].Boolean,"sn":"zoomBeforeComplete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
     /*LevelData end.*/
+
+    /*PlaceItem start.*/
+    $m("PlaceItem", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"OnTriggerEnter2D","t":8,"pi":[{"n":"collision","pt":$n[1].Collider2D,"ps":0}],"sn":"OnTriggerEnter2D","rt":$n[0].Void,"p":[$n[1].Collider2D]},{"a":1,"n":"OnTriggerExit2D","t":8,"pi":[{"n":"collision","pt":$n[1].Collider2D,"ps":0}],"sn":"OnTriggerExit2D","rt":$n[0].Void,"p":[$n[1].Collider2D]},{"a":1,"n":"PlaceItemCheck","t":8,"sn":"PlaceItemCheck","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Clip","t":4,"rt":$n[1].AudioClip,"sn":"Clip"},{"a":2,"n":"OnPlaced","t":4,"rt":$n[3].UnityEvent,"sn":"OnPlaced"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Target","t":4,"rt":$n[1].GameObject,"sn":"Target"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"changeScaleOnPlace","t":4,"rt":$n[0].Boolean,"sn":"changeScaleOnPlace","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isInsideCollider","t":4,"rt":$n[0].Boolean,"sn":"isInsideCollider","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isPlaced","t":4,"rt":$n[0].Boolean,"sn":"isPlaced","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"item","t":4,"rt":$n[1].Transform,"sn":"item"},{"a":2,"n":"jumpDuration","t":4,"rt":$n[0].Single,"sn":"jumpDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"jumpHeight","t":4,"rt":$n[0].Single,"sn":"jumpHeight","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.TooltipAttribute("Hop up above the target first, then settle down into it")],"a":2,"n":"jumpOnPlace","t":4,"rt":$n[0].Boolean,"sn":"jumpOnPlace","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"newScaleOnPlace","t":4,"rt":$n[1].Vector3,"sn":"newScaleOnPlace"},{"a":2,"n":"settleDuration","t":4,"rt":$n[0].Single,"sn":"settleDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"thisCol","t":4,"rt":$n[1].Collider2D,"sn":"thisCol"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"thisDrag","t":4,"rt":BasicDrag,"sn":"thisDrag"}]}; }, $n);
+    /*PlaceItem end.*/
 
     /*PlayParticlesOnCollision start.*/
     $m("PlayParticlesOnCollision", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"OnTriggerEnter2D","t":8,"pi":[{"n":"collision","pt":$n[1].Collider2D,"ps":0}],"sn":"OnTriggerEnter2D","rt":$n[0].Void,"p":[$n[1].Collider2D]},{"a":2,"n":"OnCollisionEvent","t":4,"rt":$n[3].UnityEvent,"sn":"OnCollisionEvent"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ParticlePrefab","t":4,"rt":$n[1].GameObject,"sn":"ParticlePrefab"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Target","t":4,"rt":$n[1].GameObject,"sn":"Target"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"destroyIt","t":4,"rt":$n[0].Boolean,"sn":"destroyIt","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"disableOnCollision","t":4,"rt":$n[0].Boolean,"sn":"disableOnCollision","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isDone","t":4,"rt":$n[0].Boolean,"sn":"isDone","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"stayAtPlace","t":4,"rt":$n[0].Boolean,"sn":"stayAtPlace","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
@@ -13430,12 +14218,20 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     $m("SfxPlayType", function () { return {"att":8449,"a":2,"at":[new System.SerializableAttribute()],"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"OnDrag","is":true,"t":4,"rt":SfxPlayType,"sn":"OnDrag","box":function ($v) { return Bridge.box($v, SfxPlayType, System.Enum.toStringFn(SfxPlayType));}},{"a":2,"n":"OnEnter","is":true,"t":4,"rt":SfxPlayType,"sn":"OnEnter","box":function ($v) { return Bridge.box($v, SfxPlayType, System.Enum.toStringFn(SfxPlayType));}}]}; }, $n);
     /*SfxPlayType end.*/
 
+    /*StaticFixedPipe start.*/
+    $m("StaticFixedPipe", function () { return {"nested":[StaticFixedPipe.RopeSegment],"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"ApplyConstraints","t":8,"sn":"ApplyConstraints","rt":$n[0].Void},{"a":1,"n":"BuildMesh","t":8,"sn":"BuildMesh","rt":$n[0].Void},{"a":1,"n":"DrawRope","t":8,"sn":"DrawRope","rt":$n[0].Void},{"a":1,"n":"LateUpdate","t":8,"sn":"LateUpdate","rt":$n[0].Void},{"a":1,"n":"Simulate","t":8,"sn":"Simulate","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":2,"n":"constraintIterations","t":4,"rt":$n[0].Int32,"sn":"constraintIterations","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"fixedEndPoint","t":4,"rt":$n[1].Transform,"sn":"fixedEndPoint"},{"a":2,"n":"gravity","t":4,"rt":$n[1].Vector3,"sn":"gravity"},{"a":1,"n":"mesh","t":4,"rt":$n[1].Mesh,"sn":"mesh"},{"at":[new UnityEngine.HeaderAttribute("Attachments")],"a":2,"n":"meshRenderer","t":4,"rt":$n[1].MeshRenderer,"sn":"meshRenderer"},{"a":1,"n":"meshTransform","t":4,"rt":$n[1].Transform,"sn":"meshTransform"},{"a":2,"n":"pipeWidth","t":4,"rt":$n[0].Single,"sn":"pipeWidth","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"ropeSegments","t":4,"rt":$n[8].List$1(StaticFixedPipe.RopeSegment),"sn":"ropeSegments"},{"at":[new UnityEngine.HeaderAttribute("Settings")],"a":2,"n":"segmentCount","t":4,"rt":$n[0].Int32,"sn":"segmentCount","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"segmentLength","t":4,"rt":$n[0].Single,"sn":"segmentLength","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"toolDirectionPoint","t":4,"rt":$n[1].Transform,"sn":"toolDirectionPoint"},{"a":2,"n":"toolTransform","t":4,"rt":$n[1].Transform,"sn":"toolTransform"},{"a":2,"n":"totalLength","t":4,"rt":$n[0].Single,"sn":"totalLength","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"vertices","t":4,"rt":System.Array.type(UnityEngine.Vector3),"sn":"vertices"}]}; }, $n);
+    /*StaticFixedPipe end.*/
+
+    /*StaticFixedPipe+RopeSegment start.*/
+    $m("StaticFixedPipe.RopeSegment", function () { return {"td":StaticFixedPipe,"att":1048842,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":".ctor","t":1,"p":[$n[1].Vector3],"pi":[{"n":"pos","pt":$n[1].Vector3,"ps":0}],"sn":"$ctor1"},{"a":2,"n":"posNow","t":4,"rt":$n[1].Vector3,"sn":"posNow"},{"a":2,"n":"posOld","t":4,"rt":$n[1].Vector3,"sn":"posOld"}]}; }, $n);
+    /*StaticFixedPipe+RopeSegment end.*/
+
     /*SpriteButton start.*/
     $m("SpriteButton", function () { return {"att":1048577,"a":2,"at":[new UnityEngine.RequireComponent.ctor(UnityEngine.BoxCollider2D)],"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":1,"n":"IsPointerOverThisObject","t":8,"sn":"IsPointerOverThisObject","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"OnDisable","t":8,"sn":"OnDisable","rt":$n[0].Void},{"a":1,"n":"OnEnable","t":8,"sn":"OnEnable","rt":$n[0].Void},{"a":1,"n":"PointerDown","t":8,"sn":"PointerDown","rt":$n[0].Void},{"a":1,"n":"PointerUp","t":8,"sn":"PointerUp","rt":$n[0].Void},{"a":1,"n":"ResetButtonState","t":8,"sn":"ResetButtonState","rt":$n[0].Void},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"a":2,"n":"isOverUI","t":8,"sn":"isOverUI","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"activeButton","is":true,"t":4,"rt":SpriteButton,"sn":"activeButton"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"animationDuration","t":4,"rt":$n[0].Single,"sn":"animationDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"currentTween","t":4,"rt":$n[6].Tween,"sn":"currentTween"},{"a":1,"n":"delayedClickTween","t":4,"rt":$n[6].Tween,"sn":"delayedClickTween"},{"a":1,"n":"finishResetTween","t":4,"rt":$n[6].Tween,"sn":"finishResetTween"},{"a":1,"n":"hasMousePosition","t":4,"rt":$n[0].Boolean,"sn":"hasMousePosition","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"ignoreInitialHover","t":4,"rt":$n[0].Boolean,"sn":"ignoreInitialHover","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isFinished","t":4,"rt":$n[0].Boolean,"sn":"isFinished","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"isLevelBtnSfx","t":4,"rt":$n[0].Boolean,"sn":"isLevelBtnSfx","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"isLocked","t":4,"rt":$n[0].Boolean,"sn":"isLocked","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isPressed","t":4,"rt":$n[0].Boolean,"sn":"isPressed","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"lastMousePosition","t":4,"rt":$n[1].Vector3,"sn":"lastMousePosition"},{"a":2,"n":"lockMsg","t":4,"rt":$n[0].String,"sn":"lockMsg"},{"a":1,"n":"myCollider","t":4,"rt":$n[1].Collider2D,"sn":"myCollider"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"onClick","t":4,"rt":$n[3].UnityEvent,"sn":"onClick"},{"at":[new UnityEngine.TooltipAttribute("Fired when this button is tapped while isLocked. PlayableRouter listens to this to count locked taps and fire the store CTA after N of them.")],"a":2,"n":"onLockedClick","t":4,"rt":$n[3].UnityEvent,"sn":"onLockedClick"},{"a":1,"n":"originalSpriteScale","t":4,"rt":$n[1].Vector3,"sn":"originalSpriteScale"},{"at":[new UnityEngine.SpaceAttribute.$ctor1(10.0),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"pivot","t":4,"rt":$n[1].Transform,"sn":"pivot"},{"at":[new UnityEngine.SpaceAttribute.$ctor1(10.0),new UnityEngine.HeaderAttribute("Press Scale Settings"),new UnityEngine.TooltipAttribute("Percentage by which the SpriteRenderer scale is reduced while held."),new UnityEngine.RangeAttribute(0.0, 100.0),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"reductionChange","t":4,"rt":$n[0].Single,"sn":"reductionChange","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"scaleSaved","t":4,"rt":$n[0].Boolean,"sn":"scaleSaved","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
     /*SpriteButton end.*/
 
     /*CarouselScroller start.*/
-    $m("CarouselScroller", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Animate","t":8,"pi":[{"n":"direction","pt":$n[0].Int32,"ps":0}],"sn":"Animate","rt":$n[4].IEnumerator,"p":[$n[0].Int32]},{"a":2,"n":"EnableCurrentTick","t":8,"sn":"EnableCurrentTick","rt":$n[0].Void},{"a":2,"n":"EnableCurrentTick1st","t":8,"sn":"EnableCurrentTick1st","rt":$n[0].Void},{"a":2,"n":"InitCarousel","t":8,"pi":[{"n":"sprites","pt":$n[7].List$1(UnityEngine.Sprite),"ps":0}],"sn":"InitCarousel","rt":$n[0].Void,"p":[$n[7].List$1(UnityEngine.Sprite)]},{"a":2,"n":"ScrollNext","t":8,"sn":"ScrollNext","rt":$n[0].Void},{"a":1,"n":"SetAlpha","t":8,"pi":[{"n":"img","pt":$n[8].Image,"ps":0},{"n":"alpha","pt":$n[0].Single,"ps":1}],"sn":"SetAlpha","rt":$n[0].Void,"p":[$n[8].Image,$n[0].Single]},{"a":1,"n":"SetItemAlphaState","t":8,"pi":[{"n":"item","pt":scroller_Item,"ps":0},{"n":"bgA","pt":$n[0].Single,"ps":1},{"n":"fadeLA","pt":$n[0].Single,"ps":2},{"n":"fadeRA","pt":$n[0].Single,"ps":3}],"sn":"SetItemAlphaState","rt":$n[0].Void,"p":[scroller_Item,$n[0].Single,$n[0].Single,$n[0].Single]},{"a":1,"n":"SetItemData","t":8,"pi":[{"n":"slotIndex","pt":$n[0].Int32,"ps":0},{"n":"dataIndex","pt":$n[0].Int32,"ps":1},{"n":"resetTick","pt":$n[0].Boolean,"ps":2}],"sn":"SetItemData","rt":$n[0].Void,"p":[$n[0].Int32,$n[0].Int32,$n[0].Boolean]},{"a":1,"n":"SetupInitialPositions","t":8,"sn":"SetupInitialPositions","rt":$n[0].Void},{"a":1,"n":"UpdateAllItemData","t":8,"pi":[{"n":"resetAllTicks","pt":$n[0].Boolean,"ps":0}],"sn":"UpdateAllItemData","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":1,"n":"UpdateEdgeVisibility","t":8,"sn":"UpdateEdgeVisibility","rt":$n[0].Void},{"a":2,"n":"CenterItemObj","t":16,"rt":$n[1].GameObject,"g":{"a":2,"n":"get_CenterItemObj","t":8,"rt":$n[1].GameObject,"fg":"CenterItemObj"},"fn":"CenterItemObj"},{"a":2,"n":"animationDuration","t":4,"rt":$n[0].Single,"sn":"animationDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"centerPosition","t":4,"rt":$n[1].Vector3,"sn":"centerPosition"},{"a":2,"n":"currentIndex","t":4,"rt":$n[0].Int32,"sn":"currentIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"isAnimating","t":4,"rt":$n[0].Boolean,"sn":"isAnimating","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"itemPrefab","t":4,"rt":$n[1].GameObject,"sn":"itemPrefab"},{"a":1,"n":"itemScripts","t":4,"rt":System.Array.type(scroller_Item),"sn":"itemScripts"},{"a":1,"n":"items","t":4,"rt":System.Array.type(UnityEngine.GameObject),"sn":"items"},{"a":2,"n":"largeScale","t":4,"rt":$n[1].Vector3,"sn":"largeScale"},{"a":2,"n":"leftPosition","t":4,"rt":$n[1].Vector3,"sn":"leftPosition"},{"a":2,"n":"rightPosition","t":4,"rt":$n[1].Vector3,"sn":"rightPosition"},{"a":2,"n":"smallScale","t":4,"rt":$n[1].Vector3,"sn":"smallScale"},{"a":1,"n":"toolSprites","t":4,"rt":$n[7].List$1(UnityEngine.Sprite),"sn":"toolSprites"}]}; }, $n);
+    $m("CarouselScroller", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Animate","t":8,"pi":[{"n":"direction","pt":$n[0].Int32,"ps":0}],"sn":"Animate","rt":$n[4].IEnumerator,"p":[$n[0].Int32]},{"a":2,"n":"EnableCurrentTick","t":8,"sn":"EnableCurrentTick","rt":$n[0].Void},{"a":2,"n":"EnableCurrentTick1st","t":8,"sn":"EnableCurrentTick1st","rt":$n[0].Void},{"a":2,"n":"InitCarousel","t":8,"pi":[{"n":"sprites","pt":$n[8].List$1(UnityEngine.Sprite),"ps":0}],"sn":"InitCarousel","rt":$n[0].Void,"p":[$n[8].List$1(UnityEngine.Sprite)]},{"a":2,"n":"ScrollNext","t":8,"sn":"ScrollNext","rt":$n[0].Void},{"a":1,"n":"SetAlpha","t":8,"pi":[{"n":"img","pt":$n[7].Image,"ps":0},{"n":"alpha","pt":$n[0].Single,"ps":1}],"sn":"SetAlpha","rt":$n[0].Void,"p":[$n[7].Image,$n[0].Single]},{"a":1,"n":"SetItemAlphaState","t":8,"pi":[{"n":"item","pt":scroller_Item,"ps":0},{"n":"bgA","pt":$n[0].Single,"ps":1},{"n":"fadeLA","pt":$n[0].Single,"ps":2},{"n":"fadeRA","pt":$n[0].Single,"ps":3}],"sn":"SetItemAlphaState","rt":$n[0].Void,"p":[scroller_Item,$n[0].Single,$n[0].Single,$n[0].Single]},{"a":1,"n":"SetItemData","t":8,"pi":[{"n":"slotIndex","pt":$n[0].Int32,"ps":0},{"n":"dataIndex","pt":$n[0].Int32,"ps":1},{"n":"resetTick","pt":$n[0].Boolean,"ps":2}],"sn":"SetItemData","rt":$n[0].Void,"p":[$n[0].Int32,$n[0].Int32,$n[0].Boolean]},{"a":1,"n":"SetupInitialPositions","t":8,"sn":"SetupInitialPositions","rt":$n[0].Void},{"a":1,"n":"UpdateAllItemData","t":8,"pi":[{"n":"resetAllTicks","pt":$n[0].Boolean,"ps":0}],"sn":"UpdateAllItemData","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":1,"n":"UpdateEdgeVisibility","t":8,"sn":"UpdateEdgeVisibility","rt":$n[0].Void},{"a":2,"n":"CenterItemObj","t":16,"rt":$n[1].GameObject,"g":{"a":2,"n":"get_CenterItemObj","t":8,"rt":$n[1].GameObject,"fg":"CenterItemObj"},"fn":"CenterItemObj"},{"a":2,"n":"animationDuration","t":4,"rt":$n[0].Single,"sn":"animationDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"centerPosition","t":4,"rt":$n[1].Vector3,"sn":"centerPosition"},{"a":2,"n":"currentIndex","t":4,"rt":$n[0].Int32,"sn":"currentIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"isAnimating","t":4,"rt":$n[0].Boolean,"sn":"isAnimating","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"itemPrefab","t":4,"rt":$n[1].GameObject,"sn":"itemPrefab"},{"a":1,"n":"itemScripts","t":4,"rt":System.Array.type(scroller_Item),"sn":"itemScripts"},{"a":1,"n":"items","t":4,"rt":System.Array.type(UnityEngine.GameObject),"sn":"items"},{"a":2,"n":"largeScale","t":4,"rt":$n[1].Vector3,"sn":"largeScale"},{"a":2,"n":"leftPosition","t":4,"rt":$n[1].Vector3,"sn":"leftPosition"},{"a":2,"n":"rightPosition","t":4,"rt":$n[1].Vector3,"sn":"rightPosition"},{"a":2,"n":"smallScale","t":4,"rt":$n[1].Vector3,"sn":"smallScale"},{"a":1,"n":"toolSprites","t":4,"rt":$n[8].List$1(UnityEngine.Sprite),"sn":"toolSprites"}]}; }, $n);
     /*CarouselScroller end.*/
 
     /*ArrayExtensions start.*/
@@ -13443,11 +14239,11 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     /*ArrayExtensions end.*/
 
     /*scroller_Item start.*/
-    $m("scroller_Item", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"bg","t":4,"rt":$n[8].Image,"sn":"bg"},{"a":2,"n":"bg_fade_L","t":4,"rt":$n[8].Image,"sn":"bg_fade_L"},{"a":2,"n":"bg_fade_R","t":4,"rt":$n[8].Image,"sn":"bg_fade_R"},{"a":2,"n":"can_group","t":4,"rt":$n[1].CanvasGroup,"sn":"can_group"},{"a":2,"n":"icon","t":4,"rt":$n[8].Image,"sn":"icon"},{"a":2,"n":"tick","t":4,"rt":$n[1].GameObject,"sn":"tick"}]}; }, $n);
+    $m("scroller_Item", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"bg","t":4,"rt":$n[7].Image,"sn":"bg"},{"a":2,"n":"bg_fade_L","t":4,"rt":$n[7].Image,"sn":"bg_fade_L"},{"a":2,"n":"bg_fade_R","t":4,"rt":$n[7].Image,"sn":"bg_fade_R"},{"a":2,"n":"can_group","t":4,"rt":$n[1].CanvasGroup,"sn":"can_group"},{"a":2,"n":"icon","t":4,"rt":$n[7].Image,"sn":"icon"},{"a":2,"n":"tick","t":4,"rt":$n[1].GameObject,"sn":"tick"}]}; }, $n);
     /*scroller_Item end.*/
 
     /*LoadingManager start.*/
-    $m("LoadingManager", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":1,"n":"ExecuteLoading","t":8,"sn":"ExecuteLoading","rt":$n[4].IEnumerator},{"a":2,"n":"ShowFadeAnim","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0},{"n":"innerDuration","pt":$n[0].Single,"ps":1}],"sn":"ShowFadeAnim","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":2,"n":"ShowLoading","t":8,"sn":"ShowLoading","rt":$n[0].Void},{"a":1,"n":"UpdateProgressText","t":8,"sn":"UpdateProgressText","rt":$n[4].IEnumerator},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Canvas_Loading","t":4,"rt":$n[1].GameObject,"sn":"Canvas_Loading"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Fade_Img","t":4,"rt":$n[8].Image,"sn":"Fade_Img"},{"at":[new UnityEngine.HeaderAttribute("Loading Animation"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"animTime","t":4,"rt":$n[0].Single,"sn":"animTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"instance","is":true,"t":4,"rt":LoadingManager,"sn":"instance"},{"a":2,"n":"progressSlider","t":4,"rt":$n[8].Slider,"sn":"progressSlider"},{"a":2,"n":"progressTxt","t":4,"rt":$n[8].Text,"sn":"progressTxt"}]}; }, $n);
+    $m("LoadingManager", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":1,"n":"ExecuteLoading","t":8,"sn":"ExecuteLoading","rt":$n[4].IEnumerator},{"a":2,"n":"ShowFadeAnim","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0},{"n":"innerDuration","pt":$n[0].Single,"ps":1}],"sn":"ShowFadeAnim","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":2,"n":"ShowLoading","t":8,"sn":"ShowLoading","rt":$n[0].Void},{"a":1,"n":"UpdateProgressText","t":8,"sn":"UpdateProgressText","rt":$n[4].IEnumerator},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Canvas_Loading","t":4,"rt":$n[1].GameObject,"sn":"Canvas_Loading"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Fade_Img","t":4,"rt":$n[7].Image,"sn":"Fade_Img"},{"at":[new UnityEngine.HeaderAttribute("Loading Animation"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"animTime","t":4,"rt":$n[0].Single,"sn":"animTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"instance","is":true,"t":4,"rt":LoadingManager,"sn":"instance"},{"a":2,"n":"progressSlider","t":4,"rt":$n[7].Slider,"sn":"progressSlider"},{"a":2,"n":"progressTxt","t":4,"rt":$n[7].Text,"sn":"progressTxt"}]}; }, $n);
     /*LoadingManager end.*/
 
     /*PointerInput start.*/
@@ -13459,20 +14255,24 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     /*Statics end.*/
 
     /*ToastManager start.*/
-    $m("ToastManager", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":1,"n":"HideToast","t":8,"sn":"HideToast","rt":$n[0].Void},{"a":2,"n":"SendToast","t":8,"pi":[{"n":"message","pt":$n[0].String,"ps":0},{"n":"duration","dv":1.0,"o":true,"pt":$n[0].Single,"ps":1}],"sn":"SendToast","rt":$n[0].Void,"p":[$n[0].String,$n[0].Single]},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"animationTime","t":4,"rt":$n[0].Single,"sn":"animationTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"animationTimeUp","t":4,"rt":$n[0].Single,"sn":"animationTimeUp","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"canvasGroup","t":4,"rt":$n[1].CanvasGroup,"sn":"canvasGroup"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"endY","t":4,"rt":$n[0].Single,"sn":"endY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"instance","is":true,"t":4,"rt":ToastManager,"sn":"instance"},{"at":[new UnityEngine.HeaderAttribute("Animation"),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"startY","t":4,"rt":$n[0].Single,"sn":"startY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"toastPanel","t":4,"rt":$n[1].GameObject,"sn":"toastPanel"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"toastPopup","t":4,"rt":$n[1].RectTransform,"sn":"toastPopup"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"toastText","t":4,"rt":$n[8].Text,"sn":"toastText"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"visibleY","t":4,"rt":$n[0].Single,"sn":"visibleY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}}]}; }, $n);
+    $m("ToastManager", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":1,"n":"HideToast","t":8,"sn":"HideToast","rt":$n[0].Void},{"a":2,"n":"SendToast","t":8,"pi":[{"n":"message","pt":$n[0].String,"ps":0},{"n":"duration","dv":1.0,"o":true,"pt":$n[0].Single,"ps":1}],"sn":"SendToast","rt":$n[0].Void,"p":[$n[0].String,$n[0].Single]},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"animationTime","t":4,"rt":$n[0].Single,"sn":"animationTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"animationTimeUp","t":4,"rt":$n[0].Single,"sn":"animationTimeUp","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"canvasGroup","t":4,"rt":$n[1].CanvasGroup,"sn":"canvasGroup"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"endY","t":4,"rt":$n[0].Single,"sn":"endY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"instance","is":true,"t":4,"rt":ToastManager,"sn":"instance"},{"at":[new UnityEngine.HeaderAttribute("Animation"),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"startY","t":4,"rt":$n[0].Single,"sn":"startY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"toastPanel","t":4,"rt":$n[1].GameObject,"sn":"toastPanel"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"toastPopup","t":4,"rt":$n[1].RectTransform,"sn":"toastPopup"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"toastText","t":4,"rt":$n[7].Text,"sn":"toastText"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"visibleY","t":4,"rt":$n[0].Single,"sn":"visibleY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}}]}; }, $n);
     /*ToastManager end.*/
 
     /*UI_Manager start.*/
-    $m("UI_Manager", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"Complete","t":8,"pi":[{"n":"duration","dv":2.0,"o":true,"pt":$n[0].Single,"ps":0}],"sn":"Complete","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"FadeAnim","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0},{"n":"innerDelay","pt":$n[0].Single,"ps":1}],"sn":"FadeAnim","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":1,"n":"FadeGrey","t":8,"pi":[{"n":"grey","pt":$n[8].Image,"ps":0},{"n":"toAlpha","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"FadeGrey","rt":$n[0].Void,"p":[$n[8].Image,$n[0].Single,$n[0].Single]},{"a":1,"n":"FindChildObject","t":8,"pi":[{"n":"parent","pt":$n[1].GameObject,"ps":0},{"n":"childName","pt":$n[0].String,"ps":1}],"sn":"FindChildObject","rt":$n[1].GameObject,"p":[$n[1].GameObject,$n[0].String]},{"a":1,"n":"FindGreyImage","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0}],"sn":"FindGreyImage","rt":$n[8].Image,"p":[$n[1].GameObject]},{"a":1,"n":"FindIconImage","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0}],"sn":"FindIconImage","rt":$n[8].Image,"p":[$n[1].GameObject]},{"a":2,"n":"HideClockProgress","t":8,"sn":"HideClockProgress","rt":$n[0].Void},{"a":1,"n":"HideTool4","t":8,"sn":"HideTool4","rt":$n[0].Void},{"a":1,"n":"HideToolIcon","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0},{"n":"bg","pt":$n[1].GameObject,"ps":1},{"n":"tick","pt":$n[1].GameObject,"ps":2}],"sn":"HideToolIcon","rt":$n[0].Void,"p":[$n[1].GameObject,$n[1].GameObject,$n[1].GameObject]},{"a":2,"n":"InitializeTools","t":8,"pi":[{"n":"toolIcons","pt":$n[7].List$1(UnityEngine.Sprite),"ps":0}],"sn":"InitializeTools","rt":$n[0].Void,"p":[$n[7].List$1(UnityEngine.Sprite)]},{"a":1,"n":"MoveButtonsIn","t":8,"sn":"MoveButtonsIn","rt":$n[0].Void},{"a":1,"n":"MoveButtonsOut","t":8,"sn":"MoveButtonsOut","rt":$n[0].Void},{"a":2,"n":"PauseState","t":8,"pi":[{"n":"state","pt":$n[0].Boolean,"ps":0}],"sn":"PauseState","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":2,"n":"RateUsState","t":8,"pi":[{"n":"state","pt":$n[0].Boolean,"ps":0}],"sn":"RateUsState","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":2,"n":"RemoveAdsState","t":8,"pi":[{"n":"state","pt":$n[0].Boolean,"ps":0}],"sn":"RemoveAdsState","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":1,"n":"SetGreyInstant","t":8,"pi":[{"n":"grey","pt":$n[8].Image,"ps":0},{"n":"alpha","pt":$n[0].Single,"ps":1}],"sn":"SetGreyInstant","rt":$n[0].Void,"p":[$n[8].Image,$n[0].Single]},{"a":2,"n":"SetProgressBar","t":8,"pi":[{"n":"progress","pt":$n[0].Single,"ps":0},{"n":"duration","dv":0.25,"o":true,"pt":$n[0].Single,"ps":1}],"sn":"SetProgressBar","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":1,"n":"SetProgressBarInstant","t":8,"pi":[{"n":"progress","pt":$n[0].Single,"ps":0}],"sn":"SetProgressBarInstant","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"SetProgressBarPos","t":8,"sn":"SetProgressBarPos","rt":$n[0].Void},{"a":2,"n":"SetProgressIconIndex","t":8,"pi":[{"n":"stepIndex","pt":$n[0].Int32,"ps":0}],"sn":"SetProgressIconIndex","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":1,"n":"SetToolIcon","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0},{"n":"iconImage","pt":$n[8].Image,"ps":1},{"n":"bg","pt":$n[1].GameObject,"ps":2},{"n":"tick","pt":$n[1].GameObject,"ps":3},{"n":"sprite","pt":$n[1].Sprite,"ps":4}],"sn":"SetToolIcon","rt":$n[0].Void,"p":[$n[1].GameObject,$n[8].Image,$n[1].GameObject,$n[1].GameObject,$n[1].Sprite]},{"a":1,"n":"SetupToolIconReferences","t":8,"sn":"SetupToolIconReferences","rt":$n[0].Void},{"a":2,"n":"ShowClockProgress","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0}],"sn":"ShowClockProgress","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"ShowClockProgress","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0},{"n":"startFill","pt":$n[0].Single,"ps":1}],"sn":"ShowClockProgress$1","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":2,"n":"ShowCompleteParticles","t":8,"sn":"ShowCompleteParticles","rt":$n[0].Void},{"a":1,"n":"ShowTool4Animated","t":8,"sn":"ShowTool4Animated","rt":$n[0].Void},{"a":1,"n":"ShowTool4Instant","t":8,"sn":"ShowTool4Instant","rt":$n[0].Void},{"a":1,"n":"ShowToolIcon","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0},{"n":"bg","pt":$n[1].GameObject,"ps":1},{"n":"tick","pt":$n[1].GameObject,"ps":2}],"sn":"ShowToolIcon","rt":$n[0].Void,"p":[$n[1].GameObject,$n[1].GameObject,$n[1].GameObject]},{"a":1,"n":"ShowToolTick","t":8,"pi":[{"n":"index","pt":$n[0].Int32,"ps":0}],"sn":"ShowToolTick","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"a":2,"n":"isOverUI","t":8,"sn":"isOverUI","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"CompletePanel","t":4,"rt":$n[1].GameObject,"sn":"CompletePanel"},{"a":2,"n":"CompleteParticles","t":4,"rt":$n[1].GameObject,"sn":"CompleteParticles"},{"at":[new UnityEngine.HeaderAttribute("---------------------- PANELs ----------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Fade_Img","t":4,"rt":$n[8].Image,"sn":"Fade_Img"},{"a":1,"n":"HOLD_DURATION","is":true,"t":4,"rt":$n[0].Single,"sn":"HOLD_DURATION","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"LevelIcon","t":4,"rt":$n[8].Image,"sn":"LevelIcon"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"MainPanel","t":4,"rt":$n[1].GameObject,"sn":"MainPanel"},{"a":2,"n":"PauseCanvasGroup","t":4,"rt":$n[1].CanvasGroup,"sn":"PauseCanvasGroup"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"PausePanel","t":4,"rt":$n[1].GameObject,"sn":"PausePanel"},{"a":2,"n":"PausePopUp","t":4,"rt":$n[1].GameObject,"sn":"PausePopUp"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"RateUsPanel","t":4,"rt":$n[1].GameObject,"sn":"RateUsPanel"},{"a":2,"n":"RateUsPopUp","t":4,"rt":$n[1].GameObject,"sn":"RateUsPopUp"},{"a":2,"n":"RemoveAdsAnims","t":4,"rt":System.Array.type(DG.Tweening.DOTweenAnimation),"sn":"RemoveAdsAnims"},{"a":2,"n":"RemoveAdsCanvasGroup","t":4,"rt":$n[1].CanvasGroup,"sn":"RemoveAdsCanvasGroup"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"RemoveAdsPanel","t":4,"rt":$n[1].GameObject,"sn":"RemoveAdsPanel"},{"a":2,"n":"RemoveAdsPopUp","t":4,"rt":$n[1].GameObject,"sn":"RemoveAdsPopUp"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"TopBarAnim","t":4,"rt":$n[6].DOTweenAnimation,"sn":"TopBarAnim"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"allTools","t":4,"rt":$n[7].List$1(UnityEngine.Sprite),"sn":"allTools"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"animationDuration","t":4,"rt":$n[0].Single,"sn":"animationDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"clockAudio","t":4,"rt":$n[1].AudioSource,"sn":"clockAudio"},{"at":[new UnityEngine.HeaderAttribute("---------------------- CLOCK ----------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"clockProgress","t":4,"rt":$n[1].GameObject,"sn":"clockProgress"},{"a":2,"n":"clockProgressFill","t":4,"rt":$n[8].Image,"sn":"clockProgressFill"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"currentIndex","t":4,"rt":$n[0].Int32,"sn":"currentIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"greyBgChildName","t":4,"rt":$n[0].String,"sn":"greyBgChildName"},{"a":1,"n":"holdTimer","t":4,"rt":$n[0].Single,"sn":"holdTimer","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"instance","is":true,"t":4,"rt":UI_Manager,"sn":"instance"},{"a":2,"n":"isPauseActive","t":4,"rt":$n[0].Boolean,"sn":"isPauseActive","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isTouching","t":4,"rt":$n[0].Boolean,"sn":"isTouching","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"levelCompleted","t":4,"rt":$n[0].Boolean,"sn":"levelCompleted","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"loadIndex","t":4,"rt":$n[0].Int32,"sn":"loadIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"m_LastPressTime","t":4,"rt":$n[0].Single,"sn":"m_LastPressTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"m_PressDelay","t":4,"rt":$n[0].Single,"sn":"m_PressDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"moveDistance","t":4,"rt":$n[0].Single,"sn":"moveDistance","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"nextToolIndex","t":4,"rt":$n[0].Int32,"sn":"nextToolIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"pauseButton","t":4,"rt":$n[1].RectTransform,"sn":"pauseButton"},{"a":1,"n":"pauseButtonStartPos","t":4,"rt":$n[1].Vector2,"sn":"pauseButtonStartPos"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("-------------------------------- TOP BAR ---------------------------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"progressBar","t":4,"rt":$n[8].Image,"sn":"progressBar"},{"a":2,"n":"progressText","t":4,"rt":$n[8].Text,"sn":"progressText"},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Animation Settings"),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"pushOffset","t":4,"rt":$n[0].Single,"sn":"pushOffset","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("-------------------------------- UI BTNs ---------------------------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"removeAdsButton","t":4,"rt":$n[1].RectTransform,"sn":"removeAdsButton"},{"a":1,"n":"removeAdsButtonStartPos","t":4,"rt":$n[1].Vector2,"sn":"removeAdsButtonStartPos"},{"a":1,"n":"showTick","t":4,"rt":$n[0].Boolean,"sn":"showTick","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Targets")],"a":2,"n":"target1","t":4,"rt":$n[1].RectTransform,"sn":"target1"},{"a":2,"n":"target2","t":4,"rt":$n[1].RectTransform,"sn":"target2"},{"a":1,"n":"tool1Bg","t":4,"rt":$n[1].GameObject,"sn":"tool1Bg"},{"a":1,"n":"tool1BgGrey","t":4,"rt":$n[8].Image,"sn":"tool1BgGrey"},{"a":1,"n":"tool1Icon","t":4,"rt":$n[8].Image,"sn":"tool1Icon"},{"a":1,"n":"tool1Tick","t":4,"rt":$n[1].GameObject,"sn":"tool1Tick"},{"a":1,"n":"tool2Bg","t":4,"rt":$n[1].GameObject,"sn":"tool2Bg"},{"a":1,"n":"tool2BgGrey","t":4,"rt":$n[8].Image,"sn":"tool2BgGrey"},{"a":1,"n":"tool2Icon","t":4,"rt":$n[8].Image,"sn":"tool2Icon"},{"a":1,"n":"tool2Tick","t":4,"rt":$n[1].GameObject,"sn":"tool2Tick"},{"a":1,"n":"tool3Bg","t":4,"rt":$n[1].GameObject,"sn":"tool3Bg"},{"a":1,"n":"tool3BgGrey","t":4,"rt":$n[8].Image,"sn":"tool3BgGrey"},{"a":1,"n":"tool3Icon","t":4,"rt":$n[8].Image,"sn":"tool3Icon"},{"a":1,"n":"tool3Tick","t":4,"rt":$n[1].GameObject,"sn":"tool3Tick"},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Icons")],"a":2,"n":"toolIcon1","t":4,"rt":$n[1].GameObject,"sn":"toolIcon1"},{"a":2,"n":"toolIcon2","t":4,"rt":$n[1].GameObject,"sn":"toolIcon2"},{"a":2,"n":"toolIcon3","t":4,"rt":$n[1].GameObject,"sn":"toolIcon3"},{"at":[new UnityEngine.TooltipAttribute("Last-tool placeholder (the star). Fills the empty 'next' slot once there is no real next tool left. It always lives at target2 and is never recycled as tool1/2/3, so only its position and alpha ever animate.")],"a":2,"n":"toolIcon4","t":4,"rt":$n[1].GameObject,"sn":"toolIcon4"},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Animation")],"a":2,"n":"toolMoveDuration","t":4,"rt":$n[0].Single,"sn":"toolMoveDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}}]}; }, $n);
+    $m("UI_Manager", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"Complete","t":8,"pi":[{"n":"duration","dv":2.0,"o":true,"pt":$n[0].Single,"ps":0}],"sn":"Complete","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"FadeAnim","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0},{"n":"innerDelay","pt":$n[0].Single,"ps":1}],"sn":"FadeAnim","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":1,"n":"FadeGrey","t":8,"pi":[{"n":"grey","pt":$n[7].Image,"ps":0},{"n":"toAlpha","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"FadeGrey","rt":$n[0].Void,"p":[$n[7].Image,$n[0].Single,$n[0].Single]},{"a":1,"n":"FindChildObject","t":8,"pi":[{"n":"parent","pt":$n[1].GameObject,"ps":0},{"n":"childName","pt":$n[0].String,"ps":1}],"sn":"FindChildObject","rt":$n[1].GameObject,"p":[$n[1].GameObject,$n[0].String]},{"a":1,"n":"FindGreyImage","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0}],"sn":"FindGreyImage","rt":$n[7].Image,"p":[$n[1].GameObject]},{"a":1,"n":"FindIconImage","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0}],"sn":"FindIconImage","rt":$n[7].Image,"p":[$n[1].GameObject]},{"a":2,"n":"HideClockProgress","t":8,"sn":"HideClockProgress","rt":$n[0].Void},{"a":1,"n":"HideTool4","t":8,"sn":"HideTool4","rt":$n[0].Void},{"a":1,"n":"HideToolIcon","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0},{"n":"bg","pt":$n[1].GameObject,"ps":1},{"n":"tick","pt":$n[1].GameObject,"ps":2}],"sn":"HideToolIcon","rt":$n[0].Void,"p":[$n[1].GameObject,$n[1].GameObject,$n[1].GameObject]},{"a":2,"n":"InitializeTools","t":8,"pi":[{"n":"toolIcons","pt":$n[8].List$1(UnityEngine.Sprite),"ps":0}],"sn":"InitializeTools","rt":$n[0].Void,"p":[$n[8].List$1(UnityEngine.Sprite)]},{"a":1,"n":"MoveButtonsIn","t":8,"sn":"MoveButtonsIn","rt":$n[0].Void},{"a":1,"n":"MoveButtonsOut","t":8,"sn":"MoveButtonsOut","rt":$n[0].Void},{"a":2,"n":"PauseState","t":8,"pi":[{"n":"state","pt":$n[0].Boolean,"ps":0}],"sn":"PauseState","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":2,"n":"RateUsState","t":8,"pi":[{"n":"state","pt":$n[0].Boolean,"ps":0}],"sn":"RateUsState","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":2,"n":"RemoveAdsState","t":8,"pi":[{"n":"state","pt":$n[0].Boolean,"ps":0}],"sn":"RemoveAdsState","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":1,"n":"SetGreyInstant","t":8,"pi":[{"n":"grey","pt":$n[7].Image,"ps":0},{"n":"alpha","pt":$n[0].Single,"ps":1}],"sn":"SetGreyInstant","rt":$n[0].Void,"p":[$n[7].Image,$n[0].Single]},{"a":2,"n":"SetProgressBar","t":8,"pi":[{"n":"progress","pt":$n[0].Single,"ps":0},{"n":"duration","dv":0.25,"o":true,"pt":$n[0].Single,"ps":1}],"sn":"SetProgressBar","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":1,"n":"SetProgressBarInstant","t":8,"pi":[{"n":"progress","pt":$n[0].Single,"ps":0}],"sn":"SetProgressBarInstant","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"SetProgressBarPos","t":8,"sn":"SetProgressBarPos","rt":$n[0].Void},{"a":2,"n":"SetProgressIconIndex","t":8,"pi":[{"n":"stepIndex","pt":$n[0].Int32,"ps":0}],"sn":"SetProgressIconIndex","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":1,"n":"SetToolIcon","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0},{"n":"iconImage","pt":$n[7].Image,"ps":1},{"n":"bg","pt":$n[1].GameObject,"ps":2},{"n":"tick","pt":$n[1].GameObject,"ps":3},{"n":"sprite","pt":$n[1].Sprite,"ps":4}],"sn":"SetToolIcon","rt":$n[0].Void,"p":[$n[1].GameObject,$n[7].Image,$n[1].GameObject,$n[1].GameObject,$n[1].Sprite]},{"a":1,"n":"SetupToolIconReferences","t":8,"sn":"SetupToolIconReferences","rt":$n[0].Void},{"a":2,"n":"ShowClockProgress","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0}],"sn":"ShowClockProgress","rt":$n[0].Void,"p":[$n[0].Single]},{"a":2,"n":"ShowClockProgress","t":8,"pi":[{"n":"duration","pt":$n[0].Single,"ps":0},{"n":"startFill","pt":$n[0].Single,"ps":1}],"sn":"ShowClockProgress$1","rt":$n[0].Void,"p":[$n[0].Single,$n[0].Single]},{"a":2,"n":"ShowCompleteParticles","t":8,"sn":"ShowCompleteParticles","rt":$n[0].Void},{"a":1,"n":"ShowTool4Animated","t":8,"sn":"ShowTool4Animated","rt":$n[0].Void},{"a":1,"n":"ShowTool4Instant","t":8,"sn":"ShowTool4Instant","rt":$n[0].Void},{"a":1,"n":"ShowToolIcon","t":8,"pi":[{"n":"toolObject","pt":$n[1].GameObject,"ps":0},{"n":"bg","pt":$n[1].GameObject,"ps":1},{"n":"tick","pt":$n[1].GameObject,"ps":2}],"sn":"ShowToolIcon","rt":$n[0].Void,"p":[$n[1].GameObject,$n[1].GameObject,$n[1].GameObject]},{"a":1,"n":"ShowToolTick","t":8,"pi":[{"n":"index","pt":$n[0].Int32,"ps":0}],"sn":"ShowToolTick","rt":$n[0].Void,"p":[$n[0].Int32]},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"a":2,"n":"isOverUI","t":8,"sn":"isOverUI","rt":$n[0].Boolean,"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"CompletePanel","t":4,"rt":$n[1].GameObject,"sn":"CompletePanel"},{"a":2,"n":"CompleteParticles","t":4,"rt":$n[1].GameObject,"sn":"CompleteParticles"},{"at":[new UnityEngine.HeaderAttribute("---------------------- PANELs ----------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Fade_Img","t":4,"rt":$n[7].Image,"sn":"Fade_Img"},{"a":1,"n":"HOLD_DURATION","is":true,"t":4,"rt":$n[0].Single,"sn":"HOLD_DURATION","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"LevelIcon","t":4,"rt":$n[7].Image,"sn":"LevelIcon"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"MainPanel","t":4,"rt":$n[1].GameObject,"sn":"MainPanel"},{"a":2,"n":"PauseCanvasGroup","t":4,"rt":$n[1].CanvasGroup,"sn":"PauseCanvasGroup"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"PausePanel","t":4,"rt":$n[1].GameObject,"sn":"PausePanel"},{"a":2,"n":"PausePopUp","t":4,"rt":$n[1].GameObject,"sn":"PausePopUp"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"RateUsPanel","t":4,"rt":$n[1].GameObject,"sn":"RateUsPanel"},{"a":2,"n":"RateUsPopUp","t":4,"rt":$n[1].GameObject,"sn":"RateUsPopUp"},{"a":2,"n":"RemoveAdsAnims","t":4,"rt":System.Array.type(DG.Tweening.DOTweenAnimation),"sn":"RemoveAdsAnims"},{"a":2,"n":"RemoveAdsCanvasGroup","t":4,"rt":$n[1].CanvasGroup,"sn":"RemoveAdsCanvasGroup"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"RemoveAdsPanel","t":4,"rt":$n[1].GameObject,"sn":"RemoveAdsPanel"},{"a":2,"n":"RemoveAdsPopUp","t":4,"rt":$n[1].GameObject,"sn":"RemoveAdsPopUp"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"TopBarAnim","t":4,"rt":$n[6].DOTweenAnimation,"sn":"TopBarAnim"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"allTools","t":4,"rt":$n[8].List$1(UnityEngine.Sprite),"sn":"allTools"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"animationDuration","t":4,"rt":$n[0].Single,"sn":"animationDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"clockAudio","t":4,"rt":$n[1].AudioSource,"sn":"clockAudio"},{"at":[new UnityEngine.HeaderAttribute("---------------------- CLOCK ----------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"clockProgress","t":4,"rt":$n[1].GameObject,"sn":"clockProgress"},{"a":2,"n":"clockProgressFill","t":4,"rt":$n[7].Image,"sn":"clockProgressFill"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"currentIndex","t":4,"rt":$n[0].Int32,"sn":"currentIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"greyBgChildName","t":4,"rt":$n[0].String,"sn":"greyBgChildName"},{"a":1,"n":"holdTimer","t":4,"rt":$n[0].Single,"sn":"holdTimer","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"instance","is":true,"t":4,"rt":UI_Manager,"sn":"instance"},{"a":2,"n":"isPauseActive","t":4,"rt":$n[0].Boolean,"sn":"isPauseActive","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isTouching","t":4,"rt":$n[0].Boolean,"sn":"isTouching","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"levelCompleted","t":4,"rt":$n[0].Boolean,"sn":"levelCompleted","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"loadIndex","t":4,"rt":$n[0].Int32,"sn":"loadIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"m_LastPressTime","t":4,"rt":$n[0].Single,"sn":"m_LastPressTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"m_PressDelay","t":4,"rt":$n[0].Single,"sn":"m_PressDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"moveDistance","t":4,"rt":$n[0].Single,"sn":"moveDistance","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"nextToolIndex","t":4,"rt":$n[0].Int32,"sn":"nextToolIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"pauseButton","t":4,"rt":$n[1].RectTransform,"sn":"pauseButton"},{"a":1,"n":"pauseButtonStartPos","t":4,"rt":$n[1].Vector2,"sn":"pauseButtonStartPos"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("-------------------------------- TOP BAR ---------------------------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"progressBar","t":4,"rt":$n[7].Image,"sn":"progressBar"},{"a":2,"n":"progressText","t":4,"rt":$n[7].Text,"sn":"progressText"},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Animation Settings"),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"pushOffset","t":4,"rt":$n[0].Single,"sn":"pushOffset","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("-------------------------------- UI BTNs ---------------------------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"removeAdsButton","t":4,"rt":$n[1].RectTransform,"sn":"removeAdsButton"},{"a":1,"n":"removeAdsButtonStartPos","t":4,"rt":$n[1].Vector2,"sn":"removeAdsButtonStartPos"},{"a":1,"n":"showTick","t":4,"rt":$n[0].Boolean,"sn":"showTick","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Targets")],"a":2,"n":"target1","t":4,"rt":$n[1].RectTransform,"sn":"target1"},{"a":2,"n":"target2","t":4,"rt":$n[1].RectTransform,"sn":"target2"},{"a":1,"n":"tool1Bg","t":4,"rt":$n[1].GameObject,"sn":"tool1Bg"},{"a":1,"n":"tool1BgGrey","t":4,"rt":$n[7].Image,"sn":"tool1BgGrey"},{"a":1,"n":"tool1Icon","t":4,"rt":$n[7].Image,"sn":"tool1Icon"},{"a":1,"n":"tool1Tick","t":4,"rt":$n[1].GameObject,"sn":"tool1Tick"},{"a":1,"n":"tool2Bg","t":4,"rt":$n[1].GameObject,"sn":"tool2Bg"},{"a":1,"n":"tool2BgGrey","t":4,"rt":$n[7].Image,"sn":"tool2BgGrey"},{"a":1,"n":"tool2Icon","t":4,"rt":$n[7].Image,"sn":"tool2Icon"},{"a":1,"n":"tool2Tick","t":4,"rt":$n[1].GameObject,"sn":"tool2Tick"},{"a":1,"n":"tool3Bg","t":4,"rt":$n[1].GameObject,"sn":"tool3Bg"},{"a":1,"n":"tool3BgGrey","t":4,"rt":$n[7].Image,"sn":"tool3BgGrey"},{"a":1,"n":"tool3Icon","t":4,"rt":$n[7].Image,"sn":"tool3Icon"},{"a":1,"n":"tool3Tick","t":4,"rt":$n[1].GameObject,"sn":"tool3Tick"},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Icons")],"a":2,"n":"toolIcon1","t":4,"rt":$n[1].GameObject,"sn":"toolIcon1"},{"a":2,"n":"toolIcon2","t":4,"rt":$n[1].GameObject,"sn":"toolIcon2"},{"a":2,"n":"toolIcon3","t":4,"rt":$n[1].GameObject,"sn":"toolIcon3"},{"at":[new UnityEngine.TooltipAttribute("Last-tool placeholder (the star). Fills the empty 'next' slot once there is no real next tool left. It always lives at target2 and is never recycled as tool1/2/3, so only its position and alpha ever animate.")],"a":2,"n":"toolIcon4","t":4,"rt":$n[1].GameObject,"sn":"toolIcon4"},{"at":[new UnityEngine.HeaderAttribute("Tool Bar Animation")],"a":2,"n":"toolMoveDuration","t":4,"rt":$n[0].Single,"sn":"toolMoveDuration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}}]}; }, $n);
     /*UI_Manager end.*/
+
+    /*_2dxFX_Wave start.*/
+    $m("_2dxFX_Wave", function () { return {"att":1056769,"a":2,"at":[new UnityEngine.ExecuteInEditModeAttribute(),new UnityEngine.AddComponentMenu.ctor("2DxFX/Standard/Wave"),new System.SerializableAttribute()],"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"CallUpdate","t":8,"sn":"CallUpdate","rt":$n[0].Void},{"a":1,"n":"OnDestroy","t":8,"sn":"OnDestroy","rt":$n[0].Void},{"a":1,"n":"OnDisable","t":8,"sn":"OnDisable","rt":$n[0].Void},{"a":1,"n":"OnEnable","t":8,"sn":"OnEnable","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"ActiveChange","t":4,"rt":$n[0].Boolean,"sn":"ActiveChange","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 5.0)],"a":2,"n":"AutoPlaySpeedX","t":4,"rt":$n[0].Single,"sn":"AutoPlaySpeedX","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 50.0)],"a":2,"n":"AutoPlaySpeedY","t":4,"rt":$n[0].Single,"sn":"AutoPlaySpeedY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"AutoPlayWaveX","t":4,"rt":$n[0].Boolean,"sn":"AutoPlayWaveX","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"AutoPlayWaveY","t":4,"rt":$n[0].Boolean,"sn":"AutoPlayWaveY","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"AutoRandom","t":4,"rt":$n[0].Boolean,"sn":"AutoRandom","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 50.0)],"a":2,"n":"AutoRandomRange","t":4,"rt":$n[0].Single,"sn":"AutoRandomRange","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"CanvasImage","t":4,"rt":$n[7].Image,"sn":"CanvasImage"},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"ForceMaterial","t":4,"rt":$n[1].Material,"sn":"ForceMaterial"},{"at":[new UnityEngine.HideInInspector()],"a":2,"n":"ShaderChange","t":4,"rt":$n[0].Int32,"sn":"ShaderChange","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 1.0)],"a":2,"n":"_Alpha","t":4,"rt":$n[0].Single,"sn":"_Alpha","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 1.0)],"a":2,"n":"_DistanceX","t":4,"rt":$n[0].Single,"sn":"_DistanceX","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 1.0)],"a":2,"n":"_DistanceY","t":4,"rt":$n[0].Single,"sn":"_DistanceY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 128.0)],"a":2,"n":"_OffsetX","t":4,"rt":$n[0].Single,"sn":"_OffsetX","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 128.0)],"a":2,"n":"_OffsetY","t":4,"rt":$n[0].Single,"sn":"_OffsetY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 6.28)],"a":2,"n":"_WaveTimeX","t":4,"rt":$n[0].Single,"sn":"_WaveTimeX","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.HideInInspector(),new UnityEngine.RangeAttribute(0.0, 6.28)],"a":2,"n":"_WaveTimeY","t":4,"rt":$n[0].Single,"sn":"_WaveTimeY","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"defaultMaterial","t":4,"rt":$n[1].Material,"sn":"defaultMaterial"},{"a":1,"n":"shader","t":4,"rt":$n[0].String,"sn":"shader"},{"a":1,"n":"tempMaterial","t":4,"rt":$n[1].Material,"sn":"tempMaterial"}]}; }, $n);
+    /*_2dxFX_Wave end.*/
 
     /*GameManagerPlayable start.*/
     $m("GameManagerPlayable", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"ov":true,"a":2,"n":"Complete","t":8,"sn":"Complete","rt":$n[0].Void},{"a":2,"n":"LunaDirect","t":8,"sn":"LunaDirect","rt":$n[0].Void},{"a":1,"n":"OnEnable","t":8,"sn":"OnEnable","rt":$n[0].Void},{"a":1,"n":"PlayParticles","is":true,"t":8,"pi":[{"n":"particles","pt":$n[1].ParticleSystem,"ps":0}],"sn":"PlayParticles","rt":$n[0].Void,"p":[$n[1].ParticleSystem]},{"a":2,"n":"PlayStepComplete","is":true,"t":8,"sn":"PlayStepComplete","rt":$n[0].Void},{"a":1,"n":"active","is":true,"t":4,"rt":GameManagerPlayable,"sn":"active"},{"at":[new UnityEngine.TooltipAttribute("Plays once, when the level genuinely completes. Set its own Looping module on to have it play continuously.")],"a":2,"n":"endParticles","t":4,"rt":$n[1].ParticleSystem,"sn":"endParticles"},{"at":[new UnityEngine.TooltipAttribute("One-shot burst (confetti cannon, etc). Play it by calling PlayStepComplete() from each step's own StepNComplete()/StepNDone() method.")],"a":2,"n":"stepCompleteParticles","t":4,"rt":$n[1].ParticleSystem,"sn":"stepCompleteParticles"}]}; }, $n);
     /*GameManagerPlayable end.*/
 
-    /*Level3_Crown_Playable_NewTest start.*/
-    $m("Level3_Crown_Playable_NewTest", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"AdvanceProgressIcon","t":8,"sn":"AdvanceProgressIcon","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep1","t":8,"sn":"ForceCompleteStep1","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep2","t":8,"sn":"ForceCompleteStep2","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep3","t":8,"sn":"ForceCompleteStep3","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"a":1,"n":"StartStep1","t":8,"sn":"StartStep1","rt":$n[0].Void},{"a":1,"n":"StartStep2","t":8,"sn":"StartStep2","rt":$n[0].Void},{"a":1,"n":"StartStep3","t":8,"sn":"StartStep3","rt":$n[0].Void},{"a":2,"n":"Step1Done","t":8,"sn":"Step1Done","rt":$n[0].Void},{"a":2,"n":"Step2Done","t":8,"sn":"Step2Done","rt":$n[0].Void},{"a":2,"n":"Step3Done","t":8,"sn":"Step3Done","rt":$n[0].Void},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"DustSR_1","t":4,"rt":$n[1].GameObject,"sn":"DustSR_1"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("----------------------------------------------------------------------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"MainZoom","t":4,"rt":ZoomPos,"sn":"MainZoom"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Mix","t":4,"rt":$n[1].GameObject,"sn":"Mix"},{"a":2,"n":"MixE","t":4,"rt":$n[1].GameObject,"sn":"MixE"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"SRsToFadeOut_2","t":4,"rt":System.Array.type(UnityEngine.SpriteRenderer),"sn":"SRsToFadeOut_2"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"SpraySR_2","t":4,"rt":$n[1].SpriteRenderer,"sn":"SpraySR_2"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Step1Col","t":4,"rt":$n[1].GameObject,"sn":"Step1Col"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"Step3Col","t":4,"rt":$n[1].GameObject,"sn":"Step3Col"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep1","t":4,"rt":BasicDrag,"sn":"ToolStep1"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep1CameraFollow","t":4,"rt":BD_CameraFollow,"sn":"ToolStep1CameraFollow"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep2","t":4,"rt":BasicDrag,"sn":"ToolStep2"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep2CameraFollow","t":4,"rt":BD_CameraFollow,"sn":"ToolStep2CameraFollow"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep3","t":4,"rt":BasicDrag,"sn":"ToolStep3"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep3CameraFollow","t":4,"rt":BD_CameraFollow,"sn":"ToolStep3CameraFollow"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"View1","t":4,"rt":$n[1].GameObject,"sn":"View1"},{"a":2,"n":"View2","t":4,"rt":$n[1].GameObject,"sn":"View2"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 1 ----------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep1","t":4,"rt":ZoomPos,"sn":"ZoomStep1"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 2 ----------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep2","t":4,"rt":ZoomPos,"sn":"ZoomStep2"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 3 ----------------------"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep3","t":4,"rt":ZoomPos,"sn":"ZoomStep3"},{"a":1,"n":"isStep1Done","t":4,"rt":$n[0].Boolean,"sn":"isStep1Done","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isStep2Done","t":4,"rt":$n[0].Boolean,"sn":"isStep2Done","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"isStep3Done","t":4,"rt":$n[0].Boolean,"sn":"isStep3Done","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"skipIconAdvance","t":4,"rt":$n[0].Boolean,"sn":"skipIconAdvance","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
-    /*Level3_Crown_Playable_NewTest end.*/
+    /*Level1_Cloth_Playable_PlayableStep4 start.*/
+    $m("Level1_Cloth_Playable_PlayableStep4", function () { return {"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":2,"n":"CallStep3","t":8,"sn":"CallStep3","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep1","t":8,"sn":"ForceCompleteStep1","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep2","t":8,"sn":"ForceCompleteStep2","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep3","t":8,"sn":"ForceCompleteStep3","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep3a","t":8,"sn":"ForceCompleteStep3a","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep4","t":8,"sn":"ForceCompleteStep4","rt":$n[0].Void},{"a":1,"n":"ForceCompleteStep5","t":8,"sn":"ForceCompleteStep5","rt":$n[0].Void},{"a":1,"n":"HideIndication","t":8,"sn":"HideIndication","rt":$n[0].Void},{"a":1,"n":"OnCleanClothPicked","t":8,"sn":"OnCleanClothPicked","rt":$n[0].Void},{"a":1,"n":"OnClothPicked","t":8,"sn":"OnClothPicked","rt":$n[0].Void},{"a":1,"n":"OnClothReleased","t":8,"sn":"OnClothReleased","rt":$n[0].Void},{"a":1,"n":"OnTool3aPicked","t":8,"sn":"OnTool3aPicked","rt":$n[0].Void},{"a":1,"n":"OnTool3aRelease","t":8,"sn":"OnTool3aRelease","rt":$n[0].Void},{"a":2,"n":"OpenDoor","t":8,"sn":"OpenDoor","rt":$n[0].Void},{"a":2,"n":"PackOpend","t":8,"sn":"PackOpend","rt":$n[0].Void},{"a":1,"n":"PlayClothPlacedSfx","t":8,"sn":"PlayClothPlacedSfx","rt":$n[0].Void},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[4].IEnumerator},{"a":1,"n":"StartCountDown","t":8,"sn":"StartCountDown","rt":$n[4].IEnumerator},{"a":2,"n":"StartMachine","t":8,"sn":"StartMachine","rt":$n[0].Void},{"a":1,"n":"StartStep1","t":8,"sn":"StartStep1","rt":$n[0].Void},{"a":1,"n":"StartStep2","t":8,"sn":"StartStep2","rt":$n[0].Void},{"a":1,"n":"StartStep3","t":8,"sn":"StartStep3","rt":$n[0].Void},{"a":1,"n":"StartStep3a","t":8,"sn":"StartStep3a","rt":$n[0].Void},{"a":1,"n":"StartStep4","t":8,"sn":"StartStep4","rt":$n[0].Void},{"a":2,"n":"Step1Complete","t":8,"sn":"Step1Complete","rt":$n[0].Void},{"a":2,"n":"Step2Complete","t":8,"sn":"Step2Complete","rt":$n[0].Void},{"a":2,"n":"Step3Complete","t":8,"sn":"Step3Complete","rt":$n[0].Void},{"a":2,"n":"Step3aComplete","t":8,"sn":"Step3aComplete","rt":$n[0].Void},{"a":2,"n":"Step4Complete","t":8,"sn":"Step4Complete","rt":$n[0].Void},{"a":2,"n":"Basket_Cloth","t":4,"rt":$n[1].GameObject,"sn":"Basket_Cloth"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"DressParent","t":4,"rt":$n[1].GameObject,"sn":"DressParent"},{"a":2,"n":"DressingTools","t":4,"rt":$n[1].GameObject,"sn":"DressingTools"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"DressingView","t":4,"rt":$n[1].GameObject,"sn":"DressingView"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"SteamerBottom","t":4,"rt":$n[1].GameObject,"sn":"SteamerBottom"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep1","t":4,"rt":BasicDrag,"sn":"ToolStep1"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep2","t":4,"rt":BasicDrag,"sn":"ToolStep2"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep2CamFollow","t":4,"rt":BD_CameraFollow,"sn":"ToolStep2CamFollow"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep3","t":4,"rt":BasicDrag,"sn":"ToolStep3"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep3a","t":4,"rt":BasicDrag,"sn":"ToolStep3a"},{"a":2,"n":"ToolStep3aRend","t":4,"rt":$n[1].SpriteRenderer,"sn":"ToolStep3aRend"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ToolStep4","t":4,"rt":BasicDrag,"sn":"ToolStep4"},{"a":2,"n":"WashingTools","t":4,"rt":$n[1].GameObject,"sn":"WashingTools"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("----------------------------------------------------------------------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("Views")],"a":2,"n":"WashingView","t":4,"rt":$n[1].GameObject,"sn":"WashingView"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 1 ----------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("STEP 1"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep1","t":4,"rt":ZoomPos,"sn":"ZoomStep1"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 2 ----------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.HeaderAttribute("STEP 2"),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep2","t":4,"rt":ZoomPos,"sn":"ZoomStep2"},{"a":2,"n":"ZoomStep2b","t":4,"rt":ZoomPos,"sn":"ZoomStep2b"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 3 ----------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep3","t":4,"rt":ZoomPos,"sn":"ZoomStep3"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 3a ----------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep3a","t":4,"rt":ZoomPos,"sn":"ZoomStep3a"},{"at":[new UnityEngine.HeaderAttribute("----------------- STEP 4 ----------------------"),new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"ZoomStep4","t":4,"rt":ZoomPos,"sn":"ZoomStep4"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"camFollowStep4","t":4,"rt":BD_CameraFollow,"sn":"camFollowStep4"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"clothBasketTarget","t":4,"rt":$n[1].GameObject,"sn":"clothBasketTarget"},{"a":2,"n":"clothBasketTarget2","t":4,"rt":$n[1].GameObject,"sn":"clothBasketTarget2"},{"a":2,"n":"clothCleanInside","t":4,"rt":$n[1].SpriteRenderer,"sn":"clothCleanInside"},{"a":2,"n":"clothCleanInside2","t":4,"rt":BasicDrag,"sn":"clothCleanInside2"},{"a":2,"n":"clothCleanInside2Cam","t":4,"rt":BD_CameraFollow,"sn":"clothCleanInside2Cam"},{"a":2,"n":"clothCleanInsideAnim","t":4,"rt":$n[1].SpriteRenderer,"sn":"clothCleanInsideAnim"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"clothInside","t":4,"rt":$n[1].SpriteRenderer,"sn":"clothInside"},{"a":2,"n":"clothRound","t":4,"rt":$n[1].SpriteRenderer,"sn":"clothRound"},{"at":[new UnityEngine.SpaceAttribute.ctor(),new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"clothSfx","t":4,"rt":$n[1].AudioClip,"sn":"clothSfx"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"clothsInside","t":4,"rt":$n[1].SpriteRenderer,"sn":"clothsInside"},{"a":2,"n":"clothsInsideGlass","t":4,"rt":$n[1].SpriteRenderer,"sn":"clothsInsideGlass"},{"a":2,"n":"clothsStaticClean","t":4,"rt":$n[1].SpriteRenderer,"sn":"clothsStaticClean"},{"a":2,"n":"countDown","t":4,"rt":$n[0].Single,"sn":"countDown","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"countDownTimerText","t":4,"rt":$n[7].Text,"sn":"countDownTimerText"},{"a":2,"n":"darazCloseSfx","t":4,"rt":$n[1].AudioClip,"sn":"darazCloseSfx"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"darazOpenSfx","t":4,"rt":$n[1].AudioClip,"sn":"darazOpenSfx"},{"at":[new UnityEngine.SerializeFieldAttribute()],"a":1,"n":"doorCloseSfx","t":4,"rt":$n[1].AudioClip,"sn":"doorCloseSfx"},{"a":2,"n":"doorOpenSfx","t":4,"rt":$n[1].AudioClip,"sn":"doorOpenSfx"},{"a":1,"n":"doorOpened","t":4,"rt":$n[0].Boolean,"sn":"doorOpened","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"drawerObj","t":4,"rt":$n[1].GameObject,"sn":"drawerObj"},{"a":2,"n":"dressingBasket","t":4,"rt":$n[1].GameObject,"sn":"dressingBasket"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"dummyFullParent","t":4,"rt":$n[1].GameObject,"sn":"dummyFullParent"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"handStep2","t":4,"rt":$n[1].GameObject,"sn":"handStep2"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"machineDoor","t":4,"rt":$n[1].GameObject,"sn":"machineDoor"},{"a":2,"n":"machineFinishSfx","t":4,"rt":$n[1].AudioClip,"sn":"machineFinishSfx"},{"a":2,"n":"machineGlass","t":4,"rt":$n[1].GameObject,"sn":"machineGlass"},{"a":2,"n":"machineStartSfx","t":4,"rt":$n[1].AudioClip,"sn":"machineStartSfx"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"machineTimer","t":4,"rt":$n[1].Collider2D,"sn":"machineTimer"},{"a":2,"n":"machineTimerIndication","t":4,"rt":$n[1].GameObject,"sn":"machineTimerIndication"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"patchCompleted","t":4,"rt":$n[1].GameObject,"sn":"patchCompleted"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"patchOutline","t":4,"rt":$n[1].GameObject,"sn":"patchOutline"},{"a":1,"n":"step1Complete","t":4,"rt":$n[0].Boolean,"sn":"step1Complete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"step2Complete","t":4,"rt":$n[0].Boolean,"sn":"step2Complete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"step3Complete","t":4,"rt":$n[0].Boolean,"sn":"step3Complete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"step3aComplete","t":4,"rt":$n[0].Boolean,"sn":"step3aComplete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"step4Complete","t":4,"rt":$n[0].Boolean,"sn":"step4Complete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"surfController","t":4,"rt":Level1_SurfController,"sn":"surfController"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"surfObj","t":4,"rt":$n[1].GameObject,"sn":"surfObj"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"surfPackTop","t":4,"rt":$n[1].Transform,"sn":"surfPackTop"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"tornPatch","t":4,"rt":$n[1].SpriteRenderer,"sn":"tornPatch"},{"a":2,"n":"waterDrainSfx","t":4,"rt":$n[1].AudioClip,"sn":"waterDrainSfx"},{"at":[new UnityEngine.SpaceAttribute.ctor()],"a":2,"n":"waterSplash_Vfx","t":4,"rt":$n[1].ParticleSystem,"sn":"waterSplash_Vfx"},{"a":2,"n":"waterWave","t":4,"rt":$n[1].SpriteRenderer,"sn":"waterWave"},{"a":2,"n":"wetCloths","t":4,"rt":$n[1].SpriteRenderer,"sn":"wetCloths"}]}; }, $n);
+    /*Level1_Cloth_Playable_PlayableStep4 end.*/
 
     /*PlayableCTA start.*/
     $m("PlayableCTA", function () { return {"nested":[PlayableCTA.Trigger],"att":1048577,"a":2,"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Fire","t":8,"pi":[{"n":"showCardThisFire","pt":$n[0].Boolean,"ps":0},{"n":"openStore","dv":true,"o":true,"pt":$n[0].Boolean,"ps":1}],"sn":"Fire","rt":$n[0].Void,"p":[$n[0].Boolean,$n[0].Boolean]},{"a":2,"n":"FireCTA","t":8,"sn":"FireCTA","rt":$n[0].Void},{"a":1,"n":"FireFromTrigger","t":8,"sn":"FireFromTrigger","rt":$n[0].Void},{"a":2,"n":"FireNow","is":true,"t":8,"sn":"FireNow","rt":$n[0].Void},{"a":2,"n":"FireOnLevelComplete","is":true,"t":8,"sn":"FireOnLevelComplete","rt":$n[0].Void},{"a":1,"n":"HasScratchStarted","is":true,"t":8,"pi":[{"n":"progress","pt":BD_Progress,"ps":0},{"n":"index","pt":$n[0].Int32,"ps":1}],"sn":"HasScratchStarted","rt":$n[0].Boolean,"p":[BD_Progress,$n[0].Int32],"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"IsCardScratched","is":true,"t":8,"pi":[{"n":"sd","pt":ScratchData,"ps":0}],"sn":"IsCardScratched","rt":$n[0].Boolean,"p":[ScratchData],"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"OnDisable","t":8,"sn":"OnDisable","rt":$n[0].Void},{"a":1,"n":"OnEnable","t":8,"sn":"OnEnable","rt":$n[0].Void},{"a":1,"n":"OpenStore","t":8,"sn":"OpenStore","rt":$n[0].Void},{"a":2,"n":"OpenStoreOnly","is":true,"t":8,"sn":"OpenStoreOnly","rt":$n[0].Void},{"a":1,"n":"OpenStoreStatic","is":true,"t":8,"pi":[{"n":"log","pt":$n[0].Boolean,"ps":0}],"sn":"OpenStoreStatic","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":1,"n":"ShowEndCard","t":8,"sn":"ShowEndCard","rt":$n[0].Void},{"a":1,"n":"Update","t":8,"sn":"Update","rt":$n[0].Void},{"a":2,"n":"HasFired","t":16,"rt":$n[0].Boolean,"g":{"a":2,"n":"get_HasFired","t":8,"rt":$n[0].Boolean,"fg":"HasFired","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},"s":{"a":1,"n":"set_HasFired","t":8,"p":[$n[0].Boolean],"rt":$n[0].Void,"fs":"HasFired"},"fn":"HasFired"},{"a":1,"n":"active","is":true,"t":4,"rt":PlayableCTA,"sn":"active"},{"at":[new UnityEngine.TooltipAttribute("Trigger = AfterSeconds: seconds until the CTA fires.")],"a":2,"n":"afterSeconds","t":4,"rt":$n[0].Single,"sn":"afterSeconds","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.TooltipAttribute("Trigger = AfterTaps: how many taps anywhere before the CTA fires.")],"a":2,"n":"afterTaps","t":4,"rt":$n[0].Int32,"sn":"afterTaps","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.TooltipAttribute("Open the store automatically on level completion. Turning this off keeps the end card, input blocking and tap-to-open behaviour.")],"a":2,"n":"autoCtaOnLevelComplete","t":4,"rt":$n[0].Boolean,"sn":"autoCtaOnLevelComplete","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HeaderAttribute("After it has fired"),new UnityEngine.TooltipAttribute("Stop all drags and pause GameManager the instant the CTA fires, so it can't also be read as a drag. Off = gameplay keeps running under the CTA (soft/banner CTA).")],"a":2,"n":"blockInputOnFire","t":4,"rt":$n[0].Boolean,"sn":"blockInputOnFire","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"enabledAt","t":4,"rt":$n[0].Single,"sn":"enabledAt","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.TooltipAttribute("End-card canvas/root, activated when the CTA fires.")],"a":2,"n":"endCard","t":4,"rt":$n[1].GameObject,"sn":"endCard"},{"at":[new UnityEngine.TooltipAttribute("Seconds between the CTA firing and the end card actually appearing \u2014 gives GameManagerPlayable's endParticles a moment to play before the card covers them. 0 = instant (old behaviour). Everything else (input block, onCtaFired, the store call) still happens immediately; only the end card's own appearance is delayed.")],"a":2,"n":"endCardDelay","t":4,"rt":$n[0].Single,"sn":"endCardDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":1,"n":"lastFireTime","t":4,"rt":$n[0].Single,"sn":"lastFireTime","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.TooltipAttribute("Logs to the console every time the CTA fires. Handy while wiring things up.")],"a":2,"n":"logWhenFired","t":4,"rt":$n[0].Boolean,"sn":"logWhenFired","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.HeaderAttribute("Extras"),new UnityEngine.TooltipAttribute("Runs once, the first time the CTA fires (hide HUD, ...).")],"a":2,"n":"onCtaFired","t":4,"rt":$n[3].UnityEvent,"sn":"onCtaFired"},{"at":[new UnityEngine.TooltipAttribute("Trigger = AfterProgress: 0..1 progress that fires the CTA once reached.")],"a":2,"n":"progressThreshold","t":4,"rt":$n[0].Single,"sn":"progressThreshold","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.TooltipAttribute("Minimum gap between re-fires, so one physical tap can't fire twice across frames.")],"a":2,"n":"refireDelay","t":4,"rt":$n[0].Single,"sn":"refireDelay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"at":[new UnityEngine.TooltipAttribute("Every further tap re-opens the store page. Standard playable end-card behaviour.")],"a":2,"n":"refireOnEveryTap","t":4,"rt":$n[0].Boolean,"sn":"refireOnEveryTap","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.TooltipAttribute("Trigger = AfterProgress: index into scratchProgress.AllScratches to track. -1 = collective progress of all of them.")],"a":2,"n":"scratchIndex","t":4,"rt":$n[0].Int32,"sn":"scratchIndex","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.TooltipAttribute("Trigger = AfterProgress: the scratch card (erase or restore) whose progress to watch.")],"a":2,"n":"scratchProgress","t":4,"rt":BD_Progress,"sn":"scratchProgress"},{"at":[new UnityEngine.HeaderAttribute("End card (optional)"),new UnityEngine.TooltipAttribute("Show endCard when the CTA fires.")],"a":2,"n":"showEndCard","t":4,"rt":$n[0].Boolean,"sn":"showEndCard","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"at":[new UnityEngine.TooltipAttribute("If trigger = AfterProgress, show the end card too (normally reserved for genuine level completion, not mid-scratch progress).")],"a":2,"n":"showEndCardOnProgressTrigger","t":4,"rt":$n[0].Boolean,"sn":"showEndCardOnProgressTrigger","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"tapCount","t":4,"rt":$n[0].Int32,"sn":"tapCount","box":function ($v) { return Bridge.box($v, System.Int32);}},{"at":[new UnityEngine.TooltipAttribute("Switched OFF at the same moment the end card appears (HUD, tool bar, ...) \u2014 the playable never runs UI_Manager.Complete(), so nothing else does this.")],"a":2,"n":"thingsToDisableOnEndCard","t":4,"rt":System.Array.type(UnityEngine.GameObject),"sn":"thingsToDisableOnEndCard"},{"at":[new UnityEngine.HeaderAttribute("When should the CTA fire?")],"a":2,"n":"trigger","t":4,"rt":PlayableCTA.Trigger,"sn":"trigger","box":function ($v) { return Bridge.box($v, PlayableCTA.Trigger, System.Enum.toStringFn(PlayableCTA.Trigger));}},{"a":1,"backing":true,"n":"<HasFired>k__BackingField","t":4,"rt":$n[0].Boolean,"sn":"HasFired","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}}]}; }, $n);
@@ -13523,7 +14323,7 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     /*DG.Tweening.DOTweenModuleSprite end.*/
 
     /*DG.Tweening.DOTweenModuleUI start.*/
-    $m("DG.Tweening.DOTweenModuleUI", function () { return {"nested":[$n[6].DOTweenModuleUI.Utils],"att":1048961,"a":2,"s":true,"m":[{"a":2,"n":"DOAnchorMax","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorMax","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorMin","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorMin","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3D","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector3,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3D","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector3,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3DX","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3DX","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3DY","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3DY","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3DZ","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3DZ","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPosX","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPosX","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPosY","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPosY","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOBlendableColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Graphic,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOBlendableColor","rt":$n[6].Tweener,"p":[$n[8].Graphic,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOBlendableColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Image,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOBlendableColor$1","rt":$n[6].Tweener,"p":[$n[8].Image,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOBlendableColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Text,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOBlendableColor$2","rt":$n[6].Tweener,"p":[$n[8].Text,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Graphic,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Graphic,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Image,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor$1","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Image,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Outline,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor$2","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Outline,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Text,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor$3","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Text,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOCounter","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Text,"ps":0},{"n":"fromValue","pt":$n[0].Int32,"ps":1},{"n":"endValue","pt":$n[0].Int32,"ps":2},{"n":"duration","pt":$n[0].Single,"ps":3},{"n":"addThousandsSeparator","dv":true,"o":true,"pt":$n[0].Boolean,"ps":4},{"n":"culture","dv":null,"o":true,"pt":$n[11].CultureInfo,"ps":5}],"sn":"DOCounter","rt":$n[9].TweenerCore$3(System.Int32,System.Int32,DG.Tweening.Plugins.Options.NoOptions),"p":[$n[8].Text,$n[0].Int32,$n[0].Int32,$n[0].Single,$n[0].Boolean,$n[11].CultureInfo]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].CanvasGroup,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade","rt":$n[9].TweenerCore$3(System.Single,System.Single,DG.Tweening.Plugins.Options.FloatOptions),"p":[$n[1].CanvasGroup,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Graphic,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$1","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Graphic,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Image,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$2","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Image,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Outline,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$3","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Outline,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Text,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$4","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[8].Text,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFillAmount","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Image,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFillAmount","rt":$n[9].TweenerCore$3(System.Single,System.Single,DG.Tweening.Plugins.Options.FloatOptions),"p":[$n[8].Image,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFlexibleSize","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].LayoutElement,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOFlexibleSize","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[8].LayoutElement,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOGradientColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Image,"ps":0},{"n":"gradient","pt":pc.ColorGradient,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOGradientColor","rt":$n[6].Sequence,"p":[$n[8].Image,pc.ColorGradient,$n[0].Single]},{"a":2,"n":"DOHorizontalNormalizedPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].ScrollRect,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOHorizontalNormalizedPos","rt":$n[6].Tweener,"p":[$n[8].ScrollRect,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOJumpAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"jumpPower","pt":$n[0].Single,"ps":2},{"n":"numJumps","pt":$n[0].Int32,"ps":3},{"n":"duration","pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5}],"sn":"DOJumpAnchorPos","rt":$n[6].Sequence,"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Int32,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOMinSize","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].LayoutElement,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOMinSize","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[8].LayoutElement,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DONormalizedPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].ScrollRect,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DONormalizedPos","rt":$n[6].Tweener,"p":[$n[8].ScrollRect,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOPivot","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOPivot","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single]},{"a":2,"n":"DOPivotX","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOPivotX","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOPivotY","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOPivotY","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOPreferredSize","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].LayoutElement,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOPreferredSize","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[8].LayoutElement,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOPunchAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"punch","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"vibrato","dv":10,"o":true,"pt":$n[0].Int32,"ps":3},{"n":"elasticity","dv":1.0,"o":true,"pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5}],"sn":"DOPunchAnchorPos","rt":$n[6].Tweener,"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Int32,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOScale","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Outline,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOScale","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[8].Outline,$n[1].Vector2,$n[0].Single]},{"a":2,"n":"DOShakeAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"duration","pt":$n[0].Single,"ps":1},{"n":"strength","dv":100.0,"o":true,"pt":$n[0].Single,"ps":2},{"n":"vibrato","dv":10,"o":true,"pt":$n[0].Int32,"ps":3},{"n":"randomness","dv":90.0,"o":true,"pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5},{"n":"fadeOut","dv":true,"o":true,"pt":$n[0].Boolean,"ps":6},{"n":"randomnessMode","dv":0,"o":true,"pt":$n[6].ShakeRandomnessMode,"ps":7}],"sn":"DOShakeAnchorPos","rt":$n[6].Tweener,"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Int32,$n[0].Single,$n[0].Boolean,$n[0].Boolean,$n[6].ShakeRandomnessMode]},{"a":2,"n":"DOShakeAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"duration","pt":$n[0].Single,"ps":1},{"n":"strength","pt":$n[1].Vector2,"ps":2},{"n":"vibrato","dv":10,"o":true,"pt":$n[0].Int32,"ps":3},{"n":"randomness","dv":90.0,"o":true,"pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5},{"n":"fadeOut","dv":true,"o":true,"pt":$n[0].Boolean,"ps":6},{"n":"randomnessMode","dv":0,"o":true,"pt":$n[6].ShakeRandomnessMode,"ps":7}],"sn":"DOShakeAnchorPos$1","rt":$n[6].Tweener,"p":[$n[1].RectTransform,$n[0].Single,$n[1].Vector2,$n[0].Int32,$n[0].Single,$n[0].Boolean,$n[0].Boolean,$n[6].ShakeRandomnessMode]},{"a":2,"n":"DOShapeCircle","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"center","pt":$n[1].Vector2,"ps":1},{"n":"endValueDegrees","pt":$n[0].Single,"ps":2},{"n":"duration","pt":$n[0].Single,"ps":3},{"n":"relativeCenter","dv":false,"o":true,"pt":$n[0].Boolean,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5}],"sn":"DOShapeCircle","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.CircleOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Single,$n[0].Boolean,$n[0].Boolean]},{"a":2,"n":"DOSizeDelta","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOSizeDelta","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOText","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Text,"ps":0},{"n":"endValue","pt":$n[0].String,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"richTextEnabled","dv":true,"o":true,"pt":$n[0].Boolean,"ps":3},{"n":"scrambleMode","dv":0,"o":true,"pt":$n[6].ScrambleMode,"ps":4},{"n":"scrambleChars","dv":null,"o":true,"pt":$n[0].String,"ps":5}],"sn":"DOText","rt":$n[9].TweenerCore$3(System.String,System.String,DG.Tweening.Plugins.Options.StringOptions),"p":[$n[8].Text,$n[0].String,$n[0].Single,$n[0].Boolean,$n[6].ScrambleMode,$n[0].String]},{"a":2,"n":"DOValue","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].Slider,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOValue","rt":$n[9].TweenerCore$3(System.Single,System.Single,DG.Tweening.Plugins.Options.FloatOptions),"p":[$n[8].Slider,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOVerticalNormalizedPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[8].ScrollRect,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOVerticalNormalizedPos","rt":$n[6].Tweener,"p":[$n[8].ScrollRect,$n[0].Single,$n[0].Single,$n[0].Boolean]}]}; }, $n);
+    $m("DG.Tweening.DOTweenModuleUI", function () { return {"nested":[$n[6].DOTweenModuleUI.Utils],"att":1048961,"a":2,"s":true,"m":[{"a":2,"n":"DOAnchorMax","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorMax","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorMin","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorMin","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3D","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector3,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3D","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector3,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3DX","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3DX","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3DY","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3DY","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPos3DZ","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPos3DZ","rt":$n[9].TweenerCore$3(UnityEngine.Vector3,UnityEngine.Vector3,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPosX","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPosX","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOAnchorPosY","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOAnchorPosY","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOBlendableColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Graphic,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOBlendableColor","rt":$n[6].Tweener,"p":[$n[7].Graphic,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOBlendableColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Image,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOBlendableColor$1","rt":$n[6].Tweener,"p":[$n[7].Image,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOBlendableColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Text,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOBlendableColor$2","rt":$n[6].Tweener,"p":[$n[7].Text,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Graphic,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Graphic,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Image,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor$1","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Image,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Outline,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor$2","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Outline,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Text,"ps":0},{"n":"endValue","pt":$n[1].Color,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOColor$3","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Text,$n[1].Color,$n[0].Single]},{"a":2,"n":"DOCounter","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Text,"ps":0},{"n":"fromValue","pt":$n[0].Int32,"ps":1},{"n":"endValue","pt":$n[0].Int32,"ps":2},{"n":"duration","pt":$n[0].Single,"ps":3},{"n":"addThousandsSeparator","dv":true,"o":true,"pt":$n[0].Boolean,"ps":4},{"n":"culture","dv":null,"o":true,"pt":$n[11].CultureInfo,"ps":5}],"sn":"DOCounter","rt":$n[9].TweenerCore$3(System.Int32,System.Int32,DG.Tweening.Plugins.Options.NoOptions),"p":[$n[7].Text,$n[0].Int32,$n[0].Int32,$n[0].Single,$n[0].Boolean,$n[11].CultureInfo]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].CanvasGroup,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade","rt":$n[9].TweenerCore$3(System.Single,System.Single,DG.Tweening.Plugins.Options.FloatOptions),"p":[$n[1].CanvasGroup,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Graphic,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$1","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Graphic,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Image,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$2","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Image,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Outline,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$3","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Outline,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFade","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Text,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFade$4","rt":$n[9].TweenerCore$3(UnityEngine.Color,UnityEngine.Color,DG.Tweening.Plugins.Options.ColorOptions),"p":[$n[7].Text,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFillAmount","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Image,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOFillAmount","rt":$n[9].TweenerCore$3(System.Single,System.Single,DG.Tweening.Plugins.Options.FloatOptions),"p":[$n[7].Image,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOFlexibleSize","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].LayoutElement,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOFlexibleSize","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[7].LayoutElement,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOGradientColor","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Image,"ps":0},{"n":"gradient","pt":pc.ColorGradient,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOGradientColor","rt":$n[6].Sequence,"p":[$n[7].Image,pc.ColorGradient,$n[0].Single]},{"a":2,"n":"DOHorizontalNormalizedPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].ScrollRect,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOHorizontalNormalizedPos","rt":$n[6].Tweener,"p":[$n[7].ScrollRect,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOJumpAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"jumpPower","pt":$n[0].Single,"ps":2},{"n":"numJumps","pt":$n[0].Int32,"ps":3},{"n":"duration","pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5}],"sn":"DOJumpAnchorPos","rt":$n[6].Sequence,"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Int32,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOMinSize","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].LayoutElement,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOMinSize","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[7].LayoutElement,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DONormalizedPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].ScrollRect,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DONormalizedPos","rt":$n[6].Tweener,"p":[$n[7].ScrollRect,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOPivot","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOPivot","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single]},{"a":2,"n":"DOPivotX","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOPivotX","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOPivotY","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOPivotY","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single]},{"a":2,"n":"DOPreferredSize","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].LayoutElement,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOPreferredSize","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[7].LayoutElement,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOPunchAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"punch","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"vibrato","dv":10,"o":true,"pt":$n[0].Int32,"ps":3},{"n":"elasticity","dv":1.0,"o":true,"pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5}],"sn":"DOPunchAnchorPos","rt":$n[6].Tweener,"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Int32,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOScale","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Outline,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2}],"sn":"DOScale","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[7].Outline,$n[1].Vector2,$n[0].Single]},{"a":2,"n":"DOShakeAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"duration","pt":$n[0].Single,"ps":1},{"n":"strength","dv":100.0,"o":true,"pt":$n[0].Single,"ps":2},{"n":"vibrato","dv":10,"o":true,"pt":$n[0].Int32,"ps":3},{"n":"randomness","dv":90.0,"o":true,"pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5},{"n":"fadeOut","dv":true,"o":true,"pt":$n[0].Boolean,"ps":6},{"n":"randomnessMode","dv":0,"o":true,"pt":$n[6].ShakeRandomnessMode,"ps":7}],"sn":"DOShakeAnchorPos","rt":$n[6].Tweener,"p":[$n[1].RectTransform,$n[0].Single,$n[0].Single,$n[0].Int32,$n[0].Single,$n[0].Boolean,$n[0].Boolean,$n[6].ShakeRandomnessMode]},{"a":2,"n":"DOShakeAnchorPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"duration","pt":$n[0].Single,"ps":1},{"n":"strength","pt":$n[1].Vector2,"ps":2},{"n":"vibrato","dv":10,"o":true,"pt":$n[0].Int32,"ps":3},{"n":"randomness","dv":90.0,"o":true,"pt":$n[0].Single,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5},{"n":"fadeOut","dv":true,"o":true,"pt":$n[0].Boolean,"ps":6},{"n":"randomnessMode","dv":0,"o":true,"pt":$n[6].ShakeRandomnessMode,"ps":7}],"sn":"DOShakeAnchorPos$1","rt":$n[6].Tweener,"p":[$n[1].RectTransform,$n[0].Single,$n[1].Vector2,$n[0].Int32,$n[0].Single,$n[0].Boolean,$n[0].Boolean,$n[6].ShakeRandomnessMode]},{"a":2,"n":"DOShapeCircle","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"center","pt":$n[1].Vector2,"ps":1},{"n":"endValueDegrees","pt":$n[0].Single,"ps":2},{"n":"duration","pt":$n[0].Single,"ps":3},{"n":"relativeCenter","dv":false,"o":true,"pt":$n[0].Boolean,"ps":4},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":5}],"sn":"DOShapeCircle","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.CircleOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Single,$n[0].Boolean,$n[0].Boolean]},{"a":2,"n":"DOSizeDelta","is":true,"t":8,"pi":[{"n":"target","pt":$n[1].RectTransform,"ps":0},{"n":"endValue","pt":$n[1].Vector2,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOSizeDelta","rt":$n[9].TweenerCore$3(UnityEngine.Vector2,UnityEngine.Vector2,DG.Tweening.Plugins.Options.VectorOptions),"p":[$n[1].RectTransform,$n[1].Vector2,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOText","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Text,"ps":0},{"n":"endValue","pt":$n[0].String,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"richTextEnabled","dv":true,"o":true,"pt":$n[0].Boolean,"ps":3},{"n":"scrambleMode","dv":0,"o":true,"pt":$n[6].ScrambleMode,"ps":4},{"n":"scrambleChars","dv":null,"o":true,"pt":$n[0].String,"ps":5}],"sn":"DOText","rt":$n[9].TweenerCore$3(System.String,System.String,DG.Tweening.Plugins.Options.StringOptions),"p":[$n[7].Text,$n[0].String,$n[0].Single,$n[0].Boolean,$n[6].ScrambleMode,$n[0].String]},{"a":2,"n":"DOValue","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].Slider,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOValue","rt":$n[9].TweenerCore$3(System.Single,System.Single,DG.Tweening.Plugins.Options.FloatOptions),"p":[$n[7].Slider,$n[0].Single,$n[0].Single,$n[0].Boolean]},{"a":2,"n":"DOVerticalNormalizedPos","is":true,"t":8,"pi":[{"n":"target","pt":$n[7].ScrollRect,"ps":0},{"n":"endValue","pt":$n[0].Single,"ps":1},{"n":"duration","pt":$n[0].Single,"ps":2},{"n":"snapping","dv":false,"o":true,"pt":$n[0].Boolean,"ps":3}],"sn":"DOVerticalNormalizedPos","rt":$n[6].Tweener,"p":[$n[7].ScrollRect,$n[0].Single,$n[0].Single,$n[0].Boolean]}]}; }, $n);
     /*DG.Tweening.DOTweenModuleUI end.*/
 
     /*DG.Tweening.DOTweenModuleUI+Utils start.*/
@@ -13571,7 +14371,7 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     /*DG.Tweening.DOTweenModuleUtils+Physics end.*/
 
     /*DG.Tweening.DOTweenAnimation start.*/
-    $m("DG.Tweening.DOTweenAnimation", function () { return {"nested":[$n[6].DOTweenAnimation.AnimationType,$n[6].DOTweenAnimation.TargetType],"att":1048577,"a":2,"at":[new UnityEngine.AddComponentMenu.ctor("DOTween/DOTween Animation")],"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"CreateEditorPreview","t":8,"sn":"CreateEditorPreview","rt":$n[6].Tween},{"a":2,"n":"CreateTween","t":8,"pi":[{"n":"regenerateIfExists","dv":false,"o":true,"pt":$n[0].Boolean,"ps":0},{"n":"andPlay","dv":true,"o":true,"pt":$n[0].Boolean,"ps":1}],"sn":"CreateTween","rt":$n[0].Void,"p":[$n[0].Boolean,$n[0].Boolean]},{"ov":true,"a":2,"n":"DOComplete","t":8,"sn":"DOComplete","rt":$n[0].Void},{"ov":true,"a":2,"n":"DOKill","t":8,"sn":"DOKill","rt":$n[0].Void},{"a":2,"n":"DOKillAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOKillAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOKillById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOKillById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPause","t":8,"sn":"DOPause","rt":$n[0].Void},{"a":2,"n":"DOPauseAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPauseAllById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPlay","t":8,"sn":"DOPlay","rt":$n[0].Void},{"a":2,"n":"DOPlayAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayAllById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPlayBackwards","t":8,"sn":"DOPlayBackwards","rt":$n[0].Void},{"a":2,"n":"DOPlayBackwardsAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayBackwardsAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayBackwardsById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayBackwardsById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPlayForward","t":8,"sn":"DOPlayForward","rt":$n[0].Void},{"a":2,"n":"DOPlayForwardAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayForwardAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayForwardById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayForwardById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayNext","t":8,"sn":"DOPlayNext","rt":$n[0].Void},{"ov":true,"a":2,"n":"DORestart","t":8,"sn":"DORestart","rt":$n[0].Void},{"ov":true,"a":2,"n":"DORestart","t":8,"pi":[{"n":"fromHere","pt":$n[0].Boolean,"ps":0}],"sn":"DORestart$1","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":2,"n":"DORestartAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DORestartAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DORestartById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DORestartById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DORewind","t":8,"sn":"DORewind","rt":$n[0].Void},{"a":2,"n":"DORewindAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DORewindAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DORewindAndPlayNext","t":8,"sn":"DORewindAndPlayNext","rt":$n[0].Void},{"ov":true,"a":2,"n":"DOTogglePause","t":8,"sn":"DOTogglePause","rt":$n[0].Void},{"a":1,"n":"Dispatch_OnReset","is":true,"t":8,"pi":[{"n":"anim","pt":$n[6].DOTweenAnimation,"ps":0}],"sn":"Dispatch_OnReset","rt":$n[0].Void,"p":[$n[6].DOTweenAnimation]},{"a":1,"n":"GetTweenGO","t":8,"sn":"GetTweenGO","rt":$n[1].GameObject},{"a":1,"n":"GetTweenTarget","t":8,"sn":"GetTweenTarget","rt":$n[1].GameObject},{"a":2,"n":"GetTweens","t":8,"sn":"GetTweens","rt":$n[7].List$1(DG.Tweening.Tween)},{"a":1,"n":"OnDestroy","t":8,"sn":"OnDestroy","rt":$n[0].Void},{"a":1,"n":"ReEvaluateRelativeTween","t":8,"sn":"ReEvaluateRelativeTween","rt":$n[0].Void},{"a":2,"n":"RecreateTween","t":8,"sn":"RecreateTween","rt":$n[0].Void},{"a":2,"n":"RecreateTweenAndPlay","t":8,"sn":"RecreateTweenAndPlay","rt":$n[0].Void},{"a":1,"n":"Reset","t":8,"sn":"Reset","rt":$n[0].Void},{"a":2,"n":"RewindThenRecreateTween","t":8,"sn":"RewindThenRecreateTween","rt":$n[0].Void},{"a":2,"n":"RewindThenRecreateTweenAndPlay","t":8,"sn":"RewindThenRecreateTweenAndPlay","rt":$n[0].Void},{"a":2,"n":"SetAnimationTarget","t":8,"pi":[{"n":"tweenTarget","pt":$n[1].Component,"ps":0},{"n":"useTweenTargetGameObjectForGroupOperations","dv":true,"o":true,"pt":$n[0].Boolean,"ps":1}],"sn":"SetAnimationTarget","rt":$n[0].Void,"p":[$n[1].Component,$n[0].Boolean]},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":2,"n":"TypeToDOTargetType","is":true,"t":8,"pi":[{"n":"t","pt":$n[0].Type,"ps":0}],"sn":"TypeToDOTargetType","rt":$n[6].DOTweenAnimation.TargetType,"p":[$n[0].Type],"box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.TargetType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.TargetType));}},{"a":1,"n":"_playCount","t":4,"rt":$n[0].Int32,"sn":"_playCount","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"_tweenAutoGenerationCalled","t":4,"rt":$n[0].Boolean,"sn":"_tweenAutoGenerationCalled","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"animationType","t":4,"rt":$n[6].DOTweenAnimation.AnimationType,"sn":"animationType","box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.AnimationType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.AnimationType));}},{"a":2,"n":"autoGenerate","t":4,"rt":$n[0].Boolean,"sn":"autoGenerate","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"autoKill","t":4,"rt":$n[0].Boolean,"sn":"autoKill","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"autoPlay","t":4,"rt":$n[0].Boolean,"sn":"autoPlay","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"delay","t":4,"rt":$n[0].Single,"sn":"delay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"duration","t":4,"rt":$n[0].Single,"sn":"duration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"easeCurve","t":4,"rt":pc.AnimationCurve,"sn":"easeCurve"},{"a":2,"n":"easeType","t":4,"rt":$n[6].Ease,"sn":"easeType","box":function ($v) { return Bridge.box($v, DG.Tweening.Ease, System.Enum.toStringFn(DG.Tweening.Ease));}},{"a":2,"n":"endValueColor","t":4,"rt":$n[1].Color,"sn":"endValueColor"},{"a":2,"n":"endValueFloat","t":4,"rt":$n[0].Single,"sn":"endValueFloat","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"endValueRect","t":4,"rt":$n[1].Rect,"sn":"endValueRect"},{"a":2,"n":"endValueString","t":4,"rt":$n[0].String,"sn":"endValueString"},{"a":2,"n":"endValueTransform","t":4,"rt":$n[1].Transform,"sn":"endValueTransform"},{"a":2,"n":"endValueV2","t":4,"rt":$n[1].Vector2,"sn":"endValueV2"},{"a":2,"n":"endValueV3","t":4,"rt":$n[1].Vector3,"sn":"endValueV3"},{"a":2,"n":"forcedTargetType","t":4,"rt":$n[6].DOTweenAnimation.TargetType,"sn":"forcedTargetType","box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.TargetType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.TargetType));}},{"a":2,"n":"id","t":4,"rt":$n[0].String,"sn":"id"},{"a":2,"n":"isActive","t":4,"rt":$n[0].Boolean,"sn":"isActive","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isFrom","t":4,"rt":$n[0].Boolean,"sn":"isFrom","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isIndependentUpdate","t":4,"rt":$n[0].Boolean,"sn":"isIndependentUpdate","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isRelative","t":4,"rt":$n[0].Boolean,"sn":"isRelative","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isValid","t":4,"rt":$n[0].Boolean,"sn":"isValid","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"loopType","t":4,"rt":$n[6].LoopType,"sn":"loopType","box":function ($v) { return Bridge.box($v, DG.Tweening.LoopType, System.Enum.toStringFn(DG.Tweening.LoopType));}},{"a":2,"n":"loops","t":4,"rt":$n[0].Int32,"sn":"loops","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"optionalBool0","t":4,"rt":$n[0].Boolean,"sn":"optionalBool0","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"optionalBool1","t":4,"rt":$n[0].Boolean,"sn":"optionalBool1","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"optionalFloat0","t":4,"rt":$n[0].Single,"sn":"optionalFloat0","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"optionalInt0","t":4,"rt":$n[0].Int32,"sn":"optionalInt0","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"optionalRotationMode","t":4,"rt":$n[6].RotateMode,"sn":"optionalRotationMode","box":function ($v) { return Bridge.box($v, DG.Tweening.RotateMode, System.Enum.toStringFn(DG.Tweening.RotateMode));}},{"a":2,"n":"optionalScrambleMode","t":4,"rt":$n[6].ScrambleMode,"sn":"optionalScrambleMode","box":function ($v) { return Bridge.box($v, DG.Tweening.ScrambleMode, System.Enum.toStringFn(DG.Tweening.ScrambleMode));}},{"a":2,"n":"optionalShakeRandomnessMode","t":4,"rt":$n[6].ShakeRandomnessMode,"sn":"optionalShakeRandomnessMode","box":function ($v) { return Bridge.box($v, DG.Tweening.ShakeRandomnessMode, System.Enum.toStringFn(DG.Tweening.ShakeRandomnessMode));}},{"a":2,"n":"optionalString","t":4,"rt":$n[0].String,"sn":"optionalString"},{"a":2,"n":"target","t":4,"rt":$n[1].Component,"sn":"target"},{"a":2,"n":"targetGO","t":4,"rt":$n[1].GameObject,"sn":"targetGO"},{"a":2,"n":"targetIsSelf","t":4,"rt":$n[0].Boolean,"sn":"targetIsSelf","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"targetType","t":4,"rt":$n[6].DOTweenAnimation.TargetType,"sn":"targetType","box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.TargetType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.TargetType));}},{"a":2,"n":"tweenTargetIsTargetGO","t":4,"rt":$n[0].Boolean,"sn":"tweenTargetIsTargetGO","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"useTargetAsV3","t":4,"rt":$n[0].Boolean,"sn":"useTargetAsV3","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"OnReset","is":true,"t":2,"ad":{"a":2,"n":"add_OnReset","is":true,"t":8,"pi":[{"n":"value","pt":Function,"ps":0}],"sn":"addOnReset","rt":$n[0].Void,"p":[Function]},"r":{"a":2,"n":"remove_OnReset","is":true,"t":8,"pi":[{"n":"value","pt":Function,"ps":0}],"sn":"removeOnReset","rt":$n[0].Void,"p":[Function]}}]}; }, $n);
+    $m("DG.Tweening.DOTweenAnimation", function () { return {"nested":[$n[6].DOTweenAnimation.AnimationType,$n[6].DOTweenAnimation.TargetType],"att":1048577,"a":2,"at":[new UnityEngine.AddComponentMenu.ctor("DOTween/DOTween Animation")],"m":[{"a":2,"isSynthetic":true,"n":".ctor","t":1,"sn":"ctor"},{"a":1,"n":"Awake","t":8,"sn":"Awake","rt":$n[0].Void},{"a":2,"n":"CreateEditorPreview","t":8,"sn":"CreateEditorPreview","rt":$n[6].Tween},{"a":2,"n":"CreateTween","t":8,"pi":[{"n":"regenerateIfExists","dv":false,"o":true,"pt":$n[0].Boolean,"ps":0},{"n":"andPlay","dv":true,"o":true,"pt":$n[0].Boolean,"ps":1}],"sn":"CreateTween","rt":$n[0].Void,"p":[$n[0].Boolean,$n[0].Boolean]},{"ov":true,"a":2,"n":"DOComplete","t":8,"sn":"DOComplete","rt":$n[0].Void},{"ov":true,"a":2,"n":"DOKill","t":8,"sn":"DOKill","rt":$n[0].Void},{"a":2,"n":"DOKillAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOKillAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOKillById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOKillById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPause","t":8,"sn":"DOPause","rt":$n[0].Void},{"a":2,"n":"DOPauseAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPauseAllById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPlay","t":8,"sn":"DOPlay","rt":$n[0].Void},{"a":2,"n":"DOPlayAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayAllById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPlayBackwards","t":8,"sn":"DOPlayBackwards","rt":$n[0].Void},{"a":2,"n":"DOPlayBackwardsAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayBackwardsAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayBackwardsById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayBackwardsById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DOPlayForward","t":8,"sn":"DOPlayForward","rt":$n[0].Void},{"a":2,"n":"DOPlayForwardAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayForwardAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayForwardById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DOPlayForwardById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DOPlayNext","t":8,"sn":"DOPlayNext","rt":$n[0].Void},{"ov":true,"a":2,"n":"DORestart","t":8,"sn":"DORestart","rt":$n[0].Void},{"ov":true,"a":2,"n":"DORestart","t":8,"pi":[{"n":"fromHere","pt":$n[0].Boolean,"ps":0}],"sn":"DORestart$1","rt":$n[0].Void,"p":[$n[0].Boolean]},{"a":2,"n":"DORestartAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DORestartAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DORestartById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DORestartById","rt":$n[0].Void,"p":[$n[0].String]},{"ov":true,"a":2,"n":"DORewind","t":8,"sn":"DORewind","rt":$n[0].Void},{"a":2,"n":"DORewindAllById","t":8,"pi":[{"n":"id","pt":$n[0].String,"ps":0}],"sn":"DORewindAllById","rt":$n[0].Void,"p":[$n[0].String]},{"a":2,"n":"DORewindAndPlayNext","t":8,"sn":"DORewindAndPlayNext","rt":$n[0].Void},{"ov":true,"a":2,"n":"DOTogglePause","t":8,"sn":"DOTogglePause","rt":$n[0].Void},{"a":1,"n":"Dispatch_OnReset","is":true,"t":8,"pi":[{"n":"anim","pt":$n[6].DOTweenAnimation,"ps":0}],"sn":"Dispatch_OnReset","rt":$n[0].Void,"p":[$n[6].DOTweenAnimation]},{"a":1,"n":"GetTweenGO","t":8,"sn":"GetTweenGO","rt":$n[1].GameObject},{"a":1,"n":"GetTweenTarget","t":8,"sn":"GetTweenTarget","rt":$n[1].GameObject},{"a":2,"n":"GetTweens","t":8,"sn":"GetTweens","rt":$n[8].List$1(DG.Tweening.Tween)},{"a":1,"n":"OnDestroy","t":8,"sn":"OnDestroy","rt":$n[0].Void},{"a":1,"n":"ReEvaluateRelativeTween","t":8,"sn":"ReEvaluateRelativeTween","rt":$n[0].Void},{"a":2,"n":"RecreateTween","t":8,"sn":"RecreateTween","rt":$n[0].Void},{"a":2,"n":"RecreateTweenAndPlay","t":8,"sn":"RecreateTweenAndPlay","rt":$n[0].Void},{"a":1,"n":"Reset","t":8,"sn":"Reset","rt":$n[0].Void},{"a":2,"n":"RewindThenRecreateTween","t":8,"sn":"RewindThenRecreateTween","rt":$n[0].Void},{"a":2,"n":"RewindThenRecreateTweenAndPlay","t":8,"sn":"RewindThenRecreateTweenAndPlay","rt":$n[0].Void},{"a":2,"n":"SetAnimationTarget","t":8,"pi":[{"n":"tweenTarget","pt":$n[1].Component,"ps":0},{"n":"useTweenTargetGameObjectForGroupOperations","dv":true,"o":true,"pt":$n[0].Boolean,"ps":1}],"sn":"SetAnimationTarget","rt":$n[0].Void,"p":[$n[1].Component,$n[0].Boolean]},{"a":1,"n":"Start","t":8,"sn":"Start","rt":$n[0].Void},{"a":2,"n":"TypeToDOTargetType","is":true,"t":8,"pi":[{"n":"t","pt":$n[0].Type,"ps":0}],"sn":"TypeToDOTargetType","rt":$n[6].DOTweenAnimation.TargetType,"p":[$n[0].Type],"box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.TargetType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.TargetType));}},{"a":1,"n":"_playCount","t":4,"rt":$n[0].Int32,"sn":"_playCount","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":1,"n":"_tweenAutoGenerationCalled","t":4,"rt":$n[0].Boolean,"sn":"_tweenAutoGenerationCalled","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"animationType","t":4,"rt":$n[6].DOTweenAnimation.AnimationType,"sn":"animationType","box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.AnimationType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.AnimationType));}},{"a":2,"n":"autoGenerate","t":4,"rt":$n[0].Boolean,"sn":"autoGenerate","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"autoKill","t":4,"rt":$n[0].Boolean,"sn":"autoKill","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"autoPlay","t":4,"rt":$n[0].Boolean,"sn":"autoPlay","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"delay","t":4,"rt":$n[0].Single,"sn":"delay","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"duration","t":4,"rt":$n[0].Single,"sn":"duration","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"easeCurve","t":4,"rt":pc.AnimationCurve,"sn":"easeCurve"},{"a":2,"n":"easeType","t":4,"rt":$n[6].Ease,"sn":"easeType","box":function ($v) { return Bridge.box($v, DG.Tweening.Ease, System.Enum.toStringFn(DG.Tweening.Ease));}},{"a":2,"n":"endValueColor","t":4,"rt":$n[1].Color,"sn":"endValueColor"},{"a":2,"n":"endValueFloat","t":4,"rt":$n[0].Single,"sn":"endValueFloat","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"endValueRect","t":4,"rt":$n[1].Rect,"sn":"endValueRect"},{"a":2,"n":"endValueString","t":4,"rt":$n[0].String,"sn":"endValueString"},{"a":2,"n":"endValueTransform","t":4,"rt":$n[1].Transform,"sn":"endValueTransform"},{"a":2,"n":"endValueV2","t":4,"rt":$n[1].Vector2,"sn":"endValueV2"},{"a":2,"n":"endValueV3","t":4,"rt":$n[1].Vector3,"sn":"endValueV3"},{"a":2,"n":"forcedTargetType","t":4,"rt":$n[6].DOTweenAnimation.TargetType,"sn":"forcedTargetType","box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.TargetType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.TargetType));}},{"a":2,"n":"id","t":4,"rt":$n[0].String,"sn":"id"},{"a":2,"n":"isActive","t":4,"rt":$n[0].Boolean,"sn":"isActive","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isFrom","t":4,"rt":$n[0].Boolean,"sn":"isFrom","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isIndependentUpdate","t":4,"rt":$n[0].Boolean,"sn":"isIndependentUpdate","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isRelative","t":4,"rt":$n[0].Boolean,"sn":"isRelative","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"isValid","t":4,"rt":$n[0].Boolean,"sn":"isValid","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"loopType","t":4,"rt":$n[6].LoopType,"sn":"loopType","box":function ($v) { return Bridge.box($v, DG.Tweening.LoopType, System.Enum.toStringFn(DG.Tweening.LoopType));}},{"a":2,"n":"loops","t":4,"rt":$n[0].Int32,"sn":"loops","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"optionalBool0","t":4,"rt":$n[0].Boolean,"sn":"optionalBool0","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"optionalBool1","t":4,"rt":$n[0].Boolean,"sn":"optionalBool1","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"optionalFloat0","t":4,"rt":$n[0].Single,"sn":"optionalFloat0","box":function ($v) { return Bridge.box($v, System.Single, System.Single.format, System.Single.getHashCode);}},{"a":2,"n":"optionalInt0","t":4,"rt":$n[0].Int32,"sn":"optionalInt0","box":function ($v) { return Bridge.box($v, System.Int32);}},{"a":2,"n":"optionalRotationMode","t":4,"rt":$n[6].RotateMode,"sn":"optionalRotationMode","box":function ($v) { return Bridge.box($v, DG.Tweening.RotateMode, System.Enum.toStringFn(DG.Tweening.RotateMode));}},{"a":2,"n":"optionalScrambleMode","t":4,"rt":$n[6].ScrambleMode,"sn":"optionalScrambleMode","box":function ($v) { return Bridge.box($v, DG.Tweening.ScrambleMode, System.Enum.toStringFn(DG.Tweening.ScrambleMode));}},{"a":2,"n":"optionalShakeRandomnessMode","t":4,"rt":$n[6].ShakeRandomnessMode,"sn":"optionalShakeRandomnessMode","box":function ($v) { return Bridge.box($v, DG.Tweening.ShakeRandomnessMode, System.Enum.toStringFn(DG.Tweening.ShakeRandomnessMode));}},{"a":2,"n":"optionalString","t":4,"rt":$n[0].String,"sn":"optionalString"},{"a":2,"n":"target","t":4,"rt":$n[1].Component,"sn":"target"},{"a":2,"n":"targetGO","t":4,"rt":$n[1].GameObject,"sn":"targetGO"},{"a":2,"n":"targetIsSelf","t":4,"rt":$n[0].Boolean,"sn":"targetIsSelf","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"targetType","t":4,"rt":$n[6].DOTweenAnimation.TargetType,"sn":"targetType","box":function ($v) { return Bridge.box($v, DG.Tweening.DOTweenAnimation.TargetType, System.Enum.toStringFn(DG.Tweening.DOTweenAnimation.TargetType));}},{"a":2,"n":"tweenTargetIsTargetGO","t":4,"rt":$n[0].Boolean,"sn":"tweenTargetIsTargetGO","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"useTargetAsV3","t":4,"rt":$n[0].Boolean,"sn":"useTargetAsV3","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"OnReset","is":true,"t":2,"ad":{"a":2,"n":"add_OnReset","is":true,"t":8,"pi":[{"n":"value","pt":Function,"ps":0}],"sn":"addOnReset","rt":$n[0].Void,"p":[Function]},"r":{"a":2,"n":"remove_OnReset","is":true,"t":8,"pi":[{"n":"value","pt":Function,"ps":0}],"sn":"removeOnReset","rt":$n[0].Void,"p":[Function]}}]}; }, $n);
     /*DG.Tweening.DOTweenAnimation end.*/
 
     /*DG.Tweening.DOTweenAnimation+AnimationType start.*/
@@ -13623,7 +14423,7 @@ if ( TRACE ) { TRACE( "Level3_Crown_Playable_NewTest#ForceCompleteStep3", this )
     /*ScratchCardAsset.Core.ScratchCardInput end.*/
 
     /*ScratchCardAsset.Core.ScratchCardRenderer start.*/
-    $m("ScratchCardAsset.Core.ScratchCardRenderer", function () { return {"att":1048577,"a":2,"m":[{"a":2,"n":".ctor","t":1,"p":[$n[5].ScratchCard],"pi":[{"n":"card","pt":$n[5].ScratchCard,"ps":0}],"sn":"ctor"},{"a":2,"n":"CreateRenderTexture","t":8,"sn":"CreateRenderTexture","rt":$n[0].Void},{"a":2,"n":"FillRenderTextureWithColor","t":8,"pi":[{"n":"color","pt":$n[1].Color,"ps":0}],"sn":"FillRenderTextureWithColor","rt":$n[0].Void,"p":[$n[1].Color]},{"a":2,"n":"Filling","t":8,"pi":[{"n":"position","pt":$n[1].Vector2,"ps":0}],"sn":"Filling","rt":$n[4].IEnumerator,"p":[$n[1].Vector2]},{"a":2,"n":"FillingLine","t":8,"pi":[{"n":"startPosition","pt":$n[1].Vector2,"ps":0},{"n":"endPosition","pt":$n[1].Vector2,"ps":1}],"sn":"FillingLine","rt":$n[4].IEnumerator,"p":[$n[1].Vector2,$n[1].Vector2]},{"a":1,"n":"IsInBounds","t":8,"pi":[{"n":"rect","pt":$n[1].Rect,"ps":0}],"sn":"IsInBounds","rt":$n[0].Boolean,"p":[$n[1].Rect],"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"Release","t":8,"sn":"Release","rt":$n[0].Void},{"a":2,"n":"ScratchHoleAddition","t":8,"pi":[{"n":"position","pt":$n[1].Vector2,"ps":0},{"n":"multiplier","pt":$n[0].Single,"ps":1}],"sn":"ScratchHoleAddition","rt":$n[0].Void,"p":[$n[1].Vector2,$n[0].Single]},{"a":1,"n":"ScratchHoleAddition","t":8,"pi":[{"n":"position","pt":$n[1].Vector2,"ps":0},{"n":"multiplier","pt":$n[0].Single,"ps":1},{"n":"rotation","dv":0.0,"o":true,"pt":$n[0].Single,"ps":2}],"sn":"ScratchHoleAddition$1","rt":$n[0].Void,"p":[$n[1].Vector2,$n[0].Single,$n[0].Single]},{"a":2,"n":"ScratchLineAddition","t":8,"pi":[{"n":"startPosition","pt":$n[1].Vector2,"ps":0},{"n":"endPosition","pt":$n[1].Vector2,"ps":1},{"n":"multiplier","pt":$n[0].Single,"ps":2}],"sn":"ScratchLineAddition","rt":$n[0].Void,"p":[$n[1].Vector2,$n[1].Vector2,$n[0].Single]},{"a":2,"n":"ScratchLineAddition","t":8,"pi":[{"n":"startPosition","pt":$n[1].Vector2,"ps":0},{"n":"endPosition","pt":$n[1].Vector2,"ps":1},{"n":"multiplier","pt":$n[0].Single,"ps":2},{"n":"rotation","dv":0.0,"o":true,"pt":$n[0].Single,"ps":3}],"sn":"ScratchLineAddition$1","rt":$n[0].Void,"p":[$n[1].Vector2,$n[1].Vector2,$n[0].Single,$n[0].Single]},{"a":2,"n":"SetImageSize","t":8,"pi":[{"n":"size","pt":$n[1].Vector2,"ps":0}],"sn":"SetImageSize","rt":$n[0].Void,"p":[$n[1].Vector2]},{"a":2,"n":"IsScratched","t":4,"rt":$n[0].Boolean,"sn":"IsScratched","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"MainTexProperty","is":true,"t":4,"rt":$n[0].String,"sn":"MainTexProperty"},{"a":1,"n":"MaskTexProperty","is":true,"t":4,"rt":$n[0].String,"sn":"MaskTexProperty"},{"a":1,"n":"SourceTexProperty","is":true,"t":4,"rt":$n[0].String,"sn":"SourceTexProperty"},{"a":1,"n":"colors","t":4,"rt":$n[7].List$1(UnityEngine.Color),"sn":"colors"},{"a":1,"n":"commandBuffer","t":4,"rt":$n[13].CommandBuffer,"sn":"commandBuffer"},{"a":1,"n":"imageSize","t":4,"rt":$n[1].Vector2,"sn":"imageSize"},{"a":1,"n":"indices","t":4,"rt":$n[7].List$1(System.Int32),"sn":"indices"},{"a":1,"n":"localBounds","t":4,"rt":$n[1].Bounds,"sn":"localBounds"},{"a":1,"n":"meshHole","t":4,"rt":$n[1].Mesh,"sn":"meshHole"},{"a":1,"n":"meshLine","t":4,"rt":$n[1].Mesh,"sn":"meshLine"},{"a":1,"n":"positions","t":4,"rt":$n[7].List$1(UnityEngine.Vector3),"sn":"positions"},{"a":1,"n":"rti","t":4,"rt":$n[13].RenderTargetIdentifier,"sn":"rti"},{"a":1,"n":"scratchCard","t":4,"rt":$n[5].ScratchCard,"sn":"scratchCard"},{"a":2,"n":"useChangingHole","t":4,"rt":$n[0].Boolean,"sn":"useChangingHole","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"uv","t":4,"rt":$n[7].List$1(UnityEngine.Vector2),"sn":"uv"},{"a":1,"n":"wait","t":4,"rt":$n[1].WaitForSeconds,"sn":"wait"},{"a":1,"n":"white","t":4,"rt":$n[1].Color,"sn":"white"}]}; }, $n);
+    $m("ScratchCardAsset.Core.ScratchCardRenderer", function () { return {"att":1048577,"a":2,"m":[{"a":2,"n":".ctor","t":1,"p":[$n[5].ScratchCard],"pi":[{"n":"card","pt":$n[5].ScratchCard,"ps":0}],"sn":"ctor"},{"a":2,"n":"CreateRenderTexture","t":8,"sn":"CreateRenderTexture","rt":$n[0].Void},{"a":2,"n":"FillRenderTextureWithColor","t":8,"pi":[{"n":"color","pt":$n[1].Color,"ps":0}],"sn":"FillRenderTextureWithColor","rt":$n[0].Void,"p":[$n[1].Color]},{"a":2,"n":"Filling","t":8,"pi":[{"n":"position","pt":$n[1].Vector2,"ps":0}],"sn":"Filling","rt":$n[4].IEnumerator,"p":[$n[1].Vector2]},{"a":2,"n":"FillingLine","t":8,"pi":[{"n":"startPosition","pt":$n[1].Vector2,"ps":0},{"n":"endPosition","pt":$n[1].Vector2,"ps":1}],"sn":"FillingLine","rt":$n[4].IEnumerator,"p":[$n[1].Vector2,$n[1].Vector2]},{"a":1,"n":"IsInBounds","t":8,"pi":[{"n":"rect","pt":$n[1].Rect,"ps":0}],"sn":"IsInBounds","rt":$n[0].Boolean,"p":[$n[1].Rect],"box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":2,"n":"Release","t":8,"sn":"Release","rt":$n[0].Void},{"a":2,"n":"ScratchHoleAddition","t":8,"pi":[{"n":"position","pt":$n[1].Vector2,"ps":0},{"n":"multiplier","pt":$n[0].Single,"ps":1}],"sn":"ScratchHoleAddition","rt":$n[0].Void,"p":[$n[1].Vector2,$n[0].Single]},{"a":1,"n":"ScratchHoleAddition","t":8,"pi":[{"n":"position","pt":$n[1].Vector2,"ps":0},{"n":"multiplier","pt":$n[0].Single,"ps":1},{"n":"rotation","dv":0.0,"o":true,"pt":$n[0].Single,"ps":2}],"sn":"ScratchHoleAddition$1","rt":$n[0].Void,"p":[$n[1].Vector2,$n[0].Single,$n[0].Single]},{"a":2,"n":"ScratchLineAddition","t":8,"pi":[{"n":"startPosition","pt":$n[1].Vector2,"ps":0},{"n":"endPosition","pt":$n[1].Vector2,"ps":1},{"n":"multiplier","pt":$n[0].Single,"ps":2}],"sn":"ScratchLineAddition","rt":$n[0].Void,"p":[$n[1].Vector2,$n[1].Vector2,$n[0].Single]},{"a":2,"n":"ScratchLineAddition","t":8,"pi":[{"n":"startPosition","pt":$n[1].Vector2,"ps":0},{"n":"endPosition","pt":$n[1].Vector2,"ps":1},{"n":"multiplier","pt":$n[0].Single,"ps":2},{"n":"rotation","dv":0.0,"o":true,"pt":$n[0].Single,"ps":3}],"sn":"ScratchLineAddition$1","rt":$n[0].Void,"p":[$n[1].Vector2,$n[1].Vector2,$n[0].Single,$n[0].Single]},{"a":2,"n":"SetImageSize","t":8,"pi":[{"n":"size","pt":$n[1].Vector2,"ps":0}],"sn":"SetImageSize","rt":$n[0].Void,"p":[$n[1].Vector2]},{"a":2,"n":"IsScratched","t":4,"rt":$n[0].Boolean,"sn":"IsScratched","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"MainTexProperty","is":true,"t":4,"rt":$n[0].String,"sn":"MainTexProperty"},{"a":1,"n":"MaskTexProperty","is":true,"t":4,"rt":$n[0].String,"sn":"MaskTexProperty"},{"a":1,"n":"SourceTexProperty","is":true,"t":4,"rt":$n[0].String,"sn":"SourceTexProperty"},{"a":1,"n":"colors","t":4,"rt":$n[8].List$1(UnityEngine.Color),"sn":"colors"},{"a":1,"n":"commandBuffer","t":4,"rt":$n[13].CommandBuffer,"sn":"commandBuffer"},{"a":1,"n":"imageSize","t":4,"rt":$n[1].Vector2,"sn":"imageSize"},{"a":1,"n":"indices","t":4,"rt":$n[8].List$1(System.Int32),"sn":"indices"},{"a":1,"n":"localBounds","t":4,"rt":$n[1].Bounds,"sn":"localBounds"},{"a":1,"n":"meshHole","t":4,"rt":$n[1].Mesh,"sn":"meshHole"},{"a":1,"n":"meshLine","t":4,"rt":$n[1].Mesh,"sn":"meshLine"},{"a":1,"n":"positions","t":4,"rt":$n[8].List$1(UnityEngine.Vector3),"sn":"positions"},{"a":1,"n":"rti","t":4,"rt":$n[13].RenderTargetIdentifier,"sn":"rti"},{"a":1,"n":"scratchCard","t":4,"rt":$n[5].ScratchCard,"sn":"scratchCard"},{"a":2,"n":"useChangingHole","t":4,"rt":$n[0].Boolean,"sn":"useChangingHole","box":function ($v) { return Bridge.box($v, System.Boolean, System.Boolean.toString);}},{"a":1,"n":"uv","t":4,"rt":$n[8].List$1(UnityEngine.Vector2),"sn":"uv"},{"a":1,"n":"wait","t":4,"rt":$n[1].WaitForSeconds,"sn":"wait"},{"a":1,"n":"white","t":4,"rt":$n[1].Color,"sn":"white"}]}; }, $n);
     /*ScratchCardAsset.Core.ScratchCardRenderer end.*/
 
     /*ScratchCardAsset.Core.Data.Triangle start.*/

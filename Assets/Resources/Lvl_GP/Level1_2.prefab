@@ -1279,6 +1279,9 @@ MonoBehaviour:
   settleDuration: 0.3
   isPlaced: 0
   isInsideCollider: 0
+  changeScaleOnPlace: 0
+  item: {fileID: 0}
+  newScaleOnPlace: {x: 1, y: 1, z: 1}
   OnPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -2252,7 +2255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0e6497fb4df174ea32c862b8816f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 5157203787244032227}
+  meshRenderer: {fileID: 4878887018809043733}
   toolTransform: {fileID: 1610628259693485443}
   toolDirectionPoint: {fileID: 7348621883889215032}
   fixedEndPoint: {fileID: 4488245865391982663}
@@ -3289,6 +3292,9 @@ MonoBehaviour:
   settleDuration: 0.3
   isPlaced: 0
   isInsideCollider: 0
+  changeScaleOnPlace: 0
+  item: {fileID: 0}
+  newScaleOnPlace: {x: 1, y: 1, z: 1}
   OnPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -3690,7 +3696,7 @@ MonoBehaviour:
   _DistanceX: 0
   _DistanceY: 0.01
   _WaveTimeX: 0.32332242
-  _WaveTimeY: 0
+  _WaveTimeY: 6.145875
   AutoPlayWaveX: 0
   AutoPlaySpeedX: 0.05
   AutoPlayWaveY: 1
@@ -12847,7 +12853,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 0
   Particles: {fileID: 0}
   isDone: 0
   isInArea: 0
@@ -14206,7 +14211,7 @@ MonoBehaviour:
   _DistanceX: 0.005
   _DistanceY: 0.005
   _WaveTimeX: 0.93016315
-  _WaveTimeY: 2.1002479
+  _WaveTimeY: 1.3614466
   AutoPlayWaveX: 0
   AutoPlaySpeedX: 0
   AutoPlayWaveY: 1
@@ -30976,6 +30981,9 @@ MonoBehaviour:
   settleDuration: 0.3
   isPlaced: 0
   isInsideCollider: 0
+  changeScaleOnPlace: 0
+  item: {fileID: 0}
+  newScaleOnPlace: {x: 1, y: 1, z: 1}
   OnPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -31478,6 +31486,12 @@ MonoBehaviour:
   stepsDone: 0
   levelNo: 0
   partNo: 0
+  disableOnLevelComplete: []
+  zoomBeforeComplete: 0
+  completionZoom:
+    CameraPos: {x: 0, y: 0, z: -10}
+    CameraFOV: 4.2
+  completionZoomDuration: 0.75
   WashingView: {fileID: 3110379729767573295}
   WashingTools: {fileID: 2493966044273972744}
   DressingView: {fileID: 2112187898591367293}
@@ -31500,6 +31514,7 @@ MonoBehaviour:
     CameraPos: {x: -0.83, y: 1.4, z: -10}
     CameraFOV: 3
   ToolStep2: {fileID: 2173936024927163283}
+  ToolStep2CamFollow: {fileID: 0}
   drawerObj: {fileID: 6612676752937898722}
   surfObj: {fileID: 3028719167747275332}
   surfPackTop: {fileID: 8747881806562999994}
@@ -31513,6 +31528,7 @@ MonoBehaviour:
   clothCleanInsideAnim: {fileID: 7013512030079650881}
   waterWave: {fileID: 3726023726358966418}
   clothCleanInside2: {fileID: 3382726458825179679}
+  clothCleanInside2Cam: {fileID: 0}
   clothBasketTarget: {fileID: 7528204256709793768}
   clothBasketTarget2: {fileID: 6831578164660221769}
   waterSplash_Vfx: {fileID: 8795526831412819507}
@@ -31540,6 +31556,7 @@ MonoBehaviour:
   ToolStep3: {fileID: 8577523697312774034}
   tornPatch: {fileID: 4196821040674629453}
   patchCompleted: {fileID: 4931657526285729713}
+  patchOutline: {fileID: 0}
   ZoomStep4:
     CameraPos: {x: 0, y: 0, z: -10}
     CameraFOV: 3.5
@@ -31550,7 +31567,6 @@ MonoBehaviour:
     CameraPos: {x: 0, y: 0, z: -10}
     CameraFOV: 3.85
   ToolStep5: {fileID: 300175461964635164}
-  ribbonHandParent: {fileID: 4980299584813968510}
   ribbonFinalTarget: {fileID: 9074385397442584637}
   ribbonFinal: {fileID: 6586179466393919456}
   handIndication5: {fileID: 2718582425418274039}
@@ -65999,6 +66015,9 @@ MonoBehaviour:
   settleDuration: 0.3
   isPlaced: 0
   isInsideCollider: 0
+  changeScaleOnPlace: 0
+  item: {fileID: 0}
+  newScaleOnPlace: {x: 1, y: 1, z: 1}
   OnPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -66191,7 +66210,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582782126522711550}
-  - component: {fileID: 5157203787244032227}
+  - component: {fileID: 9045565271935885746}
+  - component: {fileID: 4878887018809043733}
   m_Layer: 0
   m_Name: Line_Render
   m_TagString: Untagged
@@ -66214,9 +66234,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5395648911742998322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &5157203787244032227
-LineRenderer:
-  serializedVersion: 2
+--- !u!33 &9045565271935885746
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8101950981337889502}
+  m_Mesh: {fileID: 0}
+--- !u!23 &4878887018809043733
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -66230,7 +66257,7 @@ LineRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -66256,66 +66283,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 24
-  m_Positions: []
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 0.1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_ColorSpace: -1
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 90
-    numCapVertices: 90
-    alignment: 1
-    textureMode: 3
-    textureScale: {x: 1, y: 1}
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_MaskInteraction: 0
-  m_UseWorldSpace: 0
-  m_Loop: 0
-  m_ApplyActiveColorSpace: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8160423695528572474
 GameObject:
   m_ObjectHideFlags: 0
@@ -66835,6 +66803,9 @@ MonoBehaviour:
   settleDuration: 0.3
   isPlaced: 0
   isInsideCollider: 0
+  changeScaleOnPlace: 0
+  item: {fileID: 0}
+  newScaleOnPlace: {x: 1, y: 1, z: 1}
   OnPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -72536,7 +72507,6 @@ MonoBehaviour:
   startVol: 0
   targetVol: 1
   duration: 0.3
-  Vibration: 0
   Particles: {fileID: 0}
   isDone: 0
   isInArea: 0
